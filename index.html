@@ -891,7 +891,10 @@ curl <span class="s2">"https://sandbox.xfers.io/api/v3/connect"</span>
 <p>Make sure to replace <code class="prettyprint">f0ca588df6e8400a98a7e522390fad67</code> with your API key. </p>
 </blockquote>
 
-<p>Xfers connect uses API keys to allow access to the APIs. Write in to us at admin@xfers.io to request for your Xfers connect API Keys. You will provided with a pair of keys named <code class="prettyprint">X-XFERS-APP-API-KEY</code> and <code class="prettyprint">X-XFERS-APP-SECRET-KEY</code>.</p>
+<p>Xfers connect uses API keys to allow access to the APIs. </p>
+
+<p>Write in to us at support@xfers.io to request for your Xfers connect API Keys.
+You will provided with a pair of keys named <code class="prettyprint">X-XFERS-APP-API-KEY</code> and <code class="prettyprint">X-XFERS-APP-SECRET-KEY</code>.</p>
 
 <p>Xfers connect expects the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
@@ -906,12 +909,11 @@ curl <span class="s2">"https://sandbox.xfers.io/api/v3/connect"</span>
 </span></code></pre>
 
 <aside class="notice">
-You must replace <code>f0ca588df6e8400a98a7e522390fad67</code> with your Xfers Connect&rsquo;s API key. These are not the same as your user API Key.
+You must replace <code>f0ca588df6e8400a98a7e522390fad67</code> with your Xfers Connect&rsquo;s API key. These are not the same as your user API Key found in your account settings page.
 </aside>
 
 <h2 id="signup/login-to-xfers">Signup/login to Xfers</h2>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/signup_login"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+6597288608&amp;signature=597b54c16578ef584d9e86020624a1364a16b550"</span>
   -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
 </code></pre>
 
@@ -923,11 +925,13 @@ curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/signup_login"</
   </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This API will attempt to login(existing user) or signup a new user. An SMS with a OTP will be send to that number which must be used to for <a href="http://xfers.github.io/docs/#get-user-api-token">get_token</a> api call.</p>
+<p>This API call will attempt to login(existing user) or signup a new user.</p>
+
+<p>An SMS with a OTP will be send to that number which must be used for <a href="http://xfers.github.io/docs/#get-user-api-token">get_token</a> api call.</p>
 
 <h3 id="https-request">HTTPS Request</h3>
 
-<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/authorize/signup_login</code></p>
+<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/authorize/signup_login?otp=541231&amp;phone_no=+6597288608&amp;signature=7f6c6a7ec80a0be657e4204cd87e58401687a2eb</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
