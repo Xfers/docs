@@ -24,7 +24,7 @@ This API reference provides information on available endpoints. To read more abo
 
 Xfers provides a delicated sandbox environment where you can simulate bank transfer without having to actually make one. This makes integrations and testing alot easier. 
 
-For testing purposes, we highly recommend that your head over [sandbox.xfers.io](sandbox.xfers.io) and create a sandbox account.
+For testing purposes, we highly recommend that your head over [sandbox.xfers.io](https://sandbox.xfers.io)(sandbox.xfers.io) and create a sandbox account.
 
 To test against the sandbox available, point to our sandbox API endpoint at:
 
@@ -55,7 +55,7 @@ curl "https://sandbox.xfers.io/api/v3/hello"
 
 > Make sure to replace `f0ca588df6e8400a98a7e522390fad67` with your API key.
 
-Xfers uses API keys to allow access to the API. You can get your API key from your [Account Settings](https://www.xfers.io/account_settings) page.
+Xfers uses API keys to allow access to the API. You can get your API key from your [Account Settings](https://sandbox.xfers.io/account_settings) page.
 
 Xfers expects the API key to be included in all API requests to the server in a header that looks like the following:
 
