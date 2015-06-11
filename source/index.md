@@ -16,15 +16,15 @@ search: true
 
 # Introduction
 
-Xfers provides a simple and production REST API to integrate internet banking and credit card payment(coming soon) into your business or applications
+Xfers provides a simple REST API to allow businesses to integrate internet banking and credit card payments(coming soon) into your business or applications.
 
-This API reference provides information on available endpoints. To read more about the API, visit our [API documentation](https://www.xfers.io/developers).
 
 # APIs endpoints
 
-Xfers provides a delicated sandbox environment where you can simulate bank transfer without having to actually make one. This makes integrations and testing alot easier. 
+Xfers provides a **dedicated sandbox environment** where you can simulate an incoming bank transfer without having to actually 
+make one for testing purposes. Note that this feature will not be available in production mode. 
 
-For testing purposes, we highly recommend that your head over [sandbox.xfers.io](https://sandbox.xfers.io)(sandbox.xfers.io) and create a sandbox account.
+For testing purposes, we highly recommend that your head over to [sandbox.xfers.io](https://sandbox.xfers.io) and create a sandbox account.
 
 To test against the sandbox available, point to our sandbox API endpoint at:
 
@@ -45,7 +45,7 @@ All the examples code in this document will be pointing to our sandbox endpoint.
 
 # Authentication
 
-> To authorize, use this code:
+> Simple Authentication Ping Test
 
 ```shell
 # With shell, you can just pass the correct header with each request
@@ -53,11 +53,11 @@ curl "https://sandbox.xfers.io/api/v3/hello"
   -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
 ```
 
-> Make sure to replace `f0ca588df6e8400a98a7e522390fad67` with your API key.
+> Make sure to replace `f0ca588df6e8400a98a7e522390fad67` with your own API key.
 
 Xfers uses API keys to allow access to the API. You can get your API key from your [Account Settings](https://sandbox.xfers.io/account_settings) page.
 
-Xfers expects the API key to be included in all API requests to the server in a header that looks like the following:
+Xfers expects the API key to be included in the header of all API requests to the server, like so:
 
 `X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67`
 
@@ -79,8 +79,7 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 
 # Account Info
 
-The following APIs provide informations and allow changes to an Xfers account.
-
+The account info API supports querying and making changes to a User's account.
 
 ## Get Account Info
 
