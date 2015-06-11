@@ -1,4 +1,4 @@
-[Click here to go to the docs page](xfers.github.io/docs)
+[Click here to go to the docs page](http://xfers.github.io/docs)
 
 ====
 
