@@ -50,16 +50,16 @@ All the examples code in this document will be pointing to our sandbox endpoint.
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "https://sandbox.xfers.io/api/v3/hello"
-  -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
 ```
 
 > Make sure to replace `f0ca588df6e8400a98a7e522390fad67` with your API key.
 
 Xfers uses API keys to allow access to the API. You can get your API key from your [Account Settings](https://www.xfers.io/account_settings) page.
 
-Xfers expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Xfers expects the API key to be included in all API requests to the server in a header that looks like the following:
 
-`X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67`
+`X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67`
 
 > The above command returns JSON structured like this on success:
 
@@ -86,7 +86,7 @@ The following APIs provide informations and allow changes to an Xfers account.
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user"
-  -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
 ```
 
 > Response:
@@ -135,7 +135,7 @@ This endpoint return informations related to your account.
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/bank_account"
-  -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
   -H "Content-Type: application/json"
   -d "account_no=03931234323"
   -d "account_type=DBS-SAVING"
@@ -191,7 +191,7 @@ bank | string | optional | bank name (DBS/OCBC/UOB/MBB/CITI/STC) | DBS
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>"
-  -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
   -H "Content-Type: application/json"
   -X PUT
   -d "account_no=03931234323"
@@ -246,7 +246,7 @@ The following APIs allow you to create a Xfers transaction and allow anyone to p
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges"
-  -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
   -H "Content-Type: application/json"
   -d "amount=24.99"
   -d "currency=SGD"
@@ -379,7 +379,7 @@ status | string | Payment status. | "cancelled" or "paid" or "expired"
 ## Verification of Notifications
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/validate"
-  -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
   -H "Content-Type: application/json"
   -d "total_amount=24.99"
   -d "currency=SGD"
@@ -415,7 +415,7 @@ status | string | Payment status. | "cancelled" or "paid" or "expired"
 ## Capture a COD Charge
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<id>"
-  -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
   -H "Content-Type: application/json"
   -d "cod_pin=512312"
 ```
@@ -444,7 +444,7 @@ cod_pin | string | Cash On Delivery PIN code provided to the buyer | 512312
 ## Retrieve a charge
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<id>"
-  -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
   -H "Content-Type: application/json"
 ```
 
@@ -496,7 +496,7 @@ Retrieves the details of a charge that has previously been created. Supply the u
 ## Cancel a charge
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<id>"
-  -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
   -H "Content-Type: application/json"
   -X DELETE
 ```
@@ -519,7 +519,7 @@ Cancel a charge that has previously been created. Supply the unique charge ID th
 ## List all charges
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges?limit=1"
-  -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
   -H "Content-Type: application/json"
 ```
 
@@ -576,5 +576,108 @@ customer | string | optional | Only return charges for the customer specified by
 ending_before | string | optional | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_bar, your subsequent call can include ending_before=obj_bar in order to fetch the previous page of the list. | asd1wwd1csadjw1e213sad
 limit | integer | optional | A limit on the number of objects to be returned. Limit can range between 1 and 50 items. | Default to 10
 starting_after | string | optional | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list. | asd1wwd1csadjw1e213sad
+
+
+# Xfers Connect
+
+Xfers connect is for accepting payment on behalf of others, and gaining access to their data.
+
+You might use Connect if you:
+
+- Are building a platform that enables e-commerce like Shopify or tackthis. 
+
+- Need to easily accept payments and pay out your service providers, like Grabtaxi with its drivers or yesHelper with its workers. (You can even create Xfers accounts for your users, so they only ever interact with your platform.)
+
+In general, if you’re building a platform or marketplace that needs to pay third-parties or building applications that help Xfers users do more with their account or their data, Connect is likely the right solution for you.
+
+
+
+## Authentication
+```shell
+# With shell, you can just pass the correct header with each request
+curl "https://sandbox.xfers.io/api/v3/connect"
+  -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+```
+
+> Make sure to replace `f0ca588df6e8400a98a7e522390fad67` with your API key. 
+
+Xfers connect uses API keys to allow access to the APIs. Write in to us at admin@xfers.io to request for your Xfers connect API Keys. You will provided with a pair of keys named `X-XFERS-APP-API-KEY` and `X-XFERS-APP-SECRET-KEY`.
+
+Xfers connect expects the API key to be included in all API requests to the server in a header that looks like the following:
+
+`X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67`
+
+> The above command returns JSON structured like this on success:
+
+```json
+  {
+    "msg": "Hello world"
+  }
+```
+
+
+<aside class="notice">
+You must replace <code>f0ca588df6e8400a98a7e522390fad67</code> with your Xfers Connect's API key. These are not the same as your user API Key.
+</aside>
+
+
+## Signup/login to Xfers
+```shell
+# With shell, you can just pass the correct header with each request
+curl "https://sandbox.xfers.io/api/v3/authorize/signup_login"
+  -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+```
+
+> Response
+
+```json
+  {
+    "msg": "success"
+  }
+```
+
+This API will attempt to login(existing user) or signup a new user. An SMS with a OTP will be send to that number which must be used to for [get_token](http://xfers.github.io/docs/#get-user-api-token) api call.
+
+### HTTPS Request
+`GET https://sandbox.xfers.io/api/v3/authorize/signup_login`
+
+### URL Parameters
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+phone_no | string | required | User mobile no | +6597288608
+signature | string | required | SHA1 of "phone_no+APP_SECRET_KEY"  | 597b54c16578ef584d9e86020624a1364a16b550
+
+
+## Get User API Token
+```shell
+# With shell, you can just pass the correct header with each request
+curl "https://sandbox.xfers.io/api/v3/authorize/get_token"
+  -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+```
+
+> Response
+
+```json
+  {
+    "msg": "success",
+    "user_api_token": "f0ca588df6e8400a98a7e522390fad67"
+  }
+```
+
+
+This API call will return the user's `X-XFERS-USER-API-KEY`.
+
+
+### HTTPS Request
+`GET https://sandbox.xfers.io/api/v3/authorize/get_token`
+
+### URL Parameters
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+otp | string | required | 6 digit one-time-password send over SMS | 541231
+phone_no | string | required | User mobile no | +6597288608
+signature | string | required | SHA1 of "OTP+phone_no+APP_SECRET_KEY" | 7f6c6a7ec80a0be657e4204cd87e58401687a2eb
+
+
 
 
