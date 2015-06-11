@@ -601,7 +601,10 @@ curl "https://sandbox.xfers.io/api/v3/connect"
 
 > Make sure to replace `f0ca588df6e8400a98a7e522390fad67` with your API key. 
 
-Xfers connect uses API keys to allow access to the APIs. Write in to us at admin@xfers.io to request for your Xfers connect API Keys. You will provided with a pair of keys named `X-XFERS-APP-API-KEY` and `X-XFERS-APP-SECRET-KEY`.
+Xfers connect uses API keys to allow access to the APIs. 
+
+Write in to us at support@xfers.io to request for your Xfers connect API Keys.
+You will provided with a pair of keys named `X-XFERS-APP-API-KEY` and `X-XFERS-APP-SECRET-KEY`.
 
 Xfers connect expects the API key to be included in all API requests to the server in a header that looks like the following:
 
@@ -617,14 +620,13 @@ Xfers connect expects the API key to be included in all API requests to the serv
 
 
 <aside class="notice">
-You must replace <code>f0ca588df6e8400a98a7e522390fad67</code> with your Xfers Connect's API key. These are not the same as your user API Key.
+You must replace <code>f0ca588df6e8400a98a7e522390fad67</code> with your Xfers Connect's API key. These are not the same as your user API Key found in your account settings page.
 </aside>
 
 
 ## Signup/login to Xfers
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "https://sandbox.xfers.io/api/v3/authorize/signup_login"
+curl "https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+6597288608&signature=597b54c16578ef584d9e86020624a1364a16b550"
   -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
 ```
 
@@ -636,10 +638,12 @@ curl "https://sandbox.xfers.io/api/v3/authorize/signup_login"
   }
 ```
 
-This API will attempt to login(existing user) or signup a new user. An SMS with a OTP will be send to that number which must be used to for [get_token](http://xfers.github.io/docs/#get-user-api-token) api call.
+This API call will attempt to login(existing user) or signup a new user.
+
+An SMS with a OTP will be send to that number which must be used for [get_token](http://xfers.github.io/docs/#get-user-api-token) api call.
 
 ### HTTPS Request
-`GET https://sandbox.xfers.io/api/v3/authorize/signup_login`
+`GET https://sandbox.xfers.io/api/v3/authorize/signup_login?otp=541231&phone_no=+6597288608&signature=7f6c6a7ec80a0be657e4204cd87e58401687a2eb`
 
 ### URL Parameters
 Name | Type | Required | Description | Value
