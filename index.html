@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Xfers API Reference</title>    
-    <link rel="icon" type="image/png" href="images/favicon.ico">
+    <title>Xfers API Reference</title>
 
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
@@ -80,7 +79,7 @@ All the examples code in this document will be pointing to our sandbox endpoint.
 </blockquote>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"https://sandbox.xfers.io/api/v3/hello"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
 </code></pre>
 
 <blockquote>
@@ -89,9 +88,9 @@ curl <span class="s2">"https://sandbox.xfers.io/api/v3/hello"</span>
 
 <p>Xfers uses API keys to allow access to the API. You can get your API key from your <a href="https://www.xfers.io/account_settings">Account Settings</a> page.</p>
 
-<p>Xfers expects the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>Xfers expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code class="prettyprint">X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67</code></p>
+<p><code class="prettyprint">X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67</code></p>
 
 <blockquote>
 <p>The above command returns JSON structured like this on success:</p>
@@ -115,7 +114,7 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 
 <h2 id="get-account-info">Get Account Info</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
 </code></pre>
 
 <blockquote>
@@ -161,7 +160,7 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 
 <h2 id="create-bank-account">Create Bank Account</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
   -d <span class="s2">"account_no=03931234323"</span>
   -d <span class="s2">"account_type=DBS-SAVING"</span>
@@ -233,7 +232,7 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 
 <h2 id="update-bank-account">Update Bank Account</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account/&lt;bank_account_id&gt;"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
   -X PUT
   -d <span class="s2">"account_no=03931234323"</span>
@@ -305,7 +304,7 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 
 <h2 id="creating-a-charge">Creating a Charge</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
   -d <span class="s2">"amount=24.99"</span>
   -d <span class="s2">"currency=SGD"</span>
@@ -604,7 +603,7 @@ Please take note that at this point, payment may or may not have been completed 
 
 <h2 id="verification-of-notifications">Verification of Notifications</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/validate"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
   -d <span class="s2">"total_amount=24.99"</span>
   -d <span class="s2">"currency=SGD"</span>
@@ -666,7 +665,7 @@ Please take note that at this point, payment may or may not have been completed 
 
 <h2 id="capture-a-cod-charge">Capture a COD Charge</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
   -d <span class="s2">"cod_pin=512312"</span>
 </code></pre>
@@ -707,7 +706,7 @@ Please take note that at this point, payment may or may not have been completed 
 
 <h2 id="retrieve-a-charge">Retrieve a charge</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
 
@@ -757,7 +756,7 @@ Please take note that at this point, payment may or may not have been completed 
 
 <h2 id="cancel-a-charge">Cancel a charge</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
   -X DELETE
 </code></pre>
@@ -778,7 +777,7 @@ Please take note that at this point, payment may or may not have been completed 
 
 <h2 id="list-all-charges">List all charges</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges?limit=1"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
 
@@ -866,153 +865,6 @@ Please take note that at this point, payment may or may not have been completed 
 <td>optional</td>
 <td>A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list.</td>
 <td>asd1wwd1csadjw1e213sad</td>
-</tr>
-</tbody></table>
-
-<h1 id="xfers-connect">Xfers Connect</h1>
-
-<p>Xfers connect is for accepting payment on behalf of others, and gaining access to their data.</p>
-
-<p>You might use Connect if you:</p>
-
-<ul>
-<li><p>Are building a platform that enables e-commerce like Shopify or tackthis. </p></li>
-<li><p>Need to easily accept payments and pay out your service providers, like Grabtaxi with its drivers or yesHelper with its workers. (You can even create Xfers accounts for your users, so they only ever interact with your platform.)</p></li>
-</ul>
-
-<p>In general, if you’re building a platform or marketplace that needs to pay third-parties or building applications that help Xfers users do more with their account or their data, Connect is likely the right solution for you.</p>
-
-<h2 id="authentication">Authentication</h2>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"https://sandbox.xfers.io/api/v3/connect"</span>
-  -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
-</code></pre>
-
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">f0ca588df6e8400a98a7e522390fad67</code> with your API key. </p>
-</blockquote>
-
-<p>Xfers connect uses API keys to allow access to the APIs. </p>
-
-<p>Write in to us at support@xfers.io to request for your Xfers connect API Keys.
-You will provided with a pair of keys named <code class="prettyprint">X-XFERS-APP-API-KEY</code> and <code class="prettyprint">X-XFERS-APP-SECRET-KEY</code>.</p>
-
-<p>Xfers connect expects the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67</code></p>
-
-<blockquote>
-<p>The above command returns JSON structured like this on success:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello world"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<aside class="notice">
-You must replace <code>f0ca588df6e8400a98a7e522390fad67</code> with your Xfers Connect&rsquo;s API key. These are not the same as your user API Key found in your account settings page.
-</aside>
-
-<h2 id="signup/login-to-xfers">Signup/login to Xfers</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+6597288608&amp;signature=597b54c16578ef584d9e86020624a1364a16b550"</span>
-  -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
-</code></pre>
-
-<blockquote>
-<p>Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This API call will attempt to login(existing user) or signup a new user.</p>
-
-<p>An SMS with a OTP will be send to that number which must be used for <a href="http://xfers.github.io/docs/#get-user-api-token">get_token</a> api call.</p>
-
-<h3 id="https-request">HTTPS Request</h3>
-
-<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/authorize/signup_login?otp=541231&amp;phone_no=+6597288608&amp;signature=7f6c6a7ec80a0be657e4204cd87e58401687a2eb</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>phone_no</td>
-<td>string</td>
-<td>required</td>
-<td>User mobile no</td>
-<td>+6597288608</td>
-</tr>
-<tr>
-<td>signature</td>
-<td>string</td>
-<td>required</td>
-<td>SHA1 of &ldquo;phone_no+APP_SECRET_KEY&rdquo;</td>
-<td>597b54c16578ef584d9e86020624a1364a16b550</td>
-</tr>
-</tbody></table>
-
-<h2 id="get-user-api-token">Get User API Token</h2>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/get_token"</span>
-  -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
-</code></pre>
-
-<blockquote>
-<p>Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user_api_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f0ca588df6e8400a98a7e522390fad67"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This API call will return the user&rsquo;s <code class="prettyprint">X-XFERS-USER-API-KEY</code>.</p>
-
-<h3 id="https-request">HTTPS Request</h3>
-
-<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/authorize/get_token</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>otp</td>
-<td>string</td>
-<td>required</td>
-<td>6 digit one-time-password send over SMS</td>
-<td>541231</td>
-</tr>
-<tr>
-<td>phone_no</td>
-<td>string</td>
-<td>required</td>
-<td>User mobile no</td>
-<td>+6597288608</td>
-</tr>
-<tr>
-<td>signature</td>
-<td>string</td>
-<td>required</td>
-<td>SHA1 of &ldquo;OTP+phone_no+APP_SECRET_KEY&rdquo;</td>
-<td>7f6c6a7ec80a0be657e4204cd87e58401687a2eb</td>
 </tr>
 </tbody></table>
 
