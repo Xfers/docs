@@ -92,7 +92,7 @@ You must replace <code>f0ca588df6e8400a98a7e522390fad67</code> with your persona
 All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, beside failing you will also be exposing your API key in plain text!
 </aside>
 
-## Account Info
+## User Account
 
 The account info API supports querying and making changes to a User's account.
 
@@ -146,6 +146,11 @@ name and bank account information.
 `GET https://sandbox.xfers.io/api/v3/user`
 
 
+## Bank Account
+
+The follow APIs allow you to add or update your bank account info.
+
+
 ### ADD Bank Account
 
 ```shell
@@ -182,7 +187,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account"
 }
 ```
 
-This request will add a new bank account to this Xfers account. Bank account allow you to withdrawal your Xfers Balance to.
+This request will add a new bank account to this Xfers account. You will be able to withdraw your Xfers balances to these account(s).
 
 
 #### HTTPS Request
