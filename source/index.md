@@ -151,7 +151,7 @@ name and bank account information.
 The follow APIs allow you to add or update your bank account info.
 
 
-### ADD Bank Account
+### Add Bank Account
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/bank_account"
