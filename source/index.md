@@ -188,7 +188,7 @@ This request will add a new bank account to this Xfers account. Bank account all
 
 #### HTTPS Request
 
-`PUT https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>`
+`POST https://sandbox.xfers.io/api/v3/user/bank_account`
 
 #### URL Parameters
 
@@ -197,9 +197,6 @@ Name | Type | Required | Description | Value
 account_no | string | optional | bank account no | 03931234323
 bank | string | optional | bank name (DBS/OCBC/UOB/MBB/CITI/STC) | DBS
 
-#### HTTPS Request
-
-`GET https://sandbox.xfers.io/api/v3/user`
 
 
 ### Update Bank Account
