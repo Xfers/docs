@@ -21,8 +21,8 @@ Xfers provides a simple REST API to allow businesses to integrate internet banki
 
 # APIs endpoints
 
-Xfers provides a **dedicated sandbox environment** where you can simulate an incoming bank transfer without having to actually 
-make one for testing purposes. Note that this feature will not be available in production mode. 
+Xfers provides a **dedicated sandbox environment** where you can simulate an incoming bank transfer for testing purposes. 
+Note that this feature will not be available in production mode. 
 
 For testing purposes, we highly recommend that your head over to [sandbox.xfers.io](https://sandbox.xfers.io) and create a sandbox account.
 
