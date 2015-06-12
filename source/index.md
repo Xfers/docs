@@ -14,9 +14,17 @@ includes:
 search: true
 ---
 
+<!--- Xfers User API Section -->
+
 # Introduction
 
-Xfers provides a simple REST API to allow businesses to integrate internet banking and credit card payments(coming soon) into your business or applications.
+The **Xfers Core API** provides a set of simple RESTFUL APIs to allow businesses to 
+integrate internet banking and credit card payments(coming soon) into your business or applications. 
+
+You will make use of the Xfers Core API to manage your own account pragmatically. 
+
+**Xfers Connect** is for accepting payments on behalf of others, think of this as a super user that can manage and 
+create accounts on the behalf of others. 
 
 
 # APIs endpoints
@@ -43,7 +51,14 @@ All the examples code in this document will be pointing to our sandbox endpoint.
 </aside>
 
 
-# Authentication
+# Xfers Core
+
+The **Xfers Core API** provides a set of simple RESTFUL APIs to allow businesses to 
+integrate internet banking and credit card payments(coming soon) into your business or applications. 
+
+You will make use of the Xfers Core API to manage your own account pragmatically. 
+
+## Authentication
 
 > Simple Authentication Ping Test
 
@@ -77,11 +92,11 @@ You must replace <code>f0ca588df6e8400a98a7e522390fad67</code> with your persona
 All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, beside failing you will also be exposing your API key in plain text!
 </aside>
 
-# Account Info
+## Account Info
 
 The account info API supports querying and making changes to a User's account.
 
-## Get Account Info
+### Get Account Info
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user"
@@ -123,14 +138,15 @@ curl "https://sandbox.xfers.io/api/v3/user"
 }
 ```
 
-This endpoint return informations related to your account.
+This endpoint return information related to your account such as available balance, ledger balance, 
+name and bank account information.
 
-### HTTPS Request
+#### HTTPS Request
 
 `GET https://sandbox.xfers.io/api/v3/user`
 
 
-## Create Bank Account
+### Create Bank Account
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/bank_account"
@@ -170,23 +186,23 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account"
 This request will add a new bank account to this Xfers account. Bank account allow you to withdrawal your Xfers Balance to.
 
 
-### HTTPS Request
+#### HTTPS Request
 
 `PUT https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>`
 
-### URL Parameters
+#### URL Parameters
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 account_no | string | optional | bank account no | 03931234323
 bank | string | optional | bank name (DBS/OCBC/UOB/MBB/CITI/STC) | DBS
 
-### HTTPS Request
+#### HTTPS Request
 
 `GET https://sandbox.xfers.io/api/v3/user`
 
 
-## Update Bank Account
+### Update Bank Account
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>"
@@ -225,11 +241,11 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>"
 
 This request allow you to update an existing bank account record. 
 
-### HTTPS Request
+#### HTTPS Request
 
 `PUT https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>`
 
-### URL Parameters
+#### URL Parameters
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
@@ -237,11 +253,11 @@ account_no | string | optional | bank account no | 03931234323
 bank | string | optional | bank name (DBS/OCBC/UOB/MBB/CITI/STC) | DBS
 
 
-# Charges
+## Charges
 
 The following APIs allow you to create a Xfers transaction and allow anyone to pay you via internet bank transfer or credit card(coming soon).
 
-## Creating a Charge
+### Creating a Charge
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges"
@@ -305,7 +321,7 @@ The following request will allow you to create a charge against a customer.
 
 `POST https://sandbox.xfers.io/api/v3/charges`
 
-### URL Parameters
+#### URL Parameters
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
@@ -325,7 +341,7 @@ tax | string | float | tax in $  | Default to 0.0
 meta_data | string | optional | A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification | {"key1":"value1", "key2":"value2"}
 receipt_email | string | optional | The email address to send this charge's receipt. | tianwei@xfers.io
 
-### item hash
+#### item hash
 You can provide itemized receipt for your customer by giving use informations with regards to each of them in the `items` field as a json array of hash. 
 
 The below is the list of attribute supported in the hash.
@@ -343,13 +359,13 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 </aside>
 
 
-## Payment Cancellation
+### Payment Cancellation
 If customer cancels the transaction on Xfers website, he will be redirected back to the `cancel_url` you provided. The `order_id` you provided in the charge call will also be part of the GET request as shown:
 
 `GET https://mysite.com/cancel?order_id=<order_id>`
 
 
-## Payment Response
+### Payment Response
 
 After the customer has completed the transaction on Xfers website, he will be redirected back to the `return_url` you provided. The `order_id` you provided in the charge call will also be part of the GET request as shown:
 
@@ -359,7 +375,7 @@ After the customer has completed the transaction on Xfers website, he will be re
 Please take note that at this point, payment may or may not have been completed and verified. You should wait on receiving our payment notification server call before releasing your goods/services.
 </aside>
 
-## Payment Notifications
+### Payment Notifications
 
 After payment has been completed and verified by Xfers backend, Xfers will send a callback to the `notify_url` you provided. This is a server to server HTTPS POST and you will need to acknowledge the callback by providing a HTTP 200 status. It is important to take note that this notification can arrive at your server before or after the customer is redirected to the return_url you provided. 
 
@@ -375,7 +391,7 @@ total_amount | float | 12.49 | Total value for items
 currency | string | 3-letter ISO code for currency | SGD
 status | string | Payment status. | "cancelled" or "paid" or "expired"
 
-## Verification of Notifications
+### Verification of Notifications
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/validate"
   -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
@@ -399,10 +415,10 @@ After receiving a payment notification from Xfers, you should do verification wi
 Xfers will response with HTTP 200 status and a JSON string { "msg": "VERIFIED" } if the notification is valid or HTTP 400 status on Invalid request.
 
 
-### HTTPS Request
+#### HTTPS Request
 `POST https://sandbox.xfers.io/api/v3/charges/validate`
 
-### URL Parameters
+#### URL Parameters
 Name | Type | Description | Value
 ---- | ---- | -------- | -----------
 order_id | string | Unique ref no provided by your during your charge call | A012312
@@ -411,7 +427,7 @@ currency | string | 3-letter ISO code for currency | SGD
 status | string | Payment status. | "cancelled" or "paid" or "expired"
 
 
-## Capture a COD Charge
+### Capture a COD Charge
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<id>"
   -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
@@ -432,15 +448,15 @@ Capture the payment of an existing, uncaptured, cash on delivery charge. This is
 
 Uncaptured cash on delivery payments convert exactly seven days after they are created. If they are not cancelled by that point in time, they will be marked as completed and the funds will be automatically release to you.
 
-### HTTPS Request
+#### HTTPS Request
 `POST https://sandbox.xfers.io/api/v3/charges/<id>`
 
-### URL Parameters
+#### URL Parameters
 Name | Type | Description | Value
 ---- | ---- | -------- | -----------
 cod_pin | string | Cash On Delivery PIN code provided to the buyer | 512312
 
-## Retrieve a charge
+### Retrieve a charge
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<id>"
   -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
@@ -488,11 +504,11 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>"
 
 Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was returned from your previous request, and Xfers will return the corresponding charge information. The same information is returned when creating or refunding the charge.
 
-### HTTPS Request
+#### HTTPS Request
 `GET https://sandbox.xfers.io/api/v3/charges/<id>`
 
 
-## Cancel a charge
+### Cancel a charge
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<id>"
   -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
@@ -511,11 +527,11 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>"
 
 Cancel a charge that has previously been created. Supply the unique charge ID that was returned from your previous request.
 
-### HTTPS Request
+#### HTTPS Request
 `DELETE https://sandbox.xfers.io/api/v3/charges/<id>`
 
 
-## List all charges
+### List all charges
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges?limit=1"
   -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
@@ -565,10 +581,10 @@ curl "https://sandbox.xfers.io/api/v3/charges?limit=1"
 
 Returns a list of charges you've previously created. The charges are returned in sorted order, with the most recent charges appearing first.
 
-### HTTPS Request
+#### HTTPS Request
 `GET https://sandbox.xfers.io/api/v3/charges`
 
-### URL Parameters
+#### URL Parameters
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 customer | string | optional | Only return charges for the customer specified by this customer ID. | 97288608
@@ -576,6 +592,8 @@ ending_before | string | optional | A cursor for use in pagination. ending_befor
 limit | integer | optional | A limit on the number of objects to be returned. Limit can range between 1 and 50 items. | Default to 10
 starting_after | string | optional | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list. | asd1wwd1csadjw1e213sad
 
+
+<-- Xfers Connect Section --> 
 
 # Xfers Connect
 
