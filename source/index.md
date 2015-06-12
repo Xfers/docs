@@ -274,7 +274,7 @@ curl "https://sandbox.xfers.io/api/v3/charges"
   -d "cancel_url=https://mysite.com/cancel"
   -d "order_id=A012312"
   -d "cash_on_deliver=true"
-  -d "descriptions='Carousell user - Konsolidate'"
+  -d "description=unused red dress"
   -d "shipping=2.50"
   -d "tax=0.0"
   -d 'items=[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]'
