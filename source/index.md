@@ -26,7 +26,7 @@ Note that this feature will not be available in production mode.
 
 For testing purposes, we highly recommend that your head over to [sandbox.xfers.io](https://sandbox.xfers.io) and create a sandbox account.
 
-To test against the sandbox available, point to our sandbox API endpoint at:
+While in testing mode, point to our sandbox API endpoint at:
 
 `https://sandbox.xfers.io/api/v3`
 
