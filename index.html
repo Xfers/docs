@@ -52,7 +52,7 @@
 <p>The <strong>Xfers Core API</strong> provides a set of simple RESTFUL APIs to allow businesses to 
 integrate internet banking and credit card payments(coming soon) into your business or applications. </p>
 
-<p>You will make use of the Xfers Core API to manage your own account pragmatically. </p>
+<p>You will make use of the Xfers Core API to manage your own account programmatically. </p>
 
 <p><strong>Xfers Connect</strong> is for accepting payments on behalf of others, think of this as a super user that can manage and 
 create accounts on the behalf of others. </p>
@@ -79,6 +79,9 @@ Sandbox and Production are two separate environments. Please ensure your registe
 <aside class="notice">
 All the examples code in this document will be pointing to our sandbox endpoint.
 </aside>
+
+<p>Note that all API calls are done through HTTPS, please do not attempt to hit our endpoint via HTTP, as you will also be 
+exposing your API key in plain text.</p>
 
 <h1 id="xfers-core">Xfers Core</h1>
 
@@ -315,7 +318,7 @@ name and bank account information.</p>
 
 <h2 id="charges">Charges</h2>
 
-<p>The following APIs allow you to create a Xfers transaction and allow anyone to pay you via internet bank transfer or credit card(coming soon).</p>
+<p>The following APIs allow you to create a Xfers transaction and allow anyone to pay you via an internet banking transfer or credit card(coming soon).</p>
 
 <h3 id="creating-a-charge">Creating a Charge</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges"</span>
@@ -328,8 +331,8 @@ name and bank account information.</p>
   -d <span class="s2">"return_url=https://mysite.com/return"</span>
   -d <span class="s2">"cancel_url=https://mysite.com/cancel"</span>
   -d <span class="s2">"order_id=A012312"</span>
-  -d <span class="s2">"cash_on_deliver=true"</span>
-  -d <span class="s2">"descriptions='Carousell user - Konsolidate'"</span>
+  -d <span class="s2">"cash_on_delivery=true"</span>
+  -d <span class="s2">"description=unused red dress"</span>
   -d <span class="s2">"shipping=2.50"</span>
   -d <span class="s2">"tax=0.0"</span>
   -d <span class="s1">'items=[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]'</span>
