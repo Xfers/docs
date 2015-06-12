@@ -45,19 +45,26 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introduction">Introduction</h1>
+        <!--- Xfers User API Section -->
 
-<p>Xfers provides a simple and production REST API to integrate internet banking and credit card payment(coming soon) into your business or applications</p>
+<h1 id="introduction">Introduction</h1>
 
-<p>This API reference provides information on available endpoints. To read more about the API, visit our <a href="https://www.xfers.io/developers">API documentation</a>.</p>
+<p>The <strong>Xfers Core API</strong> provides a set of simple RESTFUL APIs to allow businesses to 
+integrate internet banking and credit card payments(coming soon) into your business or applications. </p>
+
+<p>You will make use of the Xfers Core API to manage your own account pragmatically. </p>
+
+<p><strong>Xfers Connect</strong> is for accepting payments on behalf of others, think of this as a super user that can manage and 
+create accounts on the behalf of others. </p>
 
 <h1 id="apis-endpoints">APIs endpoints</h1>
 
-<p>Xfers provides a delicated sandbox environment where you can simulate bank transfer without having to actually make one. This makes integrations and testing alot easier. </p>
+<p>Xfers provides a <strong>dedicated sandbox environment</strong> where you can simulate an incoming bank transfer for testing purposes. 
+Note that this feature will not be available in production mode. </p>
 
-<p>For testing purposes, we highly recommend that your head over <a href="https://sandbox.xfers.io">sandbox.xfers.io</a>(sandbox.xfers.io) and create a sandbox account.</p>
+<p>For testing purposes, we highly recommend that your head over to <a href="https://sandbox.xfers.io">sandbox.xfers.io</a> and create a sandbox account.</p>
 
-<p>To test against the sandbox available, point to our sandbox API endpoint at:</p>
+<p>While in testing mode, point to our sandbox API endpoint at:</p>
 
 <p><code class="prettyprint">https://sandbox.xfers.io/api/v3</code></p>
 
@@ -73,10 +80,17 @@ Sandbox and Production are two separate environments. Please ensure your registe
 All the examples code in this document will be pointing to our sandbox endpoint.
 </aside>
 
-<h1 id="authentication">Authentication</h1>
+<h1 id="xfers-core">Xfers Core</h1>
+
+<p>The <strong>Xfers Core API</strong> provides a set of simple RESTFUL APIs to allow businesses to 
+integrate internet banking and credit card payments(coming soon) into your business or applications. </p>
+
+<p>You will make use of the Xfers Core API to manage your own account pragmatically. </p>
+
+<h2 id="authentication">Authentication</h2>
 
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>Simple Authentication Ping Test</p>
 </blockquote>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"https://sandbox.xfers.io/api/v3/hello"</span>
@@ -84,12 +98,12 @@ curl <span class="s2">"https://sandbox.xfers.io/api/v3/hello"</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">f0ca588df6e8400a98a7e522390fad67</code> with your API key.</p>
+<p>Make sure to replace <code class="prettyprint">f0ca588df6e8400a98a7e522390fad67</code> with your own API key.</p>
 </blockquote>
 
 <p>Xfers uses API keys to allow access to the API. You can get your API key from your <a href="https://sandbox.xfers.io/account_settings">Account Settings</a> page.</p>
 
-<p>Xfers expects the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>Xfers expects the API key to be included in the header of all API requests to the server, like so:</p>
 
 <p><code class="prettyprint">X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67</code></p>
 
@@ -109,11 +123,11 @@ You must replace <code>f0ca588df6e8400a98a7e522390fad67</code> with your persona
 All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, beside failing you will also be exposing your API key in plain text!
 </aside>
 
-<h1 id="account-info">Account Info</h1>
+<h2 id="account-info">Account Info</h2>
 
-<p>The following APIs provide informations and allow changes to an Xfers account.</p>
+<p>The account info API supports querying and making changes to a User&rsquo;s account.</p>
 
-<h2 id="get-account-info">Get Account Info</h2>
+<h3 id="get-account-info">Get Account Info</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user"</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
 </code></pre>
@@ -153,13 +167,14 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint return informations related to your account.</p>
+<p>This endpoint return information related to your account such as available balance, ledger balance, 
+name and bank account information.</p>
 
-<h3 id="https-request">HTTPS Request</h3>
+<h4 id="https-request">HTTPS Request</h4>
 
 <p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/user</code></p>
 
-<h2 id="create-bank-account">Create Bank Account</h2>
+<h3 id="create-bank-account">Create Bank Account</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account"</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
@@ -196,11 +211,11 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 
 <p>This request will add a new bank account to this Xfers account. Bank account allow you to withdrawal your Xfers Balance to.</p>
 
-<h3 id="https-request">HTTPS Request</h3>
+<h4 id="https-request">HTTPS Request</h4>
 
 <p><code class="prettyprint">PUT https://sandbox.xfers.io/api/v3/user/bank_account/&lt;bank_account_id&gt;</code></p>
 
-<h3 id="url-parameters">URL Parameters</h3>
+<h4 id="url-parameters">URL Parameters</h4>
 
 <table><thead>
 <tr>
@@ -227,11 +242,11 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 </tr>
 </tbody></table>
 
-<h3 id="https-request">HTTPS Request</h3>
+<h4 id="https-request">HTTPS Request</h4>
 
 <p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/user</code></p>
 
-<h2 id="update-bank-account">Update Bank Account</h2>
+<h3 id="update-bank-account">Update Bank Account</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account/&lt;bank_account_id&gt;"</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
@@ -268,11 +283,11 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 
 <p>This request allow you to update an existing bank account record. </p>
 
-<h3 id="https-request">HTTPS Request</h3>
+<h4 id="https-request">HTTPS Request</h4>
 
 <p><code class="prettyprint">PUT https://sandbox.xfers.io/api/v3/user/bank_account/&lt;bank_account_id&gt;</code></p>
 
-<h3 id="url-parameters">URL Parameters</h3>
+<h4 id="url-parameters">URL Parameters</h4>
 
 <table><thead>
 <tr>
@@ -299,11 +314,11 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 </tr>
 </tbody></table>
 
-<h1 id="charges">Charges</h1>
+<h2 id="charges">Charges</h2>
 
 <p>The following APIs allow you to create a Xfers transaction and allow anyone to pay you via internet bank transfer or credit card(coming soon).</p>
 
-<h2 id="creating-a-charge">Creating a Charge</h2>
+<h3 id="creating-a-charge">Creating a Charge</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges"</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
@@ -364,7 +379,7 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 
 <p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/charges</code></p>
 
-<h3 id="url-parameters">URL Parameters</h3>
+<h4 id="url-parameters">URL Parameters</h4>
 
 <table><thead>
 <tr>
@@ -482,7 +497,7 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 </tr>
 </tbody></table>
 
-<h3 id="item-hash">item hash</h3>
+<h4 id="item-hash">item hash</h4>
 
 <p>You can provide itemized receipt for your customer by giving use informations with regards to each of them in the <code class="prettyprint">items</code> field as a json array of hash. </p>
 
@@ -538,13 +553,13 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 The subtotal of all the item MUST be equal to the `amount` field you provided or Xfers will reject your charge.
 </aside>
 
-<h2 id="payment-cancellation">Payment Cancellation</h2>
+<h3 id="payment-cancellation">Payment Cancellation</h3>
 
 <p>If customer cancels the transaction on Xfers website, he will be redirected back to the <code class="prettyprint">cancel_url</code> you provided. The <code class="prettyprint">order_id</code> you provided in the charge call will also be part of the GET request as shown:</p>
 
 <p><code class="prettyprint">GET https://mysite.com/cancel?order_id=&lt;order_id&gt;</code></p>
 
-<h2 id="payment-response">Payment Response</h2>
+<h3 id="payment-response">Payment Response</h3>
 
 <p>After the customer has completed the transaction on Xfers website, he will be redirected back to the <code class="prettyprint">return_url</code> you provided. The <code class="prettyprint">order_id</code> you provided in the charge call will also be part of the GET request as shown:</p>
 
@@ -554,7 +569,7 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 Please take note that at this point, payment may or may not have been completed and verified. You should wait on receiving our payment notification server call before releasing your goods/services.
 </aside>
 
-<h2 id="payment-notifications">Payment Notifications</h2>
+<h3 id="payment-notifications">Payment Notifications</h3>
 
 <p>After payment has been completed and verified by Xfers backend, Xfers will send a callback to the <code class="prettyprint">notify_url</code> you provided. This is a server to server HTTPS POST and you will need to acknowledge the callback by providing a HTTP 200 status. It is important to take note that this notification can arrive at your server before or after the customer is redirected to the return_url you provided. </p>
 
@@ -602,7 +617,7 @@ Please take note that at this point, payment may or may not have been completed 
 </tr>
 </tbody></table>
 
-<h2 id="verification-of-notifications">Verification of Notifications</h2>
+<h3 id="verification-of-notifications">Verification of Notifications</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/validate"</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
@@ -624,11 +639,11 @@ Please take note that at this point, payment may or may not have been completed 
 
 <p>Xfers will response with HTTP 200 status and a JSON string { &ldquo;msg&rdquo;: &ldquo;VERIFIED&rdquo; } if the notification is valid or HTTP 400 status on Invalid request.</p>
 
-<h3 id="https-request">HTTPS Request</h3>
+<h4 id="https-request">HTTPS Request</h4>
 
 <p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/charges/validate</code></p>
 
-<h3 id="url-parameters">URL Parameters</h3>
+<h4 id="url-parameters">URL Parameters</h4>
 
 <table><thead>
 <tr>
@@ -664,7 +679,7 @@ Please take note that at this point, payment may or may not have been completed 
 </tr>
 </tbody></table>
 
-<h2 id="capture-a-cod-charge">Capture a COD Charge</h2>
+<h3 id="capture-a-cod-charge">Capture a COD Charge</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
@@ -683,11 +698,11 @@ Please take note that at this point, payment may or may not have been completed 
 
 <p>Uncaptured cash on delivery payments convert exactly seven days after they are created. If they are not cancelled by that point in time, they will be marked as completed and the funds will be automatically release to you.</p>
 
-<h3 id="https-request">HTTPS Request</h3>
+<h4 id="https-request">HTTPS Request</h4>
 
 <p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;</code></p>
 
-<h3 id="url-parameters">URL Parameters</h3>
+<h4 id="url-parameters">URL Parameters</h4>
 
 <table><thead>
 <tr>
@@ -705,7 +720,7 @@ Please take note that at this point, payment may or may not have been completed 
 </tr>
 </tbody></table>
 
-<h2 id="retrieve-a-charge">Retrieve a charge</h2>
+<h3 id="retrieve-a-charge">Retrieve a charge</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
@@ -751,11 +766,11 @@ Please take note that at this point, payment may or may not have been completed 
 
 <p>Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was returned from your previous request, and Xfers will return the corresponding charge information. The same information is returned when creating or refunding the charge.</p>
 
-<h3 id="https-request">HTTPS Request</h3>
+<h4 id="https-request">HTTPS Request</h4>
 
 <p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;</code></p>
 
-<h2 id="cancel-a-charge">Cancel a charge</h2>
+<h3 id="cancel-a-charge">Cancel a charge</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
@@ -772,11 +787,11 @@ Please take note that at this point, payment may or may not have been completed 
 
 <p>Cancel a charge that has previously been created. Supply the unique charge ID that was returned from your previous request.</p>
 
-<h3 id="https-request">HTTPS Request</h3>
+<h4 id="https-request">HTTPS Request</h4>
 
 <p><code class="prettyprint">DELETE https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;</code></p>
 
-<h2 id="list-all-charges">List all charges</h2>
+<h3 id="list-all-charges">List all charges</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges?limit=1"</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
@@ -824,11 +839,11 @@ Please take note that at this point, payment may or may not have been completed 
 
 <p>Returns a list of charges you&rsquo;ve previously created. The charges are returned in sorted order, with the most recent charges appearing first.</p>
 
-<h3 id="https-request">HTTPS Request</h3>
+<h4 id="https-request">HTTPS Request</h4>
 
 <p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/charges</code></p>
 
-<h3 id="url-parameters">URL Parameters</h3>
+<h4 id="url-parameters">URL Parameters</h4>
 
 <table><thead>
 <tr>
@@ -868,6 +883,8 @@ Please take note that at this point, payment may or may not have been completed 
 <td>asd1wwd1csadjw1e213sad</td>
 </tr>
 </tbody></table>
+
+<p>&lt;&ndash; Xfers Connect Section &ndash;&gt; </p>
 
 <h1 id="xfers-connect">Xfers Connect</h1>
 
