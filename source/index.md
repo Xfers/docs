@@ -21,7 +21,7 @@ search: true
 The **Xfers Core API** provides a set of simple RESTFUL APIs to allow businesses to 
 integrate internet banking and credit card payments(coming soon) into your business or applications. 
 
-You will make use of the Xfers Core API to manage your own account pragmatically. 
+You will make use of the Xfers Core API to manage your own account programmatically. 
 
 **Xfers Connect** is for accepting payments on behalf of others, think of this as a super user that can manage and 
 create accounts on the behalf of others. 
@@ -50,6 +50,8 @@ Sandbox and Production are two separate environments. Please ensure your registe
 All the examples code in this document will be pointing to our sandbox endpoint.
 </aside>
 
+Note that all API calls are done through HTTPS, please do not attempt to hit our endpoint via HTTP, as you will also be 
+exposing your API key in plain text.
 
 # Xfers Core
 
@@ -256,7 +258,7 @@ bank | string | optional | bank name (DBS/OCBC/UOB/MBB/CITI/STC) | DBS
 
 ## Charges
 
-The following APIs allow you to create a Xfers transaction and allow anyone to pay you via internet bank transfer or credit card(coming soon).
+The following APIs allow you to create a Xfers transaction and allow anyone to pay you via an internet banking transfer or credit card(coming soon).
 
 ### Creating a Charge
 
