@@ -198,6 +198,10 @@ html, body {
       font-size: 12px;
     }
 
+    .tocify-subheader {
+      margin-left: 10px;
+    }
+
     // for embossed look:
     @include embossed-bg;
     &>li:last-child {
