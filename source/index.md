@@ -146,14 +146,13 @@ name and bank account information.
 `GET https://sandbox.xfers.io/api/v3/user`
 
 
-### Create Bank Account
+### ADD Bank Account
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/bank_account"
   -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
   -H "Content-Type: application/json"
   -d "account_no=03931234323"
-  -d "account_type=DBS-SAVING"
   -d "bank=DBS"
 ```
 
