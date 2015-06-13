@@ -618,8 +618,6 @@ limit | integer | optional | A limit on the number of objects to be returned. Li
 starting_after | string | optional | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list. | asd1wwd1csadjw1e213sad
 
 
-<-- Xfers Connect Section --> 
-
 # Xfers Connect
 
 Xfers connect is for accepting payment on behalf of others, and gaining access to their data.
