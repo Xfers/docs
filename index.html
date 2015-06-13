@@ -960,11 +960,11 @@ Please take note that at this point, payment may or may not have been completed 
 <h2 id="authentication">Authentication</h2>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"https://sandbox.xfers.io/api/v3/connect"</span>
-  -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">f0ca588df6e8400a98a7e522390fad67</code> with your API key. </p>
+<p>Make sure to replace <code class="prettyprint">Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with your API key.</p>
 </blockquote>
 
 <p>Xfers connect uses API keys to allow access to the APIs. </p>
@@ -974,7 +974,11 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 
 <p>Xfers connect expects the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code class="prettyprint">X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67</code></p>
+<p><code class="prettyprint">X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code></p>
+
+<p>For all examples below we will be using the follow:</p>
+
+<p><code class="prettyprint">X-XFERS-APP-SECRET-KEY: xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU</code></p>
 
 <blockquote>
 <p>The above command returns JSON structured like this on success:</p>
@@ -985,12 +989,12 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 </span></code></pre>
 
 <aside class="notice">
-You must replace <code>f0ca588df6e8400a98a7e522390fad67</code> with your Xfers Connect&rsquo;s API key. These are not the same as your user API Key found in your account settings page.
+You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with your Xfers Connect&rsquo;s API key. These are not the same as your user API Key found in your account settings page.
 </aside>
 
 <h2 id="signup/login-to-xfers">Signup/login to Xfers</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+6597288608&amp;signature=597b54c16578ef584d9e86020624a1364a16b550"</span>
-  -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+6597288608&amp;signature=c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"</span>
 </code></pre>
 
 <blockquote>
@@ -1032,14 +1036,14 @@ You must replace <code>f0ca588df6e8400a98a7e522390fad67</code> with your Xfers C
 <td>string</td>
 <td>required</td>
 <td>SHA1 of &ldquo;phone_no+APP_SECRET_KEY&rdquo;</td>
-<td>597b54c16578ef584d9e86020624a1364a16b550</td>
+<td>c5535aa2c4d25aa1e18a6a7e421a34e51bda5565</td>
 </tr>
 </tbody></table>
 
 <h2 id="get-user-api-token">Get User API Token</h2>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/get_token"</span>
-  -H <span class="s2">"X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"</span>
 </code></pre>
 
 <blockquote>
@@ -1047,7 +1051,7 @@ curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/get_token"</spa
 </blockquote>
 <pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
     </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user_api_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f0ca588df6e8400a98a7e522390fad67"</span><span class="w">
+    </span><span class="s2">"user_api_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1DnsZkv3qXwKx4EAdps8AJ8jXCPsxP2sKSygMHTAFLM"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1055,7 +1059,7 @@ curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/get_token"</spa
 
 <h3 id="https-request">HTTPS Request</h3>
 
-<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/authorize/get_token</code></p>
+<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&amp;phone_no=+6597288608&amp;signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -1087,7 +1091,7 @@ curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/get_token"</spa
 <td>string</td>
 <td>required</td>
 <td>SHA1 of &ldquo;OTP+phone_no+APP_SECRET_KEY&rdquo;</td>
-<td>7f6c6a7ec80a0be657e4204cd87e58401687a2eb</td>
+<td>bdc26373b3a78dd11dc840a1b7973f197cf34c91</td>
 </tr>
 </tbody></table>
 
