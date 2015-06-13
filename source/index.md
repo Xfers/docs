@@ -638,10 +638,10 @@ In general, if you’re building a platform or marketplace that needs to pay thi
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "https://sandbox.xfers.io/api/v3/connect"
-  -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"
 ```
 
-> Make sure to replace `f0ca588df6e8400a98a7e522390fad67` with your API key. 
+> Make sure to replace `Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg` with your API key.
 
 Xfers connect uses API keys to allow access to the APIs. 
 
@@ -650,7 +650,13 @@ You will provided with a pair of keys named `X-XFERS-APP-API-KEY` and `X-XFERS-A
 
 Xfers connect expects the API key to be included in all API requests to the server in a header that looks like the following:
 
-`X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67`
+`X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg`
+
+
+For all examples below we will be using the follow:
+
+`X-XFERS-APP-SECRET-KEY: xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU`
+
 
 > The above command returns JSON structured like this on success:
 
@@ -662,14 +668,14 @@ Xfers connect expects the API key to be included in all API requests to the serv
 
 
 <aside class="notice">
-You must replace <code>f0ca588df6e8400a98a7e522390fad67</code> with your Xfers Connect's API key. These are not the same as your user API Key found in your account settings page.
+You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with your Xfers Connect's API key. These are not the same as your user API Key found in your account settings page.
 </aside>
 
 
 ## Signup/login to Xfers
 ```shell
-curl "https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+6597288608&signature=597b54c16578ef584d9e86020624a1364a16b550"
-  -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+curl "https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+6597288608&signature=c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"
+  -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"
 ```
 
 > Response
@@ -691,14 +697,14 @@ An SMS with a OTP will be send to that number which must be used for [get_token]
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 phone_no | string | required | User mobile no | +6597288608
-signature | string | required | SHA1 of "phone_no+APP_SECRET_KEY"  | 597b54c16578ef584d9e86020624a1364a16b550
+signature | string | required | SHA1 of "phone_no+APP_SECRET_KEY"  | c5535aa2c4d25aa1e18a6a7e421a34e51bda5565
 
 
 ## Get User API Token
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "https://sandbox.xfers.io/api/v3/authorize/get_token"
-  -H "X-XFERS-APP-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"
 ```
 
 > Response
@@ -706,7 +712,7 @@ curl "https://sandbox.xfers.io/api/v3/authorize/get_token"
 ```json
   {
     "msg": "success",
-    "user_api_token": "f0ca588df6e8400a98a7e522390fad67"
+    "user_api_token": "1DnsZkv3qXwKx4EAdps8AJ8jXCPsxP2sKSygMHTAFLM"
   }
 ```
 
@@ -715,14 +721,14 @@ This API call will return the user's `X-XFERS-USER-API-KEY`.
 
 
 ### HTTPS Request
-`GET https://sandbox.xfers.io/api/v3/authorize/get_token`
+`GET https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=+6597288608&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91`
 
 ### URL Parameters
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 otp | string | required | 6 digit one-time-password send over SMS | 541231
 phone_no | string | required | User mobile no | +6597288608
-signature | string | required | SHA1 of "OTP+phone_no+APP_SECRET_KEY" | 7f6c6a7ec80a0be657e4204cd87e58401687a2eb
+signature | string | required | SHA1 of "OTP+phone_no+APP_SECRET_KEY" | bdc26373b3a78dd11dc840a1b7973f197cf34c91
 
 
 
