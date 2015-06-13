@@ -637,7 +637,7 @@ In general, if you’re building a platform or marketplace that needs to pay thi
 ## Authentication
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "https://sandbox.xfers.io/api/v3/connect"
+curl "https://sandbox.xfers.io/api/v3/authorize/connect?hello=world&signature=5341eb694dada7866166ece5f46d1c2884839a3f"
   -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"
 ```
 
