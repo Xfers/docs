@@ -152,6 +152,29 @@ name and bank account information.
 
 The follow APIs allow you to add or update your bank account info.
 
+### Support banks
+
+Logo | Bank Name | Abbreviation | 
+---- | ---- | ---- |
+![DBS][dbs]| Development Bank of Singapore | DBS |
+![POSB][posb]| Post Office Saving Bank | DBS |
+![UOB][uob]| United Oversea Bank | UOB |
+![MBB][mbb]| Malaysia Banking BHD | MBB |
+![OCBC][ocbc]| Oversea-Chinese Banking Corporation Limited | OCBC |
+![CITI][citi]| Citibank Singapore | CITI |
+![SCB][scb]| Standard Chartered Bank | SCB |
+![CIMB][cimb]| CIMB Bank Berhad | CIMB |
+![HSBC][hsbc]| Hong Kong and Shanghai Banking Corporation| HSBC |
+
+[dbs]: bank-logo-30px-dbs.png
+[posb]: bank-logo-30px-posb.png
+[uob]: bank-logo-30px-uob.png
+[mbb]: bank-logo-30px-mbs.png
+[citi]: bank-logo-30px-citi.png
+[scb]: bank-logo-30px-scb.png
+[cimb]: bank-logo-30px-cimb.png
+[ocbc]: bank-logo-30px-ocbc.png
+[hsbc]: bank-logo-30px-hsbc.png
 
 ### Add Bank Account
 
@@ -201,8 +224,7 @@ This request will add a new bank account to this Xfers account. You will be able
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 account_no | string | optional | bank account no | 03931234323
-bank | string | optional | bank name (DBS/OCBC/UOB/MBB/CITI/STC) | DBS
-
+bank | string | optional | bank abbreviation (Refer to [supported banks](http://xfers.github.io/slate/#supported-banks)) | DBS
 
 
 ### Update Bank Account
@@ -253,7 +275,7 @@ This request allow you to update an existing bank account record.
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 account_no | string | optional | bank account no | 03931234323
-bank | string | optional | bank name (DBS/OCBC/UOB/MBB/CITI/STC) | DBS
+bank | string | optional | bank abbreviation (Refer to [supported banks](http://xfers.github.io/slate/#supported-banks)) | DBS
 
 
 ## Charges
