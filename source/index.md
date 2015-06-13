@@ -700,7 +700,6 @@ signature | string | required | SHA1 of "phone_no+APP_SECRET_KEY"  | c5535aa2c4d
 
 ## Get User API Token
 ```shell
-# With shell, you can just pass the correct header with each request
 curl "https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=+6597288608&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91"
   -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"
 ```
