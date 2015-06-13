@@ -181,6 +181,62 @@ name and bank account information.</p>
 
 <p>The follow APIs allow you to add or update your bank account info.</p>
 
+<h3 id="support-banks">Support banks</h3>
+
+<table><thead>
+<tr>
+<th>Logo</th>
+<th>Bank Name</th>
+<th>Abbreviation</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><img alt="DBS" src="images/bank-logo-30px-dbs.png" /></td>
+<td>Development Bank of Singapore</td>
+<td>DBS</td>
+</tr>
+<tr>
+<td><img alt="POSB" src="images/bank-logo-30px-posb.png" /></td>
+<td>Post Office Saving Bank</td>
+<td>DBS</td>
+</tr>
+<tr>
+<td><img alt="UOB" src="images/bank-logo-30px-uob.png" /></td>
+<td>United Oversea Bank</td>
+<td>UOB</td>
+</tr>
+<tr>
+<td><img alt="MBB" src="images/bank-logo-30px-mbs.png" /></td>
+<td>Malaysia Banking BHD</td>
+<td>MBB</td>
+</tr>
+<tr>
+<td><img alt="OCBC" src="images/bank-logo-30px-ocbc.png" /></td>
+<td>Oversea-Chinese Banking Corporation Limited</td>
+<td>OCBC</td>
+</tr>
+<tr>
+<td><img alt="CITI" src="images/bank-logo-30px-citi.png" /></td>
+<td>Citibank Singapore</td>
+<td>CITI</td>
+</tr>
+<tr>
+<td><img alt="SCB" src="images/bank-logo-30px-scb.png" /></td>
+<td>Standard Chartered Bank</td>
+<td>SCB</td>
+</tr>
+<tr>
+<td><img alt="CIMB" src="images/bank-logo-30px-cimb.png" /></td>
+<td>CIMB Bank Berhad</td>
+<td>CIMB</td>
+</tr>
+<tr>
+<td><img alt="HSBC" src="images/bank-logo-30px-hsbc.png" /></td>
+<td>Hong Kong and Shanghai Banking Corporation</td>
+<td>HSBC</td>
+</tr>
+</tbody></table>
+
 <h3 id="add-bank-account">Add Bank Account</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account"</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
@@ -243,7 +299,7 @@ name and bank account information.</p>
 <td>bank</td>
 <td>string</td>
 <td>optional</td>
-<td>bank name (DBS/OCBC/UOB/MBB/CITI/STC)</td>
+<td>bank abbreviation (Refer to <a href="http://xfers.github.io/slate/#supported-banks">supported banks</a>)</td>
 <td>DBS</td>
 </tr>
 </tbody></table>
@@ -311,7 +367,7 @@ name and bank account information.</p>
 <td>bank</td>
 <td>string</td>
 <td>optional</td>
-<td>bank name (DBS/OCBC/UOB/MBB/CITI/STC)</td>
+<td>bank abbreviation (Refer to <a href="http://xfers.github.io/slate/#supported-banks">supported banks</a>)</td>
 <td>DBS</td>
 </tr>
 </tbody></table>
