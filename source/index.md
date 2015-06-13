@@ -152,7 +152,7 @@ name and bank account information.
 
 The follow APIs allow you to add or update your bank account info.
 
-### Support banks
+### Supported banks
 
 Logo | Bank Name | Abbreviation | 
 ---- | ---- | ---- |
