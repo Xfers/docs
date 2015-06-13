@@ -224,7 +224,7 @@ This request will add a new bank account to this Xfers account. You will be able
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 account_no | string | optional | bank account no | 03931234323
-bank | string | optional | bank abbreviation (Refer to [supported banks](http://xfers.github.io/slate/#supported-banks)) | DBS
+bank | string | optional | bank abbreviation (Refer to [supported banks](http://xfers.github.io/docs/#supported-banks)) | DBS
 
 
 ### Update Bank Account
@@ -275,7 +275,7 @@ This request allow you to update an existing bank account record.
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 account_no | string | optional | bank account no | 03931234323
-bank | string | optional | bank abbreviation (Refer to [supported banks](http://xfers.github.io/slate/#supported-banks)) | DBS
+bank | string | optional | bank abbreviation (Refer to [supported banks](http://xfers.github.io/docs/#supported-banks)) | DBS
 
 
 ## Charges
@@ -359,8 +359,8 @@ order_id | string | required | Unique ref no provided by you to prevent double c
 description | string | required | Description of transaction for display purposes | Carousell user - Konsolidate
 customer | string | optional | contact no or email of person to charge. If this is provided, Xfers will send notifications to this user. | 97288608
 redirect | string | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true
-cash_on_delivery | string | optional | When this is set to true, the charge will trigger an escrow transaction and will require a [capture](http://xfers.github.io/slate/#capture-a-cod-charge) api call to release the fund. | Default to false
-items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. See more [info](http://xfers.github.io/slate/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
+cash_on_delivery | string | optional | When this is set to true, the charge will trigger an escrow transaction and will require a [capture](http://xfers.github.io/docs/#capture-a-cod-charge) api call to release the fund. | Default to false
+items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. See more [info](http://xfers.github.io/docs/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
 shipping | float | optional | Shipping fees | Default to 0.0
 tax | string | float | tax in $  | Default to 0.0
 meta_data | string | optional | A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification | {"key1":"value1", "key2":"value2"}
