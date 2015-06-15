@@ -140,12 +140,61 @@ curl "https://sandbox.xfers.io/api/v3/user"
 }
 ```
 
-This endpoint return information related to your account such as available balance, ledger balance, 
+This endpoint return information related to your account such as available balance, ledger balance,
 name and bank account information.
 
 #### HTTPS Request
 
 `GET https://sandbox.xfers.io/api/v3/user`
+
+### Get Activities
+
+The activities API only supports querying of a user's activity.
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/activities"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+```
+
+> Response:
+
+```json
+{
+  "msg" : "success",
+  "activities" : [
+    {
+      "type" : "normal", 
+      "transType" : "transaction", 
+      "displayStatus" : "unclaimed", 
+      "statusColor" : "info", 
+      "timeLeft" : null, 
+      "order_id" : "1", 
+      "displayTime" : "2015-06-14T07:56:08.000+08:00", 
+      "displayName" : "From: example@xfers.com", 
+      "plusMinus" : "+", 
+      "displayAmount" : "2.42"
+    },
+    {
+      "type" : "normal", 
+      "transType" : "transaction", 
+      "displayStatus" : "unclaimed", 
+      "statusColor" : "info", 
+      "timeLeft" : null, 
+      "order_id" : "1", 
+      "displayTime" : "2015-06-14T07:56:08.000+08:00", 
+      "displayName" : "From: example@xfers.com", 
+      "plusMinus" : "+", 
+      "displayAmount" : "2.42"
+    }
+  ]
+}
+```
+
+This endpoint return information related to your account activites such as the types and statuses of transactions that the user has.
+
+#### HTTPS Request
+
+`GET https://sandbox.xfers.io/api/v3/activities`
 
 
 ## Bank Account
