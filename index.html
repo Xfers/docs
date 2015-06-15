@@ -170,12 +170,59 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint return information related to your account such as available balance, ledger balance, 
+<p>This endpoint return information related to your account such as available balance, ledger balance,
 name and bank account information.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
 <p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/user</code></p>
+
+<h3 id="get-activities">Get Activities</h3>
+
+<p>The activities API only supports querying of a user&rsquo;s activity.</p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/activities"</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"msg"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"activities"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"transType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"transaction"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"displayStatus"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"unclaimed"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"statusColor"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"info"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"timeLeft"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"displayTime"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-14T07:56:08.000+08:00"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"displayName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"From: example@xfers.com"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"plusMinus"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"displayAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2.42"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"transType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"transaction"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"displayStatus"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"unclaimed"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"statusColor"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"info"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"timeLeft"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"displayTime"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-14T07:56:08.000+08:00"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"displayName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"From: example@xfers.com"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"plusMinus"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"displayAmount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2.42"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint return information related to your account activites such as the types and statuses of transactions that the user has.</p>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/activities</code></p>
 
 <h2 id="bank-account">Bank Account</h2>
 
