@@ -261,7 +261,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account"
 }
 ```
 
-This request will add a new bank account to this Xfers account. You will be able to withdraw your Xfers balances to these account(s).
+This request will add a new bank account to this Xfers account. You will be able to withdraw your Xfers available balances to these account(s).
 
 
 #### HTTPS Request
@@ -344,7 +344,6 @@ curl "https://sandbox.xfers.io/api/v3/charges"
   -d "return_url=https://mysite.com/return"
   -d "cancel_url=https://mysite.com/cancel"
   -d "order_id=A012312"
-  -d "cash_on_delivery=true"
   -d "description=unused red dress"
   -d "shipping=2.50"
   -d "tax=0.0"
@@ -366,7 +365,6 @@ curl "https://sandbox.xfers.io/api/v3/charges"
   "currency" : "SGD",
   "customer" : "",
   "order_id" : "A012312",
-  "cash_on_delivery" : true,
   "capture" : true,
   "description" : "Carousell user - Konsolidate",
   "items" : [
@@ -408,7 +406,6 @@ order_id | string | required | Unique ref no provided by you to prevent double c
 description | string | required | Description of transaction for display purposes | Carousell user - Konsolidate
 customer | string | optional | contact no or email of person to charge. If this is provided, Xfers will send notifications to this user. | 97288608
 redirect | string | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true
-cash_on_delivery | string | optional | When this is set to true, the charge will trigger an escrow transaction and will require a [capture](http://xfers.github.io/docs/#capture-a-cod-charge) api call to release the fund. | Default to false
 items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. See more [info](http://xfers.github.io/docs/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
 shipping | float | optional | Shipping fees | Default to 0.0
 tax | string | float | tax in $  | Default to 0.0
@@ -434,7 +431,7 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 
 
 ### Payment Cancellation
-If customer cancels the transaction on Xfers website, he will be redirected back to the `cancel_url` you provided. The `order_id` you provided in the charge call will also be part of the GET request as shown:
+If customer cancels the transaction during Xfers' checkout flow, he will be redirected back to the `cancel_url` you provided. The `order_id` you provided in the charge call will also be part of the GET request as shown:
 
 `GET https://mysite.com/cancel?order_id=<order_id>`
 
@@ -500,13 +497,21 @@ total_amount | float | 12.49 | Total value for items
 currency | string | 3-letter ISO code for currency | SGD
 status | string | Payment status. | "cancelled" or "paid" or "expired"
 
-### Updating a Charge
+
+### Payment Settlement
+
+After a charge become "paid", its funds(minus our fees) will be added to your account ledger balance.
+
+By default, its funds(minus our fees) will be "withheld" by Xfers for another 10 days(for refund and dispute purposes) before the charge becomes "completed" and it's funds(minus our fees) will be credited to your Xfers account available balance.
+
+
+
+### Settle a Charge
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<id>"
   -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
   -H "Content-Type: application/json"
-  -X "PUT"
-  -d "status=delivered"
+  -d "pin=512312"
 ```
 
 > Response:
@@ -518,38 +523,22 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>"
 ```
 
 
-Optional part of a charge process. Allow Seller to provide status update such as "shipped/delivered". Xfers will notify user of such status changes.
+Settle the payment of a previous created charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default [payment settlement process](http://xfers.github.io/docs/#payment-settlement) takes 10 days.
 
-For `cash_on_delivery` charges, updating status to  "delivered" will also cause the transaction to automatically convert(funds released to seller) within 24 hrs if buyer did not raise a dispute(Buyer will be send a notification regarding this).
+When a correct pin is provided, the charge will become completed and the funds
+will be available for usage(withdrawal, payout, etcs) immediately.
 
-### Capture a COD Charge
-```shell
-curl "https://sandbox.xfers.io/api/v3/charges/<id>"
-  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
-  -H "Content-Type: application/json"
-  -d "cod_pin=512312"
-```
+If no pin was provided, buyer will receive a notifications from Xfers that a seller has delivered on their goods/services and has 72 hrs dispute it before their funds are released to the seller.
 
-> Response:
-
-```json
-{
-  "msg": "success"
-}
-```
-
-
-Capture the payment of an existing, uncaptured, cash on delivery charge. This is the second half of the two-step payment flow, where first you created a charge with the `cash_on_delivery` option set to true.
-
-Uncaptured cash on delivery payments expires exactly seven days after they are created. If they are not captured by that point in time, they will be marked as refunded and will not be capturable.
 
 #### HTTPS Request
 `POST https://sandbox.xfers.io/api/v3/charges/<id>`
 
 #### URL Parameters
-Name | Type | Description | Value
----- | ---- | -------- | -----------
-cod_pin | string | Cash On Delivery PIN code provided to the buyer | 512312
+Name | Type | Required | Description | Value
+---- | ---- | -------- | -------- | -----------
+pin | string | Optional | PIN code provided to the buyer | 512312
+
 
 ### Retrieve a charge
 ```shell
@@ -602,28 +591,6 @@ Retrieves the details of a charge that has previously been created. Supply the u
 #### HTTPS Request
 `GET https://sandbox.xfers.io/api/v3/charges/<id>`
 
-
-### Cancel a charge
-```shell
-curl "https://sandbox.xfers.io/api/v3/charges/<id>"
-  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
-  -H "Content-Type: application/json"
-  -X DELETE
-```
-
-> Response:
-
-```json
-{
-  "msg": "success"
-}
-```
-
-
-Cancel a charge that has previously been created. Supply the unique charge ID that was returned from your previous request.
-
-#### HTTPS Request
-`DELETE https://sandbox.xfers.io/api/v3/charges/<id>`
 
 
 ### List all charges
@@ -686,6 +653,31 @@ customer | string | optional | Only return charges for the customer specified by
 ending_before | string | optional | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_bar, your subsequent call can include ending_before=obj_bar in order to fetch the previous page of the list. | asd1wwd1csadjw1e213sad
 limit | integer | optional | A limit on the number of objects to be returned. Limit can range between 1 and 50 items. | Default to 10
 starting_after | string | optional | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list. | asd1wwd1csadjw1e213sad
+
+## Refunds
+The following APIs allow you to refund a charge that has previously been created and paid by your buyer but not yet refunded. Funds will be refunded to the buyer Xfers account available balance. The fees you were originally charged are also refunded.
+
+### Creating a Refund
+```shell
+curl "https://sandbox.xfers.io/api/v3/charges/<id>/refunds"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "Content-Type: application/json"
+```
+
+> Response:
+
+```json
+{
+  "msg": "success"
+}
+```
+
+When you create a new refund, you must specify a charge to create it on.
+
+Creating a new refund will refund a charge that has previously been created and paid but not yet refunded. Funds will be refunded to the buyer Xfers account available balance. The fees you were originally charged are also refunded.
+
+#### HTTPS Request
+`POST https://sandbox.xfers.io/api/v3/charges/<id>/refunds`
 
 
 # Xfers Connect
