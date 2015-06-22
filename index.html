@@ -784,6 +784,26 @@ Please take note that at this point, payment may or may not have been completed 
 </tr>
 </tbody></table>
 
+<h3 id="updating-a-charge">Updating a Charge</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -X <span class="s2">"PUT"</span>
+  -d <span class="s2">"status=delivered"</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Optional part of a charge process. Allow Seller to provide status update such as &ldquo;shipped/delivered&rdquo;. Xfers will notify user of such status changes.</p>
+
+<p>For <code class="prettyprint">cash_on_delivery</code> charges, updating status to  &ldquo;delivered&rdquo; will also cause the transaction to automatically convert(funds released to seller) within 24 hrs if buyer did not raise a dispute(Buyer will be send a notification regarding this).</p>
+
 <h3 id="capture-a-cod-charge">Capture a COD Charge</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
@@ -801,7 +821,7 @@ Please take note that at this point, payment may or may not have been completed 
 
 <p>Capture the payment of an existing, uncaptured, cash on delivery charge. This is the second half of the two-step payment flow, where first you created a charge with the <code class="prettyprint">cash_on_delivery</code> option set to true.</p>
 
-<p>Uncaptured cash on delivery payments convert exactly seven days after they are created. If they are not cancelled by that point in time, they will be marked as completed and the funds will be automatically release to you.</p>
+<p>Uncaptured cash on delivery payments expires exactly seven days after they are created. If they are not captured by that point in time, they will be marked as refunded and will not be capturable.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
