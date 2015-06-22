@@ -318,7 +318,7 @@ name and bank account information.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This request will add a new bank account to this Xfers account. You will be able to withdraw your Xfers balances to these account(s).</p>
+<p>This request will add a new bank account to this Xfers account. You will be able to withdraw your Xfers available balances to these account(s).</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -434,7 +434,6 @@ name and bank account information.</p>
   -d <span class="s2">"return_url=https://mysite.com/return"</span>
   -d <span class="s2">"cancel_url=https://mysite.com/cancel"</span>
   -d <span class="s2">"order_id=A012312"</span>
-  -d <span class="s2">"cash_on_delivery=true"</span>
   -d <span class="s2">"description=unused red dress"</span>
   -d <span class="s2">"shipping=2.50"</span>
   -d <span class="s2">"tax=0.0"</span>
@@ -456,7 +455,6 @@ name and bank account information.</p>
   </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"customer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"A012312"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cash_on_delivery"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"capture"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Carousell user - Konsolidate"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"items"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -559,13 +557,6 @@ name and bank account information.</p>
 <td>Default to true</td>
 </tr>
 <tr>
-<td>cash_on_delivery</td>
-<td>string</td>
-<td>optional</td>
-<td>When this is set to true, the charge will trigger an escrow transaction and will require a <a href="http://xfers.github.io/docs/#capture-a-cod-charge">capture</a> api call to release the fund.</td>
-<td>Default to false</td>
-</tr>
-<tr>
 <td>items</td>
 <td>string</td>
 <td>optional</td>
@@ -660,7 +651,7 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 
 <h3 id="payment-cancellation">Payment Cancellation</h3>
 
-<p>If customer cancels the transaction on Xfers website, he will be redirected back to the <code class="prettyprint">cancel_url</code> you provided. The <code class="prettyprint">order_id</code> you provided in the charge call will also be part of the GET request as shown:</p>
+<p>If customer cancels the transaction during Xfers&rsquo; checkout flow, he will be redirected back to the <code class="prettyprint">cancel_url</code> you provided. The <code class="prettyprint">order_id</code> you provided in the charge call will also be part of the GET request as shown:</p>
 
 <p><code class="prettyprint">GET https://mysite.com/cancel?order_id=&lt;order_id&gt;</code></p>
 
@@ -784,12 +775,17 @@ Please take note that at this point, payment may or may not have been completed 
 </tr>
 </tbody></table>
 
-<h3 id="updating-a-charge">Updating a Charge</h3>
+<h3 id="payment-settlement">Payment Settlement</h3>
+
+<p>After a charge become &ldquo;paid&rdquo;, its funds(minus our fees) will be added to your account ledger balance.</p>
+
+<p>By default, its funds(minus our fees) will be &ldquo;withheld&rdquo; by Xfers for another 10 days(for refund and dispute purposes) before the charge becomes &ldquo;completed&rdquo; and it&rsquo;s funds(minus our fees) will be credited to your Xfers account available balance.</p>
+
+<h3 id="settle-a-charge">Settle a Charge</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
-  -X <span class="s2">"PUT"</span>
-  -d <span class="s2">"status=delivered"</span>
+  -d <span class="s2">"pin=512312"</span>
 </code></pre>
 
 <blockquote>
@@ -800,28 +796,12 @@ Please take note that at this point, payment may or may not have been completed 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Optional part of a charge process. Allow Seller to provide status update such as &ldquo;shipped/delivered&rdquo;. Xfers will notify user of such status changes.</p>
+<p>Settle the payment of a previous created charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default <a href="http://xfers.github.io/docs/#payment-settlement">payment settlement process</a> takes 10 days.</p>
 
-<p>For <code class="prettyprint">cash_on_delivery</code> charges, updating status to  &ldquo;delivered&rdquo; will also cause the transaction to automatically convert(funds released to seller) within 24 hrs if buyer did not raise a dispute(Buyer will be send a notification regarding this).</p>
+<p>When a correct pin is provided, the charge will become completed and the funds
+will be available for usage(withdrawal, payout, etcs) immediately.</p>
 
-<h3 id="capture-a-cod-charge">Capture a COD Charge</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
-  -H <span class="s2">"Content-Type: application/json"</span>
-  -d <span class="s2">"cod_pin=512312"</span>
-</code></pre>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Capture the payment of an existing, uncaptured, cash on delivery charge. This is the second half of the two-step payment flow, where first you created a charge with the <code class="prettyprint">cash_on_delivery</code> option set to true.</p>
-
-<p>Uncaptured cash on delivery payments expires exactly seven days after they are created. If they are not captured by that point in time, they will be marked as refunded and will not be capturable.</p>
+<p>If no pin was provided, buyer will receive a notifications from Xfers that a seller has delivered on their goods/services and has 72 hrs dispute it before their funds are released to the seller.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -833,14 +813,16 @@ Please take note that at this point, payment may or may not have been completed 
 <tr>
 <th>Name</th>
 <th>Type</th>
+<th>Required</th>
 <th>Description</th>
 <th>Value</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>cod_pin</td>
+<td>pin</td>
 <td>string</td>
-<td>Cash On Delivery PIN code provided to the buyer</td>
+<td>Optional</td>
+<td>PIN code provided to the buyer</td>
 <td>512312</td>
 </tr>
 </tbody></table>
@@ -894,27 +876,6 @@ Please take note that at this point, payment may or may not have been completed 
 <h4 id="https-request">HTTPS Request</h4>
 
 <p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;</code></p>
-
-<h3 id="cancel-a-charge">Cancel a charge</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
-  -H <span class="s2">"Content-Type: application/json"</span>
-  -X DELETE
-</code></pre>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Cancel a charge that has previously been created. Supply the unique charge ID that was returned from your previous request.</p>
-
-<h4 id="https-request">HTTPS Request</h4>
-
-<p><code class="prettyprint">DELETE https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;</code></p>
 
 <h3 id="list-all-charges">List all charges</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges?limit=1"</span>
@@ -1008,6 +969,32 @@ Please take note that at this point, payment may or may not have been completed 
 <td>asd1wwd1csadjw1e213sad</td>
 </tr>
 </tbody></table>
+
+<h2 id="refunds">Refunds</h2>
+
+<p>The following APIs allow you to refund a charge that has previously been created and paid by your buyer but not yet refunded. Funds will be refunded to the buyer Xfers account available balance. The fees you were originally charged are also refunded.</p>
+
+<h3 id="creating-a-refund">Creating a Refund</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;/refunds"</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>When you create a new refund, you must specify a charge to create it on.</p>
+
+<p>Creating a new refund will refund a charge that has previously been created and paid but not yet refunded. Funds will be refunded to the buyer Xfers account available balance. The fees you were originally charged are also refunded.</p>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;/refunds</code></p>
 
 <h1 id="xfers-connect">Xfers Connect</h1>
 
