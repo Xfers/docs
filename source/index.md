@@ -500,6 +500,27 @@ total_amount | float | 12.49 | Total value for items
 currency | string | 3-letter ISO code for currency | SGD
 status | string | Payment status. | "cancelled" or "paid" or "expired"
 
+### Updating a Charge
+```shell
+curl "https://sandbox.xfers.io/api/v3/charges/<id>"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "Content-Type: application/json"
+  -X "PUT"
+  -d "status=delivered"
+```
+
+> Response:
+
+```json
+{
+  "msg": "success"
+}
+```
+
+
+Optional part of a charge process. Allow Seller to provide status update such as "shipped/delivered". Xfers will notify user of such status changes.
+
+For `cash_on_delivery` charges, updating status to  "delivered" will also cause the transaction to automatically convert(funds released to seller) within 24 hrs if buyer did not raise a dispute(Buyer will be send a notification regarding this).
 
 ### Capture a COD Charge
 ```shell
@@ -520,7 +541,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>"
 
 Capture the payment of an existing, uncaptured, cash on delivery charge. This is the second half of the two-step payment flow, where first you created a charge with the `cash_on_delivery` option set to true.
 
-Uncaptured cash on delivery payments convert exactly seven days after they are created. If they are not cancelled by that point in time, they will be marked as completed and the funds will be automatically release to you.
+Uncaptured cash on delivery payments expires exactly seven days after they are created. If they are not captured by that point in time, they will be marked as refunded and will not be capturable.
 
 #### HTTPS Request
 `POST https://sandbox.xfers.io/api/v3/charges/<id>`
