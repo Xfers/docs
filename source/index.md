@@ -163,31 +163,26 @@ curl "https://sandbox.xfers.io/api/v3/activities"
   "msg" : "success",
   "activities" : [
     {
-      "type" : "normal", 
-      "transType" : "transaction", 
-      "displayStatus" : "unclaimed", 
-      "statusColor" : "info", 
-      "timeLeft" : null, 
-      "order_id" : "1", 
-      "displayTime" : "2015-06-14T07:56:08.000+08:00", 
-      "displayName" : "From: example@xfers.com", 
-      "plusMinus" : "+", 
-      "displayAmount" : "2.42"
-    },
+      :type=>"payment_link", 
+      :trans_type=>"payment_link", 
+      :display_time=>"2015-06-16T14:09:29.000+08:00", 
+      :description=>"Dress for sale", 
+      :plus_minus=>"+", 
+      :display_amount=>100.0, 
+      :display_image_url=>"http://localhost:3000/assets/content-8e795f3a168fa143a6bae44c1abcd1a6e64028f030d40d4584fa8aecc1916a46.svg"},
     {
-      "type" : "normal", 
-      "transType" : "transaction", 
-      "displayStatus" : "unclaimed", 
-      "statusColor" : "info", 
-      "timeLeft" : null, 
-      "order_id" : "1", 
-      "displayTime" : "2015-06-14T07:56:08.000+08:00", 
-      "displayName" : "From: example@xfers.com", 
-      "plusMinus" : "+", 
-      "displayAmount" : "2.42"
+      :type=>"normal", 
+      :trans_type=>"transaction", 
+      :display_time=>"2015-06-16T14:09:29.000+08:00", 
+      :description=>"From: Tianwei@example.com", 
+      :plus_minus=>"+", 
+      :display_amount=>"2.42", 
+      :display_image_url=>"http://localhost:3000/assets/displayImageUser-c610a87e219afbe0bfc27bcddd67b8f831f967aedb01aef82a9009e9b6eb36c2.png"
     }
   ]
 }
+
+
 ```
 
 This endpoint return information related to your account activites such as the types and statuses of transactions that the user has.
