@@ -635,7 +635,7 @@ Name | Type | Required | Description | Value
 pin | string | Optional | PIN code provided to the buyer | 512312
 
 
-### Retrieve a charge
+### Retrieve a Charge
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<id>"
   -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
@@ -688,7 +688,7 @@ Retrieves the details of a charge that has previously been created. Supply the u
 
 
 
-### List all charges
+### List all Charges
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges?limit=1"
   -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
