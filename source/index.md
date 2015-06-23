@@ -121,20 +121,12 @@ curl "https://sandbox.xfers.io/api/v3/user"
     {
        "id" : "12312",
        "account_no" : "039-312-3432-3",
-       "account_type" : "POSB-SAVING",
-       "bank_abbrev" : "DBS",
-       "verified" : true,
-       "amt_1" : "0.12",
-       "amt_2" : "0.09"
+       "bank_abbrev" : "DBS"
     },
     {
        "id" : "12315",
        "account_no" : "129-880-1251-1",
-       "account_type" : "OCBC-SAVING-PLUS",
-       "bank_abbrev" : "OCBC",
-       "verified" : false,
-       "amt_1" : "0.02",
-       "amt_2" : "0.17"
+       "bank_abbrev" : "OCBC"
     }
   ]
 }
@@ -253,23 +245,16 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account"
 
 ```json
 {
-  "success" : true,
-  "bank_account" : [
+  "bank_accounts" : [
     {
-      "id" : "12312",
-      "account_no" : "039-312-3432-3",
-      "bank_abbrev" : "DBS",
-      "verified" : true,
-      "amt_1" : "0.12",
-      "amt_2" : "0.09"
+       "id" : "12312",
+       "account_no" : "039-312-3432-3",
+       "bank_abbrev" : "DBS"
     },
     {
-      "id" : "12315",
-      "account_no" : "129-880-1251-1",
-      "bank_abbrev" : "OCBC",
-      "verified" : false,
-      "amt_1" : "0.02",
-      "amt_2" : "0.17"
+       "id" : "12315",
+       "account_no" : "129-880-1251-1",
+       "bank_abbrev" : "OCBC"
     }
   ]
 }
@@ -297,7 +282,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>"
   -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
   -H "Content-Type: application/json"
   -X PUT
-  -d "account_no=03931234323"
+  -d "account_no=03931234321"
   -d "bank=DBS"
 ```
 
@@ -305,23 +290,16 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>"
 
 ```json
 {
-  "success" : true,
-  "bank_account" : [
+  "bank_accounts" : [
     {
-      "id" : "12312",
-      "account_no" : "039-312-3432-3",
-      "bank_abbrev" : "DBS",
-      "verified" : true,
-      "amt_1" : "0.12",
-      "amt_2" : "0.09"
+       "id" : "12312",
+       "account_no" : "039-312-3432-1",
+       "bank_abbrev" : "DBS"
     },
     {
-      "id" : "12315",
-      "account_no" : "129-880-1251-1",
-      "bank_abbrev" : "OCBC",
-      "verified" : false,
-      "amt_1" : "0.02",
-      "amt_2" : "0.17"
+       "id" : "12315",
+       "account_no" : "129-880-1251-1",
+       "bank_abbrev" : "OCBC"
     }
   ]
 }
@@ -339,6 +317,80 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 account_no | string | optional | bank account no | 03931234323
 bank | string | optional | bank abbreviation (Refer to [supported banks](http://xfers.github.io/docs/#supported-banks)) | DBS
+
+
+### Submit Withdrawal Request
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>/withdraw"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "Content-Type: application/json"
+  -d "amt=50.0"
+```
+
+> Response:
+
+```json
+{
+  "available_balance": "0.00",
+  "ledger_balance" : "200.00",
+  "pending_withdrawal_requests" : [
+    {
+       "id" : "59",
+       "account_no" : "039-312-3432-3",
+       "bank_abbrev" : "DBS",
+       "amount" : "50.0"
+    }
+  ]
+}
+```
+
+This will make a withdrawal request to the bank account given, provided that your account have sufficient available balance.
+
+#### HTTPS Request
+
+`POST https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>/withdraw`
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+amount | string | required | Amount to withdraw in SGD | 50.0
+
+### List Withdrawal Request
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/user/withdraw_requests"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "Content-Type: application/json"
+```
+
+> Response:
+
+```json
+{
+  "withdrawal_requests" : [
+    {
+       "id" : "59",
+       "account_no" : "039-312-3432-3",
+       "bank_abbrev" : "DBS",
+       "amount" : "50.0"
+    },
+    {
+       "id" : "99",
+       "account_no" : "129-880-1251-1",
+       "bank_abbrev" : "OCBC",
+       "amount" : "250.0"       
+    }
+  ]
+}
+```
+
+This will list all non-completed withdrawal requests made previously.
+
+#### HTTPS Request
+
+`GET https://sandbox.xfers.io/api/v3/user/bank_account/withdrawal_requests`
 
 
 ## Charges
