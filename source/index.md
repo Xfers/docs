@@ -439,13 +439,13 @@ curl "https://sandbox.xfers.io/api/v3/charges"
       "name": "Red dress",
       "quantity": "1",
       "price": 9.99,
-      "item_id": ""                        
+      "item_id": ""
     }
   ],
   "statement_descriptor" : "",
   "receipt_email" : "",
   "shipping" : 2.50,
-  "tax" : 0.00,  
+  "tax" : 0.00,
   "total_amount" : 12.49,
   "meta_data" : {
     "key1":"value1",
@@ -584,7 +584,36 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>"
 
 ```json
 {
-  "msg": "success"
+  "id": "asd1wwd1csadjw1e213sad",
+  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad",
+  "notify_url" : "https://mysite.com/payment_notification",
+  "return_url" : "https://mysite.com/return",
+  "cancel_url" : "https://mysite.com/cancel",
+  "object" : "charge",
+  "amount" : 9.99,
+  "currency" : "SGD",
+  "customer" : "",
+  "order_id" : "A012312",
+  "capture" : true,
+  "description" : "Carousell user - Konsolidate",
+  "items" : [
+    {
+      "description": "Red Dress Size M",
+      "name": "Red dress",
+      "quantity": "1",
+      "price": 9.99,
+      "item_id": ""
+    }
+  ],
+  "statement_descriptor" : "",
+  "receipt_email" : "",
+  "shipping" : 2.50,
+  "tax" : 0.00,
+  "total_amount" : 12.49,
+  "meta_data" : {
+    "key1":"value1",
+    "key2": "value2"
+  }
 }
 ```
 
@@ -636,13 +665,13 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>"
       "name": "Red dress",
       "quantity": "1",
       "price": 9.99,
-      "item_id": ""                        
+      "item_id": ""
     }
   ],
   "statement_descriptor" : "",
   "receipt_email" : "",
   "shipping" : 2.50,
-  "tax" : 0.00,  
+  "tax" : 0.00,
   "total_amount" : 12.49,
   "meta_data" : {
     "key1":"value1",
@@ -690,13 +719,13 @@ curl "https://sandbox.xfers.io/api/v3/charges?limit=1"
         "name": "Red dress",
         "quantity": "1",
         "price": 9.99,
-        "item_id": ""                        
+        "item_id": ""
       }
     ],
     "statement_descriptor" : "",
     "receipt_email" : "",
     "shipping" : 2.50,
-    "tax" : 0.00,  
+    "tax" : 0.00,
     "total_amount" : 12.49,
     "meta_data" : {
       "key1":"value1",
@@ -734,7 +763,36 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>/refunds"
 
 ```json
 {
-  "msg": "success"
+  "id": "asd1wwd1csadjw1e213sad",
+  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad",
+  "notify_url" : "https://mysite.com/payment_notification",
+  "return_url" : "https://mysite.com/return",
+  "cancel_url" : "https://mysite.com/cancel",
+  "object" : "charge",
+  "amount" : 9.99,
+  "currency" : "SGD",
+  "customer" : "",
+  "order_id" : "A012312",
+  "capture" : true,
+  "description" : "Carousell user - Konsolidate",
+  "items" : [
+    {
+      "description": "Red Dress Size M",
+      "name": "Red dress",
+      "quantity": "1",
+      "price": 9.99,
+      "item_id": ""
+    }
+  ],
+  "statement_descriptor" : "",
+  "receipt_email" : "",
+  "shipping" : 2.50,
+  "tax" : 0.00,
+  "total_amount" : 12.49,
+  "meta_data" : {
+    "key1":"value1",
+    "key2": "value2"
+  }
 }
 ```
 
