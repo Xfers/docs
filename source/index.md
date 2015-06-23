@@ -139,7 +139,7 @@ name and bank account information.
 
 `GET https://sandbox.xfers.io/api/v3/user`
 
-### Get Activities
+### Get Account Activities
 
 The activities API only supports querying of a user's activity.
 
@@ -231,7 +231,7 @@ Logo | Bank Name | Abbreviation |
 [ocbc]: bank-logo-30px-ocbc.png
 [hsbc]: bank-logo-30px-hsbc.png
 
-### Add Bank Account
+### Add a Bank Account
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/bank_account"
@@ -275,7 +275,7 @@ account_no | string | optional | bank account no | 03931234323
 bank | string | optional | bank abbreviation (Refer to [supported banks](http://xfers.github.io/docs/#supported-banks)) | DBS
 
 
-### Update Bank Account
+### Update a Bank Account
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>"
