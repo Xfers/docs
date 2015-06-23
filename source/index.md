@@ -163,21 +163,40 @@ curl "https://sandbox.xfers.io/api/v3/activities"
   "msg" : "success",
   "activities" : [
     {
-      :type=>"payment_link", 
-      :trans_type=>"payment_link", 
-      :display_time=>"2015-06-16T14:09:29.000+08:00", 
-      :description=>"Dress for sale", 
-      :plus_minus=>"+", 
-      :display_amount=>100.0, 
-      :display_image_url=>"http://localhost:3000/assets/content-8e795f3a168fa143a6bae44c1abcd1a6e64028f030d40d4584fa8aecc1916a46.svg"},
+      "type": "normal",
+      "trans_type": "transaction",
+      "display_time": "2015-06-22T06:21:31.000+08:00",
+      "description": "Victor Liew",
+      "plus_minus": "+",
+      "display_amount": "30.0",
+      "transaction_items":
+      [
+        {
+          "item_name": "Threadless T-Shirt",
+          "item_description": "Red Threadless T-Shirt, (S) Size",
+          "item_price": "14.5",
+          "item_quantity": 2
+        },
+        {
+          "item_name": "Light Brown Belt",
+          "item_description": "Light brown Belt, (XS) Size",
+          "item_price": "5.5",
+          "item_quantity": 3
+        }
+      ],
+      "display_image_url": "https://www.xfers.io/assets/displayImageUser-c610a87e219afbe0bfc27bcddd67b8f831f967aedb01aef82a9009e9b6eb36c2.png"
+    },
     {
-      :type=>"normal", 
-      :trans_type=>"transaction", 
-      :display_time=>"2015-06-16T14:09:29.000+08:00", 
-      :description=>"From: Tianwei@example.com", 
-      :plus_minus=>"+", 
-      :display_amount=>"2.42", 
-      :display_image_url=>"http://localhost:3000/assets/displayImageUser-c610a87e219afbe0bfc27bcddd67b8f831f967aedb01aef82a9009e9b6eb36c2.png"
+      "type": "external",
+      "trans_type": "deposit",
+      "display_time": "2015-06-23T16:08:39.000+08:00",
+      "description": "OCBC Transfer",
+      "plus_minus": "+",
+      "display_amount": "10.0",
+      "transaction_items":
+      [
+      ],
+      "display_image_url": "https://www.xfers.io/assets/displayImageUser-c610a87e219afbe0bfc27bcddd67b8f831f967aedb01aef82a9009e9b6eb36c2.png"
     }
   ]
 }
