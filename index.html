@@ -860,7 +860,7 @@ Please take note that at this point, payment may or may not have been completed 
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
   -H <span class="s2">"Content-Type: application/json"</span>
-  -d <span class="s2">"pin=512312"</span>
+  -d <span class="s2">"settlement_code=512312"</span>
 </code></pre>
 
 <blockquote>
@@ -902,10 +902,10 @@ Please take note that at this point, payment may or may not have been completed 
 
 <p>Settle the payment of a previous created charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default <a href="http://xfers.github.io/docs/#payment-settlement">payment settlement process</a> takes 10 days.</p>
 
-<p>When a correct pin is provided, the charge will become completed and the funds
+<p>When a correct <code class="prettyprint">settlement_code</code> is provided, the charge will become completed and the funds
 will be available for usage(withdrawal, payout, etcs) immediately.</p>
 
-<p>If no pin was provided, buyer will receive a notifications from Xfers that a seller has delivered on their goods/services and has 72 hrs dispute it before their funds are released to the seller.</p>
+<p>If no <code class="prettyprint">settlement_code</code> was provided, buyer will receive a notifications from Xfers that a seller has delivered on their goods/services and has 72 hrs dispute it before their funds are released to the seller.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -923,7 +923,7 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>pin</td>
+<td>settlement_code</td>
 <td>string</td>
 <td>Optional</td>
 <td>PIN code provided to the buyer</td>
