@@ -432,6 +432,7 @@ curl "https://sandbox.xfers.io/api/v3/charges"
   "customer" : "",
   "order_id" : "A012312",
   "capture" : true,
+  "refundable" : true,
   "description" : "Carousell user - Konsolidate",
   "items" : [
     {
@@ -470,6 +471,7 @@ return_url | string | required | URL Xfers will redirect customer to on completi
 cancel_url | string | required | URL Xfers will redirect customer to on cancellation of Xfers checkout | https://mysite.com/cancel
 order_id | string | required | Unique ref no provided by you to prevent double charging, this cannot be repeated | A012312
 description | string | required | Description of transaction for display purposes | Carousell user - Konsolidate
+refundable | boolean | optional | Whether or not this charge can be refunded. Non Refundable Charges will settle immediately after payment. | Default to true
 customer | string | optional | contact no or email of person to charge. If this is provided, Xfers will send notifications to this user. | 97288608
 redirect | string | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true
 items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. See more [info](http://xfers.github.io/docs/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
@@ -566,7 +568,7 @@ status | string | Payment status. | "cancelled" or "paid" or "expired"
 
 ### Payment Settlement
 
-After a charge become "paid", its funds(minus our fees) will be added to your account ledger balance.
+After refundable charge become "paid", its funds(minus our fees) will be added to your account ledger balance.
 
 By default, its funds(minus our fees) will be "withheld" by Xfers for another 10 days(for refund and dispute purposes) before the charge becomes "completed" and it's funds(minus our fees) will be credited to your Xfers account available balance.
 
@@ -595,6 +597,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>"
   "customer" : "",
   "order_id" : "A012312",
   "capture" : true,
+  "refundable" : true,
   "description" : "Carousell user - Konsolidate",
   "items" : [
     {
@@ -618,7 +621,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>"
 ```
 
 
-Settle the payment of a previous created charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default [payment settlement process](http://xfers.github.io/docs/#payment-settlement) takes 10 days.
+Settle the payment of a previous created refundable charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default [payment settlement process](http://xfers.github.io/docs/#payment-settlement) takes 10 days.
 
 When a correct `settlement_code` is provided, the charge will become completed and the funds
 will be available for usage(withdrawal, payout, etcs) immediately.
@@ -712,6 +715,7 @@ curl "https://sandbox.xfers.io/api/v3/charges?limit=1"
     "order_id" : "A012312",
     "cash_on_delivery" : true,
     "capture" : true,
+    "refundable" : true,
     "description" : "Carousell user - Konsolidate",
     "items" : [
       {
