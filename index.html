@@ -531,6 +531,7 @@ name and bank account information.</p>
   </span><span class="s2">"customer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"A012312"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"capture"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"refundable"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Carousell user - Konsolidate"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"items"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -616,6 +617,13 @@ name and bank account information.</p>
 <td>required</td>
 <td>Description of transaction for display purposes</td>
 <td>Carousell user - Konsolidate</td>
+</tr>
+<tr>
+<td>refundable</td>
+<td>boolean</td>
+<td>optional</td>
+<td>Whether or not this charge can be refunded. Non Refundable Charges will settle immediately after payment.</td>
+<td>Default to true</td>
 </tr>
 <tr>
 <td>customer</td>
@@ -852,7 +860,7 @@ Please take note that at this point, payment may or may not have been completed 
 
 <h3 id="payment-settlement">Payment Settlement</h3>
 
-<p>After a charge become &ldquo;paid&rdquo;, its funds(minus our fees) will be added to your account ledger balance.</p>
+<p>After refundable charge become &ldquo;paid&rdquo;, its funds(minus our fees) will be added to your account ledger balance.</p>
 
 <p>By default, its funds(minus our fees) will be &ldquo;withheld&rdquo; by Xfers for another 10 days(for refund and dispute purposes) before the charge becomes &ldquo;completed&rdquo; and it&rsquo;s funds(minus our fees) will be credited to your Xfers account available balance.</p>
 
@@ -878,6 +886,7 @@ Please take note that at this point, payment may or may not have been completed 
   </span><span class="s2">"customer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"A012312"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"capture"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"refundable"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Carousell user - Konsolidate"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"items"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -900,7 +909,7 @@ Please take note that at this point, payment may or may not have been completed 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Settle the payment of a previous created charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default <a href="http://xfers.github.io/docs/#payment-settlement">payment settlement process</a> takes 10 days.</p>
+<p>Settle the payment of a previous created refundable charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default <a href="http://xfers.github.io/docs/#payment-settlement">payment settlement process</a> takes 10 days.</p>
 
 <p>When a correct <code class="prettyprint">settlement_code</code> is provided, the charge will become completed and the funds
 will be available for usage(withdrawal, payout, etcs) immediately.</p>
@@ -1004,6 +1013,7 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
     </span><span class="s2">"order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"A012312"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"cash_on_delivery"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"capture"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refundable"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Carousell user - Konsolidate"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"items"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
