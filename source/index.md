@@ -577,7 +577,7 @@ By default, its funds(minus our fees) will be "withheld" by Xfers for another 10
 curl "https://sandbox.xfers.io/api/v3/charges/<id>"
   -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
   -H "Content-Type: application/json"
-  -d "pin=512312"
+  -d "settlement_code=512312"
 ```
 
 > Response:
@@ -620,10 +620,10 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>"
 
 Settle the payment of a previous created charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default [payment settlement process](http://xfers.github.io/docs/#payment-settlement) takes 10 days.
 
-When a correct pin is provided, the charge will become completed and the funds
+When a correct `settlement_code` is provided, the charge will become completed and the funds
 will be available for usage(withdrawal, payout, etcs) immediately.
 
-If no pin was provided, buyer will receive a notifications from Xfers that a seller has delivered on their goods/services and has 72 hrs dispute it before their funds are released to the seller.
+If no `settlement_code` was provided, buyer will receive a notifications from Xfers that a seller has delivered on their goods/services and has 72 hrs dispute it before their funds are released to the seller.
 
 
 #### HTTPS Request
@@ -632,7 +632,7 @@ If no pin was provided, buyer will receive a notifications from Xfers that a sel
 #### URL Parameters
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | -------- | -----------
-pin | string | Optional | PIN code provided to the buyer | 512312
+settlement_code | string | Optional | PIN code provided to the buyer | 512312
 
 
 ### Retrieve a Charge
