@@ -398,16 +398,16 @@ This will list all non-completed withdrawal requests made previously.
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-filter | string | optional | filter by withdrawal status | Default to no filter
+filter | string | optional | filter by withdrawal [status](http://xfers.github.io/docs/#withdrawal-status) | Default to no filter
 
 
 ##### Withdrawal Status
 Name | Description
----- | -----------
-pending | Withdrawal request is awaiting confirmations
-processing | Withdrawal request is being process now.
-completed | Withdrawal request has been processed.
-
+---- | ------------
+unverified | Withdrawal request is awaiting confirmations
+pending | Withdrawal request is being process now.
+paid | Withdrawal request has been processed and completed.
+cancelled | Withdrawal request has been cancelled.
 
 
 ## Charges
