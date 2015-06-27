@@ -334,14 +334,14 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>/withdr
 {
   "available_balance": "0.00",
   "ledger_balance" : "200.00",
-  "pending_withdrawal_requests" : [
+  "withdrawal_request" :
     {
        "id" : "59",
        "account_no" : "039-312-3432-3",
        "bank_abbrev" : "DBS",
-       "amount" : "50.0"
+       "amount" : "50.0",
+       "status" : "processing"
     }
-  ]
 }
 ```
 
@@ -374,13 +374,15 @@ curl "https://sandbox.xfers.io/api/v3/user/withdraw_requests"
        "id" : "59",
        "account_no" : "039-312-3432-3",
        "bank_abbrev" : "DBS",
-       "amount" : "50.0"
+       "amount" : "50.0",
+       "status" : "processing"
     },
     {
        "id" : "99",
        "account_no" : "129-880-1251-1",
        "bank_abbrev" : "OCBC",
-       "amount" : "250.0"       
+       "amount" : "250.0",
+       "status" : "processing"
     }
   ]
 }
@@ -391,6 +393,21 @@ This will list all non-completed withdrawal requests made previously.
 #### HTTPS Request
 
 `GET https://sandbox.xfers.io/api/v3/user/bank_account/withdrawal_requests`
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+filter | string | optional | filter by withdrawal status | Default to no filter
+
+
+##### Withdrawal Status
+Name | Description
+---- | -----------
+pending | Withdrawal request is awaiting confirmations
+processing | Withdrawal request is being process now.
+completed | Withdrawal request has been processed.
+
 
 
 ## Charges
