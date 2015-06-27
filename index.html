@@ -511,7 +511,7 @@ name and bank account information.</p>
 <td>filter</td>
 <td>string</td>
 <td>optional</td>
-<td>filter by withdrawal status</td>
+<td>filter by withdrawal <a href="http://xfers.github.io/docs/#withdrawal-status">status</a></td>
 <td>Default to no filter</td>
 </tr>
 </tbody></table>
@@ -525,16 +525,20 @@ name and bank account information.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>pending</td>
+<td>unverified</td>
 <td>Withdrawal request is awaiting confirmations</td>
 </tr>
 <tr>
-<td>processing</td>
+<td>pending</td>
 <td>Withdrawal request is being process now.</td>
 </tr>
 <tr>
-<td>completed</td>
-<td>Withdrawal request has been processed.</td>
+<td>paid</td>
+<td>Withdrawal request has been processed and completed.</td>
+</tr>
+<tr>
+<td>cancelled</td>
+<td>Withdrawal request has been cancelled.</td>
 </tr>
 </tbody></table>
 
