@@ -615,6 +615,8 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>"
   "order_id" : "A012312",
   "capture" : true,
   "refundable" : true,
+  "shipment_date" : "2015-07-02T06:26:51Z",
+  "settlement_date" : "2015-07-05T06:26:51Z",
   "description" : "Carousell user - Konsolidate",
   "items" : [
     {
@@ -676,8 +678,10 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>"
   "currency" : "SGD",
   "customer" : "",
   "order_id" : "A012312",
-  "cash_on_delivery" : true,
   "capture" : true,
+  "refundable" : true,
+  "shipment_date" : "2015-07-02T06:26:51Z",
+  "settlement_date" : "2015-07-05T06:26:51Z",
   "description" : "Carousell user - Konsolidate",
   "items" : [
     {
@@ -699,7 +703,6 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>"
   }
 }
 ```
-
 
 Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was returned from your previous request, and Xfers will return the corresponding charge information. The same information is returned when creating or refunding the charge.
 
@@ -733,6 +736,8 @@ curl "https://sandbox.xfers.io/api/v3/charges?limit=1"
     "cash_on_delivery" : true,
     "capture" : true,
     "refundable" : true,
+    "shipment_date" : "2015-07-02T06:26:51Z",
+    "settlement_date" : "2015-07-05T06:26:51Z",    
     "description" : "Carousell user - Konsolidate",
     "items" : [
       {
