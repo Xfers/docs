@@ -345,7 +345,7 @@ name and bank account information.</p>
 <td>bank</td>
 <td>string</td>
 <td>optional</td>
-<td>bank abbreviation (Refer to <a href="/#supported-banks">supported banks</a>)</td>
+<td>bank abbreviation (Refer to <a href="/docs/#supported-banks">supported banks</a>)</td>
 <td>DBS</td>
 </tr>
 </tbody></table>
@@ -406,7 +406,7 @@ name and bank account information.</p>
 <td>bank</td>
 <td>string</td>
 <td>optional</td>
-<td>bank abbreviation (Refer to <a href="/#supported-banks">supported banks</a>)</td>
+<td>bank abbreviation (Refer to <a href="/docs/#supported-banks">supported banks</a>)</td>
 <td>DBS</td>
 </tr>
 </tbody></table>
@@ -511,7 +511,7 @@ name and bank account information.</p>
 <td>filter</td>
 <td>string</td>
 <td>optional</td>
-<td>filter by <a href="/#withdrawal-status">withdrawal status</a></td>
+<td>filter by <a href="/docs/#withdrawal-status">withdrawal status</a></td>
 <td>Default to no filter</td>
 </tr>
 </tbody></table>
@@ -691,7 +691,7 @@ name and bank account information.</p>
 <td>items</td>
 <td>string</td>
 <td>optional</td>
-<td>A JSON array of item with attributes &lsquo;description, name, price, quantity&rsquo;. See more <a href="/#item-hash">info</a>.</td>
+<td>A JSON array of item with attributes &lsquo;description, name, price, quantity&rsquo;. See more <a href="/docs/#item-hash">info</a>.</td>
 <td>&ldquo;[{&quot;description&rdquo;:&ldquo;Red dress Size M&rdquo;,&ldquo;price&rdquo;:9.99,&ldquo;quantity&rdquo;:1,&ldquo;name&rdquo;:&ldquo;Red dress&rdquo;}]&ldquo;</td>
 </tr>
 <tr>
@@ -959,7 +959,7 @@ Please take note that at this point, payment may or may not have been completed 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Settle the payment of a previous created refundable charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default <a href="/#payment-settlement">payment settlement process</a> takes 10 days.</p>
+<p>Settle the payment of a previous created refundable charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default <a href="/docs/#payment-settlement">payment settlement process</a> takes 10 days.</p>
 
 <p>When a correct <code class="prettyprint">settlement_code</code> is provided, the charge will become completed and the funds
 will be available for usage(withdrawal, payout, etcs) immediately.</p>
@@ -1170,7 +1170,7 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>The following request will allow you to make a payout to the recipient. Xfers will send a email/SMS to the recipient inform him of the payout and allow him to claim and withdrawal the funds to any of the <a href="/#supported-banks">local banks we support</a>.
+<p>The following request will allow you to make a payout to the recipient. Xfers will send a email/SMS to the recipient inform him of the payout and allow him to claim and withdrawal the funds to any of the <a href="/docs/#supported-banks">local banks we support</a>.
 If the recipient did not accept the payout within 14 days, the payout will be cancelled and its funds will be return back to your Xfers balances.</p>
 
 <p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/payouts</code></p>
@@ -1225,7 +1225,7 @@ If the recipient did not accept the payout within 14 days, the payout will be ca
 <td>bank_abbrev</td>
 <td>string</td>
 <td>optional</td>
-<td>Bank abbreviation of the <a href="/#supported-banks">supported banks</a></td>
+<td>Bank abbreviation of the <a href="/docs/#supported-banks">supported banks</a></td>
 <td>DBS</td>
 </tr>
 <tr>
@@ -1482,7 +1482,7 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 
 <p>This API call will attempt to login(existing user) or signup a new user.</p>
 
-<p>An SMS with a OTP will be send to that number which must be used for <a href="/#get-user-api-token">get_token</a> api call.</p>
+<p>An SMS with a OTP will be send to that number which must be used for <a href="/docs/#get-user-api-token">get_token</a> api call.</p>
 
 <h3 id="https-request">HTTPS Request</h3>
 
