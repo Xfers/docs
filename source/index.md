@@ -272,7 +272,7 @@ This request will add a new bank account to this Xfers account. You will be able
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 account_no | string | optional | bank account no | 03931234323
-bank | string | optional | bank abbreviation (Refer to [supported banks](http://xfers.github.io/docs/#supported-banks)) | DBS
+bank | string | optional | bank abbreviation (Refer to [supported banks](/#supported-banks)) | DBS
 
 
 ### Update a Bank Account
@@ -316,7 +316,7 @@ This request allow you to update an existing bank account record.
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 account_no | string | optional | bank account no | 03931234323
-bank | string | optional | bank abbreviation (Refer to [supported banks](http://xfers.github.io/docs/#supported-banks)) | DBS
+bank | string | optional | bank abbreviation (Refer to [supported banks](/#supported-banks)) | DBS
 
 
 ### Submit Withdrawal Request
@@ -398,7 +398,7 @@ This will list all non-completed withdrawal requests made previously.
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-filter | string | optional | filter by [withdrawal status](http://xfers.github.io/docs/#withdrawal-status) | Default to no filter
+filter | string | optional | filter by [withdrawal status](/#withdrawal-status) | Default to no filter
 
 
 ##### Withdrawal Status
@@ -491,7 +491,7 @@ description | string | required | Description of transaction for display purpose
 refundable | boolean | optional | Whether or not this charge can be refunded. Non Refundable Charges will settle immediately after payment. | Default to true
 customer | string | optional | contact no or email of person to charge. If this is provided, Xfers will send notifications to this user. | 97288608
 redirect | string | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true
-items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. See more [info](http://xfers.github.io/docs/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
+items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. See more [info](/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
 shipping | float | optional | Shipping fees | Default to 0.0
 tax | string | float | tax in $  | Default to 0.0
 meta_data | string | optional | A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification | {"key1":"value1", "key2":"value2"}
@@ -640,7 +640,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>"
 ```
 
 
-Settle the payment of a previous created refundable charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default [payment settlement process](http://xfers.github.io/docs/#payment-settlement) takes 10 days.
+Settle the payment of a previous created refundable charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default [payment settlement process](/#payment-settlement) takes 10 days.
 
 When a correct `settlement_code` is provided, the charge will become completed and the funds
 will be available for usage(withdrawal, payout, etcs) immediately.
@@ -775,6 +775,137 @@ ending_before | string | optional | A cursor for use in pagination. ending_befor
 limit | integer | optional | A limit on the number of objects to be returned. Limit can range between 1 and 50 items. | Default to 10
 starting_after | string | optional | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list. | asd1wwd1csadjw1e213sad
 
+## Payouts
+Xfers payout Apis allow you to pay anyone with your Xfers balance via their phone no or email address. A SGD$1.00 fees will be charge to your account on every successful payout. You need to have sufficient available balance in your account to cover the amount + fees required for the payout.
+
+### Creating a Payout
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/payouts"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "Content-Type: application/json"
+  -d "amount=150.00"
+  -d "invoice_id=AZ0001"
+  -d "descriptions='Payment for Rent for July'"
+  -d "recipient='+6597288608'"
+```
+
+> Response:
+
+```json
+{
+  "id": "6fa51cd08c8ae115f858593412bb72c8",
+  "recipient" : "+6597288608",
+  "invoice_id" : "AZ0001",
+  "amount" : 150.00,
+  "currency" : "SGD",
+  "descriptions" : "Payment for Rent for July",
+  "bank_abbrev" : "DBS",
+  "bank_account_no" : "XXX-XXX-6091",
+  "created_date" : "2015-07-01T19:01:25Z",
+  "completed_date" : "",
+  "status" : "processing"
+}
+```
+
+The following request will allow you to make a payout to the recipient. Xfers will send a email/SMS to the recipient inform him of the payout and allow him to claim and withdrawal the funds to any of the [local banks we support](/#supported-banks).
+If the recipient did not accept the payout within 14 days, the payout will be cancelled and its funds will be return back to your Xfers balances.
+
+`POST https://sandbox.xfers.io/api/v3/payouts`
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+amount | float | required | Total value for items. | 150.00
+invoice_id | string | required | Unique ref no provided by merchant. This will need to be unique or the payout request will be considered a duplicate and ignored. | AZ0001
+recipient | string | required | Email or Mobile Phone No of the recipient for this payout. | +659728860
+currency | string | optional | 3-letter ISO code for currency | Default to 'SGD'
+descriptions | string | optional | A short description for this payout. This will be part of the email/SMS that the recipient will be receiving from Xfers. | Payment for Rent for July
+bank_abbrev | string | optional | Bank abbreviation of the [supported banks](/#supported-banks) | DBS
+bank_account_no | string | optional | Bank account no of recipient | 4234126091
+
+### Retrieve a Payout
+```shell
+curl "https://sandbox.xfers.io/api/v3/payouts/<id>"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "Content-Type: application/json"
+```
+
+> Response:
+
+```json
+{
+  "id": "6fa51cd08c8ae115f858593412bb72c8",
+  "recipient" : "+6597288608",
+  "invoice_id" : "AZ0001",
+  "amount" : 150.00,
+  "currency" : "SGD",
+  "descriptions" : "Payment for Rent for July",
+  "bank_abbrev" : "DBS",
+  "bank_account_no" : "XXX-XXX-6091",
+  "created_date" : "2015-07-01T19:01:25Z",
+  "completed_date" : "",
+  "status" : "processing"
+}
+```
+
+Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was returned from your previous request, and Xfers will return the corresponding charge information. The same information is returned when creating or refunding the charge.
+
+#### HTTPS Request
+`GET https://sandbox.xfers.io/api/v3/payouts/<id>`
+
+The below is a list of payout status and their respective meanings.
+
+##### Payout Status
+Name | Description
+---- | ------------
+processing | Payout request is being process now.
+completed  | Payout request has been processed and completed.
+cancelled  | Payout request has been cancelled.
+
+
+### List all Payouts
+```shell
+curl "https://sandbox.xfers.io/api/v3/payouts?limit=1"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "Content-Type: application/json"
+```
+
+> Response:
+
+```json
+[
+  {
+    "id": "6fa51cd08c8ae115f858593412bb72c8",
+    "recipient" : "+6597288608",
+    "invoice_id" : "AZ0001",
+    "amount" : 150.00,
+    "currency" : "SGD",
+    "descriptions" : "Payment for Rent for July",
+    "bank_abbrev" : "DBS",
+    "bank_account_no" : "XXX-XXX-6091",
+    "created_date" : "2015-07-01T19:01:25Z",
+    "completed_date" : "",
+    "status" : "processing"
+  }
+]
+```
+
+Returns a list of payouts you've previously created. The payouts are returned in sorted order, with the most recent charges appearing first.
+
+#### HTTPS Request
+`GET https://sandbox.xfers.io/api/v3/payouts`
+
+#### URL Parameters
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+recipient | string | optional | Only return charges for the recipient(email for phone no) specified by this recipient ID. | +6597288608
+ending_before | string | optional | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_bar, your subsequent call can include ending_before=obj_bar in order to fetch the previous page of the list. | 6fa51cd08c8ae115f858593412bb72c8
+limit | integer | optional | A limit on the number of objects to be returned. Limit can range between 1 and 50 items. | Default to 10
+starting_after | string | optional | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list. | 6fa51cd08c8ae115f858593412bb72c8
+
+
 ## Refunds
 The following APIs allow you to refund a charge that has previously been created and paid by your buyer but not yet refunded. Funds will be refunded to the buyer Xfers account available balance. The fees you were originally charged are also refunded.
 
@@ -898,7 +1029,7 @@ curl "https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+659728860
 
 This API call will attempt to login(existing user) or signup a new user.
 
-An SMS with a OTP will be send to that number which must be used for [get_token](http://xfers.github.io/docs/#get-user-api-token) api call.
+An SMS with a OTP will be send to that number which must be used for [get_token](/#get-user-api-token) api call.
 
 ### HTTPS Request
 `GET https://sandbox.xfers.io/api/v3/authorize/signup_login?otp=541231&phone_no=+6597288608&signature=7f6c6a7ec80a0be657e4204cd87e58401687a2eb`
