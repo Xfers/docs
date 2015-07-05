@@ -800,7 +800,7 @@ curl "https://sandbox.xfers.io/api/v3/payouts"
   "amount" : 150.00,
   "currency" : "SGD",
   "descriptions" : "Payment for Rent for July",
-  "bank_abbrev" : "DBS",
+  "bank" : "DBS",
   "bank_account_no" : "XXX-XXX-6091",
   "created_date" : "2015-07-01T19:01:25Z",
   "completed_date" : "",
@@ -822,7 +822,7 @@ invoice_id | string | required | Unique ref no provided by merchant. This will n
 recipient | string | required | Email or Mobile Phone No of the recipient for this payout. | +659728860
 currency | string | optional | 3-letter ISO code for currency | Default to 'SGD'
 descriptions | string | optional | A short description for this payout. This will be part of the email/SMS that the recipient will be receiving from Xfers. | Payment for Rent for July
-bank_abbrev | string | optional | Bank abbreviation of the [supported banks](/docs/#supported-banks) | DBS
+bank | string | optional | Bank abbreviation of the [supported banks](/docs/#supported-banks) | DBS
 bank_account_no | string | optional | Bank account no of recipient | 4234126091
 
 ### Retrieve a Payout
@@ -842,7 +842,7 @@ curl "https://sandbox.xfers.io/api/v3/payouts/<id>"
   "amount" : 150.00,
   "currency" : "SGD",
   "descriptions" : "Payment for Rent for July",
-  "bank_abbrev" : "DBS",
+  "bank" : "DBS",
   "bank_account_no" : "XXX-XXX-6091",
   "created_date" : "2015-07-01T19:01:25Z",
   "completed_date" : "",
@@ -883,7 +883,7 @@ curl "https://sandbox.xfers.io/api/v3/payouts?limit=1"
     "amount" : 150.00,
     "currency" : "SGD",
     "descriptions" : "Payment for Rent for July",
-    "bank_abbrev" : "DBS",
+    "bank" : "DBS",
     "bank_account_no" : "XXX-XXX-6091",
     "created_date" : "2015-07-01T19:01:25Z",
     "completed_date" : "",
