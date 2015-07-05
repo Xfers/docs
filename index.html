@@ -1166,7 +1166,7 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
   </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"XXX-XXX-6091"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"created_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-01T19:01:25Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"completed_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"unclaimed"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1257,7 +1257,7 @@ If the recipient did not accept the payout within 14 days, the payout will be ca
   </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"XXX-XXX-6091"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"created_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-01T19:01:25Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"completed_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"unclaimed"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1278,16 +1278,16 @@ If the recipient did not accept the payout within 14 days, the payout will be ca
 </tr>
 </thead><tbody>
 <tr>
-<td>processing</td>
-<td>Payout request is being process now.</td>
+<td>unclaimed</td>
+<td>Payout has not been accepted by recipient.</td>
 </tr>
 <tr>
 <td>completed</td>
-<td>Payout request has been processed and completed.</td>
+<td>Payout has been completed.</td>
 </tr>
 <tr>
 <td>cancelled</td>
-<td>Payout request has been cancelled.</td>
+<td>Payout has been cancelled.</td>
 </tr>
 </tbody></table>
 
@@ -1312,7 +1312,7 @@ If the recipient did not accept the payout within 14 days, the payout will be ca
     </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"XXX-XXX-6091"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-01T19:01:25Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"completed_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="w">
+    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
