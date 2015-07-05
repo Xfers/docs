@@ -345,7 +345,7 @@ name and bank account information.</p>
 <td>bank</td>
 <td>string</td>
 <td>optional</td>
-<td>bank abbreviation (Refer to <a href="http://xfers.github.io/docs/#supported-banks">supported banks</a>)</td>
+<td>bank abbreviation (Refer to <a href="/#supported-banks">supported banks</a>)</td>
 <td>DBS</td>
 </tr>
 </tbody></table>
@@ -406,7 +406,7 @@ name and bank account information.</p>
 <td>bank</td>
 <td>string</td>
 <td>optional</td>
-<td>bank abbreviation (Refer to <a href="http://xfers.github.io/docs/#supported-banks">supported banks</a>)</td>
+<td>bank abbreviation (Refer to <a href="/#supported-banks">supported banks</a>)</td>
 <td>DBS</td>
 </tr>
 </tbody></table>
@@ -511,7 +511,7 @@ name and bank account information.</p>
 <td>filter</td>
 <td>string</td>
 <td>optional</td>
-<td>filter by <a href="http://xfers.github.io/docs/#withdrawal-status">withdrawal status</a></td>
+<td>filter by <a href="/#withdrawal-status">withdrawal status</a></td>
 <td>Default to no filter</td>
 </tr>
 </tbody></table>
@@ -691,7 +691,7 @@ name and bank account information.</p>
 <td>items</td>
 <td>string</td>
 <td>optional</td>
-<td>A JSON array of item with attributes &lsquo;description, name, price, quantity&rsquo;. See more <a href="http://xfers.github.io/docs/#item-hash">info</a>.</td>
+<td>A JSON array of item with attributes &lsquo;description, name, price, quantity&rsquo;. See more <a href="/#item-hash">info</a>.</td>
 <td>&ldquo;[{&quot;description&rdquo;:&ldquo;Red dress Size M&rdquo;,&ldquo;price&rdquo;:9.99,&ldquo;quantity&rdquo;:1,&ldquo;name&rdquo;:&ldquo;Red dress&rdquo;}]&ldquo;</td>
 </tr>
 <tr>
@@ -959,7 +959,7 @@ Please take note that at this point, payment may or may not have been completed 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Settle the payment of a previous created refundable charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default <a href="http://xfers.github.io/docs/#payment-settlement">payment settlement process</a> takes 10 days.</p>
+<p>Settle the payment of a previous created refundable charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default <a href="/#payment-settlement">payment settlement process</a> takes 10 days.</p>
 
 <p>When a correct <code class="prettyprint">settlement_code</code> is provided, the charge will become completed and the funds
 will be available for usage(withdrawal, payout, etcs) immediately.</p>
@@ -1138,6 +1138,232 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
 </tr>
 </tbody></table>
 
+<h2 id="payouts">Payouts</h2>
+
+<p>Xfers payout Apis allow you to pay anyone with your Xfers balance via their phone no or email address. A SGD$1.00 fees will be charge to your account on every successful payout. You need to have sufficient available balance in your account to cover the amount + fees required for the payout.</p>
+
+<h3 id="creating-a-payout">Creating a Payout</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/payouts"</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -d <span class="s2">"amount=150.00"</span>
+  -d <span class="s2">"invoice_id=AZ0001"</span>
+  -d <span class="s2">"descriptions='Payment for Rent for July'"</span>
+  -d <span class="s2">"recipient='+6597288608'"</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6fa51cd08c8ae115f858593412bb72c8"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"recipient"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+6597288608"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"invoice_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0001"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">150.00</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"descriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Payment for Rent for July"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"XXX-XXX-6091"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-01T19:01:25Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"completed_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The following request will allow you to make a payout to the recipient. Xfers will send a email/SMS to the recipient inform him of the payout and allow him to claim and withdrawal the funds to any of the <a href="/#supported-banks">local banks we support</a>.
+If the recipient did not accept the payout within 14 days, the payout will be cancelled and its funds will be return back to your Xfers balances.</p>
+
+<p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/payouts</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>float</td>
+<td>required</td>
+<td>Total value for items.</td>
+<td>150.00</td>
+</tr>
+<tr>
+<td>invoice_id</td>
+<td>string</td>
+<td>required</td>
+<td>Unique ref no provided by merchant. This will need to be unique or the payout request will be considered a duplicate and ignored.</td>
+<td>AZ0001</td>
+</tr>
+<tr>
+<td>recipient</td>
+<td>string</td>
+<td>required</td>
+<td>Email or Mobile Phone No of the recipient for this payout.</td>
+<td>+659728860</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>optional</td>
+<td>3-letter ISO code for currency</td>
+<td>Default to &#39;SGD&rsquo;</td>
+</tr>
+<tr>
+<td>descriptions</td>
+<td>string</td>
+<td>optional</td>
+<td>A short description for this payout. This will be part of the email/SMS that the recipient will be receiving from Xfers.</td>
+<td>Payment for Rent for July</td>
+</tr>
+<tr>
+<td>bank_abbrev</td>
+<td>string</td>
+<td>optional</td>
+<td>Bank abbreviation of the <a href="/#supported-banks">supported banks</a></td>
+<td>DBS</td>
+</tr>
+<tr>
+<td>bank_account_no</td>
+<td>string</td>
+<td>optional</td>
+<td>Bank account no of recipient</td>
+<td>4234126091</td>
+</tr>
+</tbody></table>
+
+<h3 id="retrieve-a-payout">Retrieve a Payout</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/payouts/&lt;id&gt;"</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6fa51cd08c8ae115f858593412bb72c8"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"recipient"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+6597288608"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"invoice_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0001"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">150.00</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"descriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Payment for Rent for July"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"XXX-XXX-6091"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-01T19:01:25Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"completed_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was returned from your previous request, and Xfers will return the corresponding charge information. The same information is returned when creating or refunding the charge.</p>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/payouts/&lt;id&gt;</code></p>
+
+<p>The below is a list of payout status and their respective meanings.</p>
+
+<h5 id="payout-status">Payout Status</h5>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>processing</td>
+<td>Payout request is being process now.</td>
+</tr>
+<tr>
+<td>completed</td>
+<td>Payout request has been processed and completed.</td>
+</tr>
+<tr>
+<td>cancelled</td>
+<td>Payout request has been cancelled.</td>
+</tr>
+</tbody></table>
+
+<h3 id="list-all-payouts">List all Payouts</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/payouts?limit=1"</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6fa51cd08c8ae115f858593412bb72c8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"recipient"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+6597288608"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"invoice_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0001"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">150.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"descriptions"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Payment for Rent for July"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"XXX-XXX-6091"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-01T19:01:25Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"completed_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of payouts you&rsquo;ve previously created. The payouts are returned in sorted order, with the most recent charges appearing first.</p>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/payouts</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>recipient</td>
+<td>string</td>
+<td>optional</td>
+<td>Only return charges for the recipient(email for phone no) specified by this recipient ID.</td>
+<td>+6597288608</td>
+</tr>
+<tr>
+<td>ending_before</td>
+<td>string</td>
+<td>optional</td>
+<td>A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_bar, your subsequent call can include ending_before=obj_bar in order to fetch the previous page of the list.</td>
+<td>6fa51cd08c8ae115f858593412bb72c8</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>optional</td>
+<td>A limit on the number of objects to be returned. Limit can range between 1 and 50 items.</td>
+<td>Default to 10</td>
+</tr>
+<tr>
+<td>starting_after</td>
+<td>string</td>
+<td>optional</td>
+<td>A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list.</td>
+<td>6fa51cd08c8ae115f858593412bb72c8</td>
+</tr>
+</tbody></table>
+
 <h2 id="refunds">Refunds</h2>
 
 <p>The following APIs allow you to refund a charge that has previously been created and paid by your buyer but not yet refunded. Funds will be refunded to the buyer Xfers account available balance. The fees you were originally charged are also refunded.</p>
@@ -1256,7 +1482,7 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 
 <p>This API call will attempt to login(existing user) or signup a new user.</p>
 
-<p>An SMS with a OTP will be send to that number which must be used for <a href="http://xfers.github.io/docs/#get-user-api-token">get_token</a> api call.</p>
+<p>An SMS with a OTP will be send to that number which must be used for <a href="/#get-user-api-token">get_token</a> api call.</p>
 
 <h3 id="https-request">HTTPS Request</h3>
 
