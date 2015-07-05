@@ -804,7 +804,7 @@ curl "https://sandbox.xfers.io/api/v3/payouts"
   "bank_account_no" : "XXX-XXX-6091",
   "created_date" : "2015-07-01T19:01:25Z",
   "completed_date" : "",
-  "status" : "processing"
+  "status" : "unclaimed"
 }
 ```
 
@@ -846,7 +846,7 @@ curl "https://sandbox.xfers.io/api/v3/payouts/<id>"
   "bank_account_no" : "XXX-XXX-6091",
   "created_date" : "2015-07-01T19:01:25Z",
   "completed_date" : "",
-  "status" : "processing"
+  "status" : "unclaimed"
 }
 ```
 
@@ -860,9 +860,9 @@ The below is a list of payout status and their respective meanings.
 ##### Payout Status
 Name | Description
 ---- | ------------
-processing | Payout request is being process now.
-completed  | Payout request has been processed and completed.
-cancelled  | Payout request has been cancelled.
+unclaimed | Payout has not been accepted by recipient.
+completed  | Payout has been completed.
+cancelled  | Payout has been cancelled.
 
 
 ### List all Payouts
@@ -887,7 +887,7 @@ curl "https://sandbox.xfers.io/api/v3/payouts?limit=1"
     "bank_account_no" : "XXX-XXX-6091",
     "created_date" : "2015-07-01T19:01:25Z",
     "completed_date" : "",
-    "status" : "processing"
+    "status" : "completed"
   }
 ]
 ```
