@@ -808,7 +808,8 @@ curl "https://sandbox.xfers.io/api/v3/payouts"
 }
 ```
 
-The following request will allow you to make a payout to the recipient. Xfers will send a email/SMS to the recipient inform him of the payout and allow him to claim and withdrawal the funds to any of the [local banks we support](/docs/#supported-banks).
+The following request will allow you to make a payout to the recipient. If you only provided us with bank details, Xfers will make a payout directly to that bank account. 
+If only email/phone no is provided, Xfers will email/SMS the recipient to inform him of the payout and allow him to claim and withdrawal the funds to any of the [local banks we support](/docs/#supported-banks). If both bank details and recipient informations are provided, we will credit their bank account and send them a notification once their payout has been processed.
 If the recipient did not accept the payout within 14 days, the payout will be cancelled and its funds will be return back to your Xfers balances.
 
 `POST https://sandbox.xfers.io/api/v3/payouts`
@@ -819,7 +820,7 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 amount | float | required | Total value for items. | 150.00
 invoice_id | string | required | Unique ref no provided by merchant. This will need to be unique or the payout request will be considered a duplicate and ignored. | AZ0001
-recipient | string | required | Email or Mobile Phone No of the recipient for this payout. | +659728860
+recipient | string | optional | Email or Mobile Phone No of the recipient for this payout. | +659728860
 currency | string | optional | 3-letter ISO code for currency | Default to 'SGD'
 descriptions | string | optional | A short description for this payout. This will be part of the email/SMS that the recipient will be receiving from Xfers. | Payment for Rent for July
 bank | string | optional | Bank abbreviation of the [supported banks](/docs/#supported-banks) | DBS
