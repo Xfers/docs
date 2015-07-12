@@ -409,6 +409,34 @@ pending | Withdrawal request is being process now.
 paid | Withdrawal request has been processed and completed.
 cancelled | Withdrawal request has been cancelled.
 
+### Get Transfer Info
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/user/transfer_info"
+  -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
+  -H "Content-Type: application/json"
+```
+
+> Response:
+
+```json
+{
+  "bank_name_full" : "Oversea Chinese Banking Corporation",
+  "bank_name_abbreviation" : "OCBC",
+  "bank_account_no" : "646004424001",
+  "bank_code" : "7339",
+  "branch_code" : "646",
+  "branch_area" : "Jurong East",
+  "unique_id" : "97288607"
+}
+```
+
+This will return transfer in info specific to the user.
+
+#### HTTPS Request
+
+`GET https://sandbox.xfers.io/api/v3/user/transfer_info`
+
 
 ## Charges
 
