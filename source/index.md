@@ -144,7 +144,7 @@ name and bank account information.
 The activities API only supports querying of a user's activity.
 
 ```shell
-curl "https://sandbox.xfers.io/api/v3/activities"
+curl "https://sandbox.xfers.io/api/v3/user/activities"
   -H "X-XFERS-USER-API-KEY: f0ca588df6e8400a98a7e522390fad67"
 ```
 
@@ -200,7 +200,7 @@ This endpoint return information related to your account activites such as the t
 
 #### HTTPS Request
 
-`GET https://sandbox.xfers.io/api/v3/activities`
+`GET https://sandbox.xfers.io/api/v3/user/activities`
 
 
 ## Bank Account
