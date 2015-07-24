@@ -448,18 +448,7 @@ The following APIs allow you to create a Xfers transaction and allow anyone to p
 curl "https://sandbox.xfers.io/api/v3/charges"
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
   -H "Content-Type: application/json"
-  -d "amount=24.99"
-  -d "currency=SGD"
-  -d "redirect=false"
-  -d "notify_url=https://mysite.com/payment_notification"
-  -d "return_url=https://mysite.com/return"
-  -d "cancel_url=https://mysite.com/cancel"
-  -d "order_id=A012312"
-  -d "description=unused red dress"
-  -d "shipping=2.50"
-  -d "tax=0.0"
-  -d 'items=[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]'
-  -d 'meta_data={"key1":"value1", "key2":"value2"}'
+  -d '{ "amount": "9.99", "currency": "SGD", "redirect": "false", "notify_url": "https://mysite.com/payment_notification", "return_url": "https://mysite.com/return", "cancel_url": "https://mysite.com/cancel", "order_id": "AZ9912", "description":"unused red dress", "shipping": "2.50", "tax": "0.0", "items" : [{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}], "meta_data": {"key1":"value1", "key2":"value2"}}'
 ```
 
 > Response:
