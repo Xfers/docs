@@ -96,7 +96,7 @@ integrate internet banking and credit card payments(coming soon) into your busin
 <p>Simple Authentication Ping Test</p>
 </blockquote>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/hello"</span>
+curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/hello"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
 </code></pre>
 
@@ -131,7 +131,7 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 <p>The account info API supports querying and making changes to a User&rsquo;s account.</p>
 
 <h3 id="get-account-info">Get Account Info</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
 </code></pre>
 
@@ -172,7 +172,7 @@ name and bank account information.</p>
 <h3 id="get-account-activities">Get Account Activities</h3>
 
 <p>The activities API only supports querying of a user&rsquo;s activity.</p>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/activities"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/activities"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
 </code></pre>
 
@@ -291,11 +291,10 @@ name and bank account information.</p>
 </tbody></table>
 
 <h3 id="add-a-bank-account">Add a Bank Account</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
-  -H <span class="s2">"Content-Type: application/json"</span>
-  -d <span class="s2">"account_no=03931234323"</span>
-  -d <span class="s2">"bank=DBS"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{"account_no": "03931234323", "bank":"DBS"}'</span>
 </code></pre>
 
 <blockquote>
@@ -351,12 +350,11 @@ name and bank account information.</p>
 </tbody></table>
 
 <h3 id="update-a-bank-account">Update a Bank Account</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account/&lt;bank_account_id&gt;"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
-  -H <span class="s2">"Content-Type: application/json"</span>
-  -X PUT
-  -d <span class="s2">"account_no=03931234321"</span>
-  -d <span class="s2">"bank=DBS"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account/&lt;bank_account_id&gt;"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -X PUT <span class="se">\</span>
+  -d <span class="s1">'{"account_no": "03931234321", "bank":"DBS"}'</span>
 </code></pre>
 
 <blockquote>
@@ -412,10 +410,10 @@ name and bank account information.</p>
 </tbody></table>
 
 <h3 id="submit-withdrawal-request">Submit Withdrawal Request</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account/&lt;bank_account_id&gt;/withdraw"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
-  -H <span class="s2">"Content-Type: application/json"</span>
-  -d <span class="s2">"amt=50.0"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account/&lt;bank_account_id&gt;/withdraw"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{"amt": "50.0"}'</span>
 </code></pre>
 
 <blockquote>
@@ -462,9 +460,8 @@ name and bank account information.</p>
 </tbody></table>
 
 <h3 id="list-withdrawal-request">List Withdrawal Request</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/withdraw_requests"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/withdraw_requests"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
-  -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
 
 <blockquote>
@@ -543,9 +540,8 @@ name and bank account information.</p>
 </tbody></table>
 
 <h3 id="get-transfer-info">Get Transfer Info</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/transfer_info"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/transfer_info"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
-  -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
 
 <blockquote>
@@ -860,13 +856,10 @@ Please take note that at this point, payment may or may not have been completed 
 </tbody></table>
 
 <h3 id="verification-of-notifications">Verification of Notifications</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/validate"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
-  -H <span class="s2">"Content-Type: application/json"</span>
-  -d <span class="s2">"total_amount=24.99"</span>
-  -d <span class="s2">"currency=SGD"</span>
-  -d <span class="s2">"order_id=A012312"</span>
-  -d <span class="s2">"status=paid"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/validate"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{"total_amount": "24.99", "currency": "SGD", "order_id": "A012312", "status": "paid"}'</span>
 </code></pre>
 
 <blockquote>
@@ -928,10 +921,10 @@ Please take note that at this point, payment may or may not have been completed 
 <p>By default, its funds(minus our fees) will be &ldquo;withheld&rdquo; by Xfers for another 10 days(for refund and dispute purposes) before the charge becomes &ldquo;completed&rdquo; and it&rsquo;s funds(minus our fees) will be credited to your Xfers account available balance.</p>
 
 <h3 id="settle-a-charge">Settle a Charge</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
-  -H <span class="s2">"Content-Type: application/json"</span>
-  -d <span class="s2">"settlement_code=512312"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{"settlement_code": "512312"}'</span>
 </code></pre>
 
 <blockquote>
@@ -1006,9 +999,8 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
 </tbody></table>
 
 <h3 id="retrieve-a-charge">Retrieve a Charge</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
-  -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
 
 <blockquote>
@@ -1058,9 +1050,8 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
 <p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;</code></p>
 
 <h3 id="list-all-charges">List all Charges</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges?limit=1"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges?limit=1"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
-  -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
 
 <blockquote>
@@ -1158,13 +1149,10 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
 <p>Xfers payout Apis allow you to pay anyone with your Xfers balance via their phone no or email address. A SGD$1.00 fees will be charge to your account on every successful payout. You need to have sufficient available balance in your account to cover the amount + fees required for the payout.</p>
 
 <h3 id="creating-a-payout">Creating a Payout</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/payouts"</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
-  -H <span class="s2">"Content-Type: application/json"</span>
-  -d <span class="s2">"amount=150.00"</span>
-  -d <span class="s2">"invoice_id=AZ0001"</span>
-  -d <span class="s2">"descriptions='Payment for Rent for July'"</span>
-  -d <span class="s2">"recipient='+6597288608'"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/payouts"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{"amount": "150.00", "invoice_id": "AZ0001", "descriptions": "Payment for Rent for July", "recipient": "+6597288608"}'</span>
 </code></pre>
 
 <blockquote>
@@ -1254,9 +1242,8 @@ If the recipient did not accept the payout within 14 days, the payout will be ca
 </tbody></table>
 
 <h3 id="retrieve-a-payout">Retrieve a Payout</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/payouts/&lt;id&gt;"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/payouts/&lt;id&gt;"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
-  -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
 
 <blockquote>
@@ -1308,9 +1295,8 @@ If the recipient did not accept the payout within 14 days, the payout will be ca
 </tbody></table>
 
 <h3 id="list-all-payouts">List all Payouts</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/payouts?limit=1"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/payouts?limit=1"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
-  -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
 
 <blockquote>
@@ -1385,9 +1371,9 @@ If the recipient did not accept the payout within 14 days, the payout will be ca
 <p>The following APIs allow you to refund a charge that has previously been created and paid by your buyer but not yet refunded. Funds will be refunded to the buyer Xfers account available balance. The fees you were originally charged are also refunded.</p>
 
 <h3 id="creating-a-refund">Creating a Refund</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;/refunds"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;/refunds"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
-  -H <span class="s2">"Content-Type: application/json"</span>
+  -X POST
 </code></pre>
 
 <blockquote>
@@ -1450,15 +1436,17 @@ If the recipient did not accept the payout within 14 days, the payout will be ca
 
 <h2 id="authentication">Authentication</h2>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/connect?hello=world&amp;signature=5341eb694dada7866166ece5f46d1c2884839a3f"</span>
-  -H <span class="s2">"X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"</span>
+curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/connect"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{"hello": "world", "signature": "5341eb694dada7866166ece5f46d1c2884839a3f"}'</span>
 </code></pre>
 
 <blockquote>
 <p>Make sure to replace <code class="prettyprint">Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with your API key.</p>
 </blockquote>
 
-<p>Xfers connect uses API keys to allow access to the APIs. </p>
+<p>Xfers connect uses a pair of API Keys and API Secret to access its APIs.</p>
 
 <p>Write in to us at support@xfers.io to request for your Xfers connect API Keys.
 You will provided with a pair of keys named <code class="prettyprint">X-XFERS-APP-API-KEY</code> and <code class="prettyprint">X-XFERS-APP-SECRET-KEY</code>.</p>
@@ -1484,7 +1472,7 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 </aside>
 
 <h2 id="signup/login-to-xfers">Signup/login to Xfers</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+6597288608&amp;signature=c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+6597288608&amp;signature=c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"</span>
 </code></pre>
 
@@ -1532,7 +1520,7 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 </tbody></table>
 
 <h2 id="get-user-api-token">Get User API Token</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&amp;phone_no=+6597288608&amp;signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&amp;phone_no=+6597288608&amp;signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"</span>
 </code></pre>
 
