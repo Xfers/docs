@@ -66,7 +66,7 @@ You will make use of the Xfers Core API to manage your own account pragmatically
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "https://sandbox.xfers.io/api/v3/authorize/hello"
+curl "https://sandbox.xfers.io/api/v3/authorize/hello" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
@@ -101,7 +101,7 @@ The account info API supports querying and making changes to a User's account.
 ### Get Account Info
 
 ```shell
-curl "https://sandbox.xfers.io/api/v3/user"
+curl "https://sandbox.xfers.io/api/v3/user" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
@@ -144,7 +144,7 @@ name and bank account information.
 The activities API only supports querying of a user's activity.
 
 ```shell
-curl "https://sandbox.xfers.io/api/v3/user/activities"
+curl "https://sandbox.xfers.io/api/v3/user/activities" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
@@ -234,11 +234,10 @@ Logo | Bank Name | Abbreviation |
 ### Add a Bank Account
 
 ```shell
-curl "https://sandbox.xfers.io/api/v3/user/bank_account"
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
-  -H "Content-Type: application/json"
-  -d "account_no=03931234323"
-  -d "bank=DBS"
+curl "https://sandbox.xfers.io/api/v3/user/bank_account" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "Content-Type: application/json" \
+  -d '{"account_no": "03931234323", "bank":"DBS"}'
 ```
 
 > Response:
@@ -278,12 +277,11 @@ bank | string | optional | bank abbreviation (Refer to [supported banks](/docs/#
 ### Update a Bank Account
 
 ```shell
-curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>"
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
-  -H "Content-Type: application/json"
-  -X PUT
-  -d "account_no=03931234321"
-  -d "bank=DBS"
+curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "Content-Type: application/json" \
+  -X PUT \
+  -d '{"account_no": "03931234321", "bank":"DBS"}'
 ```
 
 > Response:
@@ -322,10 +320,10 @@ bank | string | optional | bank abbreviation (Refer to [supported banks](/docs/#
 ### Submit Withdrawal Request
 
 ```shell
-curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>/withdraw"
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
-  -H "Content-Type: application/json"
-  -d "amt=50.0"
+curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>/withdraw" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "Content-Type: application/json" \
+  -d '{"amt": "50.0"}'
 ```
 
 > Response:
@@ -360,9 +358,8 @@ amount | string | required | Amount to withdraw in SGD | 50.0
 ### List Withdrawal Request
 
 ```shell
-curl "https://sandbox.xfers.io/api/v3/user/withdraw_requests"
+curl "https://sandbox.xfers.io/api/v3/user/withdraw_requests" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
-  -H "Content-Type: application/json"
 ```
 
 > Response:
@@ -412,9 +409,8 @@ cancelled | Withdrawal request has been cancelled.
 ### Get Transfer Info
 
 ```shell
-curl "https://sandbox.xfers.io/api/v3/user/transfer_info"
+curl "https://sandbox.xfers.io/api/v3/user/transfer_info" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
-  -H "Content-Type: application/json"
 ```
 
 > Response:
@@ -566,13 +562,10 @@ status | string | Payment status. | "cancelled" or "paid" or "expired"
 
 ### Verification of Notifications
 ```shell
-curl "https://sandbox.xfers.io/api/v3/charges/validate"
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
-  -H "Content-Type: application/json"
-  -d "total_amount=24.99"
-  -d "currency=SGD"
-  -d "order_id=A012312"
-  -d "status=paid"
+curl "https://sandbox.xfers.io/api/v3/charges/validate" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "Content-Type: application/json" \
+  -d '{"total_amount": "24.99", "currency": "SGD", "order_id": "A012312", "status": "paid"}'
 ```
 
 > Response:
@@ -610,10 +603,10 @@ By default, its funds(minus our fees) will be "withheld" by Xfers for another 10
 
 ### Settle a Charge
 ```shell
-curl "https://sandbox.xfers.io/api/v3/charges/<id>"
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
-  -H "Content-Type: application/json"
-  -d "settlement_code=512312"
+curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "Content-Type: application/json" \
+  -d '{"settlement_code": "512312"}'
 ```
 
 > Response:
@@ -676,9 +669,8 @@ settlement_code | string | Optional | PIN code provided to the buyer | 512312
 
 ### Retrieve a Charge
 ```shell
-curl "https://sandbox.xfers.io/api/v3/charges/<id>"
+curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
-  -H "Content-Type: application/json"
 ```
 
 > Response:
@@ -730,9 +722,8 @@ Retrieves the details of a charge that has previously been created. Supply the u
 
 ### List all Charges
 ```shell
-curl "https://sandbox.xfers.io/api/v3/charges?limit=1"
+curl "https://sandbox.xfers.io/api/v3/charges?limit=1" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
-  -H "Content-Type: application/json"
 ```
 
 > Response:
@@ -798,13 +789,10 @@ Xfers payout Apis allow you to pay anyone with your Xfers balance via their phon
 ### Creating a Payout
 
 ```shell
-curl "https://sandbox.xfers.io/api/v3/payouts"
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
-  -H "Content-Type: application/json"
-  -d "amount=150.00"
-  -d "invoice_id=AZ0001"
-  -d "descriptions='Payment for Rent for July'"
-  -d "recipient='+6597288608'"
+curl "https://sandbox.xfers.io/api/v3/payouts" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "Content-Type: application/json" \
+  -d '{"amount": "150.00", "invoice_id": "AZ0001", "descriptions": "Payment for Rent for July", "recipient": "+6597288608"}'
 ```
 
 > Response:
@@ -845,9 +833,8 @@ bank_account_no | string | optional | Bank account no of recipient | 4234126091
 
 ### Retrieve a Payout
 ```shell
-curl "https://sandbox.xfers.io/api/v3/payouts/<id>"
+curl "https://sandbox.xfers.io/api/v3/payouts/<id>" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
-  -H "Content-Type: application/json"
 ```
 
 > Response:
@@ -885,9 +872,8 @@ cancelled  | Payout has been cancelled.
 
 ### List all Payouts
 ```shell
-curl "https://sandbox.xfers.io/api/v3/payouts?limit=1"
+curl "https://sandbox.xfers.io/api/v3/payouts?limit=1" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
-  -H "Content-Type: application/json"
 ```
 
 > Response:
@@ -929,9 +915,9 @@ The following APIs allow you to refund a charge that has previously been created
 
 ### Creating a Refund
 ```shell
-curl "https://sandbox.xfers.io/api/v3/charges/<id>/refunds"
+curl "https://sandbox.xfers.io/api/v3/charges/<id>/refunds" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
-  -H "Content-Type: application/json"
+  -X POST
 ```
 
 > Response:
@@ -996,13 +982,15 @@ In general, if you’re building a platform or marketplace that needs to pay thi
 ## Authentication
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "https://sandbox.xfers.io/api/v3/authorize/connect?hello=world&signature=5341eb694dada7866166ece5f46d1c2884839a3f"
-  -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"
+curl "https://sandbox.xfers.io/api/v3/authorize/connect" \
+  -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg" \
+  -H "Content-Type: application/json" \
+  -d '{"hello": "world", "signature": "5341eb694dada7866166ece5f46d1c2884839a3f"}'
 ```
 
 > Make sure to replace `Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg` with your API key.
 
-Xfers connect uses API keys to allow access to the APIs. 
+Xfers connect uses a pair of API Keys and API Secret to access its APIs.
 
 Write in to us at support@xfers.io to request for your Xfers connect API Keys.
 You will provided with a pair of keys named `X-XFERS-APP-API-KEY` and `X-XFERS-APP-SECRET-KEY`.
@@ -1033,7 +1021,7 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 
 ## Signup/login to Xfers
 ```shell
-curl "https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+6597288608&signature=c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"
+curl "https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+6597288608&signature=c5535aa2c4d25aa1e18a6a7e421a34e51bda5565" \
   -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"
 ```
 
@@ -1052,6 +1040,7 @@ An SMS with a OTP will be send to that number which must be used for [get_token]
 ### HTTPS Request
 `GET https://sandbox.xfers.io/api/v3/authorize/signup_login?otp=541231&phone_no=+6597288608&signature=7f6c6a7ec80a0be657e4204cd87e58401687a2eb`
 
+
 ### URL Parameters
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
@@ -1061,7 +1050,7 @@ signature | string | required | SHA1 of "phone_no+APP_SECRET_KEY"  | c5535aa2c4d
 
 ## Get User API Token
 ```shell
-curl "https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=+6597288608&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91"
+curl "https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=+6597288608&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91" \
   -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"
 ```
 
