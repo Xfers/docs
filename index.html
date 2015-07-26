@@ -824,10 +824,10 @@ Please take note that at this point, payment may or may not have been completed 
 </tr>
 </thead><tbody>
 <tr>
-<td>api_key</td>
+<td>txn_id</td>
 <td>string</td>
-<td>your api_key</td>
-<td>FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc</td>
+<td>Xfers&rsquo;s transaction id unique to each transaction</td>
+<td>asd1wwd1csadjw1e213sad</td>
 </tr>
 <tr>
 <td>order_id</td>
@@ -856,7 +856,7 @@ Please take note that at this point, payment may or may not have been completed 
 </tbody></table>
 
 <h3 id="verification-of-notifications">Verification of Notifications</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/validate"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;txn_id&gt;/validate"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -d <span class="s1">'{"total_amount": "24.99", "currency": "SGD", "order_id": "A012312", "status": "paid"}'</span>
@@ -872,11 +872,11 @@ Please take note that at this point, payment may or may not have been completed 
 
 <p>After receiving a payment notification from Xfers, you should do verification with Xfers to confirm that that it did indeed originate from Xfers. The post parameters must include all the fields in the payment notification that was sent from Xfers to you. </p>
 
-<p>Xfers will response with HTTP 200 status and a JSON string { &ldquo;msg&rdquo;: &ldquo;VERIFIED&rdquo; } if the notification is valid or HTTP 400 status on Invalid request.</p>
+<p>Xfers will response with HTTP 200 status and a JSON string { &ldquo;msg&rdquo;: &ldquo;VERIFIED&rdquo; } if the notification is valid or a JSON string { &ldquo;msg&rdquo;: &ldquo;INVALID&rdquo; } when its not.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
-<p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/charges/validate</code></p>
+<p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;/validate</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
