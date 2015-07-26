@@ -554,15 +554,16 @@ The following parameters will be part of the HTTPS POST:
 
 Name | Type | Description | Value
 ---- | ---- | -------- | -----------
-api_key | string | your api_key | FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc
+txn_id | string | Xfers's transaction id unique to each transaction| asd1wwd1csadjw1e213sad
 order_id | string | Unique ref no provided by your during your charge call | A012312
 total_amount | float | 12.49 | Total value for items
 currency | string | 3-letter ISO code for currency | SGD
 status | string | Payment status. | "cancelled" or "paid" or "expired"
 
+
 ### Verification of Notifications
 ```shell
-curl "https://sandbox.xfers.io/api/v3/charges/validate" \
+curl "https://sandbox.xfers.io/api/v3/charges/<txn_id>/validate" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
   -d '{"total_amount": "24.99", "currency": "SGD", "order_id": "A012312", "status": "paid"}'
@@ -578,11 +579,11 @@ curl "https://sandbox.xfers.io/api/v3/charges/validate" \
 
 After receiving a payment notification from Xfers, you should do verification with Xfers to confirm that that it did indeed originate from Xfers. The post parameters must include all the fields in the payment notification that was sent from Xfers to you. 
 
-Xfers will response with HTTP 200 status and a JSON string { "msg": "VERIFIED" } if the notification is valid or HTTP 400 status on Invalid request.
+Xfers will response with HTTP 200 status and a JSON string { "msg": "VERIFIED" } if the notification is valid or a JSON string { "msg": "INVALID" } when its not.
 
 
 #### HTTPS Request
-`POST https://sandbox.xfers.io/api/v3/charges/validate`
+`POST https://sandbox.xfers.io/api/v3/charges/<id>/validate`
 
 #### URL Parameters
 Name | Type | Description | Value
