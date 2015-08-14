@@ -502,11 +502,12 @@ cancel_url | string | required | URL Xfers will redirect customer to on cancella
 order_id | string | required | Unique ref no provided by you to prevent double charging, this cannot be repeated | A012312
 description | string | required | Description of transaction for display purposes | Carousell user - Konsolidate
 refundable | boolean | optional | Whether or not this charge can be refunded. Non Refundable Charges will settle immediately after payment. | Default to true
-customer | string | optional | contact no or email of person to charge. If this is provided, Xfers will send notifications to this user. | 97288608
+customer | string | optional | contact no or email of person to charge. If this is provided, Xfers will response with regards to whether the customer is verified or not | 97288608
 redirect | string | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true
 items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. See more [info](/docs/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
 shipping | float | optional | Shipping fees | Default to 0.0
-tax | string | float | tax in $  | Default to 0.0
+tax | float | optional | tax in $  | Default to 0.0
+expires_in_hrs | float | optional | No of hours before this transactons will expire  | Default to 48.0 hours from now.
 meta_data | string | optional | A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification | {"key1":"value1", "key2":"value2"}
 receipt_email | string | optional | The email address to send this charge's receipt. | tianwei@xfers.io
 
