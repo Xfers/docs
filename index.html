@@ -688,7 +688,7 @@ name and bank account information.</p>
 <td>customer</td>
 <td>string</td>
 <td>optional</td>
-<td>contact no or email of person to charge. If this is provided, Xfers will send notifications to this user.</td>
+<td>contact no or email of person to charge. If this is provided, Xfers will response with regards to whether the customer is verified or not</td>
 <td>97288608</td>
 </tr>
 <tr>
@@ -714,10 +714,17 @@ name and bank account information.</p>
 </tr>
 <tr>
 <td>tax</td>
-<td>string</td>
 <td>float</td>
+<td>optional</td>
 <td>tax in $</td>
 <td>Default to 0.0</td>
+</tr>
+<tr>
+<td>hrs_to_expirations</td>
+<td>float</td>
+<td>optional</td>
+<td>No of hours before this transactons will expire</td>
+<td>Default to 48.0 hours from now.</td>
 </tr>
 <tr>
 <td>meta_data</td>
