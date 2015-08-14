@@ -507,7 +507,7 @@ redirect | string | optional | When this is true, instead of the JSON response, 
 items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. See more [info](/docs/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
 shipping | float | optional | Shipping fees | Default to 0.0
 tax | float | optional | tax in $  | Default to 0.0
-expires_in_hrs | float | optional | No of hours before this transactons will expire  | Default to 48.0 hours from now.
+hrs_to_expirations | float | optional | No of hours before this transactons will expire  | Default to 48.0 hours from now.
 meta_data | string | optional | A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification | {"key1":"value1", "key2":"value2"}
 receipt_email | string | optional | The email address to send this charge's receipt. | tianwei@xfers.io
 
