@@ -1180,9 +1180,11 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>The following request will allow you to make a payout to the recipient. If you only provided us with bank details, Xfers will make a payout directly to that bank account. 
-If only email/phone no is provided, Xfers will email/SMS the recipient to inform him of the payout and allow him to claim and withdrawal the funds to any of the <a href="/docs/#supported-banks">local banks we support</a>. If both bank details and recipient informations are provided, we will credit their bank account and send them a notification once their payout has been processed.
-If the recipient did not accept the payout within 14 days, the payout will be cancelled and its funds will be return back to your Xfers balances.</p>
+<p>The following request will allow you to make a payout to the recipient. If you only provide us with bank details, Xfers will make a payout directly to that bank account. 
+If only email/phone no is provided, Xfers will email/SMS the recipient to inform him of the payout and allow him to claim and withdrawal the funds to any of the <a href="/docs/#supported-banks">local banks we support</a>. However, if a user has an account with xfers, we will credit the amount into the user&rsquo;s account immediately. 
+If both bank details and recipient informations are provided, we will credit their bank account and send them a notification once their payout has been processed.</p>
+
+<p>Note: If the recipient did not accept the payout within 14 days, the payout will be cancelled and its funds will be return back to your Xfers balances.</p>
 
 <p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/payouts</code></p>
 
@@ -1217,6 +1219,13 @@ If the recipient did not accept the payout within 14 days, the payout will be ca
 <td>optional</td>
 <td>Email or Mobile Phone No of the recipient for this payout.</td>
 <td>+659728860</td>
+</tr>
+<tr>
+<td>user_api_token</td>
+<td>string</td>
+<td>optional</td>
+<td>user’s api token obtain via Connect’s get user token APIs. When this is provided, it will replace the recipient param as the payout target</td>
+<td></td>
 </tr>
 <tr>
 <td>currency</td>
