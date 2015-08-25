@@ -502,7 +502,7 @@ cancel_url | string | required | URL Xfers will redirect customer to on cancella
 order_id | string | required | Unique ref no provided by you to prevent double charging, this cannot be repeated | A012312
 description | string | required | Description of transaction for display purposes | Carousell user - Konsolidate
 refundable | boolean | optional | Whether or not this charge can be refunded. Non Refundable Charges will settle immediately after payment. | Default to true
-customer | string | optional | contact no or email of person to charge. If this is provided, Xfers will response with regards to whether the customer is verified or not | 97288608
+charge_token | string | optional | user's charge token obtain via Connect's get user token APIs. When this is provide, this charge will skip user auth and attempt debit immediately from users existing balance. Status returned will be "Completed" on successful debit or "Cancelled" when there insufficient funds in user wallet.
 redirect | string | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true
 items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. See more [info](/docs/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
 shipping | float | optional | Shipping fees | Default to 0.0
