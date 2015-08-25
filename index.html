@@ -572,7 +572,7 @@ name and bank account information.</p>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -d <span class="s1">'{ "amount": "9.99", "currency": "SGD", "redirect": "false", "notify_url": "https://mysite.com/payment_notification", "return_url": "https://mysite.com/return", "cancel_url": "https://mysite.com/cancel", "order_id": "AZ9912", "description":"unused red dress", "shipping": "2.50", "tax": "0.0", "items" : [{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}], "meta_data": {"key1":"value1", "key2":"value2"}}'</span>
+  -d <span class="s1">'{ "amount": "9.99", "currency": "SGD", "redirect": "false", "notify_url": "https://mysite.com/payment_notification", "return_url": "https://mysite.com/return", "cancel_url": "https://mysite.com/cancel", "order_id": "AZ9912", "description":"unused red dress", "shipping": "2.50", "tax": "0.0", "items" : [{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}], "meta_data": {"firstname":"Tianwei", "lastname":"Liu"}}'</span>
 </code></pre>
 
 <blockquote>
@@ -606,9 +606,10 @@ name and bank account information.</p>
   </span><span class="s2">"shipping"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.50</span><span class="p">,</span><span class="w">
   </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
   </span><span class="s2">"total_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">12.49</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"key1"</span><span class="p">:</span><span class="s2">"value1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"key2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value2"</span><span class="w">
+    </span><span class="s2">"firstname"</span><span class="p">:</span><span class="s2">"Tianwei"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Liu"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -731,7 +732,7 @@ name and bank account information.</p>
 <td>string</td>
 <td>optional</td>
 <td>A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification</td>
-<td>{&quot;key1&rdquo;:&ldquo;value1&rdquo;, &ldquo;key2&rdquo;:&ldquo;value2&rdquo;}</td>
+<td>{&quot;firstname&rdquo;:&ldquo;tianwei&rdquo;, &ldquo;lastname&rdquo;:&ldquo;liu&rdquo;}</td>
 </tr>
 <tr>
 <td>receipt_email</td>
@@ -796,6 +797,37 @@ name and bank account information.</p>
 
 <aside class="warning">
 The subtotal of all the item MUST be equal to the `amount` field you provided or Xfers will reject your charge.
+</aside>
+
+<h4 id="meta-data">meta data</h4>
+
+<p>You can use the <code class="prettyprint">metadata</code> parameter to attach json data. This is useful for storing additional structured information about the charge. As an example, you could store your user&rsquo;s first name, last name or any corresponding unique identifier from your system a Xfers charge. </p>
+
+<p>The description and metadata you specify is returned in API responses.</p>
+
+<p>When a charge get cancelled, additional information might be provided in the metadata field like</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>value</th>
+<th>meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>custom_code</td>
+<td>&#39;KYC_ERROR&rsquo;</td>
+<td>User has some issues with their Xfers&rsquo; account validation.</td>
+</tr>
+<tr>
+<td>custom_code</td>
+<td>&#39;INSUFFICIENT_FUND&rsquo;</td>
+<td>This is returned when a charge via user_api_token was unable to be process due to insufficient account balance.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+You should always provide customer&rsquo;s firstname and lastname information whenever you can as it would help us detecting fraudulence charges or user who have made an mistaken in their bank transfer.
 </aside>
 
 <h3 id="payment-cancellation">Payment Cancellation</h3>
@@ -968,8 +1000,8 @@ Please take note that at this point, payment may or may not have been completed 
   </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
   </span><span class="s2">"total_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">12.49</span><span class="p">,</span><span class="w">
   </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"key1"</span><span class="p">:</span><span class="s2">"value1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"key2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value2"</span><span class="w">
+    </span><span class="s2">"firstname"</span><span class="p">:</span><span class="s2">"Tianwei"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Liu"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -1044,8 +1076,8 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
   </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
   </span><span class="s2">"total_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">12.49</span><span class="p">,</span><span class="w">
   </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"key1"</span><span class="p">:</span><span class="s2">"value1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"key2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value2"</span><span class="w">
+    </span><span class="s2">"firstname"</span><span class="p">:</span><span class="s2">"Tianwei"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Liu"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -1097,8 +1129,8 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
     </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
     </span><span class="s2">"total_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">12.49</span><span class="p">,</span><span class="w">
     </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"key1"</span><span class="p">:</span><span class="s2">"value1"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"key2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value2"</span><span class="w">
+      </span><span class="s2">"firstname"</span><span class="p">:</span><span class="s2">"Tianwei"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Liu"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
@@ -1532,8 +1564,8 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 <td>signature</td>
 <td>string</td>
 <td>required</td>
-<td>SHA1 of &ldquo;phone_no+APP_SECRET_KEY&rdquo;</td>
-<td>c5535aa2c4d25aa1e18a6a7e421a34e51bda5565</td>
+<td>SHA1 of phone_no+APP_SECRET_KEY</td>
+<td>&ldquo;+6597288608xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU&rdquo; = c5535aa2c4d25aa1e18a6a7e421a34e51bda5565</td>
 </tr>
 </tbody></table>
 
@@ -1586,8 +1618,8 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 <td>signature</td>
 <td>string</td>
 <td>required</td>
-<td>SHA1 of &ldquo;phone_no+OTP+APP_SECRET_KEY&rdquo;</td>
-<td>bdc26373b3a78dd11dc840a1b7973f197cf34c91</td>
+<td>SHA1 of phone_no+OTP+APP_SECRET_KEY</td>
+<td>&ldquo;+659728860851231xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU&rdquo; = bdc26373b3a78dd11dc840a1b7973f197cf34c91</td>
 </tr>
 </tbody></table>
 
