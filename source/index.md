@@ -1040,7 +1040,7 @@ This API call will attempt to login(existing user) or signup a new user.
 An SMS with a OTP will be send to that number which must be used for [get_token](/docs/#get-user-api-token) api call.
 
 ### HTTPS Request
-`GET https://sandbox.xfers.io/api/v3/authorize/signup_login?otp=541231&phone_no=+6597288608&signature=7f6c6a7ec80a0be657e4204cd87e58401687a2eb`
+`GET https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+6597288608&signature=7f6c6a7ec80a0be657e4204cd87e58401687a2eb`
 
 
 ### URL Parameters
