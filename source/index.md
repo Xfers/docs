@@ -1023,8 +1023,10 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 
 ## Signup/login to Xfers
 ```shell
-curl "https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+6597288608&signature=c5535aa2c4d25aa1e18a6a7e421a34e51bda5565" \
-  -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"
+curl "https://sandbox.xfers.io/api/v3/authorize/signup_login"\
+  -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"\
+  -H "Content-Type: application/json" \
+  -d '{"phone_no" : "+6597288608", "signature" : "c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"}'
 ```
 
 > Response
@@ -1040,7 +1042,7 @@ This API call will attempt to login(existing user) or signup a new user.
 An SMS with a OTP will be send to that number which must be used for [get_token](/docs/#get-user-api-token) api call.
 
 ### HTTPS Request
-`GET https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+6597288608&signature=7f6c6a7ec80a0be657e4204cd87e58401687a2eb`
+`POST https://sandbox.xfers.io/api/v3/authorize/signup_login`
 
 
 ### URL Parameters
@@ -1077,7 +1079,7 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 otp | string | required | 6 digit one-time-password send over SMS | 541231
 phone_no | string | required | User mobile no | +6597288608
-signature | string | required | SHA1 of "OTP+phone_no+APP_SECRET_KEY" | bdc26373b3a78dd11dc840a1b7973f197cf34c91
+signature | string | required | SHA1 of "phone_no+OTP+APP_SECRET_KEY" | bdc26373b3a78dd11dc840a1b7973f197cf34c91
 
 
 
