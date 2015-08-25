@@ -1479,8 +1479,10 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 </aside>
 
 <h2 id="signup/login-to-xfers">Signup/login to Xfers</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+6597288608&amp;signature=c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"</span> <span class="se">\</span>
-  -H <span class="s2">"X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/signup_login"</span><span class="se">\</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"</span><span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{"phone_no" : "+6597288608", "signature" : "c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"}'</span>
 </code></pre>
 
 <blockquote>
@@ -1497,7 +1499,7 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 
 <h3 id="https-request">HTTPS Request</h3>
 
-<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/authorize/signup_login?phone_no=+6597288608&amp;signature=7f6c6a7ec80a0be657e4204cd87e58401687a2eb</code></p>
+<p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/authorize/signup_login</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -1575,7 +1577,7 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 <td>signature</td>
 <td>string</td>
 <td>required</td>
-<td>SHA1 of &ldquo;OTP+phone_no+APP_SECRET_KEY&rdquo;</td>
+<td>SHA1 of &ldquo;phone_no+OTP+APP_SECRET_KEY&rdquo;</td>
 <td>bdc26373b3a78dd11dc840a1b7973f197cf34c91</td>
 </tr>
 </tbody></table>
