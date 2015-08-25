@@ -497,11 +497,11 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 amount | float | required | Total value for items | 9.99
 currency | string | required | 3-letter ISO code for currency | SGD
-notify_url | string | required | URL to receive callback notifications on charge success/failure/expiration | https://mysite.com/payment_notification
-return_url | string | required | URL Xfers will redirect customer to on completion of Xfers checkout | https://mysite.com/return
-cancel_url | string | required | URL Xfers will redirect customer to on cancellation of Xfers checkout | https://mysite.com/cancel
 order_id | string | required | Unique ref no provided by you to prevent double charging, this cannot be repeated | A012312
 description | string | required | Description of transaction for display purposes | Carousell user - Konsolidate
+notify_url | string | optional | URL to receive callback notifications on charge success/failure/expiration | https://mysite.com/payment_notification
+return_url | string | optional | URL Xfers will redirect customer to on completion of Xfers checkout | https://mysite.com/return
+cancel_url | string | optional | URL Xfers will redirect customer to on cancellation of Xfers checkout | https://mysite.com/cancel
 refundable | boolean | optional | Whether or not this charge can be refunded. Non Refundable Charges will settle immediately after payment. | Default to true
 user_api_token | string | optional | Buyer's api token obtain via Connect's get user token APIs. When this is provide, this charge will skip user auth and attempt debit immediately from users existing balance. Status returned will be "completed" on successful debit or "cancelled" when there insufficient funds in user wallet.
 redirect | string | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true
@@ -1069,7 +1069,7 @@ An SMS with a OTP will be send to that number which must be used for [get_token]
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 phone_no | string | required | User mobile no | +6597288608
-signature | string | required | SHA1 of phone_no+APP_SECRET_KEY  | "+6597288608xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU" = c5535aa2c4d25aa1e18a6a7e421a34e51bda5565
+signature | string | required | SHA1 of phone_no+APP_SECRET_KEY  | Digest::SHA1.hexdigest("+6597288608xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU") = c5535aa2c4d25aa1e18a6a7e421a34e51bda5565
 
 
 ## Get User API Token
@@ -1099,7 +1099,7 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 otp | string | required | 6 digit one-time-password send over SMS | 541231
 phone_no | string | required | User mobile no | +6597288608
-signature | string | required | SHA1 of phone_no+OTP+APP_SECRET_KEY | "+659728860851231xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU" = bdc26373b3a78dd11dc840a1b7973f197cf34c91
+signature | string | required | SHA1 of phone_no+OTP+APP_SECRET_KEY | Digest::SHA1.hexdigest("+659728860851231xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU") = bdc26373b3a78dd11dc840a1b7973f197cf34c91
 
 
 
