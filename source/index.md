@@ -815,9 +815,11 @@ curl "https://sandbox.xfers.io/api/v3/payouts" \
 }
 ```
 
-The following request will allow you to make a payout to the recipient. If you only provided us with bank details, Xfers will make a payout directly to that bank account. 
-If only email/phone no is provided, Xfers will email/SMS the recipient to inform him of the payout and allow him to claim and withdrawal the funds to any of the [local banks we support](/docs/#supported-banks). If both bank details and recipient informations are provided, we will credit their bank account and send them a notification once their payout has been processed.
-If the recipient did not accept the payout within 14 days, the payout will be cancelled and its funds will be return back to your Xfers balances.
+The following request will allow you to make a payout to the recipient. If you only provide us with bank details, Xfers will make a payout directly to that bank account. 
+If only email/phone no is provided, Xfers will email/SMS the recipient to inform him of the payout and allow him to claim and withdrawal the funds to any of the [local banks we support](/docs/#supported-banks). However, if a user has an account with xfers, we will credit the amount into the user's account immediately. 
+If both bank details and recipient informations are provided, we will credit their bank account and send them a notification once their payout has been processed.
+
+Note: If the recipient did not accept the payout within 14 days, the payout will be cancelled and its funds will be return back to your Xfers balances.
 
 `POST https://sandbox.xfers.io/api/v3/payouts`
 
