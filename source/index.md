@@ -830,6 +830,7 @@ Name | Type | Required | Description | Value
 amount | float | required | Total value for items. | 150.00
 invoice_id | string | required | Unique ref no provided by merchant. This will need to be unique or the payout request will be considered a duplicate and ignored. | AZ0001
 recipient | string | optional | Email or Mobile Phone No of the recipient for this payout. | +659728860
+user_api_token | string | optional | user’s api token obtain via Connect’s get user token APIs. When this is provided, it will replace the recipient param as the payout target | 
 currency | string | optional | 3-letter ISO code for currency | Default to 'SGD'
 descriptions | string | optional | A short description for this payout. This will be part of the email/SMS that the recipient will be receiving from Xfers. | Payment for Rent for July
 bank | string | optional | Bank abbreviation of the [supported banks](/docs/#supported-banks) | DBS
