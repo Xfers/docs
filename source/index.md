@@ -444,7 +444,7 @@ The following APIs allow you to create a Xfers transaction and allow anyone to p
 curl "https://sandbox.xfers.io/api/v3/charges" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
-  -d '{ "amount": "9.99", "currency": "SGD", "redirect": "false", "notify_url": "https://mysite.com/payment_notification", "return_url": "https://mysite.com/return", "cancel_url": "https://mysite.com/cancel", "order_id": "AZ9912", "description":"unused red dress", "shipping": "2.50", "tax": "0.0", "items" : [{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}], "meta_data": {"key1":"value1", "key2":"value2"}}'
+  -d '{ "amount": "9.99", "currency": "SGD", "redirect": "false", "notify_url": "https://mysite.com/payment_notification", "return_url": "https://mysite.com/return", "cancel_url": "https://mysite.com/cancel", "order_id": "AZ9912", "description":"unused red dress", "shipping": "2.50", "tax": "0.0", "items" : [{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}], "meta_data": {"firstname":"Tianwei", "lastname":"Liu"}}'
 ```
 
 > Response:
@@ -478,9 +478,10 @@ curl "https://sandbox.xfers.io/api/v3/charges" \
   "shipping" : 2.50,
   "tax" : 0.00,
   "total_amount" : 12.49,
+  "status" : "pending",
   "meta_data" : {
-    "key1":"value1",
-    "key2": "value2"
+    "firstname":"Tianwei",
+    "lastname": "Liu"
   }
 }
 ```
@@ -508,7 +509,7 @@ items | string | optional | A JSON array of item with attributes 'description, n
 shipping | float | optional | Shipping fees | Default to 0.0
 tax | float | optional | tax in $  | Default to 0.0
 hrs_to_expirations | float | optional | No of hours before this transactons will expire  | Default to 48.0 hours from now.
-meta_data | string | optional | A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification | {"key1":"value1", "key2":"value2"}
+meta_data | string | optional | A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification | {"firstname":"tianwei", "lastname":"liu"}
 receipt_email | string | optional | The email address to send this charge's receipt. | tianwei@xfers.io
 
 #### item hash
@@ -526,6 +527,22 @@ item_id | string | optional | Total value for items | AXA0012
 
 <aside class="warning">
 The subtotal of all the item MUST be equal to the `amount` field you provided or Xfers will reject your charge.
+</aside>
+
+#### meta data
+You can use the `metadata` parameter to attach json data. This is useful for storing additional structured information about the charge. As an example, you could store your user's first name, last name or any corresponding unique identifier from your system a Xfers charge. 
+
+The description and metadata you specify is returned in API responses.
+
+When a charge get cancelled, additional information might be provided in the metadata field like
+
+Key | value | meaning
+---- | ---- | ------ |
+custom_code | 'KYC_ERROR' | User has some issues with their Xfers' account validation.
+custom_code | 'INSUFFICIENT_FUND' | This is returned when a charge via user_api_token was unable to be process due to insufficient account balance.
+
+<aside class="notice">
+You should always provide customer's firstname and lastname information whenever you can as it would help us detecting fraudulence charges or user who have made an mistaken in their bank transfer.
 </aside>
 
 
@@ -645,8 +662,8 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
   "tax" : 0.00,
   "total_amount" : 12.49,
   "meta_data" : {
-    "key1":"value1",
-    "key2": "value2"
+    "firstname":"Tianwei",
+    "lastname": "Liu"
   }
 }
 ```
@@ -709,8 +726,8 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
   "tax" : 0.00,
   "total_amount" : 12.49,
   "meta_data" : {
-    "key1":"value1",
-    "key2": "value2"
+    "firstname":"Tianwei",
+    "lastname": "Liu"
   }
 }
 ```
@@ -764,8 +781,8 @@ curl "https://sandbox.xfers.io/api/v3/charges?limit=1" \
     "tax" : 0.00,
     "total_amount" : 12.49,
     "meta_data" : {
-      "key1":"value1",
-      "key2": "value2"
+      "firstname":"Tianwei",
+      "lastname": "Liu"
     }
   }
 ]
@@ -1052,7 +1069,7 @@ An SMS with a OTP will be send to that number which must be used for [get_token]
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 phone_no | string | required | User mobile no | +6597288608
-signature | string | required | SHA1 of "phone_no+APP_SECRET_KEY"  | c5535aa2c4d25aa1e18a6a7e421a34e51bda5565
+signature | string | required | SHA1 of phone_no+APP_SECRET_KEY  | "+6597288608xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU" = c5535aa2c4d25aa1e18a6a7e421a34e51bda5565
 
 
 ## Get User API Token
@@ -1082,7 +1099,7 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 otp | string | required | 6 digit one-time-password send over SMS | 541231
 phone_no | string | required | User mobile no | +6597288608
-signature | string | required | SHA1 of "phone_no+OTP+APP_SECRET_KEY" | bdc26373b3a78dd11dc840a1b7973f197cf34c91
+signature | string | required | SHA1 of phone_no+OTP+APP_SECRET_KEY | "+659728860851231xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU" = bdc26373b3a78dd11dc840a1b7973f197cf34c91
 
 
 
