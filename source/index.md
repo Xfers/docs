@@ -116,6 +116,17 @@ curl "https://sandbox.xfers.io/api/v3/user" \
   "bank_transfer_fee" : "0.45",
   "first_name" : "wenbin",
   "last_name" : "Tay",
+  "address_line_1" : 'Blk 712 loyang Avenue 5',
+  "address_line_2" : '#01-41',
+  "nationality" : 'Singaporean',
+  "postal_code" : '340712',
+  "identity_no" : 's86917127G',
+  "country" : "sg",
+  "email" : "tianyao@example.com",
+  "id_back" : "nricBackPlaceholder.png",
+  "id_document" : "nricDocumentPlaceholder.png",
+  "id_front" : "nricFrontPlaceholder.png",
+  "id_selfie" : "nricSelfiePlaceholder.png",
   "phone_no" : "+6597288608",
   "bank_accounts" : [
     {
@@ -138,6 +149,74 @@ name and bank account information.
 #### HTTPS Request
 
 `GET https://sandbox.xfers.io/api/v3/user`
+
+### Update Account Info
+```shell
+curl "https://sandbox.xfers.io/api/v3/user" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "Content-Type: application/json" \
+  -X PUT \
+  -d '{"first_name": "wenbin", "last_name": "tay", "address_line_1": "Blk 712 loyang Avenue 5", "address_line_2": "#01-41", "nationality": "Singaporean", "postal_code": "340712", "identity_no": "s86917127G", "country": "sg", "email": "tianyao@example.com"}'
+```
+
+> Response:
+
+```json
+{
+  "available_balance": "50.00",
+  "ledger_balance" : "250.00",
+  "credit_card_rate" : "3.5",
+  "credit_card_fee" : "NA",
+  "bank_transfer_fee" : "0.45",
+  "first_name" : "wenbin",
+  "last_name" : "Tay",
+  "address_line_1" : 'Blk 712 loyang Avenue 5',
+  "address_line_2" : '#01-41',
+  "nationality" : 'Singaporean',
+  "postal_code" : '340712',
+  "identity_no" : 's86917127G',
+  "country" : "sg",
+  "email" : "tianyao@example.com",
+  "id_back" : "nricBackPlaceholder.png",
+  "id_document" : "nricDocumentPlaceholder.png",
+  "id_front" : "nricFrontPlaceholder.png",
+  "id_selfie" : "nricSelfiePlaceholder.png",
+  "phone_no" : "+6597288608",
+  "bank_accounts" : [
+    {
+       "id" : "12312",
+       "account_no" : "039-312-3432-3",
+       "bank_abbrev" : "DBS"
+    },
+    {
+       "id" : "12315",
+       "account_no" : "129-880-1251-1",
+       "bank_abbrev" : "OCBC"
+    }
+  ]
+}
+```
+
+This endpoint allows user to update their account information, this especially important for account that require KYC.
+
+#### HTTPS Request
+
+`PUT https://sandbox.xfers.io/api/v3/user`
+
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+first_name | string | optional | Account holder firstname | Tianwei
+last_name | string | optional | Account holder lastname | Liu
+address_line_1 | string | optional | Address line 1 | Blk 212 Jurong East St 50
+address_line_2 | string | optional | Address line 2 | #08-41
+nationality | string | optional | Account holder nationality | Singaporean
+postal_code | string | optional | Address postal code | 640212
+identity_no | string | optional | Account holder national identity no | s841212318g
+country | string | optional | Account holder resident country | Singapore
+
 
 ### Get Account Activities
 
