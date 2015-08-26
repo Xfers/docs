@@ -618,6 +618,7 @@ When a charge get cancelled, additional information might be provided in the met
 Key | value | meaning
 ---- | ---- | ------ |
 custom_code | 'KYC_ERROR' | User has some issues with their Xfers' account validation.
+custom_code | 'KYC_UNAVAILABLE' | Xfers has yet to receive KYC information for this user.
 custom_code | 'INSUFFICIENT_FUND' | This is returned when a charge via user_api_token was unable to be process due to insufficient account balance.
 
 <aside class="notice">
