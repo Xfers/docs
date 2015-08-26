@@ -146,6 +146,17 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
   </span><span class="s2">"bank_transfer_fee"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.45"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"first_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"wenbin"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"last_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Tay"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address_line_1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">'Blk</span><span class="w"> </span><span class="mi">712</span><span class="w"> </span><span class="err">loyang</span><span class="w"> </span><span class="err">Avenue</span><span class="w"> </span><span class="mi">5</span><span class="err">'</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address_line_2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">'#</span><span class="mi">01-41</span><span class="err">'</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nationality"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">'Singaporean'</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"postal_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">340712</span><span class="err">'</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"identity_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">'s</span><span class="mi">86917127</span><span class="err">G'</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tianyao@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id_back"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricBackPlaceholder.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id_document"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricDocumentPlaceholder.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id_front"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricFrontPlaceholder.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id_selfie"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricSelfiePlaceholder.png"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"phone_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+6597288608"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bank_accounts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -168,6 +179,127 @@ name and bank account information.</p>
 <h4 id="https-request">HTTPS Request</h4>
 
 <p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/user</code></p>
+
+<h3 id="update-account-info">Update Account Info</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -X PUT <span class="se">\</span>
+  -d <span class="s1">'{"first_name": "wenbin", "last_name": "tay", "address_line_1": "Blk 712 loyang Avenue 5", "address_line_2": "#01-41", "nationality": "Singaporean", "postal_code": "340712", "identity_no": "s86917127G", "country": "sg", "email": "tianyao@example.com"}'</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"available_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ledger_balance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"250.00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"credit_card_rate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3.5"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"credit_card_fee"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bank_transfer_fee"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.45"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"first_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"wenbin"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Tay"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address_line_1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">'Blk</span><span class="w"> </span><span class="mi">712</span><span class="w"> </span><span class="err">loyang</span><span class="w"> </span><span class="err">Avenue</span><span class="w"> </span><span class="mi">5</span><span class="err">'</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address_line_2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">'#</span><span class="mi">01-41</span><span class="err">'</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"nationality"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">'Singaporean'</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"postal_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">340712</span><span class="err">'</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"identity_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">'s</span><span class="mi">86917127</span><span class="err">G'</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tianyao@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id_back"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricBackPlaceholder.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id_document"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricDocumentPlaceholder.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id_front"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricFrontPlaceholder.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id_selfie"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricSelfiePlaceholder.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"phone_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+6597288608"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bank_accounts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+       </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"12312"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"039-312-3432-3"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+       </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"12315"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"129-880-1251-1"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"OCBC"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint allows user to update their account information, this especially important for account that require KYC.</p>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">PUT https://sandbox.xfers.io/api/v3/user</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>first_name</td>
+<td>string</td>
+<td>optional</td>
+<td>Account holder firstname</td>
+<td>Tianwei</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>string</td>
+<td>optional</td>
+<td>Account holder lastname</td>
+<td>Liu</td>
+</tr>
+<tr>
+<td>address_line_1</td>
+<td>string</td>
+<td>optional</td>
+<td>Address line 1</td>
+<td>Blk 212 Jurong East St 50</td>
+</tr>
+<tr>
+<td>address_line_2</td>
+<td>string</td>
+<td>optional</td>
+<td>Address line 2</td>
+<td>#08-41</td>
+</tr>
+<tr>
+<td>nationality</td>
+<td>string</td>
+<td>optional</td>
+<td>Account holder nationality</td>
+<td>Singaporean</td>
+</tr>
+<tr>
+<td>postal_code</td>
+<td>string</td>
+<td>optional</td>
+<td>Address postal code</td>
+<td>640212</td>
+</tr>
+<tr>
+<td>identity_no</td>
+<td>string</td>
+<td>optional</td>
+<td>Account holder national identity no</td>
+<td>s841212318g</td>
+</tr>
+<tr>
+<td>country</td>
+<td>string</td>
+<td>optional</td>
+<td>Account holder resident country</td>
+<td>Singapore</td>
+</tr>
+</tbody></table>
 
 <h3 id="get-account-activities">Get Account Activities</h3>
 
