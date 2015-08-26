@@ -197,7 +197,7 @@ curl "https://sandbox.xfers.io/api/v3/user" \
 }
 ```
 
-This endpoint allows user to update their account information, this especially important for account that require KYC.
+This endpoint allows user to update their account information, this is especially important for account that would require KYC.
 
 #### HTTPS Request
 
