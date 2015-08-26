@@ -215,7 +215,7 @@ address_line_2 | string | optional | Address line 2 | #08-41
 nationality | string | optional | Account holder nationality | Singaporean
 postal_code | string | optional | Address postal code | 640212
 identity_no | string | optional | Account holder national identity no | s841212318g
-country | string | optional | Account holder resident country | Singapore
+country | string | optional | Account holder country of residence| Singapore
 
 
 ### Get Account Activities
