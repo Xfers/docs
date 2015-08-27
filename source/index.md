@@ -613,13 +613,13 @@ You can use the `metadata` parameter to attach json data. This is useful for sto
 
 The description and metadata you specify is returned in API responses.
 
-When a charge get cancelled, additional information might be provided in the metadata field like
+When a charge get cancelled, additional information might be provided in the metadata field with key 'error_code' and 'error_message'
 
-Key | value | meaning
+key | value | meaning
 ---- | ---- | ------ |
-custom_code | 'KYC_ERROR' | User has some issues with their Xfers' account validation.
-custom_code | 'KYC_UNAVAILABLE' | Xfers has yet to receive KYC information for this user.
-custom_code | 'INSUFFICIENT_FUND' | This is returned when a charge via user_api_token was unable to be process due to insufficient account balance.
+error_code | 'KYC_ERROR' | User has some issues with their Xfers' account validation.
+error_code | 'KYC_UNAVAILABLE' | Xfers has yet to receive KYC information for this user.
+error_code | 'INSUFFICIENT_FUND' | This is returned when a charge via user_api_token was unable to be process due to insufficient account balance.
 
 <aside class="notice">
 You should always provide customer's firstname and lastname information whenever you can as it would help us detecting fraudulence charges or user who have made an mistaken in their bank transfer.
