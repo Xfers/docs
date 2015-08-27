@@ -937,7 +937,7 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 
 <p>The description and metadata you specify is returned in API responses.</p>
 
-<p>When a charge get cancelled, additional information might be provided in the metadata field with key &#39;error_code&rsquo; and &#39;error_message&rsquo;</p>
+<p>When a charge get cancelled, additional information might be provided in the metadata field with key &#39;error_code&rsquo; and &#39;error_message&rsquo;.</p>
 
 <table><thead>
 <tr>
@@ -950,6 +950,11 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 <td>error_code</td>
 <td>&#39;KYC_ERROR&rsquo;</td>
 <td>User has some issues with their Xfers&rsquo; account validation.</td>
+</tr>
+<tr>
+<td>error_code</td>
+<td>&#39;KYC_LIMIT&rsquo;</td>
+<td>User has reached the daily limit for their purchases.</td>
 </tr>
 <tr>
 <td>error_code</td>
