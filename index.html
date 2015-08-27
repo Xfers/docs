@@ -937,27 +937,27 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 
 <p>The description and metadata you specify is returned in API responses.</p>
 
-<p>When a charge get cancelled, additional information might be provided in the metadata field like</p>
+<p>When a charge get cancelled, additional information might be provided in the metadata field with key &#39;error_code&rsquo; and &#39;error_message&rsquo;</p>
 
 <table><thead>
 <tr>
-<th>Key</th>
+<th>key</th>
 <th>value</th>
 <th>meaning</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>custom_code</td>
+<td>error_code</td>
 <td>&#39;KYC_ERROR&rsquo;</td>
 <td>User has some issues with their Xfers&rsquo; account validation.</td>
 </tr>
 <tr>
-<td>custom_code</td>
+<td>error_code</td>
 <td>&#39;KYC_UNAVAILABLE&rsquo;</td>
 <td>Xfers has yet to receive KYC information for this user.</td>
 </tr>
 <tr>
-<td>custom_code</td>
+<td>error_code</td>
 <td>&#39;INSUFFICIENT_FUND&rsquo;</td>
 <td>This is returned when a charge via user_api_token was unable to be process due to insufficient account balance.</td>
 </tr>
