@@ -216,6 +216,8 @@ nationality | string | optional | Account holder nationality | Singaporean
 postal_code | string | optional | Address postal code | 640212
 identity_no | string | optional | Account holder national identity no | s841212318g
 country | string | optional | Account holder country of residence| Singapore
+id_front | string | optional | URL storing the front image of user identity card
+id_back | string | optional | URL storing the back image of user identity card
 meta_data| string | optional | Additional data like Jumio info dump.
 
 
