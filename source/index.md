@@ -210,6 +210,7 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 first_name | string | optional | Account holder firstname | Tianwei
 last_name | string | optional | Account holder lastname | Liu
+date_of_birth | string | optional | Date of birth for account holder in yyyy-mm-dd | 1986-02-27
 address_line_1 | string | optional | Address line 1 | Blk 212 Jurong East St 50
 address_line_2 | string | optional | Address line 2 | #08-41
 nationality | string | optional | Account holder nationality | Singaporean
