@@ -614,11 +614,11 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 </aside>
 
 #### meta data
-You can use the `metadata` parameter to attach json data. This is useful for storing additional structured information about the charge. As an example, you could store your user's first name, last name or any corresponding unique identifier from your system a Xfers charge. 
+You can use the `meta_data` parameter to attach json data. This is useful for storing additional structured information about the charge. As an example, you could store your user's first name, last name or any corresponding unique identifier from your system a Xfers charge. 
 
-The description and metadata you specify is returned in API responses.
+The description and meta_data you specify is returned in API responses.
 
-When a charge get cancelled, additional information might be provided in the metadata field with key 'error_code' and 'error_message'.
+When a charge get cancelled, additional information might be provided in the meta_data field with key 'error_code' and 'error_message'.
 
 key | value | meaning
 ---- | ---- | ------ |
