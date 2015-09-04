@@ -587,6 +587,7 @@ return_url | string | optional | URL Xfers will redirect customer to on completi
 cancel_url | string | optional | URL Xfers will redirect customer to on cancellation of Xfers checkout | https://mysite.com/cancel
 refundable | boolean | optional | Whether or not this charge can be refunded. Non Refundable Charges will settle immediately after payment. | Default to true
 user_api_token | string | optional | Buyer's api token obtain via Connect's get user token APIs. When this is provide, this charge will skip user auth. | NbKjcFV5XxGZ-Uf2XnxyshFcrGtoxmLms9YEgokzDRo
+user_phone_no | boolean | optional | When this is provided, buyer will receive an OTP(one time password) from Xfers which they can provide to merchant to skip user authentication. See Authenticate a Charge | Default to false
 debit_only | boolean | optional | When this is true, this charge will attempt to debit from users existing balance. Status returned will be "completed" on successful debit or "cancelled" when there insufficient funds in user wallet. | Default to false
 redirect | string | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true
 items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. See more [info](/docs/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
@@ -705,6 +706,67 @@ After refundable charge become "paid", its funds(minus our fees) will be added t
 By default, its funds(minus our fees) will be "withheld" by Xfers for another 10 days(for refund and dispute purposes) before the charge becomes "completed" and it's funds(minus our fees) will be credited to your Xfers account available balance.
 
 
+### Authorize a Charge
+```shell
+curl "https://sandbox.xfers.io/api/v3/charges/<id>/authorize" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "Content-Type: application/json" \
+  -d '{"auth_code": "512312"}'
+```
+
+> Response:
+
+```json
+{
+  "id": "asd1wwd1csadjw1e213sad",
+  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad",
+  "notify_url" : "https://mysite.com/payment_notification",
+  "return_url" : "https://mysite.com/return",
+  "cancel_url" : "https://mysite.com/cancel",
+  "object" : "charge",
+  "amount" : 9.99,
+  "currency" : "SGD",
+  "customer" : "",
+  "order_id" : "A012312",
+  "capture" : true,
+  "refundable" : true,
+  "shipment_date" : "2015-07-02T06:26:51Z",
+  "settlement_date" : "2015-07-05T06:26:51Z",
+  "description" : "Carousell user - Konsolidate",
+  "items" : [
+    {
+      "description": "Red Dress Size M",
+      "name": "Red dress",
+      "quantity": "1",
+      "price": 9.99,
+      "item_id": ""
+    }
+  ],
+  "statement_descriptor" : "",
+  "receipt_email" : "",
+  "shipping" : 2.50,
+  "tax" : 0.00,
+  "total_amount" : 12.49,
+  "status" : "pending",
+  "meta_data" : {
+    "firstname":"Tianwei",
+    "lastname": "Liu"
+  }
+}
+```
+
+
+Authorize a previously created charge. This is an optional process that will allow buyer to skip the sign in flow on Xfers, allowing checkout to be completed on merchant site. If an correct auth_code is provided, the charge will immediately become "accepted" by the buyer.
+
+#### HTTPS Request
+`POST https://sandbox.xfers.io/api/v3/charges/<id>/authorize`
+
+#### URL Parameters
+Name | Type | Required | Description | Value
+---- | ---- | -------- | -------- | -----------
+auth_code | string | Optional | PIN code provided to the buyer | 512312
+
+
 
 ### Settle a Charge
 ```shell
@@ -747,6 +809,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
   "shipping" : 2.50,
   "tax" : 0.00,
   "total_amount" : 12.49,
+  "status" : "completed",
   "meta_data" : {
     "firstname":"Tianwei",
     "lastname": "Liu"
@@ -811,6 +874,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
   "shipping" : 2.50,
   "tax" : 0.00,
   "total_amount" : 12.49,
+  "status" : "completed",
   "meta_data" : {
     "firstname":"Tianwei",
     "lastname": "Liu"
@@ -866,6 +930,7 @@ curl "https://sandbox.xfers.io/api/v3/charges?limit=1" \
     "shipping" : 2.50,
     "tax" : 0.00,
     "total_amount" : 12.49,
+    "status" : "completed",
     "meta_data" : {
       "firstname":"Tianwei",
       "lastname": "Liu"
@@ -938,6 +1003,7 @@ currency | string | optional | 3-letter ISO code for currency | Default to 'SGD'
 descriptions | string | optional | A short description for this payout. This will be part of the email/SMS that the recipient will be receiving from Xfers. | Payment for Rent for July
 bank | string | optional | Bank abbreviation of the [supported banks](/docs/#supported-banks) | DBS
 bank_account_no | string | optional | Bank account no of recipient | 4234126091
+no_expire | boolean | optional | Set this to true so this payout will not expire | Default to false
 
 ### Retrieve a Payout
 ```shell
