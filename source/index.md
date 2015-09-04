@@ -764,7 +764,7 @@ Authorize a previously created charge. This is an optional process that will all
 #### URL Parameters
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | -------- | -----------
-auth_code | string | Optional | PIN code provided to the buyer | 512312
+auth_code | string | Required | PIN code provided to the buyer | 512312
 
 
 
