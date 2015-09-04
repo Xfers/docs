@@ -587,7 +587,7 @@ return_url | string | optional | URL Xfers will redirect customer to on completi
 cancel_url | string | optional | URL Xfers will redirect customer to on cancellation of Xfers checkout | https://mysite.com/cancel
 refundable | boolean | optional | Whether or not this charge can be refunded. Non Refundable Charges will settle immediately after payment. | Default to true
 user_api_token | string | optional | Buyer's api token obtain via Connect's get user token APIs. When this is provide, this charge will skip user auth. | NbKjcFV5XxGZ-Uf2XnxyshFcrGtoxmLms9YEgokzDRo
-user_phone_no | boolean | optional | When this is provided, buyer will receive an OTP(one time password) from Xfers which they can provide to merchant to skip user authentication. See Authenticate a Charge | Default to false
+user_phone_no | boolean | optional | When this is provided, buyer will receive an OTP(one time password) from Xfers which they can provide to merchant to skip user authentication. See [Authenticate a Charge](/docs/#authorize-a-charge). | Default to false
 debit_only | boolean | optional | When this is true, this charge will attempt to debit from users existing balance. Status returned will be "completed" on successful debit or "cancelled" when there insufficient funds in user wallet. | Default to false
 redirect | string | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true
 items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. See more [info](/docs/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
