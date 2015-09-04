@@ -747,7 +747,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>/authorize" \
   "shipping" : 2.50,
   "tax" : 0.00,
   "total_amount" : 12.49,
-  "status" : "pending",
+  "status" : "accepted",
   "meta_data" : {
     "firstname":"Tianwei",
     "lastname": "Liu"
