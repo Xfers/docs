@@ -551,7 +551,7 @@ curl "https://sandbox.xfers.io/api/v3/charges" \
     {
       "description": "Red Dress Size M",
       "name": "Red dress",
-      "quantity": "1",
+      "quantity": "1.00",
       "price": 9.99,
       "item_id": ""
     }
@@ -607,7 +607,7 @@ Name | Type | Required | Description | Value
 description | string | required | Total value for items | Red dress Size M
 name | string | required | Total value for items | Red dress
 price | float | required | Total value for items | 9.99
-quantity | integer | required | Total value for items | 1
+quantity | float | required | Total value for items | 1.0
 item_id | string | optional | Total value for items | AXA0012
 
 <aside class="warning">
@@ -737,7 +737,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>/authorize" \
     {
       "description": "Red Dress Size M",
       "name": "Red dress",
-      "quantity": "1",
+      "quantity": "1.00",
       "price": 9.99,
       "item_id": ""
     }
@@ -799,7 +799,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
     {
       "description": "Red Dress Size M",
       "name": "Red dress",
-      "quantity": "1",
+      "quantity": "1.00",
       "price": 9.99,
       "item_id": ""
     }
@@ -864,7 +864,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
     {
       "description": "Red Dress Size M",
       "name": "Red dress",
-      "quantity": "1",
+      "quantity": "1.00",
       "price": 9.99,
       "item_id": ""
     }
@@ -920,7 +920,7 @@ curl "https://sandbox.xfers.io/api/v3/charges?limit=1" \
       {
         "description": "Red Dress Size M",
         "name": "Red dress",
-        "quantity": "1",
+        "quantity": "1.00",
         "price": 9.99,
         "item_id": ""
       }
@@ -1114,7 +1114,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>/refunds" \
     {
       "description": "Red Dress Size M",
       "name": "Red dress",
-      "quantity": "1",
+      "quantity": "1.00",
       "price": 9.99,
       "item_id": ""
     }
