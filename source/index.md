@@ -1149,6 +1149,8 @@ You might use Connect if you:
 
 - Need to easily accept payments and pay out your service providers, like Grabtaxi with its drivers or yesHelper with its workers. (You can even create Xfers accounts for your users, so they only ever interact with your platform.)
 
+- Want to integrate Xfers wallet directly into your mobile or e-commerce app.
+
 In general, if you’re building a platform or marketplace that needs to pay third-parties or building applications that help Xfers users do more with their account or their data, Connect is likely the right solution for you.
 
 
