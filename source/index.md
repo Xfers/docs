@@ -1001,7 +1001,7 @@ recipient | string | optional | Email or Mobile Phone No of the recipient for th
 user_api_token | string | optional | user’s api token obtain via Connect’s get user token APIs. When this is provided, it will replace the recipient param as the payout target | 
 currency | string | optional | 3-letter ISO code for currency | Default to 'SGD'
 descriptions | string | optional | A short description for this payout. This will be part of the email/SMS that the recipient will be receiving from Xfers. | Payment for Rent for July
-bank | string | optional | Bank abbreviation of the [supported banks](/docs/#supported-banks) | DBS
+bank_abbreviation | string | optional | Bank abbreviation of the [supported banks](/docs/#supported-banks) | DBS
 bank_account_no | string | optional | Bank account no of recipient | 4234126091
 no_expire | boolean | optional | Set this to true so this payout will not expire | Default to false
 
