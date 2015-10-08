@@ -285,6 +285,55 @@ This endpoint return information related to your account activites such as the t
 
 `GET https://sandbox.xfers.io/api/v3/user/activities`
 
+### Register Updates Callback
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/user/balance_callback" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -H "Content-Type: application/json" \
+  -X PUT \
+  -d '{"callback_url": "www.example.com/update", "meta_data": {"key1" : "value1", "key2" : "value2"}}'
+```
+
+> Response:
+
+```json
+  {
+    "msg": "success",
+    "callback_url": "http://www.example.com/updates",
+    "meta_data" : {
+    	"key1" : "value1",
+    	"key2" : "value2"
+    }
+  }
+```
+
+This will allow you to register for a callback which will be fired whenever there are user account changes(like change in account balances). This callback request is only valid for 24hrs.
+
+#### HTTPS Request
+
+`POST https://sandbox.xfers.io/api/v3/user/balance_callback`
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+callback_url | string | required | URL to receive callback notifications on account changes | https://www.example.com/updates
+meta_data | string | optional | A set of key/value pairs that you can attach to this request. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification | {"email”:“tianwei@xfers.io”, “orderId”:“AZ12312”}
+
+
+### Updates Callback Notifications
+After registering for a account callback notifications. Whenever they are any account changes(like a change in account balances), Xfers will send a callback to the `callback_url` you previously provided. This is a server to server HTTPS/HTTP POST and you will need to acknowledge the callback by providing a HTTP 200 status.
+
+`POST https://www.example.com/updates`
+
+The following parameters will be part of the HTTPS/HTTP POST:
+
+Name | Type | Description | Value
+---- | ---- | -------- | -----------
+available_balance | float | Account's current available balance| 250.50
+meta_data | string | The json string you previously provided in the register request | {"email”:“tianwei@xfers.io”, “orderId”:“AZ12312”}
+
 
 ## Bank Account
 
@@ -1243,6 +1292,10 @@ curl "https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=+6
 
 
 This API call will return the user's `X-XFERS-USER-API-KEY`.
+
+<aside class="notice">
+`X-XFERS-USER-API-KEY` obtained this way will by default expire in 24hrs. For longer expirations or non expirating token, please email support@xfers.io with you merchant account details.
+</aside>
 
 
 ### HTTPS Request
