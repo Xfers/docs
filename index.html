@@ -390,6 +390,90 @@ name and bank account information.</p>
 
 <p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/user/activities</code></p>
 
+<h3 id="register-updates-callback">Register Updates Callback</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/balance_callback"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -X PUT <span class="se">\</span>
+  -d <span class="s1">'{"callback_url": "www.example.com/update", "meta_data": {"key1" : "value1", "key2" : "value2"}}'</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"callback_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.example.com/updates"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"key1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"value1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"key2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"value2"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This will allow you to register for a callback which will be fired whenever there are user account changes(like change in account balances). This callback request is only valid for 24hrs.</p>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/user/balance_callback</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>callback_url</td>
+<td>string</td>
+<td>required</td>
+<td>URL to receive callback notifications on account changes</td>
+<td>https://www.example.com/updates</td>
+</tr>
+<tr>
+<td>meta_data</td>
+<td>string</td>
+<td>optional</td>
+<td>A set of key/value pairs that you can attach to this request. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification</td>
+<td>{&ldquo;email”:“tianwei@xfers.io”, “orderId”:“AZ12312”}</td>
+</tr>
+</tbody></table>
+
+<h3 id="updates-callback-notifications">Updates Callback Notifications</h3>
+
+<p>After registering for a account callback notifications. Whenever they are any account changes(like a change in account balances), Xfers will send a callback to the <code class="prettyprint">callback_url</code> you previously provided. This is a server to server HTTPS/HTTP POST and you will need to acknowledge the callback by providing a HTTP 200 status.</p>
+
+<p><code class="prettyprint">POST https://www.example.com/updates</code></p>
+
+<p>The following parameters will be part of the HTTPS/HTTP POST:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>available_balance</td>
+<td>float</td>
+<td>Account&rsquo;s current available balance</td>
+<td>250.50</td>
+</tr>
+<tr>
+<td>meta_data</td>
+<td>string</td>
+<td>The json string you previously provided in the register request</td>
+<td>{&quot;email”:“tianwei@xfers.io”, “orderId”:“AZ12312”}</td>
+</tr>
+</tbody></table>
+
 <h2 id="bank-account">Bank Account</h2>
 
 <p>The follow APIs allow you to add or update your bank account info.</p>
@@ -863,7 +947,7 @@ name and bank account information.</p>
 <td>debit_only</td>
 <td>boolean</td>
 <td>optional</td>
-<td>When this is true, this charge will attempt to debit from users existing balance. Status returned will be &ldquo;completed&rdquo; on successful debit or &ldquo;cancelled&rdquo; when there insufficient funds in user wallet.</td>
+<td>When this is true, this charge will attempt to debit from users existing balance. Status returned will be &quot;completed&rdquo; on successful debit or &ldquo;cancelled&rdquo; when there insufficient funds in user wallet.</td>
 <td>Default to false</td>
 </tr>
 <tr>
@@ -1853,6 +1937,10 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 </span></code></pre>
 
 <p>This API call will return the user&rsquo;s <code class="prettyprint">X-XFERS-USER-API-KEY</code>.</p>
+
+<aside class="notice">
+`X-XFERS-USER-API-KEY` obtained this way will by default expire in 24hrs. For longer expirations or non expirating token, please email support@xfers.io with you merchant account details.
+</aside>
 
 <h3 id="https-request">HTTPS Request</h3>
 
