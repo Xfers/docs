@@ -1273,11 +1273,12 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 phone_no | string | required | User mobile no | +6597288608
 signature | string | required | SHA1 of phone_no+APP_SECRET_KEY  | Digest::SHA1.hexdigest("+6597288608xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU") = c5535aa2c4d25aa1e18a6a7e421a34e51bda5565
+return_url | string | optional | url that new user will be redirected after they complete Xfers account registration at `sign_up_url` provided. | Default "/api/v3/account_registration/completed"
 
 
 ## Get User API Token
 ```shell
-curl "https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=+6597288608&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91" \
+curl "https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=%2B6597288608&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91" \
   -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"
 ```
 
@@ -1286,16 +1287,27 @@ curl "https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=+6
 ```json
   {
     "msg": "success",
-    "user_api_token": "1DnsZkv3qXwKx4EAdps8AJ8jXCPsxP2sKSygMHTAFLM"
+    "user_api_token": "1DnsZkv3qXwKx4EAdps8AJ8jXCPsxP2sKSygMHTAFLM",
+    "sign_up_url" : "https://sandbox.xfers.io/api/v3/account_registration?email=kishen21%40yahoo.com&token=4014d3e9f0600f78dbfabd86036de7b008f70c52"
   }
 ```
 
 
-This API call will return the user's `X-XFERS-USER-API-KEY`.
+This API call will return the user's `X-XFERS-USER-API-KEY` and a `sign_up_url` which can be loaded to serve a page that allow user to complete their Xfers account registration if they do not already have an Xfers account.
+
+You do not have to do anything with the `sign_up_url`. Xfers will automatically send new user a follow up SMS with a similar url that they can complete their account registration with.
+
+If you choose to redirect new Xfers user to the unique sign_up_url to allow them to complete their Xfers account registrations, upon successfully account registration, Xfers will redirect user back to the `return_url` specified or the default at
+
+<aside class="warning">
+Remember to encode the '+' sign in your phone no. It should be '%2B'
+</aside>
 
 <aside class="notice">
 `X-XFERS-USER-API-KEY` obtained this way will by default expire in 24hrs. For longer expirations or non expirating token, please email support@xfers.io with you merchant account details.
 </aside>
+
+
 
 
 ### HTTPS Request
