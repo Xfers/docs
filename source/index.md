@@ -1293,7 +1293,7 @@ curl "https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=%2
 ```
 
 
-This API call will return the user's `X-XFERS-USER-API-KEY` and a `sign_up_url` which can be loaded to serve a page that allow user to complete their Xfers account registration if they do not already have an Xfers account.
+This API call will return the user's `X-XFERS-USER-API-KEY` and a `sign_up_url` if and ONLY IF they do not already have an Xfers account. The url can be loaded to serve a page that allow user to complete their Xfers account registration.
 
 You do not have to do anything with the `sign_up_url`. Xfers will automatically send new user a follow up SMS with a similar url that they can complete their account registration with.
 
