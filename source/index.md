@@ -1273,7 +1273,7 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 phone_no | string | required | User mobile no | +6597288608
 signature | string | required | SHA1 of phone_no+APP_SECRET_KEY  | Digest::SHA1.hexdigest("+6597288608xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU") = c5535aa2c4d25aa1e18a6a7e421a34e51bda5565
-return_url | string | optional | Url that new user will be redirected after they completed Xfers account registration at `sign_up_url` provided. | Default "<endpoint>/api/v3/account_registration/completed"
+return_url | string | optional | Url that new user will be redirected after they completed Xfers account registration at `sign_up_url` provided. | Default "\<Endpoint>/api/v3/account_registration/completed"
 
 
 ## Get User API Token
@@ -1297,7 +1297,7 @@ This API call will return the user's `X-XFERS-USER-API-KEY` and a `sign_up_url` 
 
 You do not have to do anything with the `sign_up_url`. Xfers will automatically send new user a follow up SMS with a similar url that they can complete their account registration with.
 
-If you choose to redirect new Xfers user to the unique sign_up_url to allow them to complete their Xfers account registrations, upon successfully account registration, Xfers will redirect user back to the `return_url` specified or the default at "<endpoint>/api/v3/account_registration/completed". The automated SMS from Xfers will not be sent if user complete their account registration this way within 15mins.
+If you choose to redirect new Xfers user to the unique sign_up_url to allow them to complete their Xfers account registrations, upon successfully account registration, Xfers will redirect user back to the `return_url` specified or the default at "\<Endpoint>/api/v3/account_registration/completed". The automated SMS from Xfers will not be sent if user complete their account registration this way within 15mins.
 
 <aside class="warning">
 Remember to encode the '+' sign in your phone no during your GET request. It should be '%2B' instead of '+'
