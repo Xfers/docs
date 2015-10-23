@@ -1249,7 +1249,7 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 curl "https://sandbox.xfers.io/api/v3/authorize/signup_login"\
   -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"\
   -H "Content-Type: application/json" \
-  -d '{"phone_no" : "+6597288608", "signature" : "c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"}'
+  -d '{"phone_no" : "%2B6597288608", "signature" : "c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"}'
 ```
 
 > Response
@@ -1300,7 +1300,7 @@ You do not have to do anything with the `sign_up_url`. Xfers will automatically 
 If you choose to redirect new Xfers user to the unique sign_up_url to allow them to complete their Xfers account registrations, upon successfully account registration, Xfers will redirect user back to the `return_url` specified or the default at
 
 <aside class="warning">
-Remember to encode the '+' sign in your phone no. It should be '%2B'
+Remember to encode the '+' sign in your phone no during your GET request. It should be '%2B' instead of '+'
 </aside>
 
 <aside class="notice">
@@ -1311,7 +1311,7 @@ Remember to encode the '+' sign in your phone no. It should be '%2B'
 
 
 ### HTTPS Request
-`GET https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=+6597288608&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91`
+`GET https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=%2B6597288608&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91`
 
 ### URL Parameters
 Name | Type | Required | Description | Value
