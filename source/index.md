@@ -1273,8 +1273,6 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 phone_no | string | required | User mobile no | +6597288608
 signature | string | required | SHA1 of phone_no+APP_SECRET_KEY  | Digest::SHA1.hexdigest("+6597288608xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU") = c5535aa2c4d25aa1e18a6a7e421a34e51bda5565
-return_url | string | optional | Url that new user will be redirected after they completed Xfers account registration at `sign_up_url` provided. | Default "\<Endpoint>/api/v3/account_registration/completed"
-
 
 ## Get User API Token
 ```shell
@@ -1319,6 +1317,7 @@ Name | Type | Required | Description | Value
 otp | string | required | 6 digit one-time-password send over SMS | 541231
 phone_no | string | required | User mobile no | +6597288608
 signature | string | required | SHA1 of phone_no+OTP+APP_SECRET_KEY | Digest::SHA1.hexdigest("+659728860851231xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU") = bdc26373b3a78dd11dc840a1b7973f197cf34c91
+return_url | string | optional | Url that new user will be redirected after they completed Xfers account registration at `sign_up_url` provided. | Default "\<Endpoint>/api/v3/account_registration/completed"
 
 
 
