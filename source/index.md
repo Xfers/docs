@@ -1286,7 +1286,7 @@ curl "https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=%2
   {
     "msg": "success",
     "user_api_token": "1DnsZkv3qXwKx4EAdps8AJ8jXCPsxP2sKSygMHTAFLM",
-    "sign_up_url" : "https://sandbox.xfers.io/api/v3/account_registration?email=kishen21%40yahoo.com&token=4014d3e9f0600f78dbfabd86036de7b008f70c52"
+    "sign_up_url" : "https://sandbox.xfers.io/api/v3/account_registration?phone_no=%2B6597288608&token=4014d3e9f0600f78dbfabd86036de7b008f70c52"
   }
 ```
 
