@@ -285,7 +285,7 @@ This endpoint return information related to your account activites such as the t
 
 `GET https://sandbox.xfers.io/api/v3/user/activities`
 
-### Register Updates Callback
+### Register Updates Callback - Coming soon
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/balance_callback" \
@@ -322,7 +322,7 @@ callback_url | string | required | URL to receive callback notifications on acco
 meta_data | string | optional | A set of key/value pairs that you can attach to this request. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification | {"email”:“tianwei@xfers.io”, “orderId”:“AZ12312”}
 
 
-### Updates Callback Notifications
+### Updates Callback Notifications - Coming soon
 After registering for a account callback notifications. Whenever they are any account changes(like a change in account balances), Xfers will send a callback to the `callback_url` you previously provided. This is a server to server HTTPS/HTTP POST and you will need to acknowledge the callback by providing a HTTP 200 status.
 
 `POST https://www.example.com/updates`
