@@ -490,7 +490,7 @@ amount | string | required | Amount to withdraw in SGD | 50.0
 ### List Withdrawal Request
 
 ```shell
-curl "https://sandbox.xfers.io/api/v3/user/withdraw_requests" \
+curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdraw_requests" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
