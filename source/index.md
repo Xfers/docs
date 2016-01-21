@@ -58,7 +58,7 @@ exposing your API key in plain text.
 The **Xfers Core API** provides a set of simple RESTFUL APIs to allow businesses to 
 integrate internet banking and credit card payments(coming soon) into your business or applications. 
 
-You will make use of the Xfers Core API to manage your own account pragmatically. 
+You will make use of the Xfers Core API to manage your own account programmatically. 
 
 ## Authentication
 
