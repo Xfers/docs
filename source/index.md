@@ -894,7 +894,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
 
 ```json
 {
-  "id": "asd1wwd1csadjw1e213sad",
+  "id": "730eba1ec6d34f64dc68a0081c5006dc",
   "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad",
   "notify_url" : "https://mysite.com/payment_notification",
   "return_url" : "https://mysite.com/return",
@@ -931,10 +931,10 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
 }
 ```
 
-Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was returned from your previous request, and Xfers will return the corresponding charge information. The same information is returned when creating or refunding the charge.
+Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was returned from your previous request or provide the ORDER_ID that you previous provided in your create charge call, and Xfers will return the corresponding charge information. The same information is returned when creating or refunding the charge.
 
 #### HTTPS Request
-`GET https://sandbox.xfers.io/api/v3/charges/<id>`
+`GET https://sandbox.xfers.io/api/v3/charges/<CHARGE_ID or ORDER_ID>`
 
 
 
@@ -949,7 +949,7 @@ curl "https://sandbox.xfers.io/api/v3/charges?limit=1" \
 ```json
 [
   {
-    "id": "asd1wwd1csadjw1e213sad",
+    "id": "730eba1ec6d34f64dc68a0081c5006dc",
     "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad",
     "notify_url" : "https://mysite.com/payment_notification",
     "return_url" : "https://mysite.com/return",
