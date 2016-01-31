@@ -998,9 +998,9 @@ Returns a list of charges you've previously created. The charges are returned in
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 customer | string | optional | Only return charges for the customer specified by this customer ID. | 97288608
-ending_before | string | optional | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_bar, your subsequent call can include ending_before=obj_bar in order to fetch the previous page of the list. | asd1wwd1csadjw1e213sad
+ending_before | string | optional | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_bar, your subsequent call can include ending_before=obj_bar in order to fetch the previous page of the list. | 7364dc68a000eba1ec6d34f81c5006dc
 limit | integer | optional | A limit on the number of objects to be returned. Limit can range between 1 and 50 items. | Default to 10
-starting_after | string | optional | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list. | asd1wwd1csadjw1e213sad
+starting_after | string | optional | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list. | 7ba1ec6d34f64dc68a030e081c5006dc
 
 ## Payouts
 Xfers payout Apis allow you to pay anyone with your Xfers balance via their phone no or email address. A SGD$1.00 fees will be charge to your account on every successful payout. You need to have sufficient available balance in your account to cover the amount + fees required for the payout.
@@ -1147,7 +1147,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>/refunds" \
 
 ```json
 {
-  "id": "asd1wwd1csadjw1e213sad",
+  "id": "6fa51cd08c8ae115f858593412bb72c8",
   "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad",
   "notify_url" : "https://mysite.com/payment_notification",
   "return_url" : "https://mysite.com/return",
