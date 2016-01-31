@@ -1389,7 +1389,7 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asd1wwd1csadjw1e213sad"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"730eba1ec6d34f64dc68a0081c5006dc"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"checkout_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"notify_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/payment_notification"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"return_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/return"</span><span class="p">,</span><span class="w">
@@ -1426,11 +1426,11 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was returned from your previous request, and Xfers will return the corresponding charge information. The same information is returned when creating or refunding the charge.</p>
+<p>Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was returned from your previous request or provide the ORDER_ID that you previous provided in your create charge call, and Xfers will return the corresponding charge information. The same information is returned when creating or refunding the charge.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
-<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;</code></p>
+<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/charges/&lt;CHARGE_ID or ORDER_ID&gt;</code></p>
 
 <h3 id="list-all-charges">List all Charges</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges?limit=1"</span> <span class="se">\</span>
@@ -1442,7 +1442,7 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asd1wwd1csadjw1e213sad"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"730eba1ec6d34f64dc68a0081c5006dc"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"checkout_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"notify_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/payment_notification"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"return_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/return"</span><span class="p">,</span><span class="w">
