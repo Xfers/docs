@@ -673,6 +673,7 @@ When a charge get cancelled, additional information might be provided in the met
 key | value | meaning
 ---- | ---- | ------ |
 error_code | 'KYC_ERROR' | User has some issues with their Xfers' account validation.
+error_code | 'KYC_MULTI' | Transfers from multiple bank account detected, user needs to contact Xfers for account validation.
 error_code | 'KYC_LIMIT' | User has reached the daily limit for their purchases.
 error_code | 'KYC_UNAVAILABLE' | Xfers has yet to receive KYC information for this user.
 error_code | 'INSUFFICIENT_FUND' | This is returned when a charge via user_api_token was unable to be process due to insufficient account balance.
