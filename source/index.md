@@ -128,6 +128,10 @@ curl "https://sandbox.xfers.io/api/v3/user" \
   "id_front" : "nricFrontPlaceholder.png",
   "id_selfie" : "nricSelfiePlaceholder.png",
   "phone_no" : "+6597288608",
+  "multi_bank_account_detected" : "false",
+  "account_locked" : "false",
+  "kyc_limit_remaining" : "500.0",
+  "kyc_verified" : "true",
   "bank_accounts" : [
     {
        "id" : "12312",
