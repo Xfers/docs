@@ -132,6 +132,7 @@ curl "https://sandbox.xfers.io/api/v3/user" \
   "account_locked" : "false",
   "kyc_limit_remaining" : "500.0",
   "kyc_verified" : "true",
+  "is_guest" : "false",
   "bank_accounts" : [
     {
        "id" : "12312",
