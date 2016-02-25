@@ -509,6 +509,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdraw_requests" \
        "account_no" : "039-312-3432-3",
        "bank_abbrev" : "DBS",
        "amount" : "50.0",
+       "type" : "GIRO",
        "status" : "processing"
     },
     {
@@ -516,6 +517,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdraw_requests" \
        "account_no" : "129-880-1251-1",
        "bank_abbrev" : "OCBC",
        "amount" : "250.0",
+       "type" : "FAST",
        "status" : "processing"
     }
   ]
