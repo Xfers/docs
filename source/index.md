@@ -475,12 +475,16 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>/withdr
        "account_no" : "039-312-3432-3",
        "bank_abbrev" : "DBS",
        "amount" : "50.0",
+       "fees" : "0.0",
+       "express" : "false",
        "status" : "processing"
     }
 }
 ```
 
 This will make a withdrawal request to the bank account given, provided that your account have sufficient available balance.
+
+Set to 'express' to true to have withdrawal arrive within 24 hrs(additional fees applies). Standard withdrawal takes 2-3 business day to arrive at recipient bank.
 
 #### HTTPS Request
 
@@ -491,6 +495,7 @@ This will make a withdrawal request to the bank account given, provided that you
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 amount | string | required | Amount to withdraw in SGD | 50.0
+express | string | optional | Default to 'false' | 50.0
 
 ### List Withdrawal Request
 
@@ -509,7 +514,8 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdraw_requests" \
        "account_no" : "039-312-3432-3",
        "bank_abbrev" : "DBS",
        "amount" : "50.0",
-       "type" : "GIRO",
+       "express" : "false",
+       "fees" : "0.0",
        "status" : "processing"
     },
     {
@@ -517,7 +523,8 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdraw_requests" \
        "account_no" : "129-880-1251-1",
        "bank_abbrev" : "OCBC",
        "amount" : "250.0",
-       "type" : "FAST",
+       "express" : "true",
+       "fees" : "2.99",
        "status" : "processing"
     }
   ]
@@ -1061,6 +1068,16 @@ descriptions | string | optional | A short description for this payout. This wil
 bank_abbreviation | string | optional | Bank abbreviation of the [supported banks](/docs/#supported-banks) | DBS
 bank_account_no | string | optional | Bank account no of recipient | 4234126091
 no_expire | boolean | optional | Set this to true so this payout will not expire | Default to false
+
+##### Payout Response Status
+
+The below are the possible response status and their meaning.
+
+Name | Description
+---- | ------------
+unclaimed | Payout has not been accepted by recipient. New Xfers user and payout has yet to be claimed.
+completed  | Payout has been completed. Existing Xfers user and payout has been credited to his account.
+
 
 ### Retrieve a Payout
 ```shell
