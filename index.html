@@ -677,12 +677,16 @@ name and bank account information.</p>
        </span><span class="s2">"account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"039-312-3432-3"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"50.0"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"fees"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"express"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <p>This will make a withdrawal request to the bank account given, provided that your account have sufficient available balance.</p>
+
+<p>Set to &lsquo;express&rsquo; to true to have withdrawal arrive within 24 hrs(additional fees applies). Standard withdrawal takes 2-3 business day to arrive at recipient bank.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -706,6 +710,13 @@ name and bank account information.</p>
 <td>Amount to withdraw in SGD</td>
 <td>50.0</td>
 </tr>
+<tr>
+<td>express</td>
+<td>string</td>
+<td>optional</td>
+<td>Default to &#39;false&rsquo;</td>
+<td>50.0</td>
+</tr>
 </tbody></table>
 
 <h3 id="list-withdrawal-request">List Withdrawal Request</h3>
@@ -723,7 +734,8 @@ name and bank account information.</p>
        </span><span class="s2">"account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"039-312-3432-3"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"50.0"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GIRO"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"express"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"fees"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -731,7 +743,8 @@ name and bank account information.</p>
        </span><span class="s2">"account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"129-880-1251-1"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"OCBC"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"250.0"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FAST"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"express"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"fees"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2.99"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
@@ -968,7 +981,7 @@ name and bank account information.</p>
 <td>items</td>
 <td>string</td>
 <td>optional</td>
-<td>A JSON array of item with attributes &lsquo;description, name, price, quantity&rsquo;. See more <a href="/docs/#item-hash">info</a>.</td>
+<td>A JSON array of item with attributes &#39;description, name, price, quantity&rsquo;. See more <a href="/docs/#item-hash">info</a>.</td>
 <td>&ldquo;[{&quot;description&rdquo;:&ldquo;Red dress Size M&rdquo;,&ldquo;price&rdquo;:9.99,&ldquo;quantity&rdquo;:1,&ldquo;name&rdquo;:&ldquo;Red dress&rdquo;}]&ldquo;</td>
 </tr>
 <tr>
@@ -1650,6 +1663,26 @@ If both bank details and recipient informations are provided, we will credit the
 <td>optional</td>
 <td>Set this to true so this payout will not expire</td>
 <td>Default to false</td>
+</tr>
+</tbody></table>
+
+<h5 id="payout-response-status">Payout Response Status</h5>
+
+<p>The below are the possible response status and their meaning.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>unclaimed</td>
+<td>Payout has not been accepted by recipient. New Xfers user and payout has yet to be claimed.</td>
+</tr>
+<tr>
+<td>completed</td>
+<td>Payout has been completed. Existing Xfers user and payout has been credited to his account.</td>
 </tr>
 </tbody></table>
 
