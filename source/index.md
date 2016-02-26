@@ -484,7 +484,9 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>/withdr
 
 This will make a withdrawal request to the bank account given, provided that your account have sufficient available balance.
 
-Set to 'express' to true to have withdrawal arrive within 24 hrs(additional fees applies). Standard withdrawal takes 2-3 business day to arrive at recipient bank.
+For same day withdrawal(additional fees applies), set 'express' field to true. Funds will arrive at recipient bank within 24 hrs.
+
+Standard withdrawal takes 2-3 business day to arrive at recipient bank.
 
 #### HTTPS Request
 
