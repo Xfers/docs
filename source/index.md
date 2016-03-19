@@ -477,7 +477,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>/withdr
        "amount" : "50.0",
        "fees" : "0.0",
        "express" : "false",
-       "status" : "processing"
+       "status" : "pending"
     }
 }
 ```
@@ -518,7 +518,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdraw_requests" \
        "amount" : "50.0",
        "express" : "false",
        "fees" : "0.0",
-       "status" : "processing"
+       "status" : "pending"
     },
     {
        "id" : "99",
@@ -527,7 +527,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdraw_requests" \
        "amount" : "250.0",
        "express" : "true",
        "fees" : "2.99",
-       "status" : "processing"
+       "status" : "pending"
     }
   ]
 }
