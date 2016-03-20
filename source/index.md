@@ -477,7 +477,8 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>/withdr
        "amount" : "50.0",
        "fees" : "0.0",
        "express" : "false",
-       "status" : "pending"
+       "status" : "pending",
+       "arrival" : "31 March 2016"
     }
 }
 ```
@@ -516,18 +517,20 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdraw_requests" \
        "account_no" : "039-312-3432-3",
        "bank_abbrev" : "DBS",
        "amount" : "50.0",
-       "express" : "false",
        "fees" : "0.0",
-       "status" : "pending"
+       "express" : "false",
+       "status" : "pending",
+       "arrival" : "31 March 2016"
     },
     {
        "id" : "99",
        "account_no" : "129-880-1251-1",
        "bank_abbrev" : "OCBC",
-       "amount" : "250.0",
-       "express" : "true",
+       "amount" : "250.0",       
        "fees" : "2.99",
-       "status" : "pending"
+       "express" : "true",
+       "status" : "pending",
+       "arrival" : "28 March 2016"
     }
   ]
 }
