@@ -628,6 +628,66 @@ name and bank account information.</p>
 
 <p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/user/bank_account</code></p>
 
+<h3 id="update-a-bank-account">Update a Bank Account</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account/&lt;bank_account_id&gt;"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -X PUT <span class="se">\</span>
+  -d <span class="s1">'{"account_no": "03931234321", "bank":"DBS"}'</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"bank_accounts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+       </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"12312"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"039-312-3432-1"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+       </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"12315"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"129-880-1251-1"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"OCBC"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This request allow you to update an existing bank account record. </p>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">PUT https://sandbox.xfers.io/api/v3/user/bank_account/&lt;bank_account_id&gt;</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account_no</td>
+<td>string</td>
+<td>optional</td>
+<td>bank account no</td>
+<td>03931234323</td>
+</tr>
+<tr>
+<td>bank</td>
+<td>string</td>
+<td>optional</td>
+<td>bank abbreviation (Refer to <a href="/docs/#supported-banks">supported banks</a>)</td>
+<td>DBS</td>
+</tr>
+</tbody></table>
+
 <h3 id="delete-bank-account">Delete Bank Account</h3>
 <pre class="highlight shell"><code>curl -X DELETE <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account/&lt;bank_account_id&gt;"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
