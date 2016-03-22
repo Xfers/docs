@@ -410,15 +410,10 @@ Name | Type | Required | Description | Value
 account_no | string | optional | bank account no | 03931234323
 bank | string | optional | bank abbreviation (Refer to [supported banks](/docs/#supported-banks)) | DBS
 
-
-### Update a Bank Account
-
+### List Bank Accounts
 ```shell
-curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
-  -H "Content-Type: application/json" \
-  -X PUT \
-  -d '{"account_no": "03931234321", "bank":"DBS"}'
+curl "https://sandbox.xfers.io/api/v3/user/bank_account" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
 > Response:
@@ -428,7 +423,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>" \
   "bank_accounts" : [
     {
        "id" : "12312",
-       "account_no" : "039-312-3432-1",
+       "account_no" : "039-312-3432-3",
        "bank_abbrev" : "DBS"
     },
     {
@@ -440,18 +435,38 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>" \
 }
 ```
 
-This request allow you to update an existing bank account record. 
+This will list all bank accounts belonging to the user.
 
 #### HTTPS Request
 
-`PUT https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>`
+`GET https://sandbox.xfers.io/api/v3/user/bank_account`
 
-#### URL Parameters
+### Delete Bank Account
 
-Name | Type | Required | Description | Value
----- | ---- | -------- | ----------- | -----
-account_no | string | optional | bank account no | 03931234323
-bank | string | optional | bank abbreviation (Refer to [supported banks](/docs/#supported-banks)) | DBS
+```shell
+curl -X DELETE "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
+
+> Response:
+
+```json
+{
+  "bank_accounts" : [
+    {
+       "id" : "12312",
+       "account_no" : "039-312-3432-1",
+       "bank_abbrev" : "DBS"
+    }
+  ]
+}
+```
+
+This request allow you to delete an existing bank account record. 
+
+#### HTTPS Request
+
+`DELETE https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>`
 
 
 ### Submit Withdrawal Request
