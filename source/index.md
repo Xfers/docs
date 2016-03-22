@@ -441,6 +441,49 @@ This will list all bank accounts belonging to the user.
 
 `GET https://sandbox.xfers.io/api/v3/user/bank_account`
 
+### Update a Bank Account
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "Content-Type: application/json" \
+  -X PUT \
+  -d '{"account_no": "03931234321", "bank":"DBS"}'
+```
+
+> Response:
+
+```json
+{
+  "bank_accounts" : [
+    {
+       "id" : "12312",
+       "account_no" : "039-312-3432-1",
+       "bank_abbrev" : "DBS"
+    },
+    {
+       "id" : "12315",
+       "account_no" : "129-880-1251-1",
+       "bank_abbrev" : "OCBC"
+    }
+  ]
+}
+```
+
+This request allow you to update an existing bank account record. 
+
+#### HTTPS Request
+
+`PUT https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>`
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+account_no | string | optional | bank account no | 03931234323
+bank | string | optional | bank abbreviation (Refer to [supported banks](/docs/#supported-banks)) | DBS
+
+
 ### Delete Bank Account
 
 ```shell
