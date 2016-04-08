@@ -224,6 +224,8 @@ identity_no | string | optional | Account holder national identity no | s8412123
 country | string | optional | Account holder country of residence| Singapore
 id_front | string | optional | URL storing the front image of user identity card
 id_back | string | optional | URL storing the back image of user identity card
+selfie_2_id | string | optional | URL storing the selfie of user holding their id card or a second form of id like driving license or passport
+proof_of_address | string | optional | URL storing the image/pdf of proof of address document of user like bank statement or telco bill
 meta_data| string | optional | Additional data like Jumio info dump.
 
 
