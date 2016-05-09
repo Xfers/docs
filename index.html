@@ -211,10 +211,10 @@ name and bank account information.</p>
   </span><span class="s2">"identity_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"s86917127G"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tianyao@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"id_back"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricBackPlaceholder.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"id_document"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricDocumentPlaceholder.png"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_front"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricFrontPlaceholder.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"id_selfie"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricSelfiePlaceholder.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id_back"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricBackPlaceholder.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"selfie_2id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricSelfiePlaceholder.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"proof_of_address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricDocumentPlaceholder.png"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"phone_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+6597288608"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bank_accounts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -944,6 +944,9 @@ name and bank account information.</p>
   </span><span class="s2">"shipping"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.50</span><span class="p">,</span><span class="w">
   </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
   </span><span class="s2">"total_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">12.49</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fees"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.12</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"convenicence_fees"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">""</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">12.37</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"firstname"</span><span class="p">:</span><span class="s2">"Tianwei"</span><span class="p">,</span><span class="w">
@@ -1041,7 +1044,28 @@ name and bank account information.</p>
 <td>debit_only</td>
 <td>boolean</td>
 <td>optional</td>
-<td>When this is true, this charge will attempt to debit from users existing balance. Status returned will be &quot;completed&rdquo; on successful debit or &ldquo;cancelled&rdquo; when there insufficient funds in user wallet.</td>
+<td>When this is true, this charge will attempt to debit from users existing balance/card on file. Status returned will be &quot;completed&rdquo; on successful debit or &ldquo;cancelled&rdquo; when there insufficient funds / valid card on file in user wallet.</td>
+<td>Default to false</td>
+</tr>
+<tr>
+<td>card_only</td>
+<td>boolean</td>
+<td>optional</td>
+<td>When this is true, this charge will will attempt to only take payments via credit/debit card.</td>
+<td>Default to false</td>
+</tr>
+<tr>
+<td>adsorb_card_fees</td>
+<td>boolean</td>
+<td>optional</td>
+<td>When this is true, seller will not pass on the additional fees involved in card processing back on to buyer(as convenience fees)</td>
+<td>Default to false</td>
+</tr>
+<tr>
+<td>enquiry_only</td>
+<td>boolean</td>
+<td>optional</td>
+<td>When this is true, this charge will not be processed but a standard response will be provided. This is usually used for testing purposes or for pre-fetching charge information like fees.</td>
 <td>Default to false</td>
 </tr>
 <tr>
@@ -1190,6 +1214,11 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 <td>error_code</td>
 <td>&#39;INSUFFICIENT_FUND&rsquo;</td>
 <td>This is returned when a charge via user_api_token was unable to be process due to insufficient account balance.</td>
+</tr>
+<tr>
+<td>error_code</td>
+<td>&#39;INVALID_CARD&rsquo;</td>
+<td>This is returned when a charge via user_api_token was unable to be process due to a the lack of a valid card on file.</td>
 </tr>
 </tbody></table>
 
