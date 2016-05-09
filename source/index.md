@@ -182,10 +182,10 @@ curl "https://sandbox.xfers.io/api/v3/user" \
   "identity_no" : "s86917127G",
   "country" : "sg",
   "email" : "tianyao@example.com",
-  "id_back" : "nricBackPlaceholder.png",
-  "id_document" : "nricDocumentPlaceholder.png",
   "id_front" : "nricFrontPlaceholder.png",
-  "id_selfie" : "nricSelfiePlaceholder.png",
+  "id_back" : "nricBackPlaceholder.png",
+  "selfie_2id" : "nricSelfiePlaceholder.png",
+  "proof_of_address" : "nricDocumentPlaceholder.png",
   "phone_no" : "+6597288608",
   "bank_accounts" : [
     {
@@ -689,6 +689,9 @@ curl "https://sandbox.xfers.io/api/v3/charges" \
   "shipping" : 2.50,
   "tax" : 0.00,
   "total_amount" : 12.49,
+  "fees" : 0.12,
+  "convenicence_fees" : 0.0,
+  "" : 12.37,
   "status" : "pending",
   "meta_data" : {
     "firstname":"Tianwei",
@@ -716,7 +719,10 @@ cancel_url | string | optional | URL Xfers will redirect customer to on cancella
 refundable | boolean | optional | Whether or not this charge can be refunded. Non Refundable Charges will settle immediately after payment. | Default to true
 user_api_token | string | optional | Buyer's api token obtain via Connect's get user token APIs. When this is provide, this charge will skip user auth. | NbKjcFV5XxGZ-Uf2XnxyshFcrGtoxmLms9YEgokzDRo
 user_phone_no | boolean | optional | When this is provided, buyer will receive an OTP(one time password) from Xfers which they can provide to merchant to skip user authentication. See [Authenticate a Charge](/docs/#authorize-a-charge). | Default to false
-debit_only | boolean | optional | When this is true, this charge will attempt to debit from users existing balance. Status returned will be "completed" on successful debit or "cancelled" when there insufficient funds in user wallet. | Default to false
+debit_only | boolean | optional | When this is true, this charge will attempt to debit from users existing balance/card on file. Status returned will be "completed" on successful debit or "cancelled" when there insufficient funds / valid card on file in user wallet. | Default to false
+card_only | boolean | optional | When this is true, this charge will will attempt to only take payments via credit/debit card. | Default to false
+adsorb_card_fees | boolean | optional | When this is true, seller will not pass on the additional fees involved in card processing back on to buyer(as convenience fees) | Default to false
+enquiry_only | boolean | optional | When this is true, this charge will not be processed but a standard response will be provided. This is usually used for testing purposes or for pre-fetching charge information like fees. | Default to false
 redirect | string | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true
 items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. See more [info](/docs/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
 shipping | float | optional | Shipping fees | Default to 0.0
@@ -756,6 +762,7 @@ error_code | 'KYC_MULTI' | Transfers from multiple bank account detected, user n
 error_code | 'KYC_LIMIT' | User has reached the daily limit for their purchases.
 error_code | 'KYC_UNAVAILABLE' | Xfers has yet to receive KYC information for this user.
 error_code | 'INSUFFICIENT_FUND' | This is returned when a charge via user_api_token was unable to be process due to insufficient account balance.
+error_code | 'INVALID_CARD' | This is returned when a charge via user_api_token was unable to be process due to a the lack of a valid card on file.
 
 <aside class="notice">
 You should always provide customer's firstname and lastname information whenever you can as it would help us detecting fraudulence charges or user who have made an mistaken in their bank transfer.
