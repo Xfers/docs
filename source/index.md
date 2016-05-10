@@ -662,8 +662,8 @@ curl "https://sandbox.xfers.io/api/v3/charges" \
 
 ```json
 {
-  "id": "asd1wwd1csadjw1e213sad",
-  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad",
+  "id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd",
   "notify_url" : "https://mysite.com/payment_notification",
   "return_url" : "https://mysite.com/return",
   "cancel_url" : "https://mysite.com/cancel",
@@ -690,8 +690,6 @@ curl "https://sandbox.xfers.io/api/v3/charges" \
   "tax" : 0.00,
   "total_amount" : 12.49,
   "fees" : 0.12,
-  "convenicence_fees" : 0.0,
-  "" : 12.37,
   "status" : "pending",
   "meta_data" : {
     "firstname":"Tianwei",
@@ -795,12 +793,12 @@ The following parameters will be part of the HTTPS POST:
 
 Name | Type | Description | Value
 ---- | ---- | -------- | -----------
-txn_id | string | Xfers's transaction id unique to each transaction| asd1wwd1csadjw1e213sad
+txn_id | string | Xfers's transaction id unique to each transaction| b840cc9fc5a359c22ed2ccef3427aacd
 order_id | string | Unique ref no provided by your during your charge call | A012312
 total_amount | float | 12.49 | Total value for items
 currency | string | 3-letter ISO code for currency | SGD
 status | string | Payment status. | "cancelled" or "paid" or "expired"
-
+meta_data | string | meta data previous provided in your charge call. | "{'first_name' : 'Tianwei', 'last_name' : 'Liu'}"
 
 ### Verification of Notifications
 ```shell
@@ -854,8 +852,8 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>/authorize" \
 
 ```json
 {
-  "id": "asd1wwd1csadjw1e213sad",
-  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad",
+  "id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd",
   "notify_url" : "https://mysite.com/payment_notification",
   "return_url" : "https://mysite.com/return",
   "cancel_url" : "https://mysite.com/cancel",
@@ -916,8 +914,8 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
 
 ```json
 {
-  "id": "asd1wwd1csadjw1e213sad",
-  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad",
+  "id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd",
   "notify_url" : "https://mysite.com/payment_notification",
   "return_url" : "https://mysite.com/return",
   "cancel_url" : "https://mysite.com/cancel",
@@ -982,7 +980,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
 ```json
 {
   "id": "730eba1ec6d34f64dc68a0081c5006dc",
-  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad",
+  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd",
   "notify_url" : "https://mysite.com/payment_notification",
   "return_url" : "https://mysite.com/return",
   "cancel_url" : "https://mysite.com/cancel",
@@ -1037,7 +1035,7 @@ curl "https://sandbox.xfers.io/api/v3/charges?limit=1" \
 [
   {
     "id": "730eba1ec6d34f64dc68a0081c5006dc",
-    "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad",
+    "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd",
     "notify_url" : "https://mysite.com/payment_notification",
     "return_url" : "https://mysite.com/return",
     "cancel_url" : "https://mysite.com/cancel",
@@ -1245,7 +1243,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>/refunds" \
 ```json
 {
   "id": "6fa51cd08c8ae115f858593412bb72c8",
-  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad",
+  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd",
   "notify_url" : "https://mysite.com/payment_notification",
   "return_url" : "https://mysite.com/return",
   "cancel_url" : "https://mysite.com/cancel",
