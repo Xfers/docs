@@ -917,8 +917,8 @@ name and bank account information.</p>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asd1wwd1csadjw1e213sad"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"checkout_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b840cc9fc5a359c22ed2ccef3427aacd"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"checkout_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"notify_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/payment_notification"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"return_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/return"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cancel_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/cancel"</span><span class="p">,</span><span class="w">
@@ -945,8 +945,6 @@ name and bank account information.</p>
   </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
   </span><span class="s2">"total_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">12.49</span><span class="p">,</span><span class="w">
   </span><span class="s2">"fees"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.12</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"convenicence_fees"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">""</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">12.37</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"firstname"</span><span class="p">:</span><span class="s2">"Tianwei"</span><span class="p">,</span><span class="w">
@@ -1262,7 +1260,7 @@ Please take note that at this point, payment may or may not have been completed 
 <td>txn_id</td>
 <td>string</td>
 <td>Xfers&rsquo;s transaction id unique to each transaction</td>
-<td>asd1wwd1csadjw1e213sad</td>
+<td>b840cc9fc5a359c22ed2ccef3427aacd</td>
 </tr>
 <tr>
 <td>order_id</td>
@@ -1287,6 +1285,12 @@ Please take note that at this point, payment may or may not have been completed 
 <td>string</td>
 <td>Payment status.</td>
 <td>&ldquo;cancelled&rdquo; or &ldquo;paid&rdquo; or &ldquo;expired&rdquo;</td>
+</tr>
+<tr>
+<td>meta_data</td>
+<td>string</td>
+<td>meta data previous provided in your charge call.</td>
+<td>&ldquo;{&#39;first_name&rsquo; : &#39;Tianwei&rsquo;, &#39;last_name&rsquo; : &#39;Liu&rsquo;}&rdquo;</td>
 </tr>
 </tbody></table>
 
@@ -1366,8 +1370,8 @@ Please take note that at this point, payment may or may not have been completed 
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asd1wwd1csadjw1e213sad"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"checkout_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b840cc9fc5a359c22ed2ccef3427aacd"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"checkout_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"notify_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/payment_notification"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"return_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/return"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cancel_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/cancel"</span><span class="p">,</span><span class="w">
@@ -1440,8 +1444,8 @@ Please take note that at this point, payment may or may not have been completed 
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asd1wwd1csadjw1e213sad"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"checkout_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b840cc9fc5a359c22ed2ccef3427aacd"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"checkout_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"notify_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/payment_notification"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"return_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/return"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cancel_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/cancel"</span><span class="p">,</span><span class="w">
@@ -1518,7 +1522,7 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"730eba1ec6d34f64dc68a0081c5006dc"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"checkout_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"checkout_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"notify_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/payment_notification"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"return_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/return"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cancel_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/cancel"</span><span class="p">,</span><span class="w">
@@ -1571,7 +1575,7 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"730eba1ec6d34f64dc68a0081c5006dc"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"checkout_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"checkout_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"notify_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/payment_notification"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"return_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/return"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"cancel_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/cancel"</span><span class="p">,</span><span class="w">
@@ -1929,7 +1933,7 @@ If both bank details and recipient informations are provided, we will credit the
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6fa51cd08c8ae115f858593412bb72c8"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"checkout_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/checkout_transaction/asd1wwd1csadjw1e213sad"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"checkout_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"notify_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/payment_notification"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"return_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/return"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cancel_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/cancel"</span><span class="p">,</span><span class="w">
