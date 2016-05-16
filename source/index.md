@@ -728,7 +728,7 @@ tax | float | optional | tax in $  | Default to 0.0
 hrs_to_expirations | float | optional | No of hours before this transactons will expire  | Default to 48.0 hours from now.
 meta_data | string | optional | A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification | {"firstname":"tianwei", "lastname":"liu"}
 receipt_email | string | optional | The email address to send this charge's receipt. | tianwei@xfers.io
-disable_notifications | boolean | optional | Setting this to true will disable transaction reminders/cancelled/expired emails/SMS. Users will still receive payment completed notification. | Default to false.
+skip_notifications | boolean | optional | Setting this to true will not send transaction reminders/cancelled/expired emails/SMS. Users will still receive payment completed notification. | Default to false.
 
 #### item hash
 You can provide itemized receipt for your customer by giving use informations with regards to each of them in the `items` field as a json array of hash. 
