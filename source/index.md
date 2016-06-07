@@ -86,6 +86,10 @@ Xfers expects the API key to be included in the header of all API requests to th
   }
 ```
 
+#### HTTPS Request
+
+`GET https://sandbox.xfers.io/api/v3/authorize/hello`
+
 
 <aside class="notice">
 You must replace <code>FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc</code> with your personal API key.
