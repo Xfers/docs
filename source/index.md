@@ -711,7 +711,7 @@ The following request will allow you to create a charge against a customer.
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-amount | float | required | Total value for items | 9.99
+amount | float | required | Total value for items, excluding taxes and shipping fees | 9.99
 currency | string | required | 3-letter ISO code for currency | SGD
 order_id | string | required | Unique ref no provided by you to prevent double charging, this cannot be repeated | A012312
 description | string | required | Description of transaction for display purposes | Carousell user - Konsolidate
