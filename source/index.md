@@ -230,7 +230,7 @@ country | string | optional | Account holder country of residence| Singapore
 id_front_url | string | optional | URL storing the front image of user identity card
 id_back_url | string | optional | URL storing the back image of user identity card
 selfie_2id_url | string | optional | URL storing the selfie of user holding their id card or a second form of id like driving license or passport
-proof_of_address_url | string | optional | URL storing the image/pdf of proof of address document of user like bank statement or telco bill
+proof_of_address_url | string | optional | URL storing the image/pdf of proof of address document of user like bank statement or telco bill. For business, please provide your Arca Bizfile.
 meta_data| string | optional | Additional data like Jumio info dump.
 
 
