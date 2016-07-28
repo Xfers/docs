@@ -908,7 +908,7 @@ auth_code | string | Required | PIN code provided to the buyer | 512312
 
 ### Cancel a Charge
 ```shell
-curl "https://sandbox.xfers.io/api/v3/charges/<CHARGE_ID or ORDER_ID>/cancel" \
+curl "https://sandbox.xfers.io/api/v3/charges/<CHARGE_ID>/cancel" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
   -X POST
 ```
@@ -955,7 +955,7 @@ Cancelling a charge that has been previously created by not yet paid. To refund 
 
 
 #### HTTPS Request
-`POST https://sandbox.xfers.io/api/v3/charges/<CHARGE_ID or ORDER_ID>/cancel`
+`POST https://sandbox.xfers.io/api/v3/charges/<CHARGE_ID>/cancel`
 
 
 ### Settle a Charge
