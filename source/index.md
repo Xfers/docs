@@ -951,7 +951,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<CHARGE_ID or ORDER_ID>/cancel" \
 }
 ```
 
-Cancelling a charge that has been previously created by not yet paid. To refund a paid charge, refer to [creating a refund](/docs/#creating-a-refund).
+Cancelling a charge that has been previously created by not yet paid. To refund a paid charge, refer to [creating a refund](/#creating-a-refund).
 
 
 #### HTTPS Request
