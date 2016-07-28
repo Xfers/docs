@@ -1452,7 +1452,7 @@ Please take note that at this point, payment may or may not have been completed 
 </tbody></table>
 
 <h3 id="cancel-a-charge">Cancel a Charge</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;CHARGE_ID or ORDER_ID&gt;/cancel"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;CHARGE_ID&gt;/cancel"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
   -X POST
 </code></pre>
@@ -1499,7 +1499,7 @@ Please take note that at this point, payment may or may not have been completed 
 
 <h4 id="https-request">HTTPS Request</h4>
 
-<p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/charges/&lt;CHARGE_ID or ORDER_ID&gt;/cancel</code></p>
+<p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/charges/&lt;CHARGE_ID&gt;/cancel</code></p>
 
 <h3 id="settle-a-charge">Settle a Charge</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span> <span class="se">\</span>
