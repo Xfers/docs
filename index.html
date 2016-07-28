@@ -1451,6 +1451,56 @@ Please take note that at this point, payment may or may not have been completed 
 </tr>
 </tbody></table>
 
+<h3 id="cancel-a-charge">Cancel a Charge</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;CHARGE_ID or ORDER_ID&gt;/cancel"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
+  -X POST
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6fa51cd08c8ae115f858593412bb72c8"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"checkout_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"notify_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/payment_notification"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"return_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/return"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cancel_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/cancel"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"object"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"charge"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"A012312"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"capture"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Carousell user - Konsolidate"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"items"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Red Dress Size M"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Red dress"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"statement_descriptor"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"receipt_email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shipping"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.50</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">12.49</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"cancelled"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"key1"</span><span class="p">:</span><span class="s2">"value1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"key2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value2"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Cancelling a charge that has been previously created by not yet paid. To refund a paid charge, refer to <a href="/docs/#creating-a-refund">creating a refund</a>.</p>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/charges/&lt;CHARGE_ID or ORDER_ID&gt;/cancel</code></p>
+
 <h3 id="settle-a-charge">Settle a Charge</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
@@ -1976,6 +2026,7 @@ If both bank details and recipient informations are provided, we will credit the
   </span><span class="s2">"shipping"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.50</span><span class="p">,</span><span class="w">
   </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
   </span><span class="s2">"total_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">12.49</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"refunded"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"key1"</span><span class="p">:</span><span class="s2">"value1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"key2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value2"</span><span class="w">
