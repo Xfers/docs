@@ -906,6 +906,56 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | -------- | -----------
 auth_code | string | Required | PIN code provided to the buyer | 512312
 
+### Cancel a Charge
+```shell
+curl "https://sandbox.xfers.io/api/v3/charges/<CHARGE_ID or ORDER_ID>/cancel" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -X POST
+```
+
+> Response:
+
+```json
+{
+  "id": "6fa51cd08c8ae115f858593412bb72c8",
+  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd",
+  "notify_url" : "https://mysite.com/payment_notification",
+  "return_url" : "https://mysite.com/return",
+  "cancel_url" : "https://mysite.com/cancel",
+  "object" : "charge",
+  "amount" : 9.99,
+  "currency" : "SGD",
+  "customer" : "",
+  "order_id" : "A012312",
+  "capture" : true,
+  "description" : "Carousell user - Konsolidate",
+  "items" : [
+    {
+      "description": "Red Dress Size M",
+      "name": "Red dress",
+      "quantity": "1.00",
+      "price": 9.99,
+      "item_id": ""
+    }
+  ],
+  "statement_descriptor" : "",
+  "receipt_email" : "",
+  "shipping" : 2.50,
+  "tax" : 0.00,
+  "total_amount" : 12.49,
+  "status" : "cancelled",
+  "meta_data" : {
+    "key1":"value1",
+    "key2": "value2"
+  }
+}
+```
+
+Cancelling a charge that has been previously created by not yet paid. To refund a paid charge, refer to [creating a refund](/docs/#creating-a-refund).
+
+
+#### HTTPS Request
+`POST https://sandbox.xfers.io/api/v3/charges/<CHARGE_ID or ORDER_ID>/cancel`
 
 
 ### Settle a Charge
@@ -1274,6 +1324,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>/refunds" \
   "shipping" : 2.50,
   "tax" : 0.00,
   "total_amount" : 12.49,
+  "status" : "refunded",
   "meta_data" : {
     "key1":"value1",
     "key2": "value2"
