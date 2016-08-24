@@ -1401,7 +1401,7 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 curl "https://sandbox.xfers.io/api/v3/authorize/signup_login"\
   -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"\
   -H "Content-Type: application/json" \
-  -d '{"phone_no" : "%2B6597288608", "signature" : "c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"}'
+  -d '{"phone_no" : "+6597288608", "signature" : "c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"}'
 ```
 
 > Response
@@ -1452,11 +1452,6 @@ If you choose to redirect new Xfers user to the unique sign_up_url to allow them
 <aside class="warning">
 Remember to encode the '+' sign in your phone no during your GET request. It should be '%2B' instead of '+'
 </aside>
-
-<aside class="notice">
-`X-XFERS-USER-API-KEY` obtained this way will by default expire in 24hrs. For longer expirations or non expirating token, please email support@xfers.io with you merchant account details.
-</aside>
-
 
 
 
