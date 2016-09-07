@@ -356,7 +356,7 @@ meta_data | string | The json string you previously provided in the register req
 
 The follow APIs allow you to add or update your bank account info.
 
-### Supported banks
+### Supported banks(Singapore)
 
 Logo | Bank Name | Abbreviation | 
 ---- | ---- | ---- |
@@ -379,6 +379,25 @@ Logo | Bank Name | Abbreviation |
 [cimb]: bank-logo-30px-cimb.png
 [ocbc]: bank-logo-30px-ocbc.png
 [hsbc]: bank-logo-30px-hsbc.png
+
+### Supported banks(Indonesia)
+
+Logo | Bank Name | Abbreviation | 
+---- | ---- | ---- |
+![BCA][bca]| Bank Centra Asia | BCA |
+![BNI][bni]| Bank Negara Indonesia | BNI |
+![MANDIRI][mandiri]| Bank Mandiri | MANDIRI |
+![BRI][bri]| Bank Rakyat Indonesia | BRI |
+![CIMB][niaga]| PT Bank CIMB Niaga Tbk | CIMB |
+![PERMATA][permata]| Bank Permata | PERMATA |
+
+[bca]: bank-logo-30px-bca.png
+[bni]: bank-logo-30px-bni.png
+[mandiri]: bank-logo-30px-mandiri.png
+[bri]: bank-logo-30px-bri.png
+[niaga]: bank-logo-30px-cimb-niaga.png
+[permata]: bank-logo-30px-permata.png
+
 
 ### Add a Bank Account
 
@@ -530,7 +549,7 @@ This request allow you to delete an existing bank account record.
 curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>/withdraw" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
-  -d '{"amt": "50.0"}'
+  -d '{"amount": "50.0"}'
 ```
 
 > Response:
