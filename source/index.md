@@ -369,6 +369,15 @@ Logo | Bank Name | Abbreviation |
 ![SCB][scb]| Standard Chartered Bank | SCB |
 ![CIMB][cimb]| CIMB Bank Berhad | CIMB |
 ![HSBC][hsbc]| Hong Kong and Shanghai Banking Corporation| HSBC |
+![ANZ][anz]| Australia and New Zealand Banking Group | ANZ |
+![DBAG][dbag]| Deutsche Bank AG | DBAG |
+![FEB][feb]| Far Eastern Bank | FEB |
+![RHB][rhb]| RHB Bank | RHB |
+![RBS][rbs]| The Royal Bank of scotland | RBS |
+![BOC][boc]| Bank of China | BOC |
+![SMFG][smfg]| Sumitomo Mitsui Banking Coporation | SMFG |
+![MUFG][mufg]| The Bank of Tokyo-Misubishi UFJ | MUFG |
+![BNP][bnp]| BNP Paribus | BNP |
 
 [dbs]: bank-logo-30px-dbs.png
 [posb]: bank-logo-30px-posb.png
@@ -379,6 +388,15 @@ Logo | Bank Name | Abbreviation |
 [cimb]: bank-logo-30px-cimb.png
 [ocbc]: bank-logo-30px-ocbc.png
 [hsbc]: bank-logo-30px-hsbc.png
+[anz]: bank-logo-30px-anz.png
+[dbag]: bank-logo-30px-dbag.png
+[feb]: bank-logo-30px-feb.png
+[rhb]: bank-logo-30px-rhb.png
+[rbs]: bank-logo-30px-rbs.png
+[boc]: bank-logo-30px-boc.png
+[smfg]: bank-logo-30px-smfg.png
+[mufg]: bank-logo-30px-mufg.png
+[bnp]: bank-logo-30px-bnp.png
 
 ### Supported banks(Indonesia)
 
