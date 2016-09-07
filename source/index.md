@@ -36,11 +36,16 @@ For testing purposes, we highly recommend that your head over to [sandbox.xfers.
 
 While in testing mode, point to our sandbox API endpoint at:
 
+Singapore:
 `https://sandbox.xfers.io/api/v3`
+
+Indonesia:`https://sandbox-id.xfers.com/api/v3`
 
 To switch to production, point to our production API endpoint at:
 
-`https://www.xfers.io/api/v3`
+Singapore: `https://www.xfers.io/api/v3`
+
+Indonesia: `https://id.xfers.com/api/v3`
 
 <aside class="notice">
 Sandbox and Production are two separate environments. Please ensure your register for an account at EACH environment and use their individual API Key.
