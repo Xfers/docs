@@ -1382,7 +1382,7 @@ Creating a new refund will refund a charge that has previously been created and 
 `POST https://sandbox.xfers.io/api/v3/charges/<id>/refunds`
 
 ## Intents
-The following APIs allow you to create and manage top up intents for better transfer matching.
+The following APIs allow you to create and manage top up intents for better transfer matching and registering for transfer callback notifications.
 
 ### Creating an Intent
 ```shell
