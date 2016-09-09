@@ -1399,7 +1399,7 @@ curl "https://sandbox.xfers.io/api/v3/intents" \
   "id": "6f5f85859a51cd08c8ae113412bb72c8",
   "intent_id" : "AZ0001",
   "amount" : "5000", 
-  "currency", "IDR",
+  "currency" : "IDR",
   "amount_to_transfer" : "4999",
   "bank_name" : "Bank Central Asia",
   "bank_abbrev" : "BCA",
