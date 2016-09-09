@@ -1381,6 +1381,150 @@ Creating a new refund will refund a charge that has previously been created and 
 #### HTTPS Request
 `POST https://sandbox.xfers.io/api/v3/charges/<id>/refunds`
 
+## Intents
+The following APIs allow you to create and manage top up intents for better transfer matching.
+
+### Creating an Intent
+```shell
+curl "https://sandbox.xfers.io/api/v3/intents" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+ -H "Content-Type: application/json" \
+  -d '{ "amount": "5000", "currency": "SGD", "bank": "BCA", "intent_id" : "AZ0001", "notify_url" : "https://mysite.com/topup_notification"}'  
+```
+
+> Response:
+
+```json
+{
+  "id": "6f5f85859a51cd08c8ae113412bb72c8",
+  "intent_id" : "AZ0001",
+  "amount" : "5000", 
+  "currency", "IDR",
+  "amount_to_transfer" : "4999",
+  "bank_name" : "Bank Central Asia",
+  "bank_abbrev" : "BCA",
+  "account_name" : "Xveria Media Indonesia",
+  "bank_account_no" : "0124121241",
+  "notify_url" : "https://mysite.com/topup_notification",
+  "expire_at" : "2016-09-09T17:55:51Z",
+  "status" : "pending"
+}
+```
+The following request will allow you to create a intent for a transfer and register a callback notification once a transfer has be received or expired(all intents expires in 24 hours.)
+
+User should be prompted to transfer `amount_to_transfer` amount to the `bank_account_no` and `bank_name` provided.
+
+`POST https://sandbox.xfers.io/api/v3/intents`
+
+<aside class="warning">
+You cannot create more than 3 intents per user(previous old pending intents will automatically be cancelled) and intent of the same amount will be ignored.
+</aside>
+
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+amount | float | required | Amount that user intent to transfer | 5000
+currency | string | required | 3-letter ISO code for currency | IDR
+bank | string | required | bank abbreviation (Refer to [supported banks](/docs/#supported-banks)) | BCA
+intent_id | string | required | Unique ref no provided by merchant. This will need to be unique or the intent request will be considered a duplicate and ignored. | AZ0001
+notify_url | string | optional | URL to receive callback notifications when transfer is received	 | https://mysite.com/payment_notification
+
+### Intent Notifications
+
+After intent has been verified(transfer processed)/expired by Xfers, Xfers will send a callback to the `notify_url` you provided. This is a server to server HTTPS POST and you will need to acknowledge the callback by providing a HTTP 200 status.
+
+`POST https://mysite.com/topup_notification`
+
+The following parameters will be part of the HTTPS POST:
+
+Name | Type | Description | Value
+---- | ---- | -------- | -----------
+txn_id | string | Xfers's id unique to each intent| 6f5f85859a51cd08c8ae113412bb72c8
+intent_id | string | Unique ref no provided by your during your intent call | A012312
+amount | float | 3000 | Amount that user intented to transfer.
+currency | string | required | 3-letter ISO code for currency | SGD
+status | string | Transfer status. | "expired" or "completed"
+
+
+### Cancel a Intent
+```shell
+curl "https://sandbox.xfers.io/api/v3/intent/<INTENT_ID>/cancel" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -X POST
+```
+
+> Response:
+
+```json
+{
+  "id": "6f5f85859a51cd08c8ae113412bb72c8",
+  "intent_id" : "AZ0001",
+  "amount" : "5000", 
+  "currency" : "IDR", 
+  "amount_to_transfer" : "4999",
+  "bank_name" : "Bank Central Asia",
+  "bank_abbrev" : "BCA",
+  "account_name" : "Xveria Media Indonesia",
+  "bank_account_no" : "0124121241",
+  "notify_url" : "https://mysite.com/topup_notification",
+  "expire_at" : "2016-09-09T17:55:51Z",
+  "status" : "pending"
+}
+```
+Cancelling a intent that has been previously created by not yet completed.
+
+
+#### HTTPS Request
+`POST https://sandbox.xfers.io/api/v3/intent/<INTENT_ID>/cancel`
+
+### List all Intents
+```shell
+curl "https://sandbox.xfers.io/api/v3/intents" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
+
+> Response:
+
+```json
+[
+  {
+    "id": "6f5f85859a51cd08c8ae113412bb72c8",
+    "intent_id" : "AZ0002",
+    "amount" : "4000",
+    "currency" : "IDR",
+    "amount_to_transfer" : "3999",
+    "bank_name" : "Bank Central Asia",
+    "bank_abbrev" : "BCA",
+    "account_name" : "Xveria Media Indonesia",
+    "bank_account_no" : "0124121241",
+    "notify_url" : "https://mysite.com/topup_notification",
+    "expire_at" : "2016-09-09T17:55:51Z",
+    "status" : "pending"
+  },
+  {
+    "id": "d08c8ae113412bb72c86f5f85859a51c",
+    "intent_id" : "AZ0001",
+    "amount" : "5000",
+    "currency" : "IDR",
+    "amount_to_transfer" : "4999",
+    "bank_name" : "Bank Central Asia",
+    "bank_abbrev" : "BCA",
+    "account_name" : "Xveria Media Indonesia",
+    "bank_account_no" : "0124121241",
+    "notify_url" : "https://mysite.com/topup_notification",
+    "expire_at" : "2016-09-09T14:55:51Z",
+    "status" : "pending"
+  }  
+]
+```
+
+Returns a list of intents you've previously created. The intents are returned in sorted order, with the most recent intents appearing first.
+
+#### HTTPS Request
+`GET https://sandbox.xfers.io/api/v3/intents`
+
 
 # Xfers Connect
 
