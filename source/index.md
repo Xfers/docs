@@ -1426,7 +1426,7 @@ You cannot create more than 3 intents per user(previous old pending intents will
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 amount | float | required | Amount that user intent to transfer | 5000
-currency | string | required | 3-letter ISO code for currency | IDR
+currency | string | required | 3-letter ISO code for currency(IDR/SGD)
 bank | string | required | bank abbreviation (Refer to [supported banks](/docs/#supported-banks)) | BCA
 request_id | string | required | Unique ref no provided by requester. This will need to be unique or the intent request will be considered a duplicate and ignored. | AZ0001
 notify_url | string | optional | URL to receive callback notifications when transfer is received	 | https://mysite.com/payment_notification
@@ -1444,7 +1444,7 @@ Name | Type | Description | Value
 intent_id | string | Xfers's id unique to each intent| 6f5f85859a51cd08c8ae113412bb72c8
 request_id | string | Unique ref no provided by your during your intent call | A012312
 amount | float | 3000 | Amount that user intented to transfer.
-currency | string | required | 3-letter ISO code for currency | SGD
+currency | string | required | 3-letter ISO code for currency(IDR/SGD)
 status | string | Transfer status. | "expired" or "completed"
 
 
