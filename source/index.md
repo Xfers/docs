@@ -1400,7 +1400,7 @@ curl "https://sandbox.xfers.io/api/v3/intents" \
   "intent_id" : "AZ0001",
   "amount" : "5000", 
   "currency" : "IDR",
-  "amount_to_transfer" : "4999",
+  "unique_amount" : "4999",
   "bank_name" : "Bank Central Asia",
   "bank_abbrev" : "BCA",
   "account_name" : "Xveria Media Indonesia",
@@ -1412,7 +1412,7 @@ curl "https://sandbox.xfers.io/api/v3/intents" \
 ```
 The following request will allow you to create a intent for a transfer and register a callback notification once a transfer has be received or expired(all intents expires in 24 hours.)
 
-User should be prompted to transfer `amount_to_transfer` amount to the `bank_account_no` and `bank_name` provided.
+User should be prompted to transfer `unique_amount` amount to the `bank_account_no` and `bank_name` provided.
 
 `POST https://sandbox.xfers.io/api/v3/intents`
 
