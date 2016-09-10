@@ -1397,7 +1397,7 @@ curl "https://sandbox.xfers.io/api/v3/intents" \
 ```json
 {
   "id": "6f5f85859a51cd08c8ae113412bb72c8",
-  "intent_id" : "AZ0001",
+  "request_id" : "AZ0001",
   "amount" : "5000", 
   "currency" : "IDR",
   "unique_amount" : "4999",
@@ -1428,7 +1428,7 @@ Name | Type | Required | Description | Value
 amount | float | required | Amount that user intent to transfer | 5000
 currency | string | required | 3-letter ISO code for currency | IDR
 bank | string | required | bank abbreviation (Refer to [supported banks](/docs/#supported-banks)) | BCA
-intent_id | string | required | Unique ref no provided by merchant. This will need to be unique or the intent request will be considered a duplicate and ignored. | AZ0001
+request_id | string | required | Unique ref no provided by requester. This will need to be unique or the intent request will be considered a duplicate and ignored. | AZ0001
 notify_url | string | optional | URL to receive callback notifications when transfer is received	 | https://mysite.com/payment_notification
 
 ### Intent Notifications
@@ -1441,8 +1441,8 @@ The following parameters will be part of the HTTPS POST:
 
 Name | Type | Description | Value
 ---- | ---- | -------- | -----------
-txn_id | string | Xfers's id unique to each intent| 6f5f85859a51cd08c8ae113412bb72c8
-intent_id | string | Unique ref no provided by your during your intent call | A012312
+intent_id | string | Xfers's id unique to each intent| 6f5f85859a51cd08c8ae113412bb72c8
+request_id | string | Unique ref no provided by your during your intent call | A012312
 amount | float | 3000 | Amount that user intented to transfer.
 currency | string | required | 3-letter ISO code for currency | SGD
 status | string | Transfer status. | "expired" or "completed"
@@ -1460,7 +1460,7 @@ curl "https://sandbox.xfers.io/api/v3/intent/<INTENT_ID>/cancel" \
 ```json
 {
   "id": "6f5f85859a51cd08c8ae113412bb72c8",
-  "intent_id" : "AZ0001",
+  "request_id" : "AZ0001",
   "amount" : "5000", 
   "currency" : "IDR", 
   "amount_to_transfer" : "4999",
@@ -1491,7 +1491,7 @@ curl "https://sandbox.xfers.io/api/v3/intents" \
 [
   {
     "id": "6f5f85859a51cd08c8ae113412bb72c8",
-    "intent_id" : "AZ0002",
+    "request_id" : "AZ0002",
     "amount" : "4000",
     "currency" : "IDR",
     "amount_to_transfer" : "3999",
@@ -1505,7 +1505,7 @@ curl "https://sandbox.xfers.io/api/v3/intents" \
   },
   {
     "id": "d08c8ae113412bb72c86f5f85859a51c",
-    "intent_id" : "AZ0001",
+    "request_id" : "AZ0001",
     "amount" : "5000",
     "currency" : "IDR",
     "amount_to_transfer" : "4999",
