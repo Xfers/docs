@@ -2152,7 +2152,7 @@ If both bank details and recipient informations are provided, we will credit the
   </span><span class="s2">"intent_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0001"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"amount_to_transfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4999"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"unique_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4999"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bank_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Central Asia"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BCA"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"account_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Xveria Media Indonesia"</span><span class="p">,</span><span class="w">
@@ -2165,7 +2165,7 @@ If both bank details and recipient informations are provided, we will credit the
 
 <p>The following request will allow you to create a intent for a transfer and register a callback notification once a transfer has be received or expired(all intents expires in 24 hours.)</p>
 
-<p>User should be prompted to transfer <code class="prettyprint">amount_to_transfer</code> amount to the <code class="prettyprint">bank_account_no</code> and <code class="prettyprint">bank_name</code> provided.</p>
+<p>User should be prompted to transfer <code class="prettyprint">unique_amount</code> amount to the <code class="prettyprint">bank_account_no</code> and <code class="prettyprint">bank_name</code> provided.</p>
 
 <p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/intents</code></p>
 
