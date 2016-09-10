@@ -2149,7 +2149,7 @@ If both bank details and recipient informations are provided, we will credit the
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6f5f85859a51cd08c8ae113412bb72c8"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"intent_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0001"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"request_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0001"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"unique_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4999"</span><span class="p">,</span><span class="w">
@@ -2206,10 +2206,10 @@ You cannot create more than 3 intents per user(previous old pending intents will
 <td>BCA</td>
 </tr>
 <tr>
-<td>intent_id</td>
+<td>request_id</td>
 <td>string</td>
 <td>required</td>
-<td>Unique ref no provided by merchant. This will need to be unique or the intent request will be considered a duplicate and ignored.</td>
+<td>Unique ref no provided by requester. This will need to be unique or the intent request will be considered a duplicate and ignored.</td>
 <td>AZ0001</td>
 </tr>
 <tr>
@@ -2238,13 +2238,13 @@ You cannot create more than 3 intents per user(previous old pending intents will
 </tr>
 </thead><tbody>
 <tr>
-<td>txn_id</td>
+<td>intent_id</td>
 <td>string</td>
 <td>Xfers&rsquo;s id unique to each intent</td>
 <td>6f5f85859a51cd08c8ae113412bb72c8</td>
 </tr>
 <tr>
-<td>intent_id</td>
+<td>request_id</td>
 <td>string</td>
 <td>Unique ref no provided by your during your intent call</td>
 <td>A012312</td>
@@ -2280,7 +2280,7 @@ You cannot create more than 3 intents per user(previous old pending intents will
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6f5f85859a51cd08c8ae113412bb72c8"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"intent_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0001"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"request_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0001"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"amount_to_transfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4999"</span><span class="p">,</span><span class="w">
@@ -2311,7 +2311,7 @@ You cannot create more than 3 intents per user(previous old pending intents will
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6f5f85859a51cd08c8ae113412bb72c8"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"intent_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0002"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"request_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0002"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4000"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"amount_to_transfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3999"</span><span class="p">,</span><span class="w">
@@ -2325,7 +2325,7 @@ You cannot create more than 3 intents per user(previous old pending intents will
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d08c8ae113412bb72c86f5f85859a51c"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"intent_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0001"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"request_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0001"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"amount_to_transfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4999"</span><span class="p">,</span><span class="w">
