@@ -1406,7 +1406,7 @@ curl "https://sandbox.xfers.io/api/v3/intents" \
   "account_name" : "Xveria Media Indonesia",
   "bank_account_no" : "0124121241",
   "notify_url" : "https://mysite.com/topup_notification",
-  "expire_at" : "2016-09-09T17:55:51Z",
+  "expiration_date" : "2016-09-09T17:55:51Z",
   "status" : "pending"
 }
 ```
@@ -1469,7 +1469,7 @@ curl "https://sandbox.xfers.io/api/v3/intent/<INTENT_ID>/cancel" \
   "account_name" : "Xveria Media Indonesia",
   "bank_account_no" : "0124121241",
   "notify_url" : "https://mysite.com/topup_notification",
-  "expire_at" : "2016-09-09T17:55:51Z",
+  "expiration_date" : "2016-09-09T17:55:51Z",
   "status" : "pending"
 }
 ```
@@ -1500,7 +1500,7 @@ curl "https://sandbox.xfers.io/api/v3/intents" \
     "account_name" : "Xveria Media Indonesia",
     "bank_account_no" : "0124121241",
     "notify_url" : "https://mysite.com/topup_notification",
-    "expire_at" : "2016-09-09T17:55:51Z",
+    "expiration_date" : "2016-09-09T17:55:51Z",
     "status" : "pending"
   },
   {
@@ -1514,7 +1514,7 @@ curl "https://sandbox.xfers.io/api/v3/intents" \
     "account_name" : "Xveria Media Indonesia",
     "bank_account_no" : "0124121241",
     "notify_url" : "https://mysite.com/topup_notification",
-    "expire_at" : "2016-09-09T14:55:51Z",
+    "expiration_date" : "2016-09-09T14:55:51Z",
     "status" : "pending"
   }  
 ]
