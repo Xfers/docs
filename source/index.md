@@ -246,7 +246,7 @@ meta_data| string | optional | Additional data like Jumio info dump.
 
 
 <aside class="notice">
-All documents are limited to a maximum of 10MB per file.
+All documents/images provided should not exceed 10MB per file.
 </aside>
 
 
