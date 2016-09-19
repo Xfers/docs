@@ -232,11 +232,22 @@ nationality | string | optional | Account holder nationality | Singaporean
 postal_code | string | optional | Address postal code | 640212
 identity_no | string | optional | Account holder national identity no | s841212318g
 country | string | optional | Account holder country of residence| Singapore
+annual_income | integer | optional | Annual income of user in the local currency (SGD/IDR) | 60000
 id_front_url | string | optional | URL storing the front image of user identity card
 id_back_url | string | optional | URL storing the back image of user identity card
 selfie_2id_url | string | optional | URL storing the selfie of user holding their id card or a second form of id like driving license or passport
 proof_of_address_url | string | optional | URL storing the image/pdf of proof of address document of user like bank statement or telco bill. For business, please provide your Arca Bizfile.
+support_document_1 | string | optional | URL storing the image/pdf of support documents like proof of user income
+support_document_2 | string | optional | URL storing the image/pdf of support documents like proof of user income
+support_document_3 | string | optional | URL storing the image/pdf of support documents like proof of user income
+support_document_4 | string | optional | URL storing the image/pdf of support documents like proof of user income
+support_document_5 | string | optional | URL storing the image/pdf of support documents like proof of user income
 meta_data| string | optional | Additional data like Jumio info dump.
+
+
+<aside class="notice">
+All documents are limited to a maximum of 10MB per file.
+</aside>
 
 
 ### Get Account Activities
