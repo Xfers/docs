@@ -190,11 +190,17 @@ curl "https://sandbox.xfers.io/api/v3/user" \
   "postal_code" : "340712",
   "identity_no" : "s86917127G",
   "country" : "sg",
+  "annunal_income" : "60000",
   "email" : "tianyao@example.com",
   "id_front" : "nricFrontPlaceholder.png",
   "id_back" : "nricBackPlaceholder.png",
   "selfie_2id" : "nricSelfiePlaceholder.png",
   "proof_of_address" : "nricDocumentPlaceholder.png",
+  "support_document_1", : "supportDocumentPlaceholder",
+  "support_document_2", : "supportDocumentPlaceholder",
+  "support_document_3", : "supportDocumentPlaceholder",
+  "support_document_4", : "supportDocumentPlaceholder",
+  "support_document_5", : "supportDocumentPlaceholder",
   "phone_no" : "+6597288608",
   "bank_accounts" : [
     {
@@ -237,11 +243,11 @@ id_front_url | string | optional | URL storing the front image of user identity 
 id_back_url | string | optional | URL storing the back image of user identity card
 selfie_2id_url | string | optional | URL storing the selfie of user holding their id card or a second form of id like driving license or passport
 proof_of_address_url | string | optional | URL storing the image/pdf of proof of address document of user like bank statement or telco bill. For business, please provide your Arca Bizfile.
-support_document_1 | string | optional | URL storing the image/pdf of support documents like proof of user income
-support_document_2 | string | optional | URL storing the image/pdf of support documents like proof of user income
-support_document_3 | string | optional | URL storing the image/pdf of support documents like proof of user income
-support_document_4 | string | optional | URL storing the image/pdf of support documents like proof of user income
-support_document_5 | string | optional | URL storing the image/pdf of support documents like proof of user income
+support_document_1_url | string | optional | URL storing the image/pdf of support documents like proof of user income
+support_document_2_url | string | optional | URL storing the image/pdf of support documents like proof of user income
+support_document_3_url | string | optional | URL storing the image/pdf of support documents like proof of user income
+support_document_4_url | string | optional | URL storing the image/pdf of support documents like proof of user income
+support_document_5_url | string | optional | URL storing the image/pdf of support documents like proof of user income
 meta_data| string | optional | Additional data like Jumio info dump.
 
 
