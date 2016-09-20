@@ -196,11 +196,11 @@ curl "https://sandbox.xfers.io/api/v3/user" \
   "id_back" : "nricBackPlaceholder.png",
   "selfie_2id" : "nricSelfiePlaceholder.png",
   "proof_of_address" : "nricDocumentPlaceholder.png",
-  "support_document_1", : "supportDocumentPlaceholder",
-  "support_document_2", : "supportDocumentPlaceholder",
-  "support_document_3", : "supportDocumentPlaceholder",
-  "support_document_4", : "supportDocumentPlaceholder",
-  "support_document_5", : "supportDocumentPlaceholder",
+  "support_document_1" : "supportDocumentPlaceholder",
+  "support_document_2" : "supportDocumentPlaceholder",
+  "support_document_3" : "supportDocumentPlaceholder",
+  "support_document_4" : "supportDocumentPlaceholder",
+  "support_document_5" : "supportDocumentPlaceholder",
   "phone_no" : "+6597288608",
   "bank_accounts" : [
     {
