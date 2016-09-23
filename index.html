@@ -2217,12 +2217,12 @@ If both bank details and recipient informations are provided, we will credit the
 
 <p>The following request will allow you to create a intent for a transfer and register a callback notification once a transfer has be received or expired(all intents expires in 24 hours.)</p>
 
-<p>User should be prompted to transfer <code class="prettyprint">unique_amount</code> amount to the <code class="prettyprint">bank_account_no</code> and <code class="prettyprint">bank_name</code> provided.</p>
+<p>User should be prompted to transfer <code class="prettyprint">unique_amount</code> amount to the <code class="prettyprint">bank_account_no</code> and <code class="prettyprint">bank_name</code> provided.  Once the user deposits with <code class="prettyprint">unique_amount</code>, the full amount will be credited to his account.</p>
 
 <p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/intents</code></p>
 
 <aside class="warning">
-You cannot create more than 3 intents per user(previous old pending intents will automatically be cancelled) and intent of the same amount will be ignored.
+You cannot create more than 1 intents per user(previous old pending intents will automatically be cancelled).
 </aside>
 
 <h4 id="url-parameters">URL Parameters</h4>
@@ -2352,7 +2352,7 @@ You cannot create more than 3 intents per user(previous old pending intents will
 
 <p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/intent/&lt;INTENT_ID&gt;/cancel</code></p>
 
-<h3 id="list-all-intents">List all Intents</h3>
+<h3 id="list-current-intent">List current Intent</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/intents"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
 </code></pre>
@@ -2360,39 +2360,24 @@ You cannot create more than 3 intents per user(previous old pending intents will
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6f5f85859a51cd08c8ae113412bb72c8"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"request_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0002"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount_to_transfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3999"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bank_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Central Asia"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BCA"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"account_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Xveria Media Indonesia"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0124121241"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"notify_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/topup_notification"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"expiration_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-09-09T17:55:51Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d08c8ae113412bb72c86f5f85859a51c"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"request_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0001"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount_to_transfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4999"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bank_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Central Asia"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BCA"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"account_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Xveria Media Indonesia"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0124121241"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"notify_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/topup_notification"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"expiration_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-09-09T14:55:51Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="w">
-  </span><span class="p">}</span><span class="w">  
-</span><span class="p">]</span><span class="w">
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6f5f85859a51cd08c8ae113412bb72c8"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"request_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0002"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount_to_transfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3999"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bank_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Central Asia"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BCA"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"account_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Xveria Media Indonesia"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0124121241"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"notify_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/topup_notification"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expiration_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-09-09T17:55:51Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Returns a list of intents you&rsquo;ve previously created. The intents are returned in sorted order, with the most recent intents appearing first.</p>
+<p>Returns the current pending intent of the user.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
