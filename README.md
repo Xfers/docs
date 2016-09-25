@@ -1,12 +1,11 @@
 
 [Click here to go to the docs page](http://xfers.github.io/docs)
 
+**Please leave a blank line after headings in slate like `###` to prevent buggy behaviour when clicking the left sidebar**
 ====
 
 Slate
 ========
-
-[![Build Status](https://travis-ci.org/tripit/slate.svg?branch=master)](https://travis-ci.org/tripit/slate) [![Dependency Status](https://gemnasium.com/tripit/slate.png)](https://gemnasium.com/tripit/slate)
 
 Slate helps you create beautiful API documentation. Think of it as an intelligent, responsive documentation template for your API.
 

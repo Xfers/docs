@@ -3,10 +3,12 @@ title: Xfers API Reference
 
 language_tabs:
   - shell
+  - php
 
 toc_footers:
   - <a href='https://www.xfers.io/account_registration'>Sign Up for a Developer Key</a>
   - <a href="mailto:support@xfers.io">Need help? Email us</a>
+  - <a href='https://github.com/Xfers'>SDKs</a>
 
 includes:
   - errors
@@ -26,11 +28,26 @@ You will make use of the Xfers Core API to manage your own account programmatica
 **Xfers Connect** is for accepting payments on behalf of others, think of this as a super user that can manage and 
 create accounts on the behalf of others. 
 
+**Official SDKs** for the Xfers API are [available in several languages](https://github.com/Xfers).
+
 
 # APIs endpoints
 
 Xfers provides a **dedicated sandbox environment** where you can simulate an incoming bank transfer for testing purposes. 
 Note that this feature will not be available in production mode. 
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+# SG: Singapore
+# ID: Indonesia
+# Set one of the following endpoints below:
+\Xfers\Xfers::setSGProduction();
+\Xfers\Xfers::setSGSandbox();
+\Xfers\Xfers::setIDProduction();
+\Xfers\Xfers::setIDSandbox();
+```
 
 For testing purposes, we highly recommend that your head over to [sandbox.xfers.io](https://sandbox.xfers.io) and create a sandbox account.
 
@@ -46,6 +63,7 @@ To switch to production, point to our production API endpoint at:
 Singapore: `https://www.xfers.io/api/v3`
 
 Indonesia: `https://id.xfers.com/api/v3`
+
 
 <aside class="notice">
 Sandbox and Production are two separate environments. Please ensure your register for an account at EACH environment and use their individual API Key.
@@ -67,12 +85,20 @@ You will make use of the Xfers Core API to manage your own account programmatica
 
 ## Authentication
 
-> Simple Authentication Ping Test
+> Setting API keys
 
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "https://sandbox.xfers.io/api/v3/authorize/hello" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc');
+\Xfers\Xfers::setSGSandbox();
 ```
 
 > Make sure to replace `FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc` with your own API key.
@@ -83,13 +109,6 @@ Xfers expects the API key to be included in the header of all API requests to th
 
 `X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc`
 
-> The above command returns JSON structured like this on success:
-
-```json
-  {
-    "msg": "Hello world"
-  }
-```
 
 #### HTTPS Request
 
@@ -112,6 +131,16 @@ The account info API supports querying and making changes to a User's account.
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+$resp = \Xfers\User::retrieve();
+print_r($resp);
 ```
 
 > Response:
@@ -165,12 +194,32 @@ name and bank account information.
 `GET https://sandbox.xfers.io/api/v3/user`
 
 ### Update Account Info
+
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
   -X PUT \
   -d '{"first_name": "wenbin", "last_name": "tay", "address_line_1": "Blk 712 loyang Avenue 5", "address_line_2": "#01-41", "nationality": "Singaporean", "postal_code": "340712", "identity_no": "s86917127G", "country": "sg"}'
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+$resp = \Xfers\User::update(array(
+    'first_name' => 'wenbin',
+    'last_name' => 'tay',
+    'address_line_1' => 'Blk 712 loyang Avenue 5',
+    'address_line_2' => '#01-41',
+    'nationality' => 'Singaporean',
+    'postal_code' => '340712',
+    'identity_no' => 's86917127G',
+    'country' => 'sg'
+));
+print_r($resp);
 ```
 
 > Response:
@@ -265,6 +314,16 @@ curl "https://sandbox.xfers.io/api/v3/user/activities" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+$resp = \Xfers\User::activities();
+print_r($resp);
+```
+
 > Response:
 
 ```json
@@ -319,6 +378,44 @@ This endpoint return information related to your account activites such as the t
 
 `GET https://sandbox.xfers.io/api/v3/user/activities`
 
+### Get Transfer Info
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/user/transfer_info" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+$resp = \Xfers\User::transferInfo();
+print_r($resp);
+```
+
+> Response:
+
+```json
+{
+  "bank_name_full" : "Oversea Chinese Banking Corporation",
+  "bank_name_abbreviation" : "OCBC",
+  "bank_account_no" : "646004424001",
+  "bank_code" : "7339",
+  "branch_code" : "646",
+  "branch_area" : "Jurong East",
+  "unique_id" : "97288607"
+}
+```
+
+This will return transfer in info specific to the user.
+
+#### HTTPS Request
+
+`GET https://sandbox.xfers.io/api/v3/user/transfer_info`
+
+
 ### Register Updates Callback - Coming soon
 
 ```shell
@@ -357,6 +454,7 @@ meta_data | string | optional | A set of key/value pairs that you can attach to 
 
 
 ### Updates Callback Notifications - Coming soon
+
 After registering for a account callback notifications. Whenever they are any account changes(like a change in account balances), Xfers will send a callback to the `callback_url` you previously provided. This is a server to server HTTPS/HTTP POST and you will need to acknowledge the callback by providing a HTTP 200 status.
 
 `POST https://www.example.com/updates`
@@ -443,11 +541,27 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account" \
   -d '{"account_no": "03931234323", "bank":"DBS"}'
 ```
 
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+try {
+    $resp = \Xfers\BankAccount::add(array(
+        'account_no' => '03931234323',
+        'bank' => 'DBS'
+    ));
+    print_r($resp);
+} catch (\Xfers\Error\InvalidRequest $e) {
+    echo 'Caught invalid request exception: ', $e->getMessage(), "\n";
+}
+```
+
 > Response:
 
 ```json
-{
-  "bank_accounts" : [
+[
     {
        "id" : "12312",
        "account_no" : "039-312-3432-3",
@@ -458,8 +572,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account" \
        "account_no" : "129-880-1251-1",
        "bank_abbrev" : "OCBC"
     }
-  ]
-}
+]
 ```
 
 This request will add a new bank account to this Xfers account. You will be able to withdraw your Xfers available balances to these account(s).
@@ -469,24 +582,43 @@ This request will add a new bank account to this Xfers account. You will be able
 
 `POST https://sandbox.xfers.io/api/v3/user/bank_account`
 
+#### Response
+
+List of all bank accounts belonging to user.
+
+
 #### URL Parameters
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 account_no | string | optional | bank account no | 03931234323
-bank | string | optional | bank abbreviation (Refer to [supported banks](/docs/#supported-banks)) | DBS
+bank | string | optional | bank abbreviation (Refer to supported banks in [Singapore](?shell/#supported-banks(singapore)) or [Indonesia](?shell/#supported-banks(indonesia))) | DBS
 
 ### List Bank Accounts
+
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/bank_account" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+try {
+    $resp = \Xfers\BankAccount::retrieve();
+    print_r($resp);
+} catch (\Xfers\Error\InvalidRequest $e) {
+    echo 'Caught invalid request exception: ', $e->getMessage(), "\n";
+}
+```
+
 > Response:
 
 ```json
-{
-  "bank_accounts" : [
+[
     {
        "id" : "12312",
        "account_no" : "039-312-3432-3",
@@ -497,8 +629,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account" \
        "account_no" : "129-880-1251-1",
        "bank_abbrev" : "OCBC"
     }
-  ]
-}
+]
 ```
 
 This will list all bank accounts belonging to the user.
@@ -517,11 +648,27 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>" \
   -d '{"account_no": "03931234321", "bank":"DBS"}'
 ```
 
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+try {
+    $resp = \Xfers\BankAccount::update('<bank_account_id>', array(
+        'account_no' => '03931234321',
+        'bank' => 'DBS'
+    ));
+    print_r($resp);
+} catch (\Xfers\Error\InvalidRequest $e) {
+    echo 'Caught invalid request exception: ', $e->getMessage(), "\n";
+}
+```
+
 > Response:
 
 ```json
-{
-  "bank_accounts" : [
+[
     {
        "id" : "12312",
        "account_no" : "039-312-3432-1",
@@ -532,8 +679,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>" \
        "account_no" : "129-880-1251-1",
        "bank_abbrev" : "OCBC"
     }
-  ]
-}
+]
 ```
 
 This request allow you to update an existing bank account record. 
@@ -541,6 +687,11 @@ This request allow you to update an existing bank account record.
 #### HTTPS Request
 
 `PUT https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>`
+
+#### Response
+
+List of all bank accounts belonging to user.
+
 
 #### URL Parameters
 
@@ -557,18 +708,30 @@ curl -X DELETE "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+try {
+    $resp = \Xfers\BankAccount::delete('<bank_account_id>');
+    print_r($resp);
+} catch (\Xfers\Error\InvalidRequest $e) {
+    echo 'Caught invalid request exception: ', $e->getMessage(), "\n";
+}
+```
+
 > Response:
 
 ```json
-{
-  "bank_accounts" : [
+[
     {
        "id" : "12312",
        "account_no" : "039-312-3432-1",
        "bank_abbrev" : "DBS"
     }
-  ]
-}
+]
 ```
 
 This request allow you to delete an existing bank account record. 
@@ -576,6 +739,10 @@ This request allow you to delete an existing bank account record.
 #### HTTPS Request
 
 `DELETE https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>`
+
+#### Response
+
+List of all bank accounts belonging to user.
 
 
 ### Submit Withdrawal Request
@@ -585,6 +752,22 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>/withdr
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
   -d '{"amount": "50.0"}'
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+try {
+    $resp = \Xfers\BankAccount::withdraw('<bank_account_id>', array(
+        'amount' => '50.0'
+    ));
+    print_r($resp);
+} catch (\Xfers\Error\InvalidRequest $e) {
+    echo 'Caught invalid request exception: ', $e->getMessage(), "\n";
+}
 ```
 
 > Response:
@@ -631,6 +814,22 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdraw_requests" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+try {
+    $resp = \Xfers\BankAccount::withdrawalRequests(array(
+        'filter' => 'pending'
+    ));
+    print_r($resp);
+} catch (\Xfers\Error\InvalidRequest $e) {
+    echo 'Caught invalid request exception: ', $e->getMessage(), "\n";
+}
+```
+
 > Response:
 
 ```json
@@ -674,40 +873,13 @@ filter | string | optional | filter by [withdrawal status](/docs/#withdrawal-sta
 
 
 ##### Withdrawal Status
+
 Name | Description
 ---- | ------------
 unverified | Withdrawal request is awaiting confirmations
 pending | Withdrawal request is being process now.
 paid | Withdrawal request has been processed and completed.
 cancelled | Withdrawal request has been cancelled.
-
-### Get Transfer Info
-
-```shell
-curl "https://sandbox.xfers.io/api/v3/user/transfer_info" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
-```
-
-> Response:
-
-```json
-{
-  "bank_name_full" : "Oversea Chinese Banking Corporation",
-  "bank_name_abbreviation" : "OCBC",
-  "bank_account_no" : "646004424001",
-  "bank_code" : "7339",
-  "branch_code" : "646",
-  "branch_area" : "Jurong East",
-  "unique_id" : "97288607"
-}
-```
-
-This will return transfer in info specific to the user.
-
-#### HTTPS Request
-
-`GET https://sandbox.xfers.io/api/v3/user/transfer_info`
-
 
 ## Charges
 
@@ -720,6 +892,45 @@ curl "https://sandbox.xfers.io/api/v3/charges" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
   -d '{ "amount": "9.99", "currency": "SGD", "redirect": "false", "notify_url": "https://mysite.com/payment_notification", "return_url": "https://mysite.com/return", "cancel_url": "https://mysite.com/cancel", "order_id": "AZ9912", "description":"unused red dress", "shipping": "2.50", "tax": "0.0", "items" : [{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}], "meta_data": {"firstname":"Tianwei", "lastname":"Liu"}}'
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('Vsya_qc5KjiUGK3xyKRgmhb2Atir2wAyizqssRuYJYw');
+\Xfers\Xfers::setSGSandbox();
+try {
+    $items = array();
+    $item =  array(
+      'description' => 'Red dress Size M',
+      'price' => '9.99',
+      'quantity' => '1',
+      'name' => 'Red dress'
+    );
+    array_push($items, $item);
+
+    $meta_data = array(
+      'firstname' => 'Tianwei',
+      'lastname' => 'Liu'
+      );
+    $resp = \Xfers\Charge::create(array(
+        'amount' => '9.99',
+        'currency' => 'SGD',
+        'notify_url' => 'https://mysite.com/payment_notification',
+        'return_url' => 'https://mysite.com/return',
+        'cancel_url' => 'https://mysite.com/cancel',
+        'order_id' => 'AZ9912',
+        'description' => 'unused red dress',
+        'shipping' => '2.50',
+        'tax' => '0.0',
+        'items' => json_encode($items),
+        'meta_data' => $meta_data
+    ));
+    print_r($resp);
+} catch (\Xfers\Error\InvalidRequest $e) {
+    echo 'Caught InvalidRequest exception: ', $e->getMessage(), "\n";
+}
 ```
 
 > Response:
@@ -812,6 +1023,7 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 </aside>
 
 #### meta data
+
 You can use the `meta_data` parameter to attach json data. This is useful for storing additional structured information about the charge. As an example, you could store your user's first name, last name or any corresponding unique identifier from your system a Xfers charge. 
 
 The description and meta_data you specify is returned in API responses.
@@ -833,6 +1045,7 @@ You should always provide customer's firstname and lastname information whenever
 
 
 ### Payment Cancellation
+
 If customer cancels the transaction during Xfers' checkout flow, he will be redirected back to the `cancel_url` you provided. The `order_id` you provided in the charge call will also be part of the GET request as shown:
 
 `GET https://mysite.com/cancel?order_id=<order_id>`
@@ -866,11 +1079,31 @@ status | string | Payment status. | "cancelled" or "paid" or "expired"
 meta_data | string | meta data previous provided in your charge call. | "{'first_name' : 'Tianwei', 'last_name' : 'Liu'}"
 
 ### Verification of Notifications
+
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<txn_id>/validate" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
   -d '{"total_amount": "24.99", "currency": "SGD", "order_id": "A012312", "status": "paid"}'
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+try {
+    $resp = \Xfers\Charge::validate("<txn_id>", array(
+        'order_id' => 'A012312',
+        'total_amount' => '24.99',
+        'status' => 'paid',
+        'currency' => 'SGD'
+    ));
+    print_r($resp);
+} catch (\Xfers\Error\Api $e) {
+    echo 'Caught Api exception: ', $e->getMessage(), "\n";
+}
 ```
 
 > Response:
@@ -887,9 +1120,11 @@ Xfers will response with HTTP 200 status and a JSON string { "msg": "VERIFIED" }
 
 
 #### HTTPS Request
+
 `POST https://sandbox.xfers.io/api/v3/charges/<id>/validate`
 
 #### URL Parameters
+
 Name | Type | Description | Value
 ---- | ---- | -------- | -----------
 order_id | string | Unique ref no provided by your during your charge call | A012312
@@ -906,6 +1141,7 @@ By default, its funds(minus our fees) will be "withheld" by Xfers for another 10
 
 
 ### Authorize a Charge
+
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<id>/authorize" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
@@ -958,18 +1194,35 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>/authorize" \
 Authorize a previously created charge. This is an optional process that will allow buyer to skip the sign in flow on Xfers, allowing checkout to be completed on merchant site. If an correct auth_code is provided, the charge will immediately become "accepted" by the buyer.
 
 #### HTTPS Request
+
 `POST https://sandbox.xfers.io/api/v3/charges/<id>/authorize`
 
 #### URL Parameters
+
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | -------- | -----------
 auth_code | string | Required | PIN code provided to the buyer | 512312
 
 ### Cancel a Charge
+
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<CHARGE_ID>/cancel" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
   -X POST
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+try {
+    $resp = \Xfers\Charge::cancel("<CHARGE_ID>");
+    print_r($resp);
+} catch (\Xfers\Error\InvalidRequest $e) {
+    echo 'Caught InvalidRequest exception: ', $e->getMessage(), "\n";
+}
 ```
 
 > Response:
@@ -1014,15 +1267,33 @@ Cancelling a charge that has been previously created by not yet paid. To refund 
 
 
 #### HTTPS Request
+
 `POST https://sandbox.xfers.io/api/v3/charges/<CHARGE_ID>/cancel`
 
 
 ### Settle a Charge
+
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
   -d '{"settlement_code": "512312"}'
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+try {
+    $resp = \Xfers\Charge::settle("<id>", array(
+        'settlement_code' => '512312'
+      ));
+    print_r($resp);
+} catch (\Xfers\Error\Api $e) {
+    echo 'Caught Api exception: ', $e->getMessage(), "\n";
+}
 ```
 
 > Response:
@@ -1076,18 +1347,35 @@ If no `settlement_code` was provided, buyer will receive a notifications from Xf
 
 
 #### HTTPS Request
+
 `POST https://sandbox.xfers.io/api/v3/charges/<id>`
 
 #### URL Parameters
+
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | -------- | -----------
 settlement_code | string | Optional | PIN code provided to the buyer | 512312
 
 
 ### Retrieve a Charge
+
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+try {
+    $resp = \Xfers\Charge::retrieve("<id>");
+    print_r($resp);
+} catch (\Xfers\Error\InvalidRequest $e) {
+    echo 'Caught InvalidRequest exception: ', $e->getMessage(), "\n";
+}
 ```
 
 > Response:
@@ -1134,14 +1422,28 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
 Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was returned from your previous request or provide the ORDER_ID that you previous provided in your create charge call, and Xfers will return the corresponding charge information. The same information is returned when creating or refunding the charge.
 
 #### HTTPS Request
+
 `GET https://sandbox.xfers.io/api/v3/charges/<CHARGE_ID or ORDER_ID>`
 
 
 
 ### List all Charges
+
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges?limit=1" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+$resp = \Xfers\Charge::listAll(array(
+    'customer' => '97288608',
+    'limit' => '1'
+));
 ```
 
 > Response:
@@ -1192,9 +1494,11 @@ curl "https://sandbox.xfers.io/api/v3/charges?limit=1" \
 Returns a list of charges you've previously created. The charges are returned in sorted order, with the most recent charges appearing first.
 
 #### HTTPS Request
+
 `GET https://sandbox.xfers.io/api/v3/charges`
 
 #### URL Parameters
+
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 customer | string | optional | Only return charges for the customer specified by this customer ID. | 97288608
@@ -1203,6 +1507,7 @@ limit | integer | optional | A limit on the number of objects to be returned. Li
 starting_after | string | optional | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list. | 7ba1ec6d34f64dc68a030e081c5006dc
 
 ## Payouts
+
 Xfers payout Apis allow you to pay anyone with your Xfers balance via their phone no or email address. A SGD$1.00 fees will be charge to your account on every successful payout. You need to have sufficient available balance in your account to cover the amount + fees required for the payout.
 
 ### Creating a Payout
@@ -1212,6 +1517,28 @@ curl "https://sandbox.xfers.io/api/v3/payouts" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
   -d '{"amount": "150.00", "invoice_id": "AZ0001", "descriptions": "Payment for Rent for July", "recipient": "+6597288608"}'
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+try {
+    $resp = \Xfers\Payout::create(array(
+        'amount' => '150.00',
+        'invoice_id' => 'AZ0001',
+        'descriptions' => 'Payment for Rent for July',
+        'recipient' => '+6597288608'
+    ));
+    print_r($resp);
+    echo $resp["id"] . "\n";
+    echo $resp["recipient"] . "\n";
+    echo $resp["invoice_id"] . "\n";
+} catch (\Xfers\Error\InvalidRequest $e) {
+    echo 'Caught invalid request exception: ', $e->getMessage(), "\n";
+}
 ```
 
 > Response:
@@ -1237,6 +1564,10 @@ If only email/phone no is provided, Xfers will email/SMS the recipient to inform
 If both bank details and recipient informations are provided, we will credit their bank account and send them a notification once their payout has been processed.
 
 Note: If the recipient did not accept the payout within 14 days, the payout will be cancelled and its funds will be return back to your Xfers balances.
+
+<aside class="notice">
+Either the recipient field or the bank_account_no field must be filled in to identify the recipient.
+</aside>
 
 `POST https://sandbox.xfers.io/api/v3/payouts`
 
@@ -1265,9 +1596,24 @@ completed  | Payout has been completed. Existing Xfers user and payout has been 
 
 
 ### Retrieve a Payout
+
 ```shell
 curl "https://sandbox.xfers.io/api/v3/payouts/<id>" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+try {
+    $resp = \Xfers\Payout::retrieve("<id>");
+    print_r($resp);
+} catch (\Xfers\Error\InvalidRequest $e) {
+    echo 'Caught invalid request exception: ', $e->getMessage(), "\n";
+}
 ```
 
 > Response:
@@ -1291,11 +1637,13 @@ curl "https://sandbox.xfers.io/api/v3/payouts/<id>" \
 Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was returned from your previous request, and Xfers will return the corresponding charge information. The same information is returned when creating or refunding the charge.
 
 #### HTTPS Request
+
 `GET https://sandbox.xfers.io/api/v3/payouts/<id>`
 
 The below is a list of payout status and their respective meanings.
 
 ##### Payout Status
+
 Name | Description
 ---- | ------------
 unclaimed | Payout has not been accepted by recipient.
@@ -1304,9 +1652,22 @@ cancelled  | Payout has been cancelled.
 
 
 ### List all Payouts
+
 ```shell
 curl "https://sandbox.xfers.io/api/v3/payouts?limit=1" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+$resp = \Xfers\Payout::listAll(array(
+    'limit' => '1'
+));
+print_r($resp);
 ```
 
 > Response:
@@ -1332,9 +1693,11 @@ curl "https://sandbox.xfers.io/api/v3/payouts?limit=1" \
 Returns a list of payouts you've previously created. The payouts are returned in sorted order, with the most recent charges appearing first.
 
 #### HTTPS Request
+
 `GET https://sandbox.xfers.io/api/v3/payouts`
 
 #### URL Parameters
+
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 recipient | string | optional | Only return charges for the recipient(email for phone no) specified by this recipient ID. | +6597288608
@@ -1344,13 +1707,29 @@ starting_after | string | optional | A cursor for use in pagination. starting_af
 
 
 ## Refunds
+
 The following APIs allow you to refund a charge that has previously been created and paid by your buyer but not yet refunded. Funds will be refunded to the buyer Xfers account available balance. The fees you were originally charged are also refunded.
 
 ### Creating a Refund
+
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<id>/refunds" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
   -X POST
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+try {
+    $resp = \Xfers\Charge::refund("<id>");
+    print_r($resp);
+} catch (\Xfers\Error\InvalidRequest $e) {
+    echo 'Caught InvalidRequest exception: ', $e->getMessage(), "\n";
+}
 ```
 
 > Response:
@@ -1396,17 +1775,41 @@ When you create a new refund, you must specify a charge to create it on.
 Creating a new refund will refund a charge that has previously been created and paid but not yet refunded. Funds will be refunded to the buyer Xfers account available balance. The fees you were originally charged are also refunded.
 
 #### HTTPS Request
+
 `POST https://sandbox.xfers.io/api/v3/charges/<id>/refunds`
 
 ## Intents
+
 The following APIs allow you to create and manage top up intents for better transfer matching and registering for transfer callback notifications.
 
 ### Creating an Intent
+
 ```shell
 curl "https://sandbox.xfers.io/api/v3/intents" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
  -H "Content-Type: application/json" \
   -d '{ "amount": "5000", "currency": "SGD", "bank": "BCA", "intent_id" : "AZ0001", "notify_url" : "https://mysite.com/topup_notification"}'  
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+try {
+    $resp = \Xfers\Intent::create(array(
+        'amount' => '5000',
+        'currency' => 'SGD',
+        'bank' => 'BCA',
+        'intent_id' => 'AZ0001',
+        'notify_url' => 'https://mysite.com/topup_notification'
+    ));
+    $intentId = $resp["id"];
+    print_r($resp);
+} catch (\Xfers\Error\InvalidRequest $e) {
+    echo 'Caught InvalidRequest exception: ', $e->getMessage(), "\n";
+}
 ```
 
 > Response:
@@ -1466,10 +1869,25 @@ status | string | Transfer status. | "expired" or "completed"
 
 
 ### Cancel a Intent
+
 ```shell
 curl "https://sandbox.xfers.io/api/v3/intent/<INTENT_ID>/cancel" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
   -X POST
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+try {
+    $resp = \Xfers\Intent::cancel('<INTENT_ID>');
+    print_r($resp);
+} catch (\Xfers\Error\InvalidRequest $e) {
+    echo 'Caught InvalidRequest exception: ', $e->getMessage(), "\n";
+}
 ```
 
 > Response:
@@ -1494,12 +1912,24 @@ Cancelling a intent that has been previously created by not yet completed.
 
 
 #### HTTPS Request
+
 `POST https://sandbox.xfers.io/api/v3/intent/<INTENT_ID>/cancel`
 
 ### List current Intent
+
 ```shell
 curl "https://sandbox.xfers.io/api/v3/intents" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setSGSandbox();
+$resp = \Xfers\Intent::listAll();
+print_r($resp);
 ```
 
 > Response:
@@ -1522,9 +1952,10 @@ curl "https://sandbox.xfers.io/api/v3/intents" \
 }
 ```
 
-Returns the current pending intent of the user.
+Returns the current pending intent of the user. If multiple intents are created, only the last one is returned.
 
 #### HTTPS Request
+
 `GET https://sandbox.xfers.io/api/v3/intents`
 
 
@@ -1545,6 +1976,7 @@ In general, if you’re building a platform or marketplace that needs to pay thi
 
 
 ## Authentication
+
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "https://sandbox.xfers.io/api/v3/authorize/connect" \
@@ -1585,11 +2017,29 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 
 
 ## Signup/login to Xfers
+
 ```shell
 curl "https://sandbox.xfers.io/api/v3/authorize/signup_login"\
   -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"\
   -H "Content-Type: application/json" \
   -d '{"phone_no" : "+6597288608", "signature" : "c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"}'
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setSGSandbox();
+$xfers_app_api_key = 'Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg';
+try {
+    $resp = \Xfers\Connect::authorize(array(
+        'phone_no' => '+6597288608',
+        'signature' => 'c5535aa2c4d25aa1e18a6a7e421a34e51bda5565'
+    ), $xfers_app_api_key);
+    print_r($resp);
+} catch (\Xfers\Error\Api $e) {
+    echo 'Caught Api exception: ', $e->getMessage(), "\n";
+}
 ```
 
 > Response
@@ -1605,19 +2055,47 @@ This API call will attempt to login(existing user) or signup a new user.
 An SMS with a OTP will be send to that number which must be used for [get_token](/docs/#get-user-api-token) api call.
 
 ### HTTPS Request
+
 `POST https://sandbox.xfers.io/api/v3/authorize/signup_login`
 
 
 ### URL Parameters
+
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 phone_no | string | required | User mobile no | +6597288608
-signature | string | required | SHA1 of phone_no+APP_SECRET_KEY  | Digest::SHA1.hexdigest("+6597288608xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU") = c5535aa2c4d25aa1e18a6a7e421a34e51bda5565
+signature | string | required | SHA1 of phone_no + APP_SECRET_KEY  | Digest::SHA1.hexdigest("+6597288608xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU") = c5535aa2c4d25aa1e18a6a7e421a34e51bda5565
 
 ## Get User API Token
+
 ```shell
 curl "https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=%2B6597288608&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91" \
   -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"
+```
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+\Xfers\Xfers::setSGSandbox();
+$xfers_app_api_key = 'Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg';
+try {
+    $resp = \Xfers\Connect::getToken(array(
+        'otp' => '541231',
+        'phone_no' => '+6597288608',
+        'signature' => 'c5535aa2c4d25aa1e18a6a7e421a34e51bda5565',
+        'return_url' => 'https://mywebsite.com/api/v3/account_registration/completed'
+    ), $xfers_app_api_key);
+    print_r($resp);
+
+    # You can now change the api key used to make API calls on behalf of the connect user.
+    $user_api_token = $resp['user_api_token'];
+    \Xfers\Xfers::setApiKey($user_api_token);
+    $resp = \Xfers\User::retrieve();
+
+} catch (\Xfers\Error\Api $e) {
+    echo 'Caught Api exception: ', $e->getMessage(), "\n";
+}
 ```
 
 > Response
@@ -1642,18 +2120,25 @@ Remember to encode the '+' sign in your phone no during your GET request. It sho
 </aside>
 
 
-
 ### HTTPS Request
+
 `GET https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=%2B6597288608&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91`
 
 ### URL Parameters
+
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 otp | string | required | 6 digit one-time-password send over SMS | 541231
 phone_no | string | required | User mobile no | +6597288608
-signature | string | required | SHA1 of phone_no+OTP+APP_SECRET_KEY | Digest::SHA1.hexdigest("+659728860851231xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU") = bdc26373b3a78dd11dc840a1b7973f197cf34c91
+signature | string | required | SHA1 of phone_no + OTP + APP_SECRET_KEY | Digest::SHA1.hexdigest("+659728860851231xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU") = bdc26373b3a78dd11dc840a1b7973f197cf34c91
 return_url | string | optional | Url that new user will be redirected after they completed Xfers account registration at `sign_up_url` provided. | Default "\<Endpoint>/api/v3/account_registration/completed"
 
 
+<aside class="notice">
+Note that the signature required here for /get_token  is different from the one for /signup_login. 
+</aside>
+
+`/authorize/signup_login` - SHA1 of phone_no + APP_SECRET_KEY
+`/authorize/get_token` - SHA1 of phone_no + OTP + APP_SECRET_KEY
 
 
