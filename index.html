@@ -14,7 +14,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["shell","php"]);
+          setupLanguages(["shell","php","java"]);
         });
       </script>
   </head>
@@ -31,6 +31,7 @@
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
               <a href="#" data-language-name="php">php</a>
+              <a href="#" data-language-name="java">java</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -75,6 +76,14 @@ Note that this feature will not be available in production mode. </p>
 <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
 <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setIDProduction</span><span class="p">();</span>
 <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setIDSandbox</span><span class="p">();</span>
+</code></pre>
+<pre class="highlight java"><code><span class="c1">// SG: Singapore</span>
+<span class="c1">// ID: Indonesia</span>
+<span class="c1">// Set one of the following endpoints below:</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGProduction</span><span class="o">();</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setIDProduction</span><span class="o">();</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setIDSandbox</span><span class="o">();</span>
 </code></pre>
 
 <p>For testing purposes, we highly recommend that your head over to <a href="https://sandbox.xfers.io">sandbox.xfers.io</a> and create a sandbox account.</p>
@@ -125,6 +134,9 @@ curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/hello"</span> <
 <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setApiKey</span><span class="p">(</span><span class="s1">'FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc'</span><span class="p">);</span>
 <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
 </code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+</code></pre>
 
 <blockquote>
 <p>Make sure to replace <code class="prettyprint">FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc</code> with your own API key.</p>
@@ -163,6 +175,21 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
 <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\User</span><span class="o">::</span><span class="na">retrieve</span><span class="p">();</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving current user"</span><span class="o">);</span>
+    <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getFirstName</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getDateOfBirth</span><span class="o">());</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">BankAccount</span> <span class="n">bankAccount</span> <span class="o">:</span> <span class="n">user</span><span class="o">.</span><span class="na">getBankAccounts</span><span class="o">())</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">bankAccount</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre>
 
 <blockquote>
@@ -238,6 +265,31 @@ name and bank account information.</p>
     <span class="s1">'country'</span> <span class="o">=&gt;</span> <span class="s1">'sg'</span>
 <span class="p">));</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Updating current user"</span><span class="o">);</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">updateParams</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">updateParams</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"first_name"</span><span class="o">,</span> <span class="s">"wenbin"</span><span class="o">);</span>
+    <span class="n">updateParams</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"last_name"</span><span class="o">,</span> <span class="s">"tay"</span><span class="o">);</span>
+    <span class="n">updateParams</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"address_line_1"</span><span class="o">,</span> <span class="s">"Blk 712 loyang Avenue 5"</span><span class="o">);</span>
+    <span class="n">updateParams</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"address_line_2"</span><span class="o">,</span> <span class="s">"#01-41"</span><span class="o">);</span>
+    <span class="n">updateParams</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"nationality"</span><span class="o">,</span> <span class="s">"Singaporean"</span><span class="o">);</span>
+    <span class="n">updateParams</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"postal_code"</span><span class="o">,</span> <span class="s">"340712"</span><span class="o">);</span>
+    <span class="n">updateParams</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"identity_no"</span><span class="o">,</span> <span class="s">"s86917127G"</span><span class="o">);</span>
+    <span class="n">updateParams</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"sg"</span><span class="o">);</span>
+
+    <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">updateParams</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getFirstName</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getLastName</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getDateOfBirth</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getMetaData</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre>
 
 <blockquote>
@@ -468,6 +520,21 @@ All documents/images provided should not exceed 10MB per file.
 <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\User</span><span class="o">::</span><span class="na">activities</span><span class="p">();</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
 </code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving current user activities"</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Activity</span><span class="o">&gt;</span> <span class="n">activities</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">activities</span><span class="o">();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">Activity</span> <span class="n">activity</span> <span class="o">:</span> <span class="n">activities</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">activity</span><span class="o">.</span><span class="na">getTransType</span><span class="o">());</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">activity</span><span class="o">.</span><span class="na">getTransactionItems</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">activity</span><span class="o">.</span><span class="na">getDisplayAmount</span><span class="o">());</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">activity</span><span class="o">.</span><span class="na">getPlusMinus</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -534,6 +601,23 @@ All documents/images provided should not exceed 10MB per file.
 <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
 <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\User</span><span class="o">::</span><span class="na">transferInfo</span><span class="p">();</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving current user transfer info"</span><span class="o">);</span>
+    <span class="n">TransferInfo</span> <span class="n">transferInfo</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">transferInfo</span><span class="o">();</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">transferInfo</span><span class="o">.</span><span class="na">getBankNameFull</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">transferInfo</span><span class="o">.</span><span class="na">getBankNameAbbreviation</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">transferInfo</span><span class="o">.</span><span class="na">getBankAccountNo</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">transferInfo</span><span class="o">.</span><span class="na">getBankCode</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">transferInfo</span><span class="o">.</span><span class="na">getBranchCode</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">transferInfo</span><span class="o">.</span><span class="na">getBranchArea</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">transferInfo</span><span class="o">.</span><span class="na">getUniqueId</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">transferInfo</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre>
 
 <blockquote>
@@ -807,6 +891,20 @@ All documents/images provided should not exceed 10MB per file.
     <span class="k">echo</span> <span class="s1">'Caught invalid request exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"account_no"</span><span class="o">,</span> <span class="s">"03931234323"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"bank"</span><span class="o">,</span> <span class="s">"DBS"</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">BankAccount</span><span class="o">&gt;</span> <span class="n">bankAccounts</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">BankAccount</span> <span class="n">bankAccount</span> <span class="o">:</span> <span class="n">bankAccounts</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">bankAccount</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -878,6 +976,17 @@ All documents/images provided should not exceed 10MB per file.
     <span class="k">echo</span> <span class="s1">'Caught invalid request exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">BankAccount</span><span class="o">&gt;</span> <span class="n">bankAccounts</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">BankAccount</span> <span class="n">bankAccount</span> <span class="o">:</span> <span class="n">bankAccounts</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">bankAccount</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -923,6 +1032,21 @@ All documents/images provided should not exceed 10MB per file.
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Caught invalid request exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"account_no"</span><span class="o">,</span> <span class="s">"03931234321"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"bank"</span><span class="o">,</span> <span class="s">"DBS"</span><span class="o">);</span>
+
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">BankAccount</span><span class="o">&gt;</span> <span class="n">bankAccounts</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="s">"&lt;bank_account_id&gt;"</span><span class="o">,</span> <span class="n">params</span><span class="o">);</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">BankAccount</span> <span class="n">bankAccount</span> <span class="o">:</span> <span class="n">bankAccounts</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">bankAccount</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre>
 
 <blockquote>
@@ -995,6 +1119,17 @@ All documents/images provided should not exceed 10MB per file.
     <span class="k">echo</span> <span class="s1">'Caught invalid request exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">BankAccount</span><span class="o">&gt;</span> <span class="n">bankAccounts</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">"&lt;bank_account_id&gt;"</span><span class="o">);</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">BankAccount</span> <span class="n">bankAccount</span> <span class="o">:</span> <span class="n">bankAccounts</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">bankAccount</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -1037,6 +1172,27 @@ All documents/images provided should not exceed 10MB per file.
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Caught invalid request exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="s">"50.0"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"express"</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+
+    <span class="n">Withdrawal</span> <span class="n">withdrawal</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">withdraw</span><span class="o">(</span><span class="s">"&lt;bank_account_id&gt;"</span><span class="o">,</span> <span class="n">params</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">withdrawal</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">withdrawal</span><span class="o">.</span><span class="na">getAccountNo</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">withdrawal</span><span class="o">.</span><span class="na">getBankAbbrev</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">withdrawal</span><span class="o">.</span><span class="na">getAmount</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">withdrawal</span><span class="o">.</span><span class="na">getFees</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">withdrawal</span><span class="o">.</span><span class="na">getExpress</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">withdrawal</span><span class="o">.</span><span class="na">getStatus</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">withdrawal</span><span class="o">.</span><span class="na">getArrival</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">withdrawal</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre>
 
 <blockquote>
@@ -1113,6 +1269,17 @@ All documents/images provided should not exceed 10MB per file.
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Caught invalid request exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Withdrawal</span><span class="o">&gt;</span> <span class="n">withdrawalRequests</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">withdrawalRequests</span><span class="o">(</span><span class="s">"pending"</span><span class="o">);</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">Withdrawal</span> <span class="n">withdrawal</span> <span class="o">:</span> <span class="n">withdrawalRequests</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">withdrawal</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre>
 
 <blockquote>
@@ -1242,6 +1409,47 @@ All documents/images provided should not exceed 10MB per file.
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
+</code></pre>
+<pre class="highlight java"><code><span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Creating a charge"</span><span class="o">);</span>
+    <span class="n">Vector</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">items</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vector</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;();</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">item</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;();</span>
+    <span class="n">item</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"description"</span><span class="o">,</span> <span class="s">"Red dress Size M"</span><span class="o">);</span>
+    <span class="n">item</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"price"</span><span class="o">,</span> <span class="s">"9.99"</span><span class="o">);</span>
+    <span class="n">item</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"quantity"</span><span class="o">,</span> <span class="s">"1"</span><span class="o">);</span>
+    <span class="n">item</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"Red dress"</span><span class="o">);</span>
+    <span class="n">items</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">meta_data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;();</span>
+    <span class="n">meta_data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"firstname"</span><span class="o">,</span> <span class="s">"Tianwei"</span><span class="o">);</span>
+    <span class="n">meta_data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"lastname"</span><span class="o">,</span> <span class="s">"Liu"</span><span class="o">);</span>
+
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">Gson</span> <span class="n">gson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Gson</span><span class="o">();</span>
+
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="s">"9.99"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"currency"</span><span class="o">,</span> <span class="s">"SGD"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"notify_url"</span><span class="o">,</span> <span class="s">"https://mysite.com/payment_notification"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"return_url"</span><span class="o">,</span> <span class="s">"https://mysite.com/return"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"cancel_url"</span><span class="o">,</span> <span class="s">"https://mysite.com/cancel"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">,</span> <span class="s">"AZ9912"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"description"</span><span class="o">,</span> <span class="s">"unused red dress"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"shipping"</span><span class="o">,</span> <span class="s">"2.50"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"tax"</span><span class="o">,</span> <span class="s">"0.0"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"items"</span><span class="o">,</span> <span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">items</span><span class="o">));</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"meta_data"</span><span class="o">,</span> <span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">meta_data</span><span class="o">));</span>
+
+    <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">getAmount</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">getCheckoutUrl</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">getOrderId</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">getStatus</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre>
 
 <blockquote>
@@ -1655,6 +1863,22 @@ Please take note that at this point, payment may or may not have been completed 
     <span class="k">echo</span> <span class="s1">'Caught Api exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Validating a charge"</span><span class="o">);</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"total_amount"</span><span class="o">,</span> <span class="s">"19.99"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"currency"</span><span class="o">,</span> <span class="s">"SGD"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">,</span> <span class="s">"A012312"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"paid"</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"&lt;txn_id&gt;"</span><span class="o">,</span> <span class="n">params</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -1805,6 +2029,16 @@ Please take note that at this point, payment may or may not have been completed 
     <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Cancelling a charge"</span><span class="o">);</span>
+    <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">cancel</span><span class="o">(</span><span class="s">"&lt;CHARGE_ID&gt;"</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -1869,6 +2103,16 @@ Please take note that at this point, payment may or may not have been completed 
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\Api</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Caught Api exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+ <span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Settling a charge"</span><span class="o">);</span>
+    <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">settle</span><span class="o">(</span><span class="s">"&lt;id&gt;"</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre>
 
 <blockquote>
@@ -1959,6 +2203,16 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
     <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+ <span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving a charge"</span><span class="o">);</span>
+    <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">retrieve</span><span class="o">(</span><span class="s">"&lt;id&gt;"</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -2020,6 +2274,32 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
     <span class="s1">'customer'</span> <span class="o">=&gt;</span> <span class="s1">'97288608'</span><span class="p">,</span>
     <span class="s1">'limit'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span>
 <span class="p">));</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Listing charges without filter"</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Charge</span><span class="o">&gt;</span> <span class="n">charges</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">listAll</span><span class="o">();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">Charge</span> <span class="n">charge</span> <span class="o">:</span> <span class="n">charges</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span> <span class="n">items</span> <span class="o">=</span> <span class="n">charge</span><span class="o">.</span><span class="na">getItems</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Item</span> <span class="n">item</span> <span class="o">:</span> <span class="n">items</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">item</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Listing charges with filter"</span><span class="o">);</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"limit"</span><span class="o">,</span> <span class="s">"1"</span><span class="o">);</span>
+
+    <span class="n">charges</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">listAll</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">Charge</span> <span class="n">charge</span> <span class="o">:</span> <span class="n">charges</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre>
 
 <blockquote>
@@ -2142,6 +2422,32 @@ will be available for usage(withdrawal, payout, etcs) immediately.</p>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Caught invalid request exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Creating a payout"</span><span class="o">);</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="s">"150.00"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"invoice_id"</span><span class="o">,</span> <span class="s">"AZ0001"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"recipient"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"descriptions"</span><span class="o">,</span> <span class="s">"Payment for Rent for July"</span><span class="o">);</span>
+
+    <span class="n">Payout</span> <span class="n">payout</span> <span class="o">=</span> <span class="n">Payout</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="n">payoutId</span> <span class="o">=</span> <span class="n">payout</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getRecipient</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getAmount</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getCurrency</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getDescriptions</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getBank</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getBankAccountNo</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getCreatedDate</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getCompletedDate</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getStatus</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre>
 
 <blockquote>
@@ -2286,6 +2592,16 @@ Either the recipient field or the bank_account_no field must be filled in to ide
     <span class="k">echo</span> <span class="s1">'Caught invalid request exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+ <span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving a payout"</span><span class="o">);</span>
+    <span class="n">Payout</span> <span class="n">payout</span> <span class="o">=</span> <span class="n">Payout</span><span class="o">.</span><span class="na">retrieve</span><span class="o">(</span><span class="s">"&lt;id&gt;"</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -2348,6 +2664,31 @@ Either the recipient field or the bank_account_no field must be filled in to ide
     <span class="s1">'limit'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span>
 <span class="p">));</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Listing payouts"</span><span class="o">);</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"recipient"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Payout</span><span class="o">&gt;</span> <span class="n">payouts</span> <span class="o">=</span> <span class="n">Payout</span><span class="o">.</span><span class="na">listAll</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">Payout</span> <span class="n">payout</span> <span class="o">:</span> <span class="n">payouts</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getInvoiceId</span><span class="o">());</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getRecipient</span><span class="o">());</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getAmount</span><span class="o">());</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getCurrency</span><span class="o">());</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getDescriptions</span><span class="o">());</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getBank</span><span class="o">());</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getBankAccountNo</span><span class="o">());</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getCreatedDate</span><span class="o">());</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getCompletedDate</span><span class="o">());</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getStatus</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre>
 
 <blockquote>
@@ -2438,6 +2779,16 @@ Either the recipient field or the bank_account_no field must be filled in to ide
     <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Refunding a charge"</span><span class="o">);</span>
+    <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">refund</span><span class="o">(</span><span class="s">"&lt;id&gt;"</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -2514,6 +2865,31 @@ Either the recipient field or the bank_account_no field must be filled in to ide
     <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Creating an intent"</span><span class="o">);</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="s">"5000"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"currency"</span><span class="o">,</span> <span class="s">"SGD"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"bank"</span><span class="o">,</span> <span class="s">"BCA"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"request_id"</span><span class="o">,</span> <span class="s">"AZ0001"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"notify_url"</span><span class="o">,</span> <span class="s">"https://mysite.com/topup_notification"</span><span class="o">);</span>
+
+    <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="n">Intent</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getAmount</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getCurrency</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getBank</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getStatus</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getCheckoutUrl</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getRequestId</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getNotifyUrl</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getBankName</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -2541,7 +2917,7 @@ Either the recipient field or the bank_account_no field must be filled in to ide
 <p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/intents</code></p>
 
 <aside class="warning">
-You cannot create more than 1 intents per user(previous old pending intents will automatically be cancelled).
+You cannot create more than 1 intents per user (previous old pending intents will automatically be cancelled).
 </aside>
 
 <h4 id="url-parameters">URL Parameters</h4>
@@ -2657,6 +3033,16 @@ You cannot create more than 1 intents per user(previous old pending intents will
     <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Cancelling an intent"</span><span class="o">);</span>
+    <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="n">Intent</span><span class="o">.</span><span class="na">cancel</span><span class="o">(</span><span class="s">"&lt;INTENT_ID&gt;"</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
 
 <blockquote>
 <p>Response:</p>
@@ -2694,6 +3080,11 @@ You cannot create more than 1 intents per user(previous old pending intents will
 <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
 <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Intent</span><span class="o">::</span><span class="na">listAll</span><span class="p">();</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+
+<span class="c1">// WORK IN PROGRESS</span>
 </code></pre>
 
 <blockquote>
@@ -2794,6 +3185,20 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
     <span class="k">echo</span> <span class="s1">'Caught Api exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="n">String</span> <span class="n">xfersAppApiKey</span> <span class="o">=</span> <span class="s">"Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"</span><span class="o">;</span>
+
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Authorizing"</span><span class="o">);</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"phone_no"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"signature"</span><span class="o">,</span> <span class="s">"a4f001729fe3accdbb0d9cfaf3b49b0678a4c91b"</span><span class="o">);</span>
+    <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">Connect</span><span class="o">.</span><span class="na">authorize</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">xfersAppApiKey</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getMsg</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
 
 <blockquote>
 <p>Response</p>
@@ -2841,6 +3246,9 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 <h2 id="get-user-api-token">Get User API Token</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&amp;phone_no=%2B6597288608&amp;signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"</span>
+
+<span class="c"># You can now change the X-XFERS-USER-API-KEY to the returned user_api_token </span>
+<span class="c"># and make API calls on behalf of the connect user.</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
@@ -2856,7 +3264,8 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
     <span class="p">),</span> <span class="nv">$xfers_app_api_key</span><span class="p">);</span>
     <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
 
-    <span class="c1"># You can now change the api key used to make API calls on behalf of the connect user.
+    <span class="c1"># You can now call \Xfers\Xfers::setApiKey again to change the X-XFERS-USER-API-KEY to the returned user_api_token 
+</span>    <span class="c1"># and make API calls on behalf of the connect user.
 </span>    <span class="nv">$user_api_token</span> <span class="o">=</span> <span class="nv">$resp</span><span class="p">[</span><span class="s1">'user_api_token'</span><span class="p">];</span>
     <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setApiKey</span><span class="p">(</span><span class="nv">$user_api_token</span><span class="p">);</span>
     <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\User</span><span class="o">::</span><span class="na">retrieve</span><span class="p">();</span>
@@ -2864,6 +3273,32 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\Api</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Caught Api exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="n">String</span> <span class="n">xfersAppApiKey</span> <span class="o">=</span> <span class="s">"AeWpKz5cdPoJFUwF53sBee_WsSoqym_hspiX3bcoB_Y"</span><span class="o">;</span>
+
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Getting token"</span><span class="o">);</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"otp"</span><span class="o">,</span> <span class="s">"541231"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"phone_no"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"signature"</span><span class="o">,</span> <span class="s">"132e60cc2b6076824fac1ac4c1bb6b47cc3f9036"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"return_url"</span><span class="o">,</span> <span class="s">"https://mywebsite.com/api/v3/account_registration/completed"</span><span class="o">);</span>
+    <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">Connect</span><span class="o">.</span><span class="na">getToken</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">xfersAppApiKey</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getMsg</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getUserApiToken</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getSignUpUrl</span><span class="o">());</span>
+
+    <span class="c1">// You can now set Xfers.apiKey again to change the X-XFERS-USER-API-KEY to the returned user_api_token </span>
+    <span class="c1">// and make API calls on behalf of the connect user.</span>
+
+    <span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getUserApiToken</span><span class="o">();</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving connected user"</span><span class="o">);</span>
+    <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre>
 
 <blockquote>
@@ -2979,6 +3414,7 @@ Note that the signature required here for /get_token  is different from the one 
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
                 <a href="#" data-language-name="php">php</a>
+                <a href="#" data-language-name="java">java</a>
           </div>
       </div>
     </div>
