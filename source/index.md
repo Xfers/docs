@@ -5,6 +5,7 @@ language_tabs:
   - shell
   - php
   - python
+  - ruby
   - java
 
 toc_footers:
@@ -60,6 +61,17 @@ xfers.set_sg_production()
 xfers.set_sg_sandbox()
 xfers.set_id_production()
 xfers.set_id_sandbox()
+```
+
+```ruby
+# SG: Singapore
+# ID: Indonesia
+# Set one of the following endpoints below:
+require 'xfers'
+Xfers.set_sg_production
+Xfers.set_sg_sandbox
+Xfers.set_id_production
+Xfers.set_id_sandbox
 ```
 
 ```java
@@ -126,10 +138,15 @@ require_once('vendor/autoload.php');
 
 ```python
 import xfers
-from xfers import xfuser
-from xfers import error
 xfers.api_key = 'FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc'
 xfers.set_sg_sandbox()
+```
+
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
 ```
 
 ```java
@@ -199,6 +216,23 @@ try:
     print resp
 except error.XfersError as e:
     print str(e)
+```
+
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+begin
+  puts 'Retrieving user...'
+  resp = Xfers::User.retrieve
+  puts resp[:first_name]
+  puts resp[:last_name]
+  puts resp[:available_balance]
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 ```
 
 ```java
@@ -302,8 +336,10 @@ print_r($resp);
 import xfers
 from xfers import xfuser
 from xfers import error
+
 xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
+
 try:
     print 'Updating user...'
     params = {
@@ -326,9 +362,38 @@ except error.XfersError as e:
     print str(e)
 ```
 
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Updating user...'
+  params = {
+    'first_name' => 'wenbin',
+    'last_name' => 'tay',
+    'address_line_1' => 'Blk 712 loyang Avenue 5',
+    'address_line_2' => '#01-41',
+    'nationality' => 'Singaporean',
+    'postal_code' => '340712',
+    'identity_no' => 's86917127G',
+    'country' => 'sg'
+  }
+  resp = Xfers::User.update params
+  puts resp[:first_name]
+  puts resp[:last_name]
+  puts resp[:available_balance]
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
+
 try {
     System.out.println("Updating current user");
     Map<String, Object> updateParams = new HashMap<String, Object>();
@@ -470,6 +535,23 @@ except error.XfersError as e:
     print str(e)
 ```
 
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Getting activities...'
+  activities = Xfers::User.activities
+  activities.each { |activity|
+    puts activity
+  }
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
@@ -562,8 +644,10 @@ print_r($resp);
 import xfers
 from xfers import xfuser
 from xfers import error
+
 xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
+
 try:
     print 'Getting transfer info...'
     resp = xfuser.transfer_info()
@@ -572,9 +656,25 @@ except error.XfersError as e:
     print str(e)
 ```
 
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Getting transfer info...'
+  resp = Xfers::User.transfer_info
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
+
 try {
     System.out.println("Retrieving current user transfer info");
     TransferInfo transferInfo = User.transferInfo();
@@ -758,8 +858,10 @@ try {
 import xfers
 from xfers import xfbankaccount
 from xfers import error
+
 xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
+
 try:
     print 'Adding bank account...'
     params = {
@@ -773,9 +875,30 @@ except error.XfersError as e:
     print str(e)
 ```
 
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Adding bank account...'
+  params = {
+      'account_no'=> '03931234321',
+      'bank'=> 'DBS'
+  }
+  bank_accounts = Xfers::BankAccount.add params
+  puts "number of bank accounts=> #{bank_accounts.length}"
+  bank_accounts.each { |account| puts "Bank Account=> #{account}" }
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
+```
+
 ```java
 Xfers.apiKey = "G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo";
 Xfers.setSGSandbox();
+
 try {
     Map<String, Object> params = new HashMap<String, Object>();
     params.put("account_no", "03931234323");
@@ -806,7 +929,7 @@ try {
 ]
 ```
 
-This request will add a new bank account to this Xfers account. You will be able to withdraw your Xfers available balances to these account(s).
+This request will add a new bank account to this Xfers account. You will be able to withdraw your Xfers available balances to these account(s). 
 
 
 #### HTTPS Request
@@ -850,8 +973,10 @@ try {
 import xfers
 from xfers import xfbankaccount
 from xfers import error
+
 xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
+
 try:
     print 'Listing all bank_accounts...'
     bank_accounts = xfbankaccount.list_all()
@@ -861,9 +986,26 @@ except error.XfersError as e:
     print str(e)
 ```
 
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Listing all bank accounts...'
+  bank_accounts = Xfers::BankAccount.list_all
+  puts "number of bank accounts => #{bank_accounts.length}"
+  bank_accounts.each { |account| puts "Bank Account=> #{account}" }
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
+
 try {
     List<BankAccount> bankAccounts = BankAccount.retrieve();
     for (BankAccount bankAccount : bankAccounts) {
@@ -928,8 +1070,10 @@ try {
 import xfers
 from xfers import xfbankaccount
 from xfers import error
+
 xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
+
 try:
     print 'Updating bank account {}...'.format('<bank_account_id>')
     params = {
@@ -942,9 +1086,29 @@ except error.XfersError as e:
     print str(e)
 ```
 
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  params = {
+      'account_no'=> '03931234321',
+      'bank'=> 'DBS'
+  }
+  puts 'Updating bank account...'
+  resp = Xfers::BankAccount.update '<bank_account_id>', params
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
+
 try {
     Map<String, Object> params = new HashMap<String, Object>();
     params.put("account_no", "03931234321");
@@ -1030,6 +1194,21 @@ except error.XfersError as e:
     print str(e)
 ```
 
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Deleting bank account...'
+  resp = Xfers::BankAccount.delete '<bank_account_id>'
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
@@ -1106,6 +1285,24 @@ try:
     print resp
 except error.XfersError as e:
     print str(e)
+```
+
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Withdrawing from bank account...'
+  params = {
+      'amount'=> '50.0'
+  }
+  resp = Xfers::BankAccount.withdraw '<bank_account_id>', params
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 ```
 
 ```java
@@ -1207,6 +1404,24 @@ try:
         print 'Withdrawal request: {}'.format(request)
 except error.XfersError as e:
     print str(e)
+```
+
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Listing withdrawal requests...'
+  params = {
+      'filter'=> 'pending'
+  }
+  withdrawal_requests = Xfers::BankAccount.withdrawal_requests params
+  withdrawal_requests.each { |req| puts "Withdrawal request=> #{req}" }
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 ```
 
 ```java
@@ -1354,6 +1569,35 @@ try:
     print resp
 except error.XfersError as e:
     print str(e)
+```
+
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Creating charge...'
+  params = {
+        'amount' => '9.99',
+        'currency' => 'SGD',
+        'notify_url' => 'https://mysite.com/payment_notification',
+        'return_url' => 'https://mysite.com/return',
+        'cancel_url' => 'https://mysite.com/cancel',
+        'order_id' => 'AZ9912',
+        'description' => 'unused red dress',
+        'shipping' => '2.50',
+        'tax' => '0.0',
+        'items' => [{'description' => 'Red dress Size M', 'price' => '9.99', 'quantity' => 1, 'name' => 'Red dress'}],
+        'meta_data' => {'firstname'=> 'Tianwei', 'lastname'=> 'Liu'}
+  }
+  resp = Xfers::Charge.create params
+  charge_id = resp[:id]
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 ```
 
 ```java
@@ -1592,6 +1836,27 @@ except error.XfersError as e:
     print str(e)
 ```
 
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  params = {
+      'currency'=> 'SGD',
+      'order_id'=> 'A012312',
+      'total_amount'=> '24.99',
+      'status'=> 'paid'
+  }
+  puts "Validating charge... #{charge_id}"
+  resp = Xfers::Charge.validate charge_id, params
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
@@ -1658,6 +1923,10 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>/authorize" \
 ```
 
 ```python
+# COMING SOON
+```
+
+```ruby
 # COMING SOON
 ```
 
@@ -1755,6 +2024,22 @@ except error.XfersError as e:
     print str(e)
 ```
 
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  charge_id = '<CHARGE_ID>'
+  puts "Cancelling charge... #{charge_id}"
+  resp = Xfers::Charge.cancel charge_id
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
@@ -1850,6 +2135,22 @@ try:
     print resp
 except error.XfersError as e:
     print str(e)
+```
+
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  charge_id = '<id>'
+  puts "Settling charge... #{charge_id}"
+  resp = Xfers::Charge.settle charge_id, '512312'
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 ```
 
 ```java
@@ -1961,6 +2262,22 @@ except error.XfersError as e:
     print str(e)
 ```
 
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  charge_id = '<id>'
+  puts "Retrieving charge... #{charge_id}"
+  resp = Xfers::Charge.retrieve charge_id
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
@@ -2057,6 +2374,26 @@ try:
         print 'Charge: {}'.format(charge)
 except error.XfersError as e:
     print str(e)
+```
+
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Listing all charges...'
+  params = {
+      'limit'=> '5'
+  }
+  charges = Xfers::Charge.list_all params
+  charges.each { |charge|
+    puts charge
+  }
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 ```
 
 ```java
@@ -2206,6 +2543,30 @@ except error.XfersError as e:
     print str(e)
 ```
 
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Creating payout...'
+  params = {
+      'amount' => '150.00',
+      'invoice_id' => 'AZ0001',
+      'descriptions' => 'Payment for Rent for July',
+      'recipient' => '+6597288608'
+  }
+  resp = Xfers::Payout.create params
+  payout_id = resp[:id]
+  puts resp[:recipient]
+  puts resp[:invoice_id]
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
@@ -2323,6 +2684,21 @@ except error.XfersError as e:
     print str(e)
 ```
 
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Retrieving payout...'
+  resp = Xfers::Payout.retrieve '<id>'
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
@@ -2405,6 +2781,26 @@ try:
         print 'Payout: {}'.format(payout)
 except error.XfersError as e:
     print str(e)
+```
+
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Listing all payouts...'
+  params = {
+      'recipient'=> '+6597288608'
+  }
+  payouts = Xfers::Payout.list_all params
+  payouts.each { |payout|
+    puts payout
+  }
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 ```
 
 ```java
@@ -2509,6 +2905,22 @@ try:
     print resp
 except error.XfersError as e:
     print str(e)
+```
+
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  charge_id = '<id>'
+  puts "Refunding charge... #{charge_id}"
+  resp = Xfers::Charge.refund charge_id
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 ```
 
 ```java
@@ -2624,6 +3036,29 @@ try:
     print resp
 except error.XfersError as e:
     print str(e)
+```
+
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Creating intent...'
+  params = {
+      'amount' => '5000',
+      'currency' => 'SGD',
+      'bank' => 'BCA',
+      'intent_id' => 'AZ0001',
+      'notify_url' => 'https://mysite.com/topup_notification'
+  }
+  resp = Xfers::Intent.create params
+  intent_id = resp[:id]
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 ```
 
 ```java
@@ -2745,6 +3180,21 @@ except error.XfersError as e:
     print str(e)
 ```
 
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Cancelling intent...'
+  resp = Xfers::Intent.cancel '<INTENT_ID>'
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
@@ -2811,6 +3261,21 @@ try:
     print 'Intent: {}'.format(intent)
 except error.XfersError as e:
     print str(e)
+```
+
+```ruby
+require 'xfers'
+
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Current intent...'
+  intent = Xfers::Intent.list_all
+  puts intent
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 ```
 
 ```java
@@ -2950,6 +3415,25 @@ except error.XfersError as e:
     print str(e)
 ```
 
+```ruby
+require 'xfers'
+
+Xfers.set_sg_sandbox
+XFERS_APP_API_KEY = 'Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg'
+
+begin
+  puts 'Authorizing connect...'
+  params = {
+      'phone_no'=> '+6597288608',
+      'signature'=> 'c5535aa2c4d25aa1e18a6a7e421a34e51bda5565'
+  }
+  resp = Xfers::Connect.authorize params, XFERS_APP_API_KEY
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
+```
+
 ```java
 Xfers.setSGSandbox();
 String xfersAppApiKey = "Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg";
@@ -3053,6 +3537,41 @@ try:
 
 except error.XfersError as e:
     print str(e)
+```
+
+```ruby
+require 'xfers'
+
+Xfers.set_sg_sandbox
+XFERS_APP_API_KEY = 'Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg'
+
+begin
+  puts 'Getting connect token...'
+  params = {
+      'otp'=> '541231',
+      'phone_no'=> '+6597288608',
+      'signature'=> 'c5535aa2c4d25aa1e18a6a7e421a34e51bda5565',
+      'return_url'=> 'https://mywebsite.com/api/v3/account_registration/completed'
+  }
+  resp = Xfers::Connect.get_token params, XFERS_APP_API_KEY
+  user_api_token =  resp[:user_api_token]
+  puts resp
+
+  # You can now call Xfers.set_api_key again to change the X-XFERS-USER-API-KEY to the returned user_api_token 
+  # and make API calls on behalf of the connect user.
+
+  Xfers.set_api_key user_api_token
+
+  connect_user = Xfers::User.retrieve
+  puts connect_user[:first_name]
+  puts connect_user[:last_name]
+  puts connect_user[:available_balance]
+  puts connect_user
+
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
+
 ```
 
 ```java
