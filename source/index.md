@@ -4,6 +4,7 @@ title: Xfers API Reference
 language_tabs:
   - shell
   - php
+  - python
   - java
 
 toc_footers:
@@ -48,6 +49,17 @@ require_once('vendor/autoload.php');
 \Xfers\Xfers::setSGSandbox();
 \Xfers\Xfers::setIDProduction();
 \Xfers\Xfers::setIDSandbox();
+```
+
+```python
+# SG: Singapore
+# ID: Indonesia
+# Set one of the following endpoints below:
+import xfers
+xfers.set_sg_production()
+xfers.set_sg_sandbox()
+xfers.set_id_production()
+xfers.set_id_sandbox()
 ```
 
 ```java
@@ -112,6 +124,14 @@ require_once('vendor/autoload.php');
 \Xfers\Xfers::setSGSandbox();
 ```
 
+```python
+import xfers
+from xfers import xfuser
+from xfers import error
+xfers.api_key = 'FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc'
+xfers.set_sg_sandbox()
+```
+
 ```java
 Xfers.apiKey = "FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc";
 Xfers.setSGSandbox();
@@ -159,6 +179,27 @@ $resp = \Xfers\User::retrieve();
 print_r($resp);
 ```
 
+
+```python
+import xfers
+from xfers import xfuser
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Retrieving user...'
+    resp = xfuser.retrieve()
+    print resp['first_name']
+    print resp['last_name']
+    print resp['available_balance']
+    print resp['address_line_1']
+    bank_accounts = resp['bank_accounts']
+    for account in bank_accounts:
+        print 'Bank account: {}'.format(account)
+    print resp
+except error.XfersError as e:
+    print str(e)
+```
 
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
@@ -256,6 +297,34 @@ $resp = \Xfers\User::update(array(
 print_r($resp);
 ```
 
+
+```python
+import xfers
+from xfers import xfuser
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Updating user...'
+    params = {
+      'first_name': 'wenbin',
+      'last_name': 'tay',
+      'address_line_1': 'Blk 712 loyang Avenue 5',
+      'address_line_2': '#01-41',
+      'nationality': 'Singaporean',
+      'postal_code': '340712',
+      'identity_no': 's86917127G',
+      'country': 'sg'
+      }
+    resp = xfuser.update(params)
+    print resp['first_name']
+    print resp['last_name']
+    print resp['available_balance']
+    print resp['address_line_1']
+    print resp
+except error.XfersError as e:
+    print str(e)
+```
 
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
@@ -386,6 +455,21 @@ $resp = \Xfers\User::activities();
 print_r($resp);
 ```
 
+```python
+import xfers
+from xfers import xfuser
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Getting activities...'
+    activities = xfuser.activities()
+    for activity in activities:
+        print activity
+except error.XfersError as e:
+    print str(e)
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
@@ -472,6 +556,20 @@ require_once('vendor/autoload.php');
 \Xfers\Xfers::setSGSandbox();
 $resp = \Xfers\User::transferInfo();
 print_r($resp);
+```
+
+```python
+import xfers
+from xfers import xfuser
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Getting transfer info...'
+    resp = xfuser.transfer_info()
+    print resp
+except error.XfersError as e:
+    print str(e)
 ```
 
 ```java
@@ -656,8 +754,27 @@ try {
 }
 ```
 
+```python
+import xfers
+from xfers import xfbankaccount
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Adding bank account...'
+    params = {
+        'account_no': '03931234323',
+        'bank': 'DBS'
+    }
+    bank_accounts = xfbankaccount.add(params)
+    for bank_account in bank_accounts:
+        print 'Bank account: {}'.format(bank_account)
+except error.XfersError as e:
+    print str(e)
+```
+
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.apiKey = "G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo";
 Xfers.setSGSandbox();
 try {
     Map<String, Object> params = new HashMap<String, Object>();
@@ -729,6 +846,21 @@ try {
 }
 ```
 
+```python
+import xfers
+from xfers import xfbankaccount
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Listing all bank_accounts...'
+    bank_accounts = xfbankaccount.list_all()
+    for bank_account in bank_accounts:
+        print 'Bank account: {}'.format(bank_account)
+except error.XfersError as e:
+    print str(e)
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
@@ -790,6 +922,24 @@ try {
 } catch (\Xfers\Error\InvalidRequest $e) {
     echo 'Caught invalid request exception: ', $e->getMessage(), "\n";
 }
+```
+
+```python
+import xfers
+from xfers import xfbankaccount
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Updating bank account {}...'.format('<bank_account_id>')
+    params = {
+        'account_no': '03931234321',
+        'bank': 'DBS'
+    }
+    resp = xfbankaccount.update('<bank_account_id>', params)
+    print resp
+except error.XfersError as e:
+    print str(e)
 ```
 
 ```java
@@ -866,6 +1016,20 @@ try {
 }
 ```
 
+```python
+import xfers
+from xfers import xfbankaccount
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Deleting bank account {}...'.format('<bank_account_id>')
+    resp = xfbankaccount.delete('<bank_account_id>')
+    print resp
+except error.XfersError as e:
+    print str(e)
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
@@ -925,6 +1089,23 @@ try {
 } catch (\Xfers\Error\InvalidRequest $e) {
     echo 'Caught invalid request exception: ', $e->getMessage(), "\n";
 }
+```
+
+```python
+import xfers
+from xfers import xfbankaccount
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Withdrawing from bank account {}...'.format('<bank_account_id>')
+    params = {
+        'amount': '50.0'
+    }
+    resp = xfbankaccount.withdraw('<bank_account_id>', params)
+    print resp
+except error.XfersError as e:
+    print str(e)
 ```
 
 ```java
@@ -1008,6 +1189,24 @@ try {
 } catch (\Xfers\Error\InvalidRequest $e) {
     echo 'Caught invalid request exception: ', $e->getMessage(), "\n";
 }
+```
+
+```python
+import xfers
+from xfers import xfbankaccount
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Listing withdrawal requests...'
+    params = {
+        'filter': 'pending'
+    }
+    withdrawal_requests = xfbankaccount.withdrawal_requests(params)
+    for request in withdrawal_requests:
+        print 'Withdrawal request: {}'.format(request)
+except error.XfersError as e:
+    print str(e)
 ```
 
 ```java
@@ -1124,6 +1323,37 @@ try {
 } catch (\Xfers\Error\InvalidRequest $e) {
     echo 'Caught InvalidRequest exception: ', $e->getMessage(), "\n";
 }
+```
+
+```python
+import json
+import xfers
+from xfers import xfcharge
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Creating charge...'
+    items = [{'description': 'Red dress size M', 'price': '9.99', 'quantity': '1', 'name': 'Red dress'}]
+    meta_data = {'firstname': 'Tianwei', 'lastname': 'Liu'}
+    params = {
+        'amount' : '9.99',
+        'currency' : 'SGD',
+        'notify_url' : 'https://mysite.com/payment_notification',
+        'return_url' : 'https://mysite.com/return',
+        'cancel_url' : 'https://mysite.com/cancel',
+        'order_id' : 'AZ9912',
+        'description' : 'unused red dress',
+        'shipping' : '2.50',
+        'tax' : '0.0',
+        'items' : json.dumps(items),
+        'meta_data' : json.dumps(meta_data)
+    }
+    resp = xfcharge.create(params)
+    charge_id = resp['id']
+    print resp
+except error.XfersError as e:
+    print str(e)
 ```
 
 ```java
@@ -1342,6 +1572,26 @@ try {
 }
 ```
 
+```python
+import xfers
+from xfers import xfcharge
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    params = {
+        'order_id': 'A012312',
+        'total_amount': '24.99',
+        'status': 'paid',
+        'currency': 'SGD'
+    }
+    print 'Validating charge {}...'.format(charge_id)
+    resp = xfcharge.validate(charge_id, params)
+    print resp
+except error.XfersError as e:
+    print str(e)
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
@@ -1401,6 +1651,18 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>/authorize" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
   -d '{"auth_code": "512312"}'
+```
+
+```php
+# COMING SOON
+```
+
+```python
+# COMING SOON
+```
+
+```java
+// COMING SOON
 ```
 
 > Response:
@@ -1477,6 +1739,20 @@ try {
 } catch (\Xfers\Error\InvalidRequest $e) {
     echo 'Caught InvalidRequest exception: ', $e->getMessage(), "\n";
 }
+```
+
+```python
+import xfers
+from xfers import xfcharge
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Cancelling charge {}...'.format('<CHARGE_ID>')
+    resp = xfcharge.cancel('<CHARGE_ID>')
+    print resp
+except error.XfersError as e:
+    print str(e)
 ```
 
 ```java
@@ -1562,10 +1838,25 @@ try {
 }
 ```
 
+```python
+import xfers
+from xfers import xfcharge
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Settling charge {}...'.format('<id>')
+    resp = xfcharge.settle('<id>', '512312')
+    print resp
+except error.XfersError as e:
+    print str(e)
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
  try {
+    // Note: Java SDK does not support settlement code yet
     System.out.println("Settling a charge");
     Charge charge = Charge.settle("<id>");
     System.out.println(charge.toString());
@@ -1656,6 +1947,20 @@ try {
 }
 ```
 
+```python
+import xfers
+from xfers import xfcharge
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Retrieving charge {}...'.format('<id>')
+    resp = xfcharge.retrieve('<id>')
+    print resp
+except error.XfersError as e:
+    print str(e)
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
@@ -1734,6 +2039,24 @@ $resp = \Xfers\Charge::listAll(array(
     'customer' => '97288608',
     'limit' => '1'
 ));
+```
+
+```python
+import xfers
+from xfers import xfcharge
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Listing all charges...'
+    params = {
+        'limit': '1'
+    }
+    charges = xfcharge.list_all(params)
+    for charge in charges:
+        print 'Charge: {}'.format(charge)
+except error.XfersError as e:
+    print str(e)
 ```
 
 ```java
@@ -1859,6 +2182,30 @@ try {
 }
 ```
 
+```python
+import xfers
+from xfers import xfpayout
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Creating payout...'
+    params = {
+        'amount': '150.00',
+        'invoice_id': 'AZ0001',
+        'descriptions': 'Payment for Rent for July',
+        'recipient': '+6597288608'
+    }
+    resp = xfpayout.create(params)
+    payout_id = resp['id']
+    print payout_id
+    print resp['recipient']
+    print resp['invoice_id']
+    print resp
+except error.XfersError as e:
+    print str(e)
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
@@ -1962,6 +2309,20 @@ try {
 }
 ```
 
+```python
+import xfers
+from xfers import xfpayout
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Retrieving payout {}...'.format('<id>')
+    resp = xfpayout.retrieve('<id>')
+    print resp
+except error.XfersError as e:
+    print str(e)
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
@@ -2026,6 +2387,24 @@ $resp = \Xfers\Payout::listAll(array(
     'limit' => '1'
 ));
 print_r($resp);
+```
+
+```python
+import xfers
+from xfers import xfpayout
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Listing all payouts...'
+    params = {
+        'recipient': '+6597288608'
+    }
+    payouts = xfpayout.list_all(params)
+    for payout in payouts:
+        print 'Payout: {}'.format(payout)
+except error.XfersError as e:
+    print str(e)
 ```
 
 ```java
@@ -2115,6 +2494,21 @@ try {
 } catch (\Xfers\Error\InvalidRequest $e) {
     echo 'Caught InvalidRequest exception: ', $e->getMessage(), "\n";
 }
+```
+
+```python
+import xfers
+from xfers import xfcharge
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    charge_id = '<id>'
+    print 'Refunding charge {}...'.format(charge_id)
+    resp = xfcharge.refund(charge_id)
+    print resp
+except error.XfersError as e:
+    print str(e)
 ```
 
 ```java
@@ -2207,6 +2601,29 @@ try {
 } catch (\Xfers\Error\InvalidRequest $e) {
     echo 'Caught InvalidRequest exception: ', $e->getMessage(), "\n";
 }
+```
+
+```python
+import xfers
+from xfers import xfintent
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Creating intent...'
+    params = {
+        'amount': '5000',
+        'currency': 'SGD',
+        'bank': 'BCA',
+        'intent_id': 'AZ0001',
+        'notify_url': 'https://mysite.com/topup_notification'
+    }
+    resp = xfintent.create(params)
+    intent_id = resp['id']
+    print intent_id
+    print resp
+except error.XfersError as e:
+    print str(e)
 ```
 
 ```java
@@ -2314,6 +2731,20 @@ try {
 }
 ```
 
+```python
+import xfers
+from xfers import xfintent
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Cancelling intent {}...'.format('<INTENT_ID>')
+    resp = xfintent.cancel('<INTENT_ID>')
+    print resp
+except error.XfersError as e:
+    print str(e)
+```
+
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
@@ -2366,6 +2797,20 @@ require_once('vendor/autoload.php');
 \Xfers\Xfers::setSGSandbox();
 $resp = \Xfers\Intent::listAll();
 print_r($resp);
+```
+
+```python
+import xfers
+from xfers import xfintent
+from xfers import error
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.set_sg_sandbox()
+try:
+    print 'Current intent...'
+    intent = xfintent.list_all()
+    print 'Intent: {}'.format(intent)
+except error.XfersError as e:
+    print str(e)
 ```
 
 ```java
@@ -2485,6 +2930,26 @@ try {
 }
 ```
 
+```python
+import xfers
+from xfers import xfconnect
+from xfers import error
+
+xfers.set_sg_sandbox()
+XFERS_APP_API_KEY = 'Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg'
+
+try:
+    print 'Authorizing connect...'
+    params = {
+        'phone_no': '+6597288608',
+        'signature': 'c5535aa2c4d25aa1e18a6a7e421a34e51bda5565'
+    }
+    resp = xfconnect.authorize(params, XFERS_APP_API_KEY)
+    print resp
+except error.XfersError as e:
+    print str(e)
+```
+
 ```java
 Xfers.setSGSandbox();
 String xfersAppApiKey = "Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg";
@@ -2559,6 +3024,35 @@ try {
 } catch (\Xfers\Error\Api $e) {
     echo 'Caught Api exception: ', $e->getMessage(), "\n";
 }
+```
+
+```python
+import xfers
+from xfers import xfconnect
+from xfers import xfuser
+from xfers import error
+
+xfers.set_sg_sandbox()
+XFERS_APP_API_KEY = 'Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg'
+
+try:
+    print 'Getting token...'
+    params = {
+        'otp': '541231',
+        'phone_no': '+6597288608',
+        'signature': 'c5535aa2c4d25aa1e18a6a7e421a34e51bda5565',
+        'return_url': 'https://mywebsite.com/api/v3/account_registration/completed'
+    }
+    resp = xfconnect.get_token(params, XFERS_APP_API_KEY)
+    print resp
+
+    # You can now set xfers.api_key again to change the X-XFERS-USER-API-KEY to the returned user_api_token 
+    # and make API calls on behalf of the connect user.
+    xfers.api_key = resp['user_api_token']
+    connected_user = xfuser.retrieve()
+
+except error.XfersError as e:
+    print str(e)
 ```
 
 ```java
