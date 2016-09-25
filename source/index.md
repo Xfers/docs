@@ -4,6 +4,7 @@ title: Xfers API Reference
 language_tabs:
   - shell
   - php
+  - java
 
 toc_footers:
   - <a href='https://www.xfers.io/account_registration'>Sign Up for a Developer Key</a>
@@ -47,6 +48,16 @@ require_once('vendor/autoload.php');
 \Xfers\Xfers::setSGSandbox();
 \Xfers\Xfers::setIDProduction();
 \Xfers\Xfers::setIDSandbox();
+```
+
+```java
+// SG: Singapore
+// ID: Indonesia
+// Set one of the following endpoints below:
+Xfers.setSGProduction();
+Xfers.setSGSandbox();
+Xfers.setIDProduction();
+Xfers.setIDSandbox();
 ```
 
 For testing purposes, we highly recommend that your head over to [sandbox.xfers.io](https://sandbox.xfers.io) and create a sandbox account.
@@ -101,6 +112,11 @@ require_once('vendor/autoload.php');
 \Xfers\Xfers::setSGSandbox();
 ```
 
+```java
+Xfers.apiKey = "FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc";
+Xfers.setSGSandbox();
+```
+
 > Make sure to replace `FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc` with your own API key.
 
 Xfers uses API keys to allow access to the API. You can get your API key from your [Account Settings](https://sandbox.xfers.io/account_settings) page.
@@ -141,6 +157,24 @@ require_once('vendor/autoload.php');
 \Xfers\Xfers::setSGSandbox();
 $resp = \Xfers\User::retrieve();
 print_r($resp);
+```
+
+
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+try {
+    System.out.println("Retrieving current user");
+    User user = User.retrieve();
+    System.out.println(user.getFirstName());
+    System.out.println(user.getDateOfBirth());
+    for (BankAccount bankAccount : user.getBankAccounts()) {
+        System.out.println(bankAccount.toString());
+    }
+    System.out.println(user.toString());
+} catch (Exception e) {
+    e.printStackTrace();
+}
 ```
 
 > Response:
@@ -220,6 +254,34 @@ $resp = \Xfers\User::update(array(
     'country' => 'sg'
 ));
 print_r($resp);
+```
+
+
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+try {
+    System.out.println("Updating current user");
+    Map<String, Object> updateParams = new HashMap<String, Object>();
+    updateParams.put("first_name", "wenbin");
+    updateParams.put("last_name", "tay");
+    updateParams.put("address_line_1", "Blk 712 loyang Avenue 5");
+    updateParams.put("address_line_2", "#01-41");
+    updateParams.put("nationality", "Singaporean");
+    updateParams.put("postal_code", "340712");
+    updateParams.put("identity_no", "s86917127G");
+    updateParams.put("country", "sg");
+
+    User user = User.update(updateParams);
+    System.out.println(user.getFirstName());
+    System.out.println(user.getLastName());
+    System.out.println(user.getDateOfBirth());
+    System.out.println(user.getMetaData());
+    System.out.println(user.toString());
+
+} catch (Exception e) {
+    e.printStackTrace();
+}
 ```
 
 > Response:
@@ -324,6 +386,23 @@ $resp = \Xfers\User::activities();
 print_r($resp);
 ```
 
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+try {
+    System.out.println("Retrieving current user activities");
+    List<Activity> activities = User.activities();
+    for (Activity activity : activities) {
+        System.out.println(activity.getTransType());
+        System.out.println(activity.getTransactionItems().toString());
+        System.out.println(activity.getDisplayAmount());
+        System.out.println(activity.getPlusMinus());
+    }
+} catch (Exception e) {
+    e.printStackTrace();
+}
+```
+
 > Response:
 
 ```json
@@ -393,6 +472,25 @@ require_once('vendor/autoload.php');
 \Xfers\Xfers::setSGSandbox();
 $resp = \Xfers\User::transferInfo();
 print_r($resp);
+```
+
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+try {
+    System.out.println("Retrieving current user transfer info");
+    TransferInfo transferInfo = User.transferInfo();
+    System.out.println(transferInfo.getBankNameFull());
+    System.out.println(transferInfo.getBankNameAbbreviation());
+    System.out.println(transferInfo.getBankAccountNo());
+    System.out.println(transferInfo.getBankCode());
+    System.out.println(transferInfo.getBranchCode());
+    System.out.println(transferInfo.getBranchArea());
+    System.out.println(transferInfo.getUniqueId());
+    System.out.println(transferInfo.toString());
+} catch (Exception e) {
+    e.printStackTrace();
+}
 ```
 
 > Response:
@@ -558,6 +656,22 @@ try {
 }
 ```
 
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+try {
+    Map<String, Object> params = new HashMap<String, Object>();
+    params.put("account_no", "03931234323");
+    params.put("bank", "DBS");
+    List<BankAccount> bankAccounts = BankAccount.add(params);
+    for (BankAccount bankAccount : bankAccounts) {
+        System.out.println(bankAccount.toString());
+    }
+} catch (Exception e) {
+    e.printStackTrace();
+}
+```
+
 > Response:
 
 ```json
@@ -615,6 +729,19 @@ try {
 }
 ```
 
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+try {
+    List<BankAccount> bankAccounts = BankAccount.retrieve();
+    for (BankAccount bankAccount : bankAccounts) {
+        System.out.println(bankAccount.toString());
+    }
+} catch (Exception e) {
+    e.printStackTrace();
+}
+```
+
 > Response:
 
 ```json
@@ -662,6 +789,23 @@ try {
     print_r($resp);
 } catch (\Xfers\Error\InvalidRequest $e) {
     echo 'Caught invalid request exception: ', $e->getMessage(), "\n";
+}
+```
+
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+try {
+    Map<String, Object> params = new HashMap<String, Object>();
+    params.put("account_no", "03931234321");
+    params.put("bank", "DBS");
+
+    List<BankAccount> bankAccounts = BankAccount.update("<bank_account_id>", params);
+    for (BankAccount bankAccount : bankAccounts) {
+        System.out.println(bankAccount.toString());
+    }
+} catch (Exception e) {
+    e.printStackTrace();
 }
 ```
 
@@ -722,6 +866,19 @@ try {
 }
 ```
 
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+try {
+    List<BankAccount> bankAccounts = BankAccount.delete("<bank_account_id>");
+    for (BankAccount bankAccount : bankAccounts) {
+        System.out.println(bankAccount.toString());
+    }
+} catch (Exception e) {
+    e.printStackTrace();
+}
+```
+
 > Response:
 
 ```json
@@ -767,6 +924,29 @@ try {
     print_r($resp);
 } catch (\Xfers\Error\InvalidRequest $e) {
     echo 'Caught invalid request exception: ', $e->getMessage(), "\n";
+}
+```
+
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+try {
+    Map<String, Object> params = new HashMap<String, Object>();
+    params.put("amount", "50.0");
+    params.put("express", false);
+
+    Withdrawal withdrawal = BankAccount.withdraw("<bank_account_id>", params);
+    System.out.println(withdrawal.getId());
+    System.out.println(withdrawal.getAccountNo());
+    System.out.println(withdrawal.getBankAbbrev());
+    System.out.println(withdrawal.getAmount());
+    System.out.println(withdrawal.getFees());
+    System.out.println(withdrawal.getExpress());
+    System.out.println(withdrawal.getStatus());
+    System.out.println(withdrawal.getArrival());
+    System.out.println(withdrawal.toString());
+} catch (Exception e) {
+    e.printStackTrace();
 }
 ```
 
@@ -827,6 +1007,19 @@ try {
     print_r($resp);
 } catch (\Xfers\Error\InvalidRequest $e) {
     echo 'Caught invalid request exception: ', $e->getMessage(), "\n";
+}
+```
+
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+try {
+    List<Withdrawal> withdrawalRequests = BankAccount.withdrawalRequests("pending");
+    for (Withdrawal withdrawal : withdrawalRequests) {
+        System.out.println(withdrawal.toString());
+    }
+} catch (Exception e) {
+    e.printStackTrace();
 }
 ```
 
@@ -930,6 +1123,49 @@ try {
     print_r($resp);
 } catch (\Xfers\Error\InvalidRequest $e) {
     echo 'Caught InvalidRequest exception: ', $e->getMessage(), "\n";
+}
+```
+
+```java
+try {
+    System.out.println("Creating a charge");
+    Vector<Map<String, String>> items = new Vector<Map<String, String>>();
+    Map<String, String> item = new HashMap<String, String>();
+    item.put("description", "Red dress Size M");
+    item.put("price", "9.99");
+    item.put("quantity", "1");
+    item.put("name", "Red dress");
+    items.add(item);
+
+    Map<String, String> meta_data = new HashMap<String, String>();
+    meta_data.put("firstname", "Tianwei");
+    meta_data.put("lastname", "Liu");
+
+    Map<String, Object> params = new HashMap<String, Object>();
+    Gson gson = new Gson();
+
+    params.put("amount", "9.99");
+    params.put("currency", "SGD");
+    params.put("notify_url", "https://mysite.com/payment_notification");
+    params.put("return_url", "https://mysite.com/return");
+    params.put("cancel_url", "https://mysite.com/cancel");
+    params.put("order_id", "AZ9912");
+    params.put("description", "unused red dress");
+    params.put("shipping", "2.50");
+    params.put("tax", "0.0");
+    params.put("items", gson.toJson(items));
+    params.put("meta_data", gson.toJson(meta_data));
+
+    Charge charge = Charge.create(params);
+    System.out.println(charge.getId());
+    System.out.println(charge.getAmount());
+    System.out.println(charge.getCheckoutUrl());
+    System.out.println(charge.getOrderId());
+    System.out.println(charge.getStatus());
+    System.out.println(charge.toString());
+
+} catch (Exception e) {
+    e.printStackTrace();
 }
 ```
 
@@ -1106,6 +1342,24 @@ try {
 }
 ```
 
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+
+try {
+    System.out.println("Validating a charge");
+    Map<String, Object> params = new HashMap<String, Object>();
+    params.put("total_amount", "19.99");
+    params.put("currency", "SGD");
+    params.put("order_id", "A012312");
+    params.put("status", "paid");
+    String message = Charge.validate("<txn_id>", params);
+    System.out.println(message);
+} catch (Exception e) {
+    e.printStackTrace();
+}
+```
+
 > Response:
 
 ```json
@@ -1225,6 +1479,18 @@ try {
 }
 ```
 
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+try {
+    System.out.println("Cancelling a charge");
+    Charge charge = Charge.cancel("<CHARGE_ID>");
+    System.out.println(charge.toString());
+} catch (Exception e) {
+    e.printStackTrace();
+}
+```
+
 > Response:
 
 ```json
@@ -1293,6 +1559,18 @@ try {
     print_r($resp);
 } catch (\Xfers\Error\Api $e) {
     echo 'Caught Api exception: ', $e->getMessage(), "\n";
+}
+```
+
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+ try {
+    System.out.println("Settling a charge");
+    Charge charge = Charge.settle("<id>");
+    System.out.println(charge.toString());
+} catch (Exception e) {
+    e.printStackTrace();
 }
 ```
 
@@ -1378,6 +1656,18 @@ try {
 }
 ```
 
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+ try {
+    System.out.println("Retrieving a charge");
+    Charge charge = Charge.retrieve("<id>");
+    System.out.println(charge.toString());
+} catch (Exception e) {
+    e.printStackTrace();
+}
+```
+
 > Response:
 
 ```json
@@ -1444,6 +1734,34 @@ $resp = \Xfers\Charge::listAll(array(
     'customer' => '97288608',
     'limit' => '1'
 ));
+```
+
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+try {
+    System.out.println("Listing charges without filter");
+    List<Charge> charges = Charge.listAll();
+    for (Charge charge : charges) {
+        System.out.println(charge.toString());
+        List<Item> items = charge.getItems();
+        for (Item item : items) {
+            System.out.println(item.toString());
+        }
+    }
+
+    System.out.println("Listing charges with filter");
+    Map<String, Object> params = new HashMap<String, Object>();
+    params.put("limit", "1");
+
+    charges = Charge.listAll(params);
+    for (Charge charge : charges) {
+        System.out.println(charge.toString());
+    }
+
+} catch (Exception e) {
+    e.printStackTrace();
+}
 ```
 
 > Response:
@@ -1541,6 +1859,34 @@ try {
 }
 ```
 
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+try {
+    System.out.println("Creating a payout");
+    Map<String, Object> params = new HashMap<String, Object>();
+    params.put("amount", "150.00");
+    params.put("invoice_id", "AZ0001");
+    params.put("recipient", "+6597288608");
+    params.put("descriptions", "Payment for Rent for July");
+
+    Payout payout = Payout.create(params);
+    payoutId = payout.getId();
+    System.out.println(payout.getId());
+    System.out.println(payout.getRecipient());
+    System.out.println(payout.getAmount());
+    System.out.println(payout.getCurrency());
+    System.out.println(payout.getDescriptions());
+    System.out.println(payout.getBank());
+    System.out.println(payout.getBankAccountNo());
+    System.out.println(payout.getCreatedDate());
+    System.out.println(payout.getCompletedDate());
+    System.out.println(payout.getStatus());
+} catch (Exception e) {
+    e.printStackTrace();
+}
+```
+
 > Response:
 
 ```json
@@ -1616,6 +1962,18 @@ try {
 }
 ```
 
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+ try {
+    System.out.println("Retrieving a payout");
+    Payout payout = Payout.retrieve("<id>");
+    System.out.println(payout.toString());
+} catch (Exception e) {
+    e.printStackTrace();
+}
+```
+
 > Response:
 
 ```json
@@ -1668,6 +2026,33 @@ $resp = \Xfers\Payout::listAll(array(
     'limit' => '1'
 ));
 print_r($resp);
+```
+
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+
+try {
+    System.out.println("Listing payouts");
+    Map<String, Object> params = new HashMap<String, Object>();
+    params.put("recipient", "+6597288608");
+    List<Payout> payouts = Payout.listAll(params);
+    for (Payout payout : payouts) {
+        System.out.println(payout.getId());
+        System.out.println(payout.getInvoiceId());
+        System.out.println(payout.getRecipient());
+        System.out.println(payout.getAmount());
+        System.out.println(payout.getCurrency());
+        System.out.println(payout.getDescriptions());
+        System.out.println(payout.getBank());
+        System.out.println(payout.getBankAccountNo());
+        System.out.println(payout.getCreatedDate());
+        System.out.println(payout.getCompletedDate());
+        System.out.println(payout.getStatus());
+    }
+} catch (Exception e) {
+    e.printStackTrace();
+}
 ```
 
 > Response:
@@ -1729,6 +2114,18 @@ try {
     print_r($resp);
 } catch (\Xfers\Error\InvalidRequest $e) {
     echo 'Caught InvalidRequest exception: ', $e->getMessage(), "\n";
+}
+```
+
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+try {
+    System.out.println("Refunding a charge");
+    Charge charge = Charge.refund("<id>");
+    System.out.println(charge.toString());
+} catch (Exception e) {
+    e.printStackTrace();
 }
 ```
 
@@ -1812,6 +2209,33 @@ try {
 }
 ```
 
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+try {
+    System.out.println("Creating an intent");
+    Map<String, Object> params = new HashMap<String, Object>();
+    params.put("amount", "5000");
+    params.put("currency", "SGD");
+    params.put("bank", "BCA");
+    params.put("request_id", "AZ0001");
+    params.put("notify_url", "https://mysite.com/topup_notification");
+
+    Intent intent = Intent.create(params);
+    System.out.println(intent.getId());
+    System.out.println(intent.getAmount());
+    System.out.println(intent.getCurrency());
+    System.out.println(intent.getBank());
+    System.out.println(intent.getStatus());
+    System.out.println(intent.getCheckoutUrl());
+    System.out.println(intent.getRequestId());
+    System.out.println(intent.getNotifyUrl());
+    System.out.println(intent.getBankName());
+} catch (Exception e) {
+    e.printStackTrace();
+}
+```
+
 > Response:
 
 ```json
@@ -1837,7 +2261,7 @@ User should be prompted to transfer `unique_amount` amount to the `bank_account_
 `POST https://sandbox.xfers.io/api/v3/intents`
 
 <aside class="warning">
-You cannot create more than 1 intents per user(previous old pending intents will automatically be cancelled).
+You cannot create more than 1 intents per user (previous old pending intents will automatically be cancelled).
 </aside>
 
 
@@ -1890,6 +2314,18 @@ try {
 }
 ```
 
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+try {
+    System.out.println("Cancelling an intent");
+    Intent intent = Intent.cancel("<INTENT_ID>");
+    System.out.println(intent.toString());
+} catch (Exception e) {
+    e.printStackTrace();
+}
+```
+
 > Response:
 
 ```json
@@ -1930,6 +2366,13 @@ require_once('vendor/autoload.php');
 \Xfers\Xfers::setSGSandbox();
 $resp = \Xfers\Intent::listAll();
 print_r($resp);
+```
+
+```java
+Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.setSGSandbox();
+
+// WORK IN PROGRESS
 ```
 
 > Response:
@@ -2042,6 +2485,22 @@ try {
 }
 ```
 
+```java
+Xfers.setSGSandbox();
+String xfersAppApiKey = "Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg";
+
+try {
+    System.out.println("Authorizing");
+    Map<String, Object> params = new HashMap<String, Object>();
+    params.put("phone_no", "+6597288608");
+    params.put("signature", "a4f001729fe3accdbb0d9cfaf3b49b0678a4c91b");
+    Response response = Connect.authorize(params, xfersAppApiKey);
+    System.out.println(response.getMsg());
+} catch (Exception e) {
+    e.printStackTrace();
+}
+```
+
 > Response
 
 ```json
@@ -2071,6 +2530,9 @@ signature | string | required | SHA1 of phone_no + APP_SECRET_KEY  | Digest::SHA
 ```shell
 curl "https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=%2B6597288608&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91" \
   -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"
+
+# You can now change the X-XFERS-USER-API-KEY to the returned user_api_token 
+# and make API calls on behalf of the connect user.
 ```
 
 ```php
@@ -2088,13 +2550,42 @@ try {
     ), $xfers_app_api_key);
     print_r($resp);
 
-    # You can now change the api key used to make API calls on behalf of the connect user.
+    # You can now call \Xfers\Xfers::setApiKey again to change the X-XFERS-USER-API-KEY to the returned user_api_token 
+    # and make API calls on behalf of the connect user.
     $user_api_token = $resp['user_api_token'];
     \Xfers\Xfers::setApiKey($user_api_token);
     $resp = \Xfers\User::retrieve();
 
 } catch (\Xfers\Error\Api $e) {
     echo 'Caught Api exception: ', $e->getMessage(), "\n";
+}
+```
+
+```java
+Xfers.setSGSandbox();
+String xfersAppApiKey = "AeWpKz5cdPoJFUwF53sBee_WsSoqym_hspiX3bcoB_Y";
+
+try {
+    System.out.println("Getting token");
+    Map<String, Object> params = new HashMap<String, Object>();
+    params.put("otp", "541231");
+    params.put("phone_no", "+6597288608");
+    params.put("signature", "132e60cc2b6076824fac1ac4c1bb6b47cc3f9036");
+    params.put("return_url", "https://mywebsite.com/api/v3/account_registration/completed");
+    Response response = Connect.getToken(params, xfersAppApiKey);
+    System.out.println(response.getMsg());
+    System.out.println(response.getUserApiToken());
+    System.out.println(response.getSignUpUrl());
+
+    // You can now set Xfers.apiKey again to change the X-XFERS-USER-API-KEY to the returned user_api_token 
+    // and make API calls on behalf of the connect user.
+
+    Xfers.apiKey = response.getUserApiToken();
+    System.out.println("Retrieving connected user");
+    User user = User.retrieve();
+
+} catch (Exception e) {
+    e.printStackTrace();
 }
 ```
 
