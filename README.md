@@ -2,7 +2,7 @@
 [Click here to go to the docs page](http://xfers.github.io/docs)
 
 **Please leave a blank line after headings in slate like `###` to prevent buggy behaviour when clicking the left sidebar**
-====
+
 
 Slate
 ========
