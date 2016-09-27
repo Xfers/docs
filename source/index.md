@@ -2024,8 +2024,7 @@ Cancelling a charge that has been previously created by not yet paid. To refund 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
-  -H "Content-Type: application/json" \
-  -d '{"settlement_code": "512312"}'
+  -H "Content-Type: application/json" 
 ```
 
 ```php
@@ -2035,9 +2034,7 @@ require_once('vendor/autoload.php');
 \Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
 \Xfers\Xfers::setSGSandbox();
 try {
-    $resp = \Xfers\Charge::settle("<id>", array(
-        'settlement_code' => '512312'
-      ));
+    $resp = \Xfers\Charge::settle("<id>");
     print_r($resp);
 } catch (\Xfers\Error\Api $e) {
     echo 'Caught Api exception: ', $e->getMessage(), "\n";
@@ -2052,7 +2049,7 @@ xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
 try:
     print 'Settling charge {}...'.format('<id>')
-    resp = xfcharge.settle('<id>', '512312')
+    resp = xfcharge.settle('<id>')
     print resp
 except error.XfersError as e:
     print str(e)
@@ -2067,7 +2064,7 @@ Xfers.set_sg_sandbox
 begin
   charge_id = '<id>'
   puts "Settling charge... #{charge_id}"
-  resp = Xfers::Charge.settle charge_id, '512312'
+  resp = Xfers::Charge.settle charge_id
   puts resp
 rescue Xfers::XfersError => e
   puts e.to_s
@@ -2078,7 +2075,6 @@ end
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
  try {
-    // Note: Java SDK does not support settlement code yet
     System.out.println("Settling a charge");
     Charge charge = Charge.settle("<id>");
     System.out.println(charge.toString());
@@ -2131,21 +2127,11 @@ Xfers.setSGSandbox();
 
 Settle the payment of a previous created refundable charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default [payment settlement process](/docs/#payment-settlement) takes 10 days.
 
-When a correct `settlement_code` is provided, the charge will become completed and the funds
-will be available for usage(withdrawal, payout, etcs) immediately.
-
-If no `settlement_code` was provided, buyer will receive a notifications from Xfers that a seller has delivered on their goods/services and has 72 hrs dispute it before their funds are released to the seller.
-
 
 #### HTTPS Request
 
 `POST https://sandbox.xfers.io/api/v3/charges/<id>`
 
-#### URL Parameters
-
-Name | Type | Required | Description | Value
----- | ---- | -------- | -------- | -----------
-settlement_code | string | Optional | PIN code provided to the buyer | 512312
 
 
 ### Retrieve a Charge
@@ -3166,7 +3152,7 @@ require_once('vendor/autoload.php');
 
 \Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
 \Xfers\Xfers::setSGSandbox();
-$resp = \Xfers\Intent::listAll();
+$resp = \Xfers\Intent::retrieve();
 print_r($resp);
 ```
 
@@ -3178,7 +3164,7 @@ xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
 try:
     print 'Current intent...'
-    intent = xfintent.list_all()
+    intent = xfintent.retrieve()
     print 'Intent: {}'.format(intent)
 except error.XfersError as e:
     print str(e)
@@ -3192,7 +3178,7 @@ Xfers.set_sg_sandbox
 
 begin
   puts 'Current intent...'
-  intent = Xfers::Intent.list_all
+  intent = Xfers::Intent.retrieve
   puts intent
 rescue Xfers::XfersError => e
   puts e.to_s
@@ -3202,8 +3188,21 @@ end
 ```java
 Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
-
-// WORK IN PROGRESS
+try {
+    System.out.println("Retrieving latest intent");
+    Intent intent = Intent.retrieve();
+    System.out.println(intent.getId());
+    System.out.println(intent.getAmount());
+    System.out.println(intent.getCurrency());
+    System.out.println(intent.getBank());
+    System.out.println(intent.getStatus());
+    System.out.println(intent.getCheckoutUrl());
+    System.out.println(intent.getRequestId());
+    System.out.println(intent.getNotifyUrl());
+    System.out.println(intent.getBankName());
+} catch (Exception e) {
+    e.printStackTrace();
+}
 ```
 
 > Response:
