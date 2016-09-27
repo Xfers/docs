@@ -2498,8 +2498,7 @@ Please take note that at this point, payment may or may not have been completed 
 <h3 id="settle-a-charge">Settle a Charge</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
-  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -d <span class="s1">'{"settlement_code": "512312"}'</span>
+  -H <span class="s2">"Content-Type: application/json"</span> 
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
@@ -2507,9 +2506,7 @@ Please take note that at this point, payment may or may not have been completed 
 <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setApiKey</span><span class="p">(</span><span class="s1">'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'</span><span class="p">);</span>
 <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
 <span class="k">try</span> <span class="p">{</span>
-    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Charge</span><span class="o">::</span><span class="na">settle</span><span class="p">(</span><span class="s2">"&lt;id&gt;"</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'settlement_code'</span> <span class="o">=&gt;</span> <span class="s1">'512312'</span>
-      <span class="p">));</span>
+    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Charge</span><span class="o">::</span><span class="na">settle</span><span class="p">(</span><span class="s2">"&lt;id&gt;"</span><span class="p">);</span>
     <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\Api</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Caught Api exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
@@ -2522,7 +2519,7 @@ Please take note that at this point, payment may or may not have been completed 
 <span class="n">xfers</span><span class="o">.</span><span class="n">set_sg_sandbox</span><span class="p">()</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="k">print</span> <span class="s">'Settling charge {}...'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s">'&lt;id&gt;'</span><span class="p">)</span>
-    <span class="n">resp</span> <span class="o">=</span> <span class="n">xfcharge</span><span class="o">.</span><span class="n">settle</span><span class="p">(</span><span class="s">'&lt;id&gt;'</span><span class="p">,</span> <span class="s">'512312'</span><span class="p">)</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">xfcharge</span><span class="o">.</span><span class="n">settle</span><span class="p">(</span><span class="s">'&lt;id&gt;'</span><span class="p">)</span>
     <span class="k">print</span> <span class="n">resp</span>
 <span class="k">except</span> <span class="n">error</span><span class="o">.</span><span class="n">XfersError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
     <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
@@ -2535,7 +2532,7 @@ Please take note that at this point, payment may or may not have been completed 
 <span class="k">begin</span>
   <span class="n">charge_id</span> <span class="o">=</span> <span class="s1">'&lt;id&gt;'</span>
   <span class="nb">puts</span> <span class="s2">"Settling charge... </span><span class="si">#{</span><span class="n">charge_id</span><span class="si">}</span><span class="s2">"</span>
-  <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Charge</span><span class="p">.</span><span class="nf">settle</span> <span class="n">charge_id</span><span class="p">,</span> <span class="s1">'512312'</span>
+  <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Charge</span><span class="p">.</span><span class="nf">settle</span> <span class="n">charge_id</span>
   <span class="nb">puts</span> <span class="n">resp</span>
 <span class="k">rescue</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">XfersError</span> <span class="o">=&gt;</span> <span class="n">e</span>
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
@@ -2544,7 +2541,6 @@ Please take note that at this point, payment may or may not have been completed 
 <pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
  <span class="k">try</span> <span class="o">{</span>
-    <span class="c1">// Note: Java SDK does not support settlement code yet</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Settling a charge"</span><span class="o">);</span>
     <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">settle</span><span class="o">(</span><span class="s">"&lt;id&gt;"</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
@@ -2596,34 +2592,9 @@ Please take note that at this point, payment may or may not have been completed 
 
 <p>Settle the payment of a previous created refundable charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default <a href="/docs/#payment-settlement">payment settlement process</a> takes 10 days.</p>
 
-<p>When a correct <code class="prettyprint">settlement_code</code> is provided, the charge will become completed and the funds
-will be available for usage(withdrawal, payout, etcs) immediately.</p>
-
-<p>If no <code class="prettyprint">settlement_code</code> was provided, buyer will receive a notifications from Xfers that a seller has delivered on their goods/services and has 72 hrs dispute it before their funds are released to the seller.</p>
-
 <h4 id="https-request">HTTPS Request</h4>
 
 <p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;</code></p>
-
-<h4 id="url-parameters">URL Parameters</h4>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>settlement_code</td>
-<td>string</td>
-<td>Optional</td>
-<td>PIN code provided to the buyer</td>
-<td>512312</td>
-</tr>
-</tbody></table>
 
 <h3 id="retrieve-a-charge">Retrieve a Charge</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;"</span> <span class="se">\</span>
@@ -3773,7 +3744,7 @@ You cannot create more than 1 intents per user (previous old pending intents wil
 
 <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setApiKey</span><span class="p">(</span><span class="s1">'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'</span><span class="p">);</span>
 <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
-<span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Intent</span><span class="o">::</span><span class="na">listAll</span><span class="p">();</span>
+<span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Intent</span><span class="o">::</span><span class="na">retrieve</span><span class="p">();</span>
 <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
 </code></pre>
 <pre class="highlight python"><code><span class="kn">import</span> <span class="nn">xfers</span>
@@ -3783,7 +3754,7 @@ You cannot create more than 1 intents per user (previous old pending intents wil
 <span class="n">xfers</span><span class="o">.</span><span class="n">set_sg_sandbox</span><span class="p">()</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="k">print</span> <span class="s">'Current intent...'</span>
-    <span class="n">intent</span> <span class="o">=</span> <span class="n">xfintent</span><span class="o">.</span><span class="n">list_all</span><span class="p">()</span>
+    <span class="n">intent</span> <span class="o">=</span> <span class="n">xfintent</span><span class="o">.</span><span class="n">retrieve</span><span class="p">()</span>
     <span class="k">print</span> <span class="s">'Intent: {}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">intent</span><span class="p">)</span>
 <span class="k">except</span> <span class="n">error</span><span class="o">.</span><span class="n">XfersError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
     <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
@@ -3795,7 +3766,7 @@ You cannot create more than 1 intents per user (previous old pending intents wil
 
 <span class="k">begin</span>
   <span class="nb">puts</span> <span class="s1">'Current intent...'</span>
-  <span class="n">intent</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Intent</span><span class="p">.</span><span class="nf">list_all</span>
+  <span class="n">intent</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Intent</span><span class="p">.</span><span class="nf">retrieve</span>
   <span class="nb">puts</span> <span class="n">intent</span>
 <span class="k">rescue</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">XfersError</span> <span class="o">=&gt;</span> <span class="n">e</span>
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
@@ -3803,8 +3774,21 @@ You cannot create more than 1 intents per user (previous old pending intents wil
 </code></pre>
 <pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
-
-<span class="c1">// WORK IN PROGRESS</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving latest intent"</span><span class="o">);</span>
+    <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="n">Intent</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getAmount</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getCurrency</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getBank</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getStatus</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getCheckoutUrl</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getRequestId</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getNotifyUrl</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getBankName</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre>
 
 <blockquote>
