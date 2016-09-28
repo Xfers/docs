@@ -1492,6 +1492,7 @@ cancelled | Withdrawal request has been cancelled.
 
 The following APIs allow you to create a Xfers transaction and allow anyone to pay you via an internet banking transfer or credit card.
 
+
 ### Creating a Charge
 
 ```shell
@@ -1684,7 +1685,7 @@ try {
 ```
 
 
-The following request will allow you to create a charge against a customer. 
+The following request will allow you to create a charge against a customer.  The user pays by going to the `checkout_url` returned (assuming `redirect` is set to `false`). When `redirect` is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page   
 
 `POST https://sandbox.xfers.io/api/v3/charges`
 
@@ -1696,6 +1697,7 @@ amount | float | required | Total value for items, excluding taxes and shipping 
 currency | string | required | 3-letter ISO code for currency | SGD
 order_id | string | required | Unique ref no provided by you to prevent double charging, this cannot be repeated | A012312
 description | string | required | Description of transaction for display purposes | Carousell user - Konsolidate
+customer | string | optional | Customer email or phone number. If provided, only that user can use the checkout_url returned. If the customer does not exist, an account will be created for them using the email/phone number provided. An OTP will be sent to the email/phone for the user to log in | johnny@xfers.com or +6597288608
 notify_url | string | optional | URL to receive callback notifications on charge success/failure/expiration | https://mysite.com/payment_notification
 return_url | string | optional | URL Xfers will redirect customer to on completion of Xfers checkout | https://mysite.com/return
 cancel_url | string | optional | URL Xfers will redirect customer to on cancellation of Xfers checkout | https://mysite.com/cancel
