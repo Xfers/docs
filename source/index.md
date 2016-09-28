@@ -1701,7 +1701,6 @@ return_url | string | optional | URL Xfers will redirect customer to on completi
 cancel_url | string | optional | URL Xfers will redirect customer to on cancellation of Xfers checkout | https://mysite.com/cancel
 refundable | boolean | optional | Whether or not this charge can be refunded. Non Refundable Charges will settle immediately after payment. | Default to true
 user_api_token | string | optional | Buyer's api token obtain via Connect's get user token APIs. When this is provide, this charge will skip user auth. | NbKjcFV5XxGZ-Uf2XnxyshFcrGtoxmLms9YEgokzDRo
-user_phone_no | boolean | optional | When this is provided, buyer will receive an OTP(one time password) from Xfers which they can provide to merchant to skip user authentication. See [Authenticate a Charge](/docs/#authorize-a-charge). | Default to false
 debit_only | boolean | optional | When this is true, this charge will attempt to debit from users existing balance/card on file. Status returned will be "completed" on successful debit or "cancelled" when there insufficient funds / valid card on file in user wallet. | Default to false
 card_only | boolean | optional | When this is true, this charge will will attempt to only take payments via credit/debit card. | Default to false
 absorb_card_fees | boolean | optional | When this is true, seller will not pass on the additional fees involved in card processing back on to buyer(as convenience fees) | Default to false
