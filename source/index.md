@@ -3381,7 +3381,7 @@ try {
 
 This API call will attempt to login(existing user) or signup a new user.
 
-An SMS with a OTP will be send to that number which must be used for [get_token](/docs/#get-user-api-token) api call.
+An SMS with a OTP will be send to that number which must be used for [get_token](/#get-user-api-token) api call.
 
 ### HTTPS Request
 
