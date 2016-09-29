@@ -617,7 +617,7 @@ try {
 
 ```
 
-This endpoint return information related to your account activites such as the types and statuses of transactions that the user has.
+This endpoint returns information related to your account activites such as the types and statuses of transactions that the user has.
 
 #### HTTPS Request
 
@@ -705,7 +705,10 @@ try {
 }
 ```
 
-This will return transfer in info specific to the user.
+This will return transfer in info specific to the user. This information is used for topping up the user's Xfers account.
+
+On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. **The user must also include his mobile phone number in the "Initials" and "Comments for Recipient" field when doing a bank transfer** so Xfers can identify which user this bank transfer belongs to.
+
 
 #### HTTPS Request
 
@@ -1490,7 +1493,11 @@ cancelled | Withdrawal request has been cancelled.
 
 ## Charges
 
-The following APIs allow you to create a Xfers transaction and allow anyone to pay you via an internet banking transfer or credit card.
+The following APIs allow anyone to pay you via an internet banking transfer or credit card.
+
+The user pays by going to the `checkout_url` returned (assuming `redirect` is set to `false`). When `redirect` is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page.
+
+Our checkout page contains the relevant instructions for the user to login/signup and guides them to make payment. If the user already has an Xfers account with enough balance, we deduct directly from that account.
 
 
 ### Creating a Charge
@@ -1685,7 +1692,7 @@ try {
 ```
 
 
-The following request will allow you to create a charge against a customer.  The user pays by going to the `checkout_url` returned (assuming `redirect` is set to `false`). When `redirect` is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page   
+The following request will allow you to create a charge against a customer.     
 
 `POST https://sandbox.xfers.io/api/v3/charges`
 
@@ -2394,7 +2401,7 @@ starting_after | string | optional | A cursor for use in pagination. starting_af
 
 ## Payouts
 
-Xfers payout Apis allow you to pay anyone with your Xfers balance via their phone no or email address. A SGD$1.00 fees will be charge to your account on every successful payout. You need to have sufficient available balance in your account to cover the amount + fees required for the payout.
+Xfers Payout allows you to pay anyone with your Xfers balance via their phone no or email address. A SGD$1.00 fee will be charged to your account on every successful payout. You need to have sufficient available balance in your account to cover the amount + fees required for the payout.
 
 ### Creating a Payout
 
@@ -2521,11 +2528,13 @@ try {
 }
 ```
 
-The following request will allow you to make a payout to the recipient. If you only provide us with bank details, Xfers will make a payout directly to that bank account. 
-If only email/phone no is provided, Xfers will email/SMS the recipient to inform him of the payout and allow him to claim and withdrawal the funds to any of the [local banks we support](/docs/#supported-banks). However, if a user has an account with xfers, we will credit the amount into the user's account immediately. 
-If both bank details and recipient informations are provided, we will credit their bank account and send them a notification once their payout has been processed.
+The following request will allow you to make a payout to the recipient. If you only provide us with bank details, Xfers will make a payout directly to that bank account.
 
-Note: If the recipient did not accept the payout within 14 days, the payout will be cancelled and its funds will be return back to your Xfers balances.
+If only email/phone no is provided, Xfers will email/SMS the recipient to inform him of the payout and allow him to claim and withdrawal the funds to any of the [local banks we support](/#supported-banks(singapore)). However, if a user has an account with Xfers, we will credit the amount into the user's Xfers account immediately.
+
+If both bank details and recipient informations are provided, we will credit directly to their bank account and send them a notification once their payout has been processed.
+
+Note: If the recipient did not accept the payout within 14 days, the payout will be cancelled and its funds will be returned back to your Xfers balances.
 
 <aside class="notice">
 Either the recipient field or the bank_account_no field must be filled in to identify the recipient.
@@ -2776,7 +2785,7 @@ starting_after | string | optional | A cursor for use in pagination. starting_af
 
 ## Refunds
 
-The following APIs allow you to refund a charge that has previously been created and paid by your buyer but not yet refunded. Funds will be refunded to the buyer Xfers account available balance. The fees you were originally charged are also refunded.
+The following APIs allow you to refund a charge that has previously been created and paid by your buyer. Funds will be refunded to the buyer's Xfers account. The fees you were originally charged are also refunded.
 
 ### Creating a Refund
 
@@ -3029,7 +3038,7 @@ You cannot create more than 1 intents per user (previous old pending intents wil
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-amount | float | required | Amount that user intent to transfer | 5000
+amount | float | required | Amount that user intends to transfer | 5000
 currency | string | required | 3-letter ISO code for currency(IDR/SGD)
 bank | string | required | bank abbreviation (BCA or OCBC) | BCA
 request_id | string | required | Unique ref no provided by requester. This will need to be unique or the intent request will be considered a duplicate and ignored. | AZ0001
@@ -3564,6 +3573,7 @@ Note that the signature required here for /get_token  is different from the one 
 </aside>
 
 `/authorize/signup_login` - SHA1 of phone_no + APP_SECRET_KEY
+
 `/authorize/get_token` - SHA1 of phone_no + OTP + APP_SECRET_KEY
 
 
