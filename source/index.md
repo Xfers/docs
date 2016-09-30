@@ -709,6 +709,7 @@ This will return transfer in info specific to the user. This information is used
 
 On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. **The user must also include his mobile phone number in the "Initials" and "Comments for Recipient" field when doing a bank transfer** so Xfers can identify which user this bank transfer belongs to.
 
+For a second way of doing Xfers account top ups without the user having to key in his contact number in the "Initials" and "Comments for Recipient" fields, refer to our [Intents API](/#intents).
 
 #### HTTPS Request
 
@@ -2900,7 +2901,18 @@ Creating a new refund will refund a charge that has previously been created and 
 
 ## Intents
 
-The following APIs allow you to create and manage top up intents for better transfer matching and registering for transfer callback notifications.
+When doing a top up via [GET /transfer_info](/#get-transfer-info), users might forget to enter their contact number which is needed for our system to identify them. There is also no way to enter comments when doing top ups via ATM transfers.
+
+The Intents API solves this issue by requiring the user to transfer a unique amount to Xfers which will be used to identify them. The difference between the `unique_amount` and the actual `amount` will be very small, and Xfers provides the difference for free to the user.
+
+Example:
+Jane wishes to transfer 5000 Indonesian Rupiah via `/intents`.
+
+1. She makes a HTTP GET request to `/user/transfer_info` to get the correct Xfers bank to transfer to (we have many banks!). The response tells her to transfer to Bank Central Asia (BCA).
+2. She makes a HTTP POST request to create an intent. The response tells her to make a bank transfer of 4999 to Xfers. 
+3. Jane makes a transfer of 4999 to Xfers BCA. Within a few minutes, Xfers detects the transfer and tops up Jane's Xfers account with 5000. Xfers absorbs the difference for free. 
+4. If `notify_url` is given, Xfers will send a callback to this url.
+
 
 ### Creating an Intent
 
@@ -3040,7 +3052,7 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 amount | float | required | Amount that user intends to transfer | 5000
 currency | string | required | 3-letter ISO code for currency(IDR/SGD)
-bank | string | required | bank abbreviation (BCA or OCBC) | BCA
+bank | string | required | bank abbreviation (BCA or OCBC). You can get the bank to transfer to via our Get Transfer Info API | BCA
 request_id | string | required | Unique ref no provided by requester. This will need to be unique or the intent request will be considered a duplicate and ignored. | AZ0001
 notify_url | string | optional | URL to receive callback notifications when transfer is received	 | https://mysite.com/payment_notification
 
