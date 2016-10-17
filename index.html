@@ -812,7 +812,7 @@ All documents/images provided should not exceed 10MB per file.
 
 <p>On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. <strong>The user must also include his mobile phone number in the &ldquo;Initials&rdquo; and &ldquo;Comments for Recipient&rdquo; field when doing a bank transfer</strong> so Xfers can identify which user this bank transfer belongs to.</p>
 
-<p>For a second way of doing Xfers account top ups without the user having to key in his contact number in the &ldquo;Initials&rdquo; and &ldquo;Comments for Recipient&rdquo; fields, refer to our <a href="/#intents">Intents API</a>.</p>
+<p>If you want to guard against user forgetting to key in his contact number in the &ldquo;Initials&rdquo; and &ldquo;Comments for Recipient&rdquo; fields, refer to our <a href="/#intents">Intents API</a>.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -1918,7 +1918,22 @@ All documents/images provided should not exceed 10MB per file.
   </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"firstname"</span><span class="p">:</span><span class="s2">"Tianwei"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Liu"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"transfer_info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"bank_name_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Oversea-Chinese Banking Corporation Limited"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_name_abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OCBC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646004424001"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7339"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"branch_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"branch_area"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jurong East"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unique_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89898989"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"outstanding_amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.44"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_txn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.44"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_unique_amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.44</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">  
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -2199,6 +2214,42 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 <aside class="notice">
 You should always provide customer&rsquo;s firstname and lastname information whenever you can as it would help us detecting fraudulence charges or user who have made an mistaken in their bank transfer.
 </aside>
+
+<h3 id="create-charge-response">Create Charge Response</h3>
+
+<p>If either the <code class="prettyprint">user_api_token</code> or the <code class="prettyprint">customer</code> field is entered, the response will return the <code class="prettyprint">transfer_info</code> object containing information about the bank the user should transfer to. </p>
+
+<p>Xfers might use a <code class="prettyprint">bank_unique_amt</code> to help in identifying the bank transfer in case the user forgets to enter his contact number in the comments section. This is a very small random amount (a few cents) which Xfers will absorb. However this is only to be used as a backup; the user should always enter his contact number.</p>
+
+<p>The table below explains some of these attributes:</p>
+
+<table><thead>
+<tr>
+<th>key</th>
+<th>meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total_txn</td>
+<td>Total value of your payable transactions.</td>
+</tr>
+<tr>
+<td>total</td>
+<td>total_txn - available Xfers balance of user.</td>
+</tr>
+<tr>
+<td>bank_unique_amt</td>
+<td>Random very small amount generated by Xfers.</td>
+</tr>
+<tr>
+<td>bank_discount</td>
+<td>This is the amount user should use to transfer to the bank. (total - bank_unique_amt)</td>
+</tr>
+<tr>
+<td>unique_id</td>
+<td>The contact number of the user. This should be entered in the comments section of your bank when doing a bank transfer.</td>
+</tr>
+</tbody></table>
 
 <h3 id="payment-cancellation">Payment Cancellation</h3>
 
@@ -3447,9 +3498,11 @@ Either the recipient field or the bank_account_no field must be filled in to ide
 
 <h2 id="intents">Intents</h2>
 
-<p>When doing a top up via <a href="/#get-transfer-info">GET /transfer_info</a>, users might forget to enter their contact number which is needed for our system to identify them. There is also no way to enter comments when doing top ups via ATM transfers.</p>
+<p>When doing a top up via <a href="/#get-transfer-info">GET /transfer_info</a>, users might forget to enter their contact number which is needed for our system to identify them. </p>
 
 <p>The Intents API solves this issue by requiring the user to transfer a unique amount to Xfers which will be used to identify them. The difference between the <code class="prettyprint">unique_amount</code> and the actual <code class="prettyprint">amount</code> will be very small, and Xfers provides the difference for free to the user.</p>
+
+<p>Note that this only acts as a backup, and the user should enter his contact number in the comments section when doing a bank transfer whenever possible.</p>
 
 <p>Example:
 Jane wishes to transfer 5000 Indonesian Rupiah via <code class="prettyprint">/intents</code>.</p>
