@@ -1777,7 +1777,7 @@ error_code | 'INVALID_CARD' | This is returned when a charge via user_api_token 
 You should always provide customer's firstname and lastname information whenever you can as it would help us detecting fraudulence charges or user who have made an mistaken in their bank transfer.
 </aside>
 
-### Create Charge Response
+#### Create Charge Response
 
 If either the `user_api_token` or the `customer` field is entered, the response will return the `transfer_info` object containing information about the bank the user should transfer to. 
 
