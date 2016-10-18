@@ -1698,10 +1698,10 @@ try {
     "branch_area": "Jurong East",
     "unique_id": "89898989",
     "outstanding_amount": {
-      "total": "1.44",
-      "total_txn": "1.44",
+      "total": 1.44,
+      "total_txn": 1.44,
       "bank_unique_amt": 1.44,
-      "bank_discount": "0.0"
+      "bank_discount": 0.0
     }
   }  
 }
@@ -1779,7 +1779,7 @@ You should always provide customer's firstname and lastname information whenever
 
 #### Create Charge Response
 
-If either the `user_api_token` or the `customer` field is entered, the response will return the `transfer_info` object containing information about the bank the user should transfer to. 
+If the `user_api_token` field is used, the response will return the `transfer_info` object containing information about the bank the user should transfer to. 
 
 Xfers might use a `bank_unique_amt` to help in identifying the bank transfer in case the user forgets to enter his contact number in the comments section. This is a very small random amount (a few cents) which Xfers will absorb. However this is only to be used as a backup; the user should always enter his contact number.
 
