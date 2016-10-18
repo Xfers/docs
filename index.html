@@ -1928,10 +1928,10 @@ All documents/images provided should not exceed 10MB per file.
     </span><span class="s2">"branch_area"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jurong East"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"unique_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89898989"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"outstanding_amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.44"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"total_txn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.44"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.44</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_txn"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.44</span><span class="p">,</span><span class="w">
       </span><span class="s2">"bank_unique_amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.44</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"bank_discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="w">
+      </span><span class="s2">"bank_discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">  
 </span><span class="p">}</span><span class="w">
@@ -2217,7 +2217,7 @@ You should always provide customer&rsquo;s firstname and lastname information wh
 
 <h4 id="create-charge-response">Create Charge Response</h4>
 
-<p>If either the <code class="prettyprint">user_api_token</code> or the <code class="prettyprint">customer</code> field is entered, the response will return the <code class="prettyprint">transfer_info</code> object containing information about the bank the user should transfer to. </p>
+<p>If the <code class="prettyprint">user_api_token</code> field is used, the response will return the <code class="prettyprint">transfer_info</code> object containing information about the bank the user should transfer to. </p>
 
 <p>Xfers might use a <code class="prettyprint">bank_unique_amt</code> to help in identifying the bank transfer in case the user forgets to enter his contact number in the comments section. This is a very small random amount (a few cents) which Xfers will absorb. However this is only to be used as a backup; the user should always enter his contact number.</p>
 
