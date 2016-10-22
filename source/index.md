@@ -1997,6 +1997,7 @@ return_url | string | optional | URL Xfers will redirect customer to on completi
 cancel_url | string | optional | URL Xfers will redirect customer to on cancellation of Xfers checkout | https://mysite.com/cancel
 refundable | boolean | optional | Whether or not this charge can be refunded. Non Refundable Charges will settle immediately after payment. | Default to true
 user_api_token | string | optional | Buyer's api token obtain via Connect's get user token APIs. When this is provide, this charge will skip user auth. | NbKjcFV5XxGZ-Uf2XnxyshFcrGtoxmLms9YEgokzDRo
+user_phone_no | boolean | optional | When this is provided, buyer will receive an OTP(one time password) from Xfers which they can provide to merchant to skip user authentication. See [Authorize a Charge](/#authorize-a-charge). | Default to false
 debit_only | boolean | optional | When this is true, this charge will attempt to debit from users existing balance/card on file. Status returned will be "completed" on successful debit or "cancelled" when there insufficient funds / valid card on file in user wallet. | Default to false
 card_only | boolean | optional | When this is true, this charge will will attempt to only take payments via credit/debit card. | Default to false
 absorb_card_fees | boolean | optional | When this is true, seller will not pass on the additional fees involved in card processing back on to buyer(as convenience fees) | Default to false
@@ -2217,6 +2218,86 @@ status | string | Payment status. | "cancelled" or "paid" or "expired"
 After refundable charge become "paid", its funds(minus our fees) will be added to your account ledger balance.
 
 By default, its funds(minus our fees) will be "withheld" by Xfers for another 10 days(for refund and dispute purposes) before the charge becomes "completed" and it's funds(minus our fees) will be credited to your Xfers account available balance.
+
+### Authorize a Charge
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/charges/<id>/authorize" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "Content-Type: application/json" \
+  -d '{"auth_code": "512312"}'
+```
+
+```php
+# COMING SOON
+```
+
+```python
+# COMING SOON
+```
+
+```ruby
+# COMING SOON
+```
+
+```java
+// COMING SOON
+```
+
+> Response:
+
+```json
+{
+  "id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd",
+  "notify_url" : "https://mysite.com/payment_notification",
+  "return_url" : "https://mysite.com/return",
+  "cancel_url" : "https://mysite.com/cancel",
+  "object" : "charge",
+  "amount" : 9.99,
+  "currency" : "SGD",
+  "customer" : "",
+  "order_id" : "A012312",
+  "capture" : true,
+  "refundable" : true,
+  "shipment_date" : "2015-07-02T06:26:51Z",
+  "settlement_date" : "2015-07-05T06:26:51Z",
+  "description" : "Carousell user - Konsolidate",
+  "items" : [
+    {
+      "description": "Red Dress Size M",
+      "name": "Red dress",
+      "quantity": "1.00",
+      "price": 9.99,
+      "item_id": ""
+    }
+  ],
+  "statement_descriptor" : "",
+  "receipt_email" : "",
+  "shipping" : 2.50,
+  "tax" : 0.00,
+  "total_amount" : 12.49,
+  "status" : "accepted",
+  "meta_data" : {
+    "firstname":"Tianwei",
+    "lastname": "Liu"
+  }
+}
+```
+
+(COMING SOON) Authorize a previously created charge. This is an optional process that will allow buyer to skip the sign in flow on Xfers, allowing checkout to be completed on merchant site. If a correct auth_code is provided, the charge will immediately become "accepted" by the buyer.
+
+This endpoint is only used if `user_phone_no` param was passed in during charge creation.
+
+#### HTTPS Request
+
+`POST https://sandbox.xfers.io/api/v3/charges/<id>/authorize`
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | -------- | -----------
+auth_code | string | Required | PIN code provided to the buyer | 512312
 
 
 ### Cancel a Charge
