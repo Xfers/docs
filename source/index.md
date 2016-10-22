@@ -1492,6 +1492,277 @@ pending | Withdrawal request is being process now.
 paid | Withdrawal request has been processed and completed.
 cancelled | Withdrawal request has been cancelled.
 
+
+## Cards (Coming soon)
+
+The following APIs allow you to add or update credit cards to a connected user (which means you have to go through our [Xfers Connect flow](/#xfers-connect) to get their `user_api_token`).
+
+
+### Add a Card
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/cards" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "Content-Type: application/json" \
+  -d '{ "user_api_token": "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ", "credit_card_token": "token-from-xfers.js", "first6": "424242", "last4": "4242"}'
+```
+
+```php
+
+<?php
+require_once('vendor/autoload.php');
+// COMING SOON
+
+```
+
+```python
+
+# COMING SOON
+
+```
+
+```ruby
+
+# COMING SOON
+
+```
+
+```java
+
+// COMING SOON
+
+```
+
+> Response:
+
+```json
+{
+  "card_id": "card_197O8yI7jGeCrIKDeI6SexB6",
+  "last_4": "4242",
+  "card_type": "Visa",
+  "card_country": "US",
+  "exp_yr": "2022",
+  "exp_month": "3",
+  "is_default": false
+}
+```
+
+
+The following request will allow you to add a credit card to your connected user.     
+
+`POST https://sandbox.xfers.io/api/v3/cards`
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+user_api_token | string | required | Buyer’s api token obtain via Connect’s get user token API. | osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ
+credit_card_token | string | required | Tokenized credit card from Xfers.js createToken function | tok_197O8gB8MXWbQJDjPMILsIr6 | 
+first6 | string | required | First 6 digits of credit card. Returned via Xfers.js | 424242
+last4 | string | required | Last 4 digits of credit card. Returned via Xfers.js | 4242
+
+#### Response
+
+An Xfers Card object.
+
+Name | Type | Description
+---- | ---- | ----------- 
+card_id | string | The id of the card added
+last_4 | string | Last 4 digits of credit card
+card_type | string | Card brand. Can be Visa, American Express, MasterCard, Discover, JCB, Diners Club, or Unknown
+card_country | string | Two-letter ISO code representing the country of the card. You could use this attribute to get a sense of the international breakdown of cards you’ve collected
+exp_yr | string | Credit card year
+exp_month | string | Credit card expiry month 
+is_default | boolean | Is this the default card to be charged
+
+
+### List Cards
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/cards?user_api_token=osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ" \
+-H "X-XFERS-USER-API-KEY: WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o"
+```
+
+```php
+
+<?php
+require_once('vendor/autoload.php');
+// COMING SOON
+
+```
+
+```python
+
+# COMING SOON
+
+```
+
+```ruby
+
+# COMING SOON
+
+```
+
+```java
+
+// COMING SOON
+
+```
+
+> Response:
+
+```json
+[
+   {
+      "card_id":"card_196hygI7jGeCrIKDAwXhGcHm",
+      "last_4":"4242",
+      "card_type":"Visa",
+      "card_country":"US",
+      "exp_yr":"2022",
+      "exp_month":"3",
+      "is_default":true
+   },
+   {
+      "card_id":"card_196kFHI7jGeCrIKD7HxYauMv",
+      "last_4":"4444",
+      "card_type":"MasterCard",
+      "card_country":"US",
+      "exp_yr":"2022",
+      "exp_month":"5",
+      "is_default":false
+   }
+]
+```
+
+
+The following request will allow you to list all credit cards added to a user
+
+`GET https://sandbox.xfers.io/api/v3/cards`
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+user_api_token | string | required | Buyer’s api token obtain via Connect’s get user token API. | osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ
+
+
+### Set Default Card
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/cards/<the_card_id>/set_default" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "Content-Type: application/json" \
+  -d '{ "user_api_token": "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ"}'
+```
+
+```php
+
+<?php
+require_once('vendor/autoload.php');
+// COMING SOON
+
+```
+
+```python
+
+# COMING SOON
+
+```
+
+```ruby
+
+# COMING SOON
+
+```
+
+```java
+
+// COMING SOON
+
+```
+
+> Response:
+
+```json
+{
+  "card_id": "card_197O8yI7jGeCrIKDeI6SexB6",
+  "last_4": "4242",
+  "card_type": "Visa",
+  "card_country": "US",
+  "exp_yr": "2022",
+  "exp_month": "3",
+  "is_default": true
+}
+```
+
+
+The following request will allow you to set a default credit card for your connected user.
+
+`POST https://sandbox.xfers.io/api/v3/cards/<the_card_id>/set_default`
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+user_api_token | string | required | Buyer’s api token obtain via Connect’s get user token API. | osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ
+
+
+### Delete Card
+
+```shell
+curl -X DELETE "https://sandbox.xfers.io/api/v3/cards/<the_card_id>" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "Content-Type: application/json" \
+  -d '{ "user_api_token": "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ"}'
+```
+
+```php
+
+<?php
+require_once('vendor/autoload.php');
+// COMING SOON
+
+```
+
+```python
+
+# COMING SOON
+
+```
+
+```ruby
+
+# COMING SOON
+
+```
+
+```java
+
+// COMING SOON
+
+```
+
+> Response:
+
+```json
+{
+  "card_id": "card_197O8yI7jGeCrIKDeI6SexB6",
+  "deleted": true
+}
+```
+
+
+The following request will allow you to delete your user's credit card.
+
+`DELETE https://sandbox.xfers.io/api/v3/cards/<the_card_id>`
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+user_api_token | string | required | Buyer’s api token obtain via Connect’s get user token API. | osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ
+
+
 ## Charges
 
 The following APIs allow anyone to pay you via an internet banking transfer or credit card.
