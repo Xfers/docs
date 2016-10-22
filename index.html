@@ -1733,6 +1733,335 @@ All documents/images provided should not exceed 10MB per file.
 </tr>
 </tbody></table>
 
+<h2 id="cards-(coming-soon)">Cards (Coming soon)</h2>
+
+<p>The following APIs allow you to add or update credit cards to a connected user (which means you have to go through our <a href="/#xfers-connect">Xfers Connect flow</a> to get their <code class="prettyprint">user_api_token</code>).</p>
+
+<h3 id="add-a-card">Add a Card</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/cards"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{ "user_api_token": "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ", "credit_card_token": "token-from-xfers.js", "first6": "424242", "last4": "4242"}'</span>
+</code></pre>
+<pre class="highlight php"><code>
+<span class="cp">&lt;?php</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
+<span class="c1">// COMING SOON
+</span>
+</code></pre>
+<pre class="highlight python"><code>
+<span class="c"># COMING SOON</span>
+
+</code></pre>
+<pre class="highlight ruby"><code>
+<span class="c1"># COMING SOON</span>
+
+</code></pre>
+<pre class="highlight java"><code>
+<span class="c1">// COMING SOON</span>
+
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card_197O8yI7jGeCrIKDeI6SexB6"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"card_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"card_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"exp_yr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The following request will allow you to add a credit card to your connected user.     </p>
+
+<p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/cards</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_api_token</td>
+<td>string</td>
+<td>required</td>
+<td>Buyer’s api token obtain via Connect’s get user token API.</td>
+<td>osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ</td>
+</tr>
+<tr>
+<td>credit_card_token</td>
+<td>string</td>
+<td>required</td>
+<td>Tokenized credit card from Xfers.js createToken function</td>
+<td>tok_197O8gB8MXWbQJDjPMILsIr6</td>
+</tr>
+<tr>
+<td>first6</td>
+<td>string</td>
+<td>required</td>
+<td>First 6 digits of credit card. Returned via Xfers.js</td>
+<td>424242</td>
+</tr>
+<tr>
+<td>last4</td>
+<td>string</td>
+<td>required</td>
+<td>Last 4 digits of credit card. Returned via Xfers.js</td>
+<td>4242</td>
+</tr>
+</tbody></table>
+
+<h4 id="response">Response</h4>
+
+<p>An Xfers Card object.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>card_id</td>
+<td>string</td>
+<td>The id of the card added</td>
+</tr>
+<tr>
+<td>last_4</td>
+<td>string</td>
+<td>Last 4 digits of credit card</td>
+</tr>
+<tr>
+<td>card_type</td>
+<td>string</td>
+<td>Card brand. Can be Visa, American Express, MasterCard, Discover, JCB, Diners Club, or Unknown</td>
+</tr>
+<tr>
+<td>card_country</td>
+<td>string</td>
+<td>Two-letter ISO code representing the country of the card. You could use this attribute to get a sense of the international breakdown of cards you’ve collected</td>
+</tr>
+<tr>
+<td>exp_yr</td>
+<td>string</td>
+<td>Credit card year</td>
+</tr>
+<tr>
+<td>exp_month</td>
+<td>string</td>
+<td>Credit card expiry month</td>
+</tr>
+<tr>
+<td>is_default</td>
+<td>boolean</td>
+<td>Is this the default card to be charged</td>
+</tr>
+</tbody></table>
+
+<h3 id="list-cards">List Cards</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/cards?user_api_token=osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ"</span> <span class="se">\</span>
+-H <span class="s2">"X-XFERS-USER-API-KEY: WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o"</span>
+</code></pre>
+<pre class="highlight php"><code>
+<span class="cp">&lt;?php</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
+<span class="c1">// COMING SOON
+</span>
+</code></pre>
+<pre class="highlight python"><code>
+<span class="c"># COMING SOON</span>
+
+</code></pre>
+<pre class="highlight ruby"><code>
+<span class="c1"># COMING SOON</span>
+
+</code></pre>
+<pre class="highlight java"><code>
+<span class="c1">// COMING SOON</span>
+
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"card_id"</span><span class="p">:</span><span class="s2">"card_196hygI7jGeCrIKDAwXhGcHm"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_4"</span><span class="p">:</span><span class="s2">"4242"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"card_type"</span><span class="p">:</span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"card_country"</span><span class="p">:</span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exp_yr"</span><span class="p">:</span><span class="s2">"2022"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exp_month"</span><span class="p">:</span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"card_id"</span><span class="p">:</span><span class="s2">"card_196kFHI7jGeCrIKD7HxYauMv"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_4"</span><span class="p">:</span><span class="s2">"4444"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"card_type"</span><span class="p">:</span><span class="s2">"MasterCard"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"card_country"</span><span class="p">:</span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exp_yr"</span><span class="p">:</span><span class="s2">"2022"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exp_month"</span><span class="p">:</span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_default"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>The following request will allow you to list all credit cards added to a user</p>
+
+<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/cards</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_api_token</td>
+<td>string</td>
+<td>required</td>
+<td>Buyer’s api token obtain via Connect’s get user token API.</td>
+<td>osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ</td>
+</tr>
+</tbody></table>
+
+<h3 id="set-default-card">Set Default Card</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/cards/&lt;the_card_id&gt;/set_default"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{ "user_api_token": "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ"}'</span>
+</code></pre>
+<pre class="highlight php"><code>
+<span class="cp">&lt;?php</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
+<span class="c1">// COMING SOON
+</span>
+</code></pre>
+<pre class="highlight python"><code>
+<span class="c"># COMING SOON</span>
+
+</code></pre>
+<pre class="highlight ruby"><code>
+<span class="c1"># COMING SOON</span>
+
+</code></pre>
+<pre class="highlight java"><code>
+<span class="c1">// COMING SOON</span>
+
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card_197O8yI7jGeCrIKDeI6SexB6"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"card_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"card_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"exp_yr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The following request will allow you to set a default credit card for your connected user.</p>
+
+<p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/cards/&lt;the_card_id&gt;/set_default</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_api_token</td>
+<td>string</td>
+<td>required</td>
+<td>Buyer’s api token obtain via Connect’s get user token API.</td>
+<td>osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-card">Delete Card</h3>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s2">"https://sandbox.xfers.io/api/v3/cards/&lt;the_card_id&gt;"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{ "user_api_token": "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ"}'</span>
+</code></pre>
+<pre class="highlight php"><code>
+<span class="cp">&lt;?php</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
+<span class="c1">// COMING SOON
+</span>
+</code></pre>
+<pre class="highlight python"><code>
+<span class="c"># COMING SOON</span>
+
+</code></pre>
+<pre class="highlight ruby"><code>
+<span class="c1"># COMING SOON</span>
+
+</code></pre>
+<pre class="highlight java"><code>
+<span class="c1">// COMING SOON</span>
+
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"card_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card_197O8yI7jGeCrIKDeI6SexB6"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The following request will allow you to delete your user&rsquo;s credit card.</p>
+
+<p><code class="prettyprint">DELETE https://sandbox.xfers.io/api/v3/cards/&lt;the_card_id&gt;</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_api_token</td>
+<td>string</td>
+<td>required</td>
+<td>Buyer’s api token obtain via Connect’s get user token API.</td>
+<td>osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ</td>
+</tr>
+</tbody></table>
+
 <h2 id="charges">Charges</h2>
 
 <p>The following APIs allow anyone to pay you via an internet banking transfer or credit card.</p>
