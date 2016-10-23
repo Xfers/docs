@@ -4835,6 +4835,17 @@ Note that the signature required here for /get_token  is different from the one 
 
 <p><code class="prettyprint">/authorize/get_token</code> - SHA1 of phone_no + OTP + APP_SECRET_KEY</p>
 
+<h2 id="what&#39;s-next">What&rsquo;s Next</h2>
+
+<p>Now that you have gotten a <code class="prettyprint">user_api_token</code> linked to your customer, you can </p>
+
+<ul>
+<li>Pass this <code class="prettyprint">user_api_token</code> as params when <a href="/#creating-a-charge">creating a charge</a> to bypass authentication for your customer</li>
+<li>Pass this <code class="prettyprint">user_api_token</code> as params when adding and charging credit cards cards </li>
+<li>Pass this <code class="prettyprint">user_api_token</code> as params when <a href="/#creating-a-payout">creating a payout</a> in place of the recipient field</li>
+<li>Use the header <code class="prettyprint">&quot;X-XFERS-USER-API-KEY&quot;: &quot;the user_api_token&quot;</code> (instead of <code class="prettyprint">&quot;X-XFERS-USER-API-KEY&quot;: &quot;your own token&quot;</code>) to modify <a href="/#user-account">user details</a> and <a href="/#bank-account">bank accounts</a> on behalf of your user</li>
+</ul>
+
 <h1 id="xfers-tokenize">Xfers Tokenize</h1>
 
 <blockquote>
