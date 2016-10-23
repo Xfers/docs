@@ -2524,7 +2524,7 @@ The following APIs allow you to add or update credit cards to a connected user (
 curl "https://sandbox.xfers.io/api/v3/cards" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
-  -d '{ "user_api_token": "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ", "credit_card_token": "token-from-xfers.js", "first6": "424242", "last4": "4242"}'
+  -d '{ "user_api_token": "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ", "credit_card_token": "tok_197O8gB8MXWbQJDjPMILsIr6", "first6": "424242", "last4": "4242"}'
 ```
 
 ```php
@@ -2577,9 +2577,9 @@ The following request will allow you to add a credit card to your connected user
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 user_api_token | string | required | Buyer’s api token obtain via Connect’s get user token API. | osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ
-credit_card_token | string | required | Tokenized credit card from Xfers.js createToken function | tok_197O8gB8MXWbQJDjPMILsIr6 | 
-first6 | string | required | First 6 digits of credit card. Returned via Xfers.js | 424242
-last4 | string | required | Last 4 digits of credit card. Returned via Xfers.js | 4242
+credit_card_token | string | required | Tokenized credit card from Xfers Tokenize | tok_197O8gB8MXWbQJDjPMILsIr6 | 
+first6 | string | required | First 6 digits of credit card. Returned via Xfers Tokenize | 424242
+last4 | string | required | Last 4 digits of credit card. Returned via Xfers Tokenize | 4242
 
 #### Response
 
@@ -2826,7 +2826,7 @@ require_once('vendor/autoload.php');
 ```
 
 
-The following request will allow you to charge a newly obtained credit card token from Xfers.js. This credit card charge is not linked to any user, so you 
+The following request will allow you to charge a newly obtained credit card token from [Xfers Tokenize](/#xfers-tokenize). This credit card charge is not linked to any user, so you 
 will not be able to save the token for reuse. Note that each credit card token can only be used once - either charge it directly with this endpoint, or add the token to a user.
 
 One use case is to be able to charge a credit card without the user having to go through OTP, since no Xfers account needs to be created (usually because it is a guest user on your platform and you want to speed up the checkout process).
@@ -2840,7 +2840,7 @@ No API key authentication is needed. Instead, we will only charge a card if a va
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 txn_id | string | required | The id of the created charge | b840cc9fc5a359c22ed2ccef3427aacd
-credit_card_token | string | required | Tokenized credit card from Xfers.js createToken function | tok_197O8gB8MXWbQJDjPMILsIr6
+credit_card_token | string | required | Tokenized credit card from Xfers Tokenize | tok_197O8gB8MXWbQJDjPMILsIr6
 first6 | string | required | First 6 digits of credit card | 424242
 last4 | string | required | Last 4 digits of credit card | 4242
 
@@ -3759,7 +3759,8 @@ Returns the current pending intent of the user. If multiple intents are created,
 
 # Xfers Connect
 
-Xfers connect is for accepting payment on behalf of others, and gaining access to their data.
+Xfers Connect is a set of APIs to gain access to your customers' Xfers account, or to create "ghost" Xfers accounts on their behalf.
+
 
 You might use Connect if you:
 
@@ -3770,7 +3771,6 @@ You might use Connect if you:
 - Want to integrate Xfers wallet directly into your mobile or e-commerce app.
 
 In general, if you’re building a platform or marketplace that needs to pay third-parties or building applications that help Xfers users do more with their account or their data, Connect is likely the right solution for you.
-
 
 
 ## Authentication
@@ -3785,19 +3785,18 @@ curl "https://sandbox.xfers.io/api/v3/authorize/connect" \
 
 > Make sure to replace `Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg` with your API key.
 
-Xfers connect uses a pair of API Keys and API Secret to access its APIs.
+Xfers Connect uses a pair of API Keys and API Secret to access its APIs.
 
-Write in to us at support@xfers.io to request for your Xfers connect API Keys.
+Write in to us at support@xfers.io to request for your Xfers Connect API Keys.
 You will provided with a pair of keys named `X-XFERS-APP-API-KEY` and `X-XFERS-APP-SECRET-KEY`.
 
-Xfers connect expects the API key to be included in all API requests to the server in a header that looks like the following:
+Xfers Connect expects the API key to be included in all API requests to the server in a header that looks like the following:
 
 `X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg`
 
 
-For all examples below we will be using the follow:
+These keys are different from the usual API keys which you include in the `X-XFERS-USER-API-KEY` header. App Connect API keys are only used for the Xfers Connect APIs. Thus instead of `X-XFERS-USER-API-KEY: YOUR-NORMAL-USER-API-KEY` , you pass in `X-XFERS-APP-API-KEY: THE-APP-API-KEY` as the header instead.
 
-`X-XFERS-APP-SECRET-KEY: xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU`
 
 
 > The above command returns JSON structured like this on success:
@@ -4090,5 +4089,50 @@ Note that the signature required here for /get_token  is different from the one 
 `/authorize/signup_login` - SHA1 of phone_no + APP_SECRET_KEY
 
 `/authorize/get_token` - SHA1 of phone_no + OTP + APP_SECRET_KEY
+
+
+# Xfers Tokenize
+
+> Tokenized credit card response
+
+```json
+{
+  "first6": "424242",
+  "last4": "4242",
+  "credit_card_token": "tok_197O8gB8MXWbQJDjPMILsIr6"
+}
+```
+
+(COMING SOON) 
+
+Xfers Tokenize is a set of SDKs that allow you to collect credit card details without having the sensitive information touch your server. By doing this, you do not have to deal with [PCI compliance issues](https://www.pcisecuritystandards.org/index.php).
+
+Credit card tokenization is the process of sending the credit card information to a PCI compliant party which will store the credit card details on your behalf and return a credit card token. This token can then be used to charge the credit card or to save the card with a user. 
+
+There are two ways of doing this tokenization: 
+
+1. After [creating a Charge](/#creating-a-charge), a `checkout_url` is returned. If `user_api_token` and `card_only` params are used, the `checkout_url` will lead directly to the credit card form. You can either redirect the user to that page, or embed it as a webview (usually for mobile apps). Thus you are in control of all aspects of the UI except for the credit card form. 
+2. Use Xfers Tokenize to return a credit card token which you can use to complete a credit card charge, or to add the credit card to your user's account. Xfers Tokenize will make use of the form you created to collect credit card details, so the styling is entirely in your control.
+
+As you can see, the two ways have a tradeoff between UI/UX customization and the amount of technical integration required on your end.  
+
+There are two ways of using the tokenized credit card response.
+
+1. Use [Charge Guest Card](/#charge-guest-card) to charge this credit card for guest user. This can be done on the client side and does not need API key authentication
+2. Send the response to your server and [add the card](/#add-a-card) to your user
+
+
+## Web
+
+[Xfers.js](https://github.com/Xfers/xfers.js) is our client-side Javascript library for credit card tokenization.
+
+## Android
+
+Coming soon
+
+## iOS
+
+Coming soon
+
 
 
