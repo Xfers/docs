@@ -1794,7 +1794,7 @@ You should always provide customer's firstname and lastname information whenever
 
 #### Create Charge Response
 
-If the `user_api_token` or `customer` or `user_phone_no` field is used, and `total_txn` > 0, the response will return the `transfer_info` object containing information about the bank the user should transfer to. 
+If the `user_api_token` or `customer` or `user_phone_no` field is used, and the user has insufficient xfers wallet balance, the response will return the `transfer_info` object containing information about the bank the user should transfer to. 
 
 Xfers might use a `bank_unique_amt` to help in identifying the bank transfer in case the user forgets to enter his contact number in the comments section. This is a random amount with very small difference from actual amount(a few cents) which Xfers will absorb. However this is only to be used as a backup; the user should always enter his contact number.
 
