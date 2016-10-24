@@ -2252,7 +2252,7 @@ You should always provide customer&rsquo;s firstname and lastname information wh
 
 <h4 id="create-charge-response">Create Charge Response</h4>
 
-<p>If the <code class="prettyprint">user_api_token</code> or <code class="prettyprint">customer</code> or <code class="prettyprint">user_phone_no</code> field is used, and <code class="prettyprint">total_txn</code> &gt; 0, the response will return the <code class="prettyprint">transfer_info</code> object containing information about the bank the user should transfer to. </p>
+<p>If the <code class="prettyprint">user_api_token</code> or <code class="prettyprint">customer</code> or <code class="prettyprint">user_phone_no</code> field is used, and the user has insufficient xfers wallet balance, the response will return the <code class="prettyprint">transfer_info</code> object containing information about the bank the user should transfer to. </p>
 
 <p>Xfers might use a <code class="prettyprint">bank_unique_amt</code> to help in identifying the bank transfer in case the user forgets to enter his contact number in the comments section. This is a random amount with very small difference from actual amount(a few cents) which Xfers will absorb. However this is only to be used as a backup; the user should always enter his contact number.</p>
 
