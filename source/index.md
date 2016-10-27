@@ -1956,6 +1956,13 @@ currency | string | 3-letter ISO code for currency | SGD
 status | string | Payment status. | "cancelled" or "paid" or "expired"
 
 
+### Payment Settlement   
+   
+After refundable charge become "paid", its funds(minus our fees) will be added to your account ledger balance.    
+    
+By default, its funds(minus our fees) will be "withheld" by Xfers for another 10 days(for refund and dispute purposes) before the charge becomes "completed" and it's funds(minus our fees) will be credited to your Xfers account available balance.   
+
+
 ### Authorize a Charge
 
 ```shell
@@ -2145,121 +2152,6 @@ Cancelling a charge that has been previously created by not yet paid. To refund 
 #### HTTPS Request
 
 `POST https://sandbox.xfers.io/api/v3/charges/<CHARGE_ID>/cancel`
-
-
-### Settle a Charge
-
-```shell
-curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
-  -H "Content-Type: application/json" 
-```
-
-```php
-<?php
-require_once('vendor/autoload.php');
-
-\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
-\Xfers\Xfers::setSGSandbox();
-try {
-    $resp = \Xfers\Charge::settle("<id>");
-    print_r($resp);
-} catch (\Xfers\Error\Api $e) {
-    echo 'Caught Api exception: ', $e->getMessage(), "\n";
-}
-```
-
-```python
-import xfers
-from xfers import xfcharge
-from xfers import error
-xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
-xfers.set_sg_sandbox()
-try:
-    print 'Settling charge {}...'.format('<id>')
-    resp = xfcharge.settle('<id>')
-    print resp
-except error.XfersError as e:
-    print str(e)
-```
-
-```ruby
-require 'xfers'
-
-Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
-Xfers.set_sg_sandbox
-
-begin
-  charge_id = '<id>'
-  puts "Settling charge... #{charge_id}"
-  resp = Xfers::Charge.settle charge_id
-  puts resp
-rescue Xfers::XfersError => e
-  puts e.to_s
-end
-```
-
-```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
-Xfers.setSGSandbox();
- try {
-    System.out.println("Settling a charge");
-    Charge charge = Charge.settle("<id>");
-    System.out.println(charge.toString());
-} catch (Exception e) {
-    e.printStackTrace();
-}
-```
-
-> Response:
-
-```json
-{
-  "id": "b840cc9fc5a359c22ed2ccef3427aacd",
-  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd",
-  "notify_url" : "https://mysite.com/payment_notification",
-  "return_url" : "https://mysite.com/return",
-  "cancel_url" : "https://mysite.com/cancel",
-  "object" : "charge",
-  "amount" : 9.99,
-  "currency" : "SGD",
-  "customer" : "",
-  "order_id" : "A012312",
-  "capture" : true,
-  "refundable" : true,
-  "shipment_date" : "2015-07-02T06:26:51Z",
-  "settlement_date" : "2015-07-05T06:26:51Z",
-  "description" : "Carousell user - Konsolidate",
-  "items" : [
-    {
-      "description": "Red Dress Size M",
-      "name": "Red dress",
-      "quantity": "1.00",
-      "price": 9.99,
-      "item_id": ""
-    }
-  ],
-  "statement_descriptor" : "",
-  "receipt_email" : "",
-  "shipping" : 2.50,
-  "tax" : 0.00,
-  "total_amount" : 12.49,
-  "status" : "completed",
-  "meta_data" : {
-    "firstname":"Tianwei",
-    "lastname": "Liu"
-  }
-}
-```
-
-
-Settle the payment of a previous created refundable charge. This is an optional process which is usually made when a seller has delivered their goods/services and would like to shorten the payment settlement process. The default [payment settlement process](/docs/#payment-settlement) takes 10 days.
-
-
-#### HTTPS Request
-
-`POST https://sandbox.xfers.io/api/v3/charges/<id>`
-
 
 
 ### Retrieve a Charge
