@@ -1956,12 +1956,6 @@ currency | string | 3-letter ISO code for currency | SGD
 status | string | Payment status. | "cancelled" or "paid" or "expired"
 
 
-### Payment Settlement
-
-After refundable charge become "paid", its funds(minus our fees) will be added to your account ledger balance.
-
-By default, its funds(minus our fees) will be "withheld" by Xfers for another 10 days(for refund and dispute purposes) before the charge becomes "completed" and it's funds(minus our fees) will be credited to your Xfers account available balance.
-
 ### Authorize a Charge
 
 ```shell
@@ -3161,7 +3155,8 @@ Xfers.setSGSandbox();
 }
 ```
 
-Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was returned from your previous request, and Xfers will return the corresponding charge information. The same information is returned when creating or refunding the charge.
+Retrieves the details of a payout that has previously been created. Supply the unique payout ID that was returned from your previous request, and Xfers will return the corresponding payout information. 
+
 
 #### HTTPS Request
 
