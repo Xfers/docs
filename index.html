@@ -2485,12 +2485,6 @@ Please take note that at this point, payment may or may not have been completed 
 </tr>
 </tbody></table>
 
-<h3 id="payment-settlement">Payment Settlement</h3>
-
-<p>After refundable charge become &ldquo;paid&rdquo;, its funds(minus our fees) will be added to your account ledger balance.</p>
-
-<p>By default, its funds(minus our fees) will be &ldquo;withheld&rdquo; by Xfers for another 10 days(for refund and dispute purposes) before the charge becomes &ldquo;completed&rdquo; and it&rsquo;s funds(minus our fees) will be credited to your Xfers account available balance.</p>
-
 <h3 id="authorize-a-charge">Authorize a Charge</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;/authorize"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
@@ -3809,7 +3803,7 @@ Either the recipient field or the bank_account_no field must be filled in to ide
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retrieves the details of a charge that has previously been created. Supply the unique charge ID that was returned from your previous request, and Xfers will return the corresponding charge information. The same information is returned when creating or refunding the charge.</p>
+<p>Retrieves the details of a payout that has previously been created. Supply the unique payout ID that was returned from your previous request, and Xfers will return the corresponding payout information. </p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
