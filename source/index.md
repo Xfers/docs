@@ -2412,7 +2412,7 @@ limit | integer | optional | A limit on the number of objects to be returned. Li
 starting_after | string | optional | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list. | 7ba1ec6d34f64dc68a030e081c5006dc
 
 
-## Cards (Coming soon)
+## Cards
 
 The following APIs allow you to add or update credit cards to a connected user (which means you have to go through our [Xfers Connect flow](/#xfers-connect) to get their `user_api_token`). You are also able to charge a credit card without creating an Xfers account for your user (see [Charge Guest Card](#charge-guest-card)) or to charge the default card belonging to a user (see [Charge Existing Card](#charge-existing-card)).
 
@@ -4013,7 +4013,6 @@ Now that you have gotten a `user_api_token` linked to your customer, you can
 }
 ```
 
-(COMING SOON) 
 
 Xfers Tokenize is a set of SDKs that allow you to collect credit card details without having the sensitive information touch your server. By doing this, you do not have to deal with [PCI compliance issues](https://www.pcisecuritystandards.org/index.php).
 
