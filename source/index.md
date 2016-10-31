@@ -1808,6 +1808,7 @@ total_txn | Total value of your payable transactions.
 total | total_txn - available Xfers balance of user.
 bank_discount | total - bank_unique_amt
 
+
 ### Payment Cancellation
 
 If customer cancels the transaction during Xfers' checkout flow, he will be redirected back to the `cancel_url` you provided. The `order_id` you provided in the charge call will also be part of the GET request as shown:
