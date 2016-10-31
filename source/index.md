@@ -183,7 +183,7 @@ Type | Version | Description  |
 ---- | ----------- | ------------ |
 X-XFERS-APP-API-KEY | V3 | Only used for Xfers Connect 
 X-XFERS-USER-API-KEY| V3 | The majority of our APIs uses this
-X-XFERS-USER-API-KEY | V2 (Legacy) | Our legacy V2 API keys. These are only used for our WooCommerce and Shopify plugins.
+X-XFERS-USER-API-KEY | V2 (Legacy) | Our legacy V2 API keys. These are only used for our WooCommerce, Opencart and Magento plugins.
 
 ![XFERS-API-KEYS][xfers-api-keys]
 [xfers-api-keys]: xfers-api-keys.png
