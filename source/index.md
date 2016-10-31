@@ -2029,7 +2029,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<id>/authorize" \
 }
 ```
 
-(COMING SOON) Authorize a previously created charge. This is an optional process that will allow buyer to skip the sign in flow on Xfers, allowing checkout to be completed on merchant site. If a correct auth_code is provided, the charge will immediately become "accepted" by the buyer.
+Authorize a previously created charge. This is an optional process that will allow buyer to skip the sign in flow on Xfers, allowing checkout to be completed on merchant site. If a correct auth_code is provided, the charge will immediately become "accepted" by the buyer.
 
 This endpoint is only used if `user_phone_no` param was passed in during charge creation.
 
