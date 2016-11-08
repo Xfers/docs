@@ -708,12 +708,12 @@ try {
 
 ```json
 {
-  "bank_name_full" : "Oversea Chinese Banking Corporation",
-  "bank_name_abbreviation" : "OCBC",
-  "bank_account_no" : "646004424001",
-  "bank_code" : "7339",
-  "branch_code" : "646",
-  "branch_area" : "Jurong East",
+  "bank_name_full" : "Malaysia Banking BHD",
+  "bank_name_abbreviation" : "MBB",
+  "bank_account_no" : "04111066899",
+  "bank_code" : "7302",
+  "branch_code" : "001",
+  "branch_area" : "Maybank Tower",
   "unique_id" : "97288607"
 }
 ```
