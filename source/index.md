@@ -1173,7 +1173,7 @@ List of all bank accounts belonging to user.
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 account_no | string | optional | bank account no | 03931234323
-bank | string | optional | bank abbreviation (Refer to [supported banks](/docs/#supported-banks)) | DBS
+bank | string | optional | bank abbreviation (Refer to [supported banks](?shell/#supported-banks(singapore))) | DBS
 
 
 ### Delete Bank Account
@@ -1493,7 +1493,7 @@ This will list all non-completed withdrawal requests made previously.
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-filter | string | optional | filter by [withdrawal status](/docs/#withdrawal-status) | Default to no filter
+filter | string | optional | filter by [withdrawal status](/#withdrawal-status) | Default to no filter
 
 
 ##### Withdrawal Status
@@ -1746,7 +1746,7 @@ card_only | boolean | optional | When this is true, this charge will will attemp
 absorb_card_fees | boolean | optional | When this is true, seller will not pass on the additional fees involved in card processing back on to buyer(as convenience fees) | Default to false
 enquiry_only | boolean | optional | When this is true, this charge will not be processed but a standard response will be provided. This is usually used for testing purposes or for pre-fetching charge information like fees. | Default to false
 redirect | string | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true/will be forced to be true when user_api_token is set.
-items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. See more [info](/docs/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
+items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. [See more info](/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
 shipping | float | optional | Shipping fees | Default to 0.0
 tax | float | optional | tax in $  | Default to 0.0
 hrs_to_expirations | float | optional | No of hours before this transactons will expire  | Default to 48.0 hours from now.
@@ -2954,7 +2954,7 @@ recipient | string | optional | Email or Mobile Phone No of the recipient for th
 user_api_token | string | optional | user’s api token obtain via Connect’s get user token APIs. When this is provided, it will replace the recipient param as the payout target | 
 currency | string | optional | 3-letter ISO code for currency | Default to 'SGD'
 descriptions | string | optional | A short description for this payout. This will be part of the email/SMS that the recipient will be receiving from Xfers. | Payment for Rent for July
-bank_abbreviation | string | optional | Bank abbreviation of the [supported banks](/docs/#supported-banks) | DBS
+bank_abbreviation | string | optional | Bank abbreviation of the [supported banks](/#supported-banks(singapore)) | DBS
 bank_account_no | string | optional | Bank account no of recipient | 4234126091
 no_expire | boolean | optional | Set this to true so this payout will not expire | Default to false
 
