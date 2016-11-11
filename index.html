@@ -2517,7 +2517,19 @@ Please take note that at this point, payment may or may not have been completed 
 </code></pre>
 <pre class="highlight ruby"><code><span class="c1"># COMING SOON</span>
 </code></pre>
-<pre class="highlight java"><code><span class="c1">// COMING SOON</span>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Authorize a charge"</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">chargeId</span> <span class="o">=</span> <span class="s">"236d026fb4a5457ca9f60d3b1e806bbc"</span><span class="o">;</span>
+    <span class="n">String</span> <span class="n">authCode</span> <span class="o">=</span> <span class="s">"482729"</span><span class="o">;</span>
+    <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">authorize</span><span class="o">(</span><span class="n">chargeId</span><span class="o">,</span> <span class="n">authCode</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+
 </code></pre>
 
 <blockquote>
@@ -2995,7 +3007,30 @@ Please take note that at this point, payment may or may not have been completed 
 
 </code></pre>
 <pre class="highlight java"><code>
-<span class="c1">// COMING SOON</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="n">String</span> <span class="n">user_api_token</span> <span class="o">=</span> <span class="s">"osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ"</span><span class="o">;</span>
+
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Adding card"</span><span class="o">);</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"user_api_token"</span><span class="o">,</span> <span class="n">user_api_token</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"credit_card_token"</span><span class="o">,</span> <span class="s">"tok_19DrscB8MXWbQJDjXlIKkc06"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"first6"</span><span class="o">,</span> <span class="s">"424242"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"last4"</span><span class="o">,</span> <span class="s">"4242"</span><span class="o">);</span>
+
+    <span class="n">Card</span> <span class="n">card</span> <span class="o">=</span> <span class="n">Card</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Added card: "</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">card</span><span class="o">.</span><span class="na">getCardId</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">card</span><span class="o">.</span><span class="na">getExpMonth</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">card</span><span class="o">.</span><span class="na">getExpYear</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">card</span><span class="o">.</span><span class="na">getCardCountry</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">card</span><span class="o">.</span><span class="na">getCardType</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">card</span><span class="o">.</span><span class="na">getLast4</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">card</span><span class="o">.</span><span class="na">getIsDefault</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 
 </code></pre>
 
@@ -3135,7 +3170,20 @@ Please take note that at this point, payment may or may not have been completed 
 
 </code></pre>
 <pre class="highlight java"><code>
-<span class="c1">// COMING SOON</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="n">String</span> <span class="n">user_api_token</span> <span class="o">=</span> <span class="s">"osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ"</span><span class="o">;</span>
+
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Listing cards"</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;</span> <span class="n">cards</span> <span class="o">=</span> <span class="n">Card</span><span class="o">.</span><span class="na">listAll</span><span class="o">(</span><span class="n">user_api_token</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"There are "</span> <span class="o">+</span> <span class="n">cards</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">+</span> <span class="s">" cards"</span><span class="o">);</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">Card</span> <span class="n">card</span> <span class="o">:</span> <span class="n">cards</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">card</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 
 </code></pre>
 
@@ -3219,8 +3267,18 @@ Please take note that at this point, payment may or may not have been completed 
 <span class="c1"># COMING SOON</span>
 
 </code></pre>
-<pre class="highlight java"><code>
-<span class="c1">// COMING SOON</span>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="n">String</span> <span class="n">user_api_token</span> <span class="o">=</span> <span class="s">"osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ"</span><span class="o">;</span>
+
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Setting default card"</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">cardId</span> <span class="o">=</span> <span class="s">"card_19C2JSI7jGeCrIKD0nVdiCHp"</span><span class="o">;</span>
+    <span class="n">Card</span> <span class="n">card</span> <span class="o">=</span> <span class="n">Card</span><span class="o">.</span><span class="na">setDefault</span><span class="o">(</span><span class="n">cardId</span><span class="o">,</span> <span class="n">user_api_token</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Default card: "</span> <span class="o">+</span> <span class="n">card</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 
 </code></pre>
 
@@ -3295,7 +3353,20 @@ Please take note that at this point, payment may or may not have been completed 
 
 </code></pre>
 <pre class="highlight java"><code>
-<span class="c1">// COMING SOON</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="n">String</span> <span class="n">user_api_token</span> <span class="o">=</span> <span class="s">"osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ"</span><span class="o">;</span>
+
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Deleting card"</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">cardId</span> <span class="o">=</span> <span class="s">"card_196kDPI7jGeCrIKDlgVDBvER"</span><span class="o">;</span>
+    <span class="n">Card</span> <span class="n">card</span> <span class="o">=</span> <span class="n">Card</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">cardId</span><span class="o">,</span> <span class="n">user_api_token</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Deleted card: "</span> <span class="o">+</span> <span class="n">card</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">card</span><span class="o">.</span><span class="na">getCardId</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">card</span><span class="o">.</span><span class="na">getDeleted</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 
 </code></pre>
 
@@ -3367,7 +3438,21 @@ Please take note that at this point, payment may or may not have been completed 
 
 </code></pre>
 <pre class="highlight java"><code>
-<span class="c1">// COMING SOON</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Charge guest card"</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">chargeId</span> <span class="o">=</span> <span class="s">"ae9647515a234b95919ce5dbd6e073e8"</span><span class="o">;</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"txn_id"</span><span class="o">,</span> <span class="n">chargeId</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"credit_card_token"</span><span class="o">,</span> <span class="s">"tok_19DrtcB8MXWbQJDjjTYpBAsJ"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"first6"</span><span class="o">,</span> <span class="s">"424242"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"last4"</span><span class="o">,</span> <span class="s">"4242"</span><span class="o">);</span>
+    <span class="n">Response</span> <span class="n">res</span> <span class="o">=</span> <span class="n">Card</span><span class="o">.</span><span class="na">chargeGuest</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Charge guest card success "</span> <span class="o">+</span> <span class="n">res</span><span class="o">.</span><span class="na">getSuccess</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Charge guest card return url "</span> <span class="o">+</span> <span class="n">res</span><span class="o">.</span><span class="na">getReturnUrl</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Charge guest card response "</span> <span class="o">+</span> <span class="n">res</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 
 </code></pre>
 
@@ -3461,8 +3546,20 @@ will not be able to save the token for reuse. Note that each credit card token c
 <span class="c1"># COMING SOON</span>
 
 </code></pre>
-<pre class="highlight java"><code>
-<span class="c1">// COMING SOON</span>
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="n">String</span> <span class="n">user_api_token</span> <span class="o">=</span> <span class="s">"osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ"</span><span class="o">;</span>
+
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Charge existing card"</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">chargeId</span> <span class="o">=</span> <span class="s">"3115641fa59e45f1b31e0f60f059b3ef"</span><span class="o">;</span>
+    <span class="n">Response</span> <span class="n">res</span> <span class="o">=</span> <span class="n">Card</span><span class="o">.</span><span class="na">chargeExisting</span><span class="o">(</span><span class="n">chargeId</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Charge existing card success "</span> <span class="o">+</span> <span class="n">res</span><span class="o">.</span><span class="na">getSuccess</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Charge existing card return url "</span> <span class="o">+</span> <span class="n">res</span><span class="o">.</span><span class="na">getReturnUrl</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Charge existing card response "</span> <span class="o">+</span> <span class="n">res</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
 
 </code></pre>
 
