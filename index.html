@@ -2497,7 +2497,21 @@ Please take note that at this point, payment may or may not have been completed 
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -d <span class="s1">'{"auth_code": "512312"}'</span>
 </code></pre>
-<pre class="highlight php"><code># COMING SOON
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
+
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setApiKey</span><span class="p">(</span><span class="s1">'Vsya_qc5KjiUGK3xyKRgmhb2Atir2wAyizqssRuYJYw'</span><span class="p">);</span>
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// You must create the charge with user_phone_no param passed in 
+</span>    <span class="nv">$chargeId</span> <span class="o">=</span> <span class="s1">'782f2a6e1b5642edb10c8b6b215c4814'</span><span class="p">;</span>
+    <span class="nv">$authCode</span> <span class="o">=</span> <span class="s1">'213779'</span><span class="p">;</span>
+    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Charge</span><span class="o">::</span><span class="na">authorize</span><span class="p">(</span><span class="nv">$chargeId</span><span class="p">,</span> <span class="nv">$authCode</span><span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre>
 <pre class="highlight python"><code><span class="c"># COMING SOON</span>
 </code></pre>
@@ -2952,8 +2966,25 @@ Please take note that at this point, payment may or may not have been completed 
 <pre class="highlight php"><code>
 <span class="cp">&lt;?php</span>
 <span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
-<span class="c1">// COMING SOON
-</span>
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setApiKey</span><span class="p">(</span><span class="s1">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span><span class="p">);</span>
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
+<span class="c1">// Get the following user_api_token from http://docs.xfers.io/#xfers-connect
+// you should have one user_api_token for every user you wish to add a credit card to.
+</span><span class="nv">$user_api_token</span> <span class="o">=</span> <span class="s1">'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'</span><span class="p">;</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"Adding card</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="nv">$params</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'user_api_token'</span> <span class="o">=&gt;</span> <span class="nv">$user_api_token</span><span class="p">,</span>
+        <span class="s1">'credit_card_token'</span> <span class="o">=&gt;</span> <span class="s1">'tok_19BhBuB8MXWbQJDjkspwaL4n'</span><span class="p">,</span> <span class="c1">// gotten from http://docs.xfers.io/#xfers-tokenize
+</span>        <span class="s1">'first6'</span> <span class="o">=&gt;</span> <span class="s1">'424242'</span><span class="p">,</span>
+        <span class="s1">'last4'</span> <span class="o">=&gt;</span> <span class="s1">'4242'</span>
+    <span class="p">);</span>
+    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Card</span><span class="o">::</span><span class="na">add</span><span class="p">(</span><span class="nv">$params</span><span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre>
 <pre class="highlight python"><code>
 <span class="c"># COMING SOON</span>
@@ -3079,11 +3110,21 @@ Please take note that at this point, payment may or may not have been completed 
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/cards?user_api_token=osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ"</span> <span class="se">\</span>
 -H <span class="s2">"X-XFERS-USER-API-KEY: WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o"</span>
 </code></pre>
-<pre class="highlight php"><code>
-<span class="cp">&lt;?php</span>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
-<span class="c1">// COMING SOON
-</span>
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setApiKey</span><span class="p">(</span><span class="s1">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span><span class="p">);</span>
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
+<span class="c1">// Get the following user_api_token from http://docs.xfers.io/#xfers-connect
+// you should have one user_api_token for every user you wish to add a credit card to.
+</span><span class="nv">$user_api_token</span> <span class="o">=</span> <span class="s1">'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'</span><span class="p">;</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"Listing all cards</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Card</span><span class="o">::</span><span class="na">listAll</span><span class="p">(</span><span class="nv">$user_api_token</span><span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre>
 <pre class="highlight python"><code>
 <span class="c"># COMING SOON</span>
@@ -3153,11 +3194,22 @@ Please take note that at this point, payment may or may not have been completed 
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -d <span class="s1">'{ "user_api_token": "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ"}'</span>
 </code></pre>
-<pre class="highlight php"><code>
-<span class="cp">&lt;?php</span>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
-<span class="c1">// COMING SOON
-</span>
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setApiKey</span><span class="p">(</span><span class="s1">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span><span class="p">);</span>
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
+<span class="c1">// Get the following user_api_token from http://docs.xfers.io/#xfers-connect
+// you should have one user_api_token for every user you wish to add a credit card to.
+</span><span class="nv">$user_api_token</span> <span class="o">=</span> <span class="s1">'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'</span><span class="p">;</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"Setting default card</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="nv">$card_id</span> <span class="o">=</span> <span class="s1">'card_196iRQI7jGeCrIKDl5hrCmxE'</span><span class="p">;</span>
+    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Card</span><span class="o">::</span><span class="na">setDefault</span><span class="p">(</span><span class="nv">$card_id</span><span class="p">,</span> <span class="nv">$user_api_token</span><span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre>
 <pre class="highlight python"><code>
 <span class="c"># COMING SOON</span>
@@ -3219,8 +3271,20 @@ Please take note that at this point, payment may or may not have been completed 
 <pre class="highlight php"><code>
 <span class="cp">&lt;?php</span>
 <span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
-<span class="c1">// COMING SOON
-</span>
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setApiKey</span><span class="p">(</span><span class="s1">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span><span class="p">);</span>
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
+<span class="c1">// Get the following user_api_token from http://docs.xfers.io/#xfers-connect
+// you should have one user_api_token for every user you wish to add a credit card to.
+</span><span class="nv">$user_api_token</span> <span class="o">=</span> <span class="s1">'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'</span><span class="p">;</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"Deleting card</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="nv">$card_id</span> <span class="o">=</span> <span class="s1">'card_196hygI7jGeCrIKDAwXhGcHm'</span><span class="p">;</span>
+    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Card</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span><span class="nv">$card_id</span><span class="p">,</span> <span class="nv">$user_api_token</span><span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre>
 <pre class="highlight python"><code>
 <span class="c"># COMING SOON</span>
@@ -3276,8 +3340,23 @@ Please take note that at this point, payment may or may not have been completed 
 <pre class="highlight php"><code>
 <span class="cp">&lt;?php</span>
 <span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
-<span class="c1">// COMING SOON
-</span>
+
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"Charge guest card</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="nv">$chargeId</span> <span class="o">=</span> <span class="s1">'051ac2fe464d45b19ec736cf04d66653'</span><span class="p">;</span> <span class="c1">// you must create a charge first
+</span>    <span class="nv">$params</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'txn_id'</span> <span class="o">=&gt;</span> <span class="nv">$chargeId</span><span class="p">,</span>
+        <span class="s1">'credit_card_token'</span> <span class="o">=&gt;</span> <span class="s1">'tok_19BhUlB8MXWbQJDjOrDecHN6'</span><span class="p">,</span> <span class="c1">// gotten from http://docs.xfers.io/#xfers-tokenize
+</span>        <span class="s1">'first6'</span> <span class="o">=&gt;</span> <span class="s1">'424242'</span><span class="p">,</span>
+        <span class="s1">'last4'</span> <span class="o">=&gt;</span> <span class="s1">'4242'</span>
+    <span class="p">);</span>
+    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Card</span><span class="o">::</span><span class="na">chargeGuest</span><span class="p">(</span><span class="nv">$params</span><span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre>
 <pre class="highlight python"><code>
 <span class="c"># COMING SOON</span>
@@ -3360,8 +3439,19 @@ will not be able to save the token for reuse. Note that each credit card token c
 <pre class="highlight php"><code>
 <span class="cp">&lt;?php</span>
 <span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
-<span class="c1">// COMING SOON
-</span>
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setApiKey</span><span class="p">(</span><span class="s1">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span><span class="p">);</span>
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"Charge existing card</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="c1">// You must add a credit card with Xfers\Card::add before this
+</span>    <span class="nv">$chargeId</span> <span class="o">=</span> <span class="s1">'ae9647515a234b95919ce5dbd6e073e8'</span><span class="p">;</span> <span class="c1">// you must create a charge with user_api_token of your user passed in
+</span>    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Card</span><span class="o">::</span><span class="na">chargeExisting</span><span class="p">(</span><span class="nv">$chargeId</span><span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+
 </code></pre>
 <pre class="highlight python"><code>
 <span class="c"># COMING SOON</span>
