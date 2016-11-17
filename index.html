@@ -1803,6 +1803,7 @@ All documents/images provided should not exceed 10MB per file.
         <span class="s1">'order_id'</span> <span class="o">=&gt;</span> <span class="s1">'AZ9912'</span><span class="p">,</span>
         <span class="s1">'description'</span> <span class="o">=&gt;</span> <span class="s1">'unused red dress'</span><span class="p">,</span>
         <span class="s1">'shipping'</span> <span class="o">=&gt;</span> <span class="s1">'2.50'</span><span class="p">,</span>
+        <span class="s1">'redirect'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
         <span class="s1">'tax'</span> <span class="o">=&gt;</span> <span class="s1">'0.0'</span><span class="p">,</span>
         <span class="s1">'items'</span> <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$items</span><span class="p">),</span>
         <span class="s1">'meta_data'</span> <span class="o">=&gt;</span> <span class="nv">$meta_data</span>
@@ -1831,6 +1832,7 @@ All documents/images provided should not exceed 10MB per file.
         <span class="s">'order_id'</span> <span class="p">:</span> <span class="s">'AZ9912'</span><span class="p">,</span>
         <span class="s">'description'</span> <span class="p">:</span> <span class="s">'unused red dress'</span><span class="p">,</span>
         <span class="s">'shipping'</span> <span class="p">:</span> <span class="s">'2.50'</span><span class="p">,</span>
+        <span class="s">'redirect'</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
         <span class="s">'tax'</span> <span class="p">:</span> <span class="s">'0.0'</span><span class="p">,</span>
         <span class="s">'items'</span> <span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">items</span><span class="p">),</span>
         <span class="s">'meta_data'</span> <span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">meta_data</span><span class="p">)</span>
@@ -1858,6 +1860,7 @@ All documents/images provided should not exceed 10MB per file.
         <span class="s1">'description'</span> <span class="o">=&gt;</span> <span class="s1">'unused red dress'</span><span class="p">,</span>
         <span class="s1">'shipping'</span> <span class="o">=&gt;</span> <span class="s1">'2.50'</span><span class="p">,</span>
         <span class="s1">'tax'</span> <span class="o">=&gt;</span> <span class="s1">'0.0'</span><span class="p">,</span>
+        <span class="s1">'redirect'</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span>
         <span class="s1">'items'</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="s1">'description'</span> <span class="o">=&gt;</span> <span class="s1">'Red dress Size M'</span><span class="p">,</span> <span class="s1">'price'</span> <span class="o">=&gt;</span> <span class="s1">'9.99'</span><span class="p">,</span> <span class="s1">'quantity'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Red dress'</span><span class="p">}],</span>
         <span class="s1">'meta_data'</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="s1">'firstname'</span><span class="o">=&gt;</span> <span class="s1">'Tianwei'</span><span class="p">,</span> <span class="s1">'lastname'</span><span class="o">=&gt;</span> <span class="s1">'Liu'</span><span class="p">}</span>
   <span class="p">}</span>
@@ -1892,6 +1895,7 @@ All documents/images provided should not exceed 10MB per file.
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"cancel_url"</span><span class="o">,</span> <span class="s">"https://mysite.com/cancel"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">,</span> <span class="s">"AZ9912"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"description"</span><span class="o">,</span> <span class="s">"unused red dress"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"redirect"</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"shipping"</span><span class="o">,</span> <span class="s">"2.50"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"tax"</span><span class="o">,</span> <span class="s">"0.0"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"items"</span><span class="o">,</span> <span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">items</span><span class="o">));</span>
@@ -2090,7 +2094,7 @@ All documents/images provided should not exceed 10MB per file.
 <td>string</td>
 <td>optional</td>
 <td>When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page</td>
-<td>Default to true/will be forced to be true when user_api_token is set.</td>
+<td>Default to true.</td>
 </tr>
 <tr>
 <td>items</td>
@@ -2513,9 +2517,37 @@ Please take note that at this point, payment may or may not have been completed 
     <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
-<pre class="highlight python"><code><span class="c"># COMING SOON</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">xfers</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">xfcharge</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">error</span>
+
+<span class="n">xfers</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span>
+<span class="n">xfers</span><span class="o">.</span><span class="n">set_sg_sandbox</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">charge_id</span> <span class="o">=</span> <span class="s">'0e140a1c251e48939d49651b57394737'</span>
+    <span class="n">auth_code</span> <span class="o">=</span> <span class="s">'123049'</span>
+    <span class="k">print</span> <span class="s">'Authorizing charge...'</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">xfcharge</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">charge_id</span><span class="p">,</span> <span class="n">auth_code</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">resp</span>
+<span class="k">except</span> <span class="n">error</span><span class="o">.</span><span class="n">XfersError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
 </code></pre>
-<pre class="highlight ruby"><code><span class="c1"># COMING SOON</span>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'xfers'</span>
+
+<span class="no">Xfers</span><span class="p">.</span><span class="nf">set_api_key</span> <span class="s1">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span>
+<span class="no">Xfers</span><span class="p">.</span><span class="nf">set_sg_sandbox</span>
+
+<span class="k">begin</span>
+  <span class="n">charge_id</span> <span class="o">=</span> <span class="s1">'your-charge-id'</span>
+  <span class="n">auth_code</span> <span class="o">=</span> <span class="s1">'012414'</span>
+  <span class="nb">puts</span> <span class="s2">"Authorizing charge... </span><span class="si">#{</span><span class="n">charge_id</span><span class="si">}</span><span class="s2">"</span>
+  <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Charge</span><span class="p">.</span><span class="nf">authorize</span> <span class="n">charge_id</span><span class="p">,</span> <span class="n">auth_code</span>
+  <span class="nb">puts</span> <span class="n">resp</span>
+<span class="k">rescue</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">XfersError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
+<span class="k">end</span>
 </code></pre>
 <pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
@@ -2999,12 +3031,52 @@ Please take note that at this point, payment may or may not have been completed 
 <span class="p">}</span>
 </code></pre>
 <pre class="highlight python"><code>
-<span class="c"># COMING SOON</span>
+<span class="kn">import</span> <span class="nn">xfers</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">xfcard</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">error</span>
 
+<span class="n">xfers</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span>
+<span class="n">xfers</span><span class="o">.</span><span class="n">set_sg_sandbox</span><span class="p">()</span>
+<span class="c"># Get the following user_api_token from http://docs.xfers.io/#xfers-connect</span>
+<span class="c"># you should have one user_api_token for every user you wish to add a credit card to.</span>
+<span class="n">user_api_token</span> <span class="o">=</span> <span class="s">'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">'Adding card...'</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">'user_api_token'</span><span class="p">:</span> <span class="n">user_api_token</span><span class="p">,</span>
+        <span class="s">'credit_card_token'</span><span class="p">:</span> <span class="s">'tok_19C22fB8MXWbQJDjSx4Ek9Wk'</span><span class="p">,</span>  <span class="c"># gotten from http://docs.xfers.io/#xfers-tokenize</span>
+        <span class="s">'first6'</span><span class="p">:</span> <span class="s">'424242'</span><span class="p">,</span>
+        <span class="s">'last4'</span><span class="p">:</span> <span class="s">'4242'</span>
+    <span class="p">}</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">xfcard</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">resp</span>
+<span class="k">except</span> <span class="n">error</span><span class="o">.</span><span class="n">XfersError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight ruby"><code>
-<span class="c1"># COMING SOON</span>
+<span class="nb">require</span> <span class="s1">'xfers'</span>
 
+<span class="no">Xfers</span><span class="p">.</span><span class="nf">set_api_key</span> <span class="s1">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span>
+<span class="no">Xfers</span><span class="p">.</span><span class="nf">set_sg_sandbox</span>
+
+<span class="c1"># Get the following user_api_token from http://docs.xfers.io/#xfers-connect</span>
+<span class="c1"># you should have one user_api_token for every user you wish to add a credit card to.</span>
+<span class="n">user_api_token</span> <span class="o">=</span> <span class="s1">'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'</span>
+
+<span class="k">begin</span>
+  <span class="nb">puts</span> <span class="s1">'Adding card...'</span>
+  <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s1">'user_api_token'</span> <span class="o">=&gt;</span> <span class="n">user_api_token</span><span class="p">,</span>
+      <span class="s1">'credit_card_token'</span> <span class="o">=&gt;</span> <span class="s1">'tok_19GiimB8MXWbQJDjF8FUIgpA'</span><span class="p">,</span> <span class="c1"># gotten from http://docs.xfers.io/#xfers-tokenize</span>
+      <span class="s1">'first6'</span> <span class="o">=&gt;</span> <span class="s1">'424242'</span><span class="p">,</span>
+      <span class="s1">'last4'</span> <span class="o">=&gt;</span> <span class="s1">'4242'</span>
+  <span class="p">}</span>
+  <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Card</span><span class="p">.</span><span class="nf">add</span> <span class="n">params</span>
+  <span class="nb">puts</span> <span class="n">resp</span>
+<span class="k">rescue</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">XfersError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
+<span class="k">end</span>
 </code></pre>
 <pre class="highlight java"><code>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
@@ -3161,13 +3233,45 @@ Please take note that at this point, payment may or may not have been completed 
     <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
-<pre class="highlight python"><code>
-<span class="c"># COMING SOON</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">xfers</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">xfcard</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">error</span>
+
+<span class="n">xfers</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span>
+<span class="n">xfers</span><span class="o">.</span><span class="n">set_sg_sandbox</span><span class="p">()</span>
+
+<span class="c"># Get the following user_api_token from http://docs.xfers.io/#xfers-connect</span>
+<span class="c"># you should have one user_api_token for every user you wish to add a credit card to.</span>
+<span class="n">user_api_token</span> <span class="o">=</span> <span class="s">'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">'Listing all cards...'</span>
+    <span class="n">cards</span> <span class="o">=</span> <span class="n">xfcard</span><span class="o">.</span><span class="n">list_all</span><span class="p">(</span><span class="n">user_api_token</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">cards</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">'Card: {}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">error</span><span class="o">.</span><span class="n">XfersError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
 </code></pre>
 <pre class="highlight ruby"><code>
-<span class="c1"># COMING SOON</span>
+<span class="nb">require</span> <span class="s1">'xfers'</span>
 
+<span class="no">Xfers</span><span class="p">.</span><span class="nf">set_api_key</span> <span class="s1">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span>
+<span class="no">Xfers</span><span class="p">.</span><span class="nf">set_sg_sandbox</span>
+
+<span class="c1"># Get the following user_api_token from http://docs.xfers.io/#xfers-connect</span>
+<span class="c1"># you should have one user_api_token for every user you wish to add a credit card to.</span>
+<span class="n">user_api_token</span> <span class="o">=</span> <span class="s1">'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'</span>
+
+<span class="k">begin</span>
+  <span class="nb">puts</span> <span class="s1">'Listing all cards...'</span>
+  <span class="n">cards</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Card</span><span class="p">.</span><span class="nf">list_all</span> <span class="n">user_api_token</span>
+  <span class="n">cards</span><span class="p">.</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">card</span><span class="o">|</span>
+    <span class="nb">puts</span> <span class="n">card</span>
+  <span class="p">}</span>
+<span class="k">rescue</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">XfersError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
+<span class="k">end</span>
 </code></pre>
 <pre class="highlight java"><code>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
@@ -3260,12 +3364,43 @@ Please take note that at this point, payment may or may not have been completed 
 <span class="p">}</span>
 </code></pre>
 <pre class="highlight python"><code>
-<span class="c"># COMING SOON</span>
+<span class="kn">import</span> <span class="nn">xfers</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">xfcard</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">error</span>
 
+<span class="n">xfers</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span>
+<span class="n">xfers</span><span class="o">.</span><span class="n">set_sg_sandbox</span><span class="p">()</span>
+
+<span class="c"># Get the following user_api_token from http://docs.xfers.io/#xfers-connect</span>
+<span class="c"># you should have one user_api_token for every user you wish to add a credit card to.</span>
+<span class="n">user_api_token</span> <span class="o">=</span> <span class="s">'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">'Setting default card'</span>
+    <span class="n">card_id</span> <span class="o">=</span> <span class="s">'card_196kDPI7jGeCrIKDlgVDBvER'</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">xfcard</span><span class="o">.</span><span class="n">set_default</span><span class="p">(</span><span class="n">card_id</span><span class="p">,</span> <span class="n">user_api_token</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">resp</span>
+<span class="k">except</span> <span class="n">error</span><span class="o">.</span><span class="n">XfersError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight ruby"><code>
-<span class="c1"># COMING SOON</span>
+<span class="nb">require</span> <span class="s1">'xfers'</span>
 
+<span class="no">Xfers</span><span class="p">.</span><span class="nf">set_api_key</span> <span class="s1">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span>
+<span class="no">Xfers</span><span class="p">.</span><span class="nf">set_sg_sandbox</span>
+
+<span class="c1"># Get the following user_api_token from http://docs.xfers.io/#xfers-connect</span>
+<span class="c1"># you should have one user_api_token for every user you wish to add a credit card to.</span>
+<span class="n">user_api_token</span> <span class="o">=</span> <span class="s1">'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'</span>
+
+<span class="k">begin</span>
+  <span class="nb">puts</span> <span class="s1">'Setting default card'</span>
+  <span class="n">card_id</span> <span class="o">=</span> <span class="s1">'card_196iRQI7jGeCrIKDl5hrCmxE'</span>
+  <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Card</span><span class="p">.</span><span class="nf">set_default</span> <span class="n">card_id</span><span class="p">,</span> <span class="n">user_api_token</span>
+  <span class="nb">puts</span> <span class="n">resp</span>
+<span class="k">rescue</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">XfersError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
+<span class="k">end</span>
 </code></pre>
 <pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
@@ -3344,12 +3479,43 @@ Please take note that at this point, payment may or may not have been completed 
     <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
-<pre class="highlight python"><code>
-<span class="c"># COMING SOON</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">xfers</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">xfcard</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">error</span>
 
+<span class="n">xfers</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span>
+<span class="n">xfers</span><span class="o">.</span><span class="n">set_sg_sandbox</span><span class="p">()</span>
+
+<span class="c"># Get the following user_api_token from http://docs.xfers.io/#xfers-connect</span>
+<span class="c"># you should have one user_api_token for every user you wish to add a credit card to.</span>
+<span class="n">user_api_token</span> <span class="o">=</span> <span class="s">'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">'Deleting card'</span>
+    <span class="n">card_id</span> <span class="o">=</span> <span class="s">'card_19BhF9I7jGeCrIKD1ICQ6snN'</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">xfcard</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">card_id</span><span class="p">,</span> <span class="n">user_api_token</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">resp</span>
+<span class="k">except</span> <span class="n">error</span><span class="o">.</span><span class="n">XfersError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight ruby"><code>
-<span class="c1"># COMING SOON</span>
+<span class="nb">require</span> <span class="s1">'xfers'</span>
+
+<span class="no">Xfers</span><span class="p">.</span><span class="nf">set_api_key</span> <span class="s1">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span>
+<span class="no">Xfers</span><span class="p">.</span><span class="nf">set_sg_sandbox</span>
+
+<span class="c1"># Get the following user_api_token from http://docs.xfers.io/#xfers-connect</span>
+<span class="c1"># you should have one user_api_token for every user you wish to add a credit card to.</span>
+<span class="n">user_api_token</span> <span class="o">=</span> <span class="s1">'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'</span>
+
+<span class="k">begin</span>
+  <span class="nb">puts</span> <span class="s1">'Deleting card'</span>
+  <span class="n">card_id</span> <span class="o">=</span> <span class="s1">'card_19C2JSI7jGeCrIKD0nVdiCHp'</span>
+  <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Card</span><span class="p">.</span><span class="nf">delete</span> <span class="n">card_id</span><span class="p">,</span> <span class="n">user_api_token</span>
+  <span class="nb">puts</span> <span class="n">resp</span>
+<span class="k">rescue</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">XfersError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
+<span class="k">end</span>
 
 </code></pre>
 <pre class="highlight java"><code>
@@ -3430,11 +3596,36 @@ Please take note that at this point, payment may or may not have been completed 
 <span class="p">}</span>
 </code></pre>
 <pre class="highlight python"><code>
-<span class="c"># COMING SOON</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">'Charge guest card'</span>
+    <span class="n">charge_id</span> <span class="o">=</span> <span class="s">'f0fbdd1c16b44deba3f15cc11a29fefc'</span>  <span class="c"># you must create a charge first</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">'txn_id'</span><span class="p">:</span> <span class="n">charge_id</span><span class="p">,</span>
+        <span class="s">'credit_card_token'</span><span class="p">:</span> <span class="s">'tok_19C5hlB8MXWbQJDjT6HAsM3A'</span><span class="p">,</span>  <span class="c"># gotten from http://docs.xfers.io/#xfers-tokenize</span>
+        <span class="s">'first6'</span><span class="p">:</span> <span class="s">'424242'</span><span class="p">,</span>
+        <span class="s">'last4'</span><span class="p">:</span> <span class="s">'4242'</span>
+    <span class="p">}</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">xfcard</span><span class="o">.</span><span class="n">charge_guest</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">resp</span>
+<span class="k">except</span> <span class="n">error</span><span class="o">.</span><span class="n">XfersError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
 </code></pre>
 <pre class="highlight ruby"><code>
-<span class="c1"># COMING SOON</span>
+<span class="k">begin</span>
+  <span class="nb">puts</span> <span class="s1">'Charge guest card'</span>
+  <span class="n">charge_id</span> <span class="o">=</span> <span class="s1">'54539f543f33456a98495bda4bc33abe'</span>
+  <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s1">'txn_id'</span> <span class="o">=&gt;</span> <span class="n">charge_id</span><span class="p">,</span>
+      <span class="s1">'credit_card_token'</span> <span class="o">=&gt;</span> <span class="s1">'tok_19GijKB8MXWbQJDjKCniMsgn'</span><span class="p">,</span> <span class="c1"># gotten from http://docs.xfers.io/#xfers-tokenize</span>
+      <span class="s1">'first6'</span> <span class="o">=&gt;</span> <span class="s1">'424242'</span><span class="p">,</span>
+      <span class="s1">'last4'</span> <span class="o">=&gt;</span> <span class="s1">'4242'</span>
+  <span class="p">}</span>
+  <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Card</span><span class="p">.</span><span class="nf">charge_guest</span> <span class="n">params</span>
+  <span class="nb">puts</span> <span class="n">resp</span>
+<span class="k">rescue</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">XfersError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
+<span class="k">end</span>
 
 </code></pre>
 <pre class="highlight java"><code>
@@ -3539,11 +3730,37 @@ will not be able to save the token for reuse. Note that each credit card token c
 
 </code></pre>
 <pre class="highlight python"><code>
-<span class="c"># COMING SOON</span>
+<span class="kn">import</span> <span class="nn">xfers</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">xfcard</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">error</span>
+
+<span class="n">xfers</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span>
+<span class="n">xfers</span><span class="o">.</span><span class="n">set_sg_sandbox</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">'Charge existing card'</span>
+    <span class="c"># You must add a credit card with xfcard.add before this</span>
+    <span class="n">charge_id</span> <span class="o">=</span> <span class="s">'59290c99da0044b398445c24a63d5cf7'</span>  <span class="c"># you must create a charge first with user_api_token of your user</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">xfcard</span><span class="o">.</span><span class="n">charge_existing</span><span class="p">(</span><span class="n">charge_id</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">resp</span>
+<span class="k">except</span> <span class="n">error</span><span class="o">.</span><span class="n">XfersError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
 </code></pre>
 <pre class="highlight ruby"><code>
-<span class="c1"># COMING SOON</span>
+<span class="nb">require</span> <span class="s1">'xfers'</span>
+
+<span class="no">Xfers</span><span class="p">.</span><span class="nf">set_api_key</span> <span class="s1">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span>
+<span class="no">Xfers</span><span class="p">.</span><span class="nf">set_sg_sandbox</span>
+
+<span class="k">begin</span>
+  <span class="nb">puts</span> <span class="s1">'Charge existing card'</span>
+  <span class="n">charge_id</span> <span class="o">=</span> <span class="s1">'9cfaac1c8d8a47d18540a87f4c1e711b'</span>
+  <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Card</span><span class="p">.</span><span class="nf">charge_existing</span> <span class="n">charge_id</span>
+  <span class="nb">puts</span> <span class="n">resp</span>
+<span class="k">rescue</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">XfersError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
+<span class="k">end</span>
 
 </code></pre>
 <pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
@@ -3757,7 +3974,7 @@ Either the recipient field or the bank_account_no field must be filled in to ide
 <tr>
 <td>recipient</td>
 <td>string</td>
-<td>optional</td>
+<td>required</td>
 <td>Email or Mobile Phone No of the recipient for this payout.</td>
 <td>+659728860</td>
 </tr>
