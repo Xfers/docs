@@ -1553,6 +1553,7 @@ try {
         'order_id' => 'AZ9912',
         'description' => 'unused red dress',
         'shipping' => '2.50',
+        'redirect' => false,
         'tax' => '0.0',
         'items' => json_encode($items),
         'meta_data' => $meta_data
@@ -1583,6 +1584,7 @@ try:
         'order_id' : 'AZ9912',
         'description' : 'unused red dress',
         'shipping' : '2.50',
+        'redirect': False,
         'tax' : '0.0',
         'items' : json.dumps(items),
         'meta_data' : json.dumps(meta_data)
@@ -1612,6 +1614,7 @@ begin
         'description' => 'unused red dress',
         'shipping' => '2.50',
         'tax' => '0.0',
+        'redirect' => false,
         'items' => [{'description' => 'Red dress Size M', 'price' => '9.99', 'quantity' => 1, 'name' => 'Red dress'}],
         'meta_data' => {'firstname'=> 'Tianwei', 'lastname'=> 'Liu'}
   }
@@ -1648,6 +1651,7 @@ try {
     params.put("cancel_url", "https://mysite.com/cancel");
     params.put("order_id", "AZ9912");
     params.put("description", "unused red dress");
+    params.put("redirect", false);
     params.put("shipping", "2.50");
     params.put("tax", "0.0");
     params.put("items", gson.toJson(items));
@@ -1745,7 +1749,7 @@ debit_only | boolean | optional | When this is true, this charge will attempt to
 card_only | boolean | optional | When this is true, this charge will will attempt to only take payments via credit/debit card. | Default to false
 absorb_card_fees | boolean | optional | When this is true, seller will not pass on the additional fees involved in card processing back on to buyer(as convenience fees) | Default to false
 enquiry_only | boolean | optional | When this is true, this charge will not be processed but a standard response will be provided. This is usually used for testing purposes or for pre-fetching charge information like fees. | Default to false
-redirect | string | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true/will be forced to be true when user_api_token is set.
+redirect | string | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true.
 items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. [See more info](/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
 shipping | float | optional | Shipping fees | Default to 0.0
 tax | float | optional | tax in $  | Default to 0.0
@@ -1992,11 +1996,39 @@ try {
 ```
 
 ```python
-# COMING SOON
+import xfers
+from xfers import xfcharge
+from xfers import error
+
+xfers.api_key = 'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'
+xfers.set_sg_sandbox()
+
+try:
+    charge_id = '0e140a1c251e48939d49651b57394737'
+    auth_code = '123049'
+    print 'Authorizing charge...'
+    resp = xfcharge.authorize(charge_id, auth_code)
+    print resp
+except error.XfersError as e:
+    print str(e)
+
 ```
 
 ```ruby
-# COMING SOON
+require 'xfers'
+
+Xfers.set_api_key 'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'
+Xfers.set_sg_sandbox
+
+begin
+  charge_id = 'your-charge-id'
+  auth_code = '012414'
+  puts "Authorizing charge... #{charge_id}"
+  resp = Xfers::Charge.authorize charge_id, auth_code
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 ```
 
 ```java
@@ -2480,14 +2512,54 @@ try {
 
 ```python
 
-# COMING SOON
+import xfers
+from xfers import xfcard
+from xfers import error
 
+xfers.api_key = 'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'
+xfers.set_sg_sandbox()
+# Get the following user_api_token from http://docs.xfers.io/#xfers-connect
+# you should have one user_api_token for every user you wish to add a credit card to.
+user_api_token = 'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'
+
+try:
+    print 'Adding card...'
+    params = {
+        'user_api_token': user_api_token,
+        'credit_card_token': 'tok_19C22fB8MXWbQJDjSx4Ek9Wk',  # gotten from http://docs.xfers.io/#xfers-tokenize
+        'first6': '424242',
+        'last4': '4242'
+    }
+    resp = xfcard.add(params)
+    print resp
+except error.XfersError as e:
+    print str(e)
 ```
 
 ```ruby
 
-# COMING SOON
+require 'xfers'
 
+Xfers.set_api_key 'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'
+Xfers.set_sg_sandbox
+
+# Get the following user_api_token from http://docs.xfers.io/#xfers-connect
+# you should have one user_api_token for every user you wish to add a credit card to.
+user_api_token = 'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'
+
+begin
+  puts 'Adding card...'
+  params = {
+      'user_api_token' => user_api_token,
+      'credit_card_token' => 'tok_19GiimB8MXWbQJDjF8FUIgpA', # gotten from http://docs.xfers.io/#xfers-tokenize
+      'first6' => '424242',
+      'last4' => '4242'
+  }
+  resp = Xfers::Card.add params
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 ```
 
 ```java
@@ -2588,15 +2660,47 @@ try {
 ```
 
 ```python
+import xfers
+from xfers import xfcard
+from xfers import error
 
-# COMING SOON
+xfers.api_key = 'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'
+xfers.set_sg_sandbox()
+
+# Get the following user_api_token from http://docs.xfers.io/#xfers-connect
+# you should have one user_api_token for every user you wish to add a credit card to.
+user_api_token = 'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'
+
+try:
+    print 'Listing all cards...'
+    cards = xfcard.list_all(user_api_token)
+    for card in cards:
+        print 'Card: {}'.format(card)
+except error.XfersError as e:
+    print str(e)
 
 ```
 
 ```ruby
 
-# COMING SOON
+require 'xfers'
 
+Xfers.set_api_key 'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'
+Xfers.set_sg_sandbox
+
+# Get the following user_api_token from http://docs.xfers.io/#xfers-connect
+# you should have one user_api_token for every user you wish to add a credit card to.
+user_api_token = 'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'
+
+begin
+  puts 'Listing all cards...'
+  cards = Xfers::Card.list_all user_api_token
+  cards.each { |card|
+    puts card
+  }
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 ```
 
 ```java
@@ -2685,14 +2789,45 @@ try {
 
 ```python
 
-# COMING SOON
+import xfers
+from xfers import xfcard
+from xfers import error
 
+xfers.api_key = 'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'
+xfers.set_sg_sandbox()
+
+# Get the following user_api_token from http://docs.xfers.io/#xfers-connect
+# you should have one user_api_token for every user you wish to add a credit card to.
+user_api_token = 'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'
+
+try:
+    print 'Setting default card'
+    card_id = 'card_196kDPI7jGeCrIKDlgVDBvER'
+    resp = xfcard.set_default(card_id, user_api_token)
+    print resp
+except error.XfersError as e:
+    print str(e)
 ```
 
 ```ruby
 
-# COMING SOON
+require 'xfers'
 
+Xfers.set_api_key 'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'
+Xfers.set_sg_sandbox
+
+# Get the following user_api_token from http://docs.xfers.io/#xfers-connect
+# you should have one user_api_token for every user you wish to add a credit card to.
+user_api_token = 'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'
+
+begin
+  puts 'Setting default card'
+  card_id = 'card_196iRQI7jGeCrIKDl5hrCmxE'
+  resp = Xfers::Card.set_default card_id, user_api_token
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 ```
 
 ```java
@@ -2767,14 +2902,45 @@ try {
 ```
 
 ```python
+import xfers
+from xfers import xfcard
+from xfers import error
 
-# COMING SOON
+xfers.api_key = 'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'
+xfers.set_sg_sandbox()
 
+# Get the following user_api_token from http://docs.xfers.io/#xfers-connect
+# you should have one user_api_token for every user you wish to add a credit card to.
+user_api_token = 'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'
+
+try:
+    print 'Deleting card'
+    card_id = 'card_19BhF9I7jGeCrIKD1ICQ6snN'
+    resp = xfcard.delete(card_id, user_api_token)
+    print resp
+except error.XfersError as e:
+    print str(e)
 ```
 
 ```ruby
 
-# COMING SOON
+require 'xfers'
+
+Xfers.set_api_key 'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'
+Xfers.set_sg_sandbox
+
+# Get the following user_api_token from http://docs.xfers.io/#xfers-connect
+# you should have one user_api_token for every user you wish to add a credit card to.
+user_api_token = 'osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ'
+
+begin
+  puts 'Deleting card'
+  card_id = 'card_19C2JSI7jGeCrIKD0nVdiCHp'
+  resp = Xfers::Card.delete card_id, user_api_token
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 
 ```
 
@@ -2850,13 +3016,38 @@ try {
 
 ```python
 
-# COMING SOON
+try:
+    print 'Charge guest card'
+    charge_id = 'f0fbdd1c16b44deba3f15cc11a29fefc'  # you must create a charge first
+    params = {
+        'txn_id': charge_id,
+        'credit_card_token': 'tok_19C5hlB8MXWbQJDjT6HAsM3A',  # gotten from http://docs.xfers.io/#xfers-tokenize
+        'first6': '424242',
+        'last4': '4242'
+    }
+    resp = xfcard.charge_guest(params)
+    print resp
+except error.XfersError as e:
+    print str(e)
 
 ```
 
 ```ruby
 
-# COMING SOON
+begin
+  puts 'Charge guest card'
+  charge_id = '54539f543f33456a98495bda4bc33abe'
+  params = {
+      'txn_id' => charge_id,
+      'credit_card_token' => 'tok_19GijKB8MXWbQJDjKCniMsgn', # gotten from http://docs.xfers.io/#xfers-tokenize
+      'first6' => '424242',
+      'last4' => '4242'
+  }
+  resp = Xfers::Card.charge_guest params
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 
 ```
 
@@ -2939,13 +3130,39 @@ try {
 
 ```python
 
-# COMING SOON
+import xfers
+from xfers import xfcard
+from xfers import error
+
+xfers.api_key = 'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'
+xfers.set_sg_sandbox()
+
+try:
+    print 'Charge existing card'
+    # You must add a credit card with xfcard.add before this
+    charge_id = '59290c99da0044b398445c24a63d5cf7'  # you must create a charge first with user_api_token of your user
+    resp = xfcard.charge_existing(charge_id)
+    print resp
+except error.XfersError as e:
+    print str(e)
 
 ```
 
 ```ruby
 
-# COMING SOON
+require 'xfers'
+
+Xfers.set_api_key 'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'
+Xfers.set_sg_sandbox
+
+begin
+  puts 'Charge existing card'
+  charge_id = '9cfaac1c8d8a47d18540a87f4c1e711b'
+  resp = Xfers::Card.charge_existing charge_id
+  puts resp
+rescue Xfers::XfersError => e
+  puts e.to_s
+end
 
 ```
 
@@ -3137,7 +3354,7 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 amount | float | required | Total value for items. | 150.00
 invoice_id | string | required | Unique ref no provided by merchant. This will need to be unique or the payout request will be considered a duplicate and ignored. | AZ0001
-recipient | string | optional | Email or Mobile Phone No of the recipient for this payout. | +659728860
+recipient | string | required | Email or Mobile Phone No of the recipient for this payout. | +659728860
 user_api_token | string | optional | user’s api token obtain via Connect’s get user token APIs. When this is provided, it will replace the recipient param as the payout target | 
 currency | string | optional | 3-letter ISO code for currency | Default to 'SGD'
 descriptions | string | optional | A short description for this payout. This will be part of the email/SMS that the recipient will be receiving from Xfers. | Payment for Rent for July
