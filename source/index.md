@@ -34,6 +34,11 @@ create accounts on the behalf of others.
 **Official SDKs** for the Xfers API are [available in several languages](https://github.com/Xfers).
 
 
+# Testing
+
+We've made a testing guide at [https://www.xfers.com/sg/developers/getting-started-with-testing/](https://www.xfers.com/sg/developers/getting-started-with-testing/) for you to easily get started!
+
+
 # APIs endpoints
 
 Xfers provides a **dedicated sandbox environment** where you can simulate an incoming bank transfer for testing purposes. 
