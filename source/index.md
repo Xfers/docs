@@ -722,11 +722,19 @@ This will return transfer in info specific to the user. This information is used
 
 On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. **The user must also include his mobile phone number in the "Initials" and "Comments for Recipient" field when doing a bank transfer** so Xfers can identify which user this bank transfer belongs to.
 
-If you want to guard against user forgetting to key in his contact number in the "Initials" and "Comments for Recipient" fields, refer to our [Intents API](/#intents).
+Due to interbank transfer charges for Indonesia,  Xfers offers the user a choice of different banks to top up. Right now we offer transfers to BCA, MANDIRI and BNI as indicated in our UI when you redirect.
+For withdrawals, you can withdraw to 6 banks as of now: BCA, MANDIRI, BNI, BRI, CIMB, PERMATA
 
 #### HTTPS Request
 
 `GET https://sandbox.xfers.io/api/v3/user/transfer_info`
+
+
+#### Query Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+bank | string | optional | Bank to transfer to (Only for Xfers Indonesia) | bca, mandiri, bni
 
 
 ### Register Updates Callback - Coming soon
