@@ -3207,7 +3207,7 @@ txn_id | string | required | The id of the created charge | b840cc9fc5a359c22ed2
 
 ## Payouts
 
-Xfers Payout allows you to pay anyone with your Xfers balance via their phone no or email address. A SGD$1.00 fee will be charged to your account on every successful payout. You need to have sufficient available balance in your account to cover the amount + fees required for the payout.
+Xfers Payout allows you transfer money between Xfers Wallets with your Xfers balance via their phone no or email address. A SGD$1.00 fee will be charged to your account on every successful payout. You need to have sufficient available balance in your account to cover the amount + fees required for the payout.
 
 ### Creating a Payout
 
@@ -3354,12 +3354,10 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 amount | float | required | Total value for items. | 150.00
 invoice_id | string | required | Unique ref no provided by merchant. This will need to be unique or the payout request will be considered a duplicate and ignored. | AZ0001
-recipient | string | required | Email or Mobile Phone No of the recipient for this payout. | +659728860
-user_api_token | string | optional | user’s api token obtain via Connect’s get user token APIs. When this is provided, it will replace the recipient param as the payout target | 
+recipient | string | optional (either recipient or user_api_token required) | Email or Mobile Phone No of the recipient for this payout. | +659728860
+user_api_token | string | optional (either recipient or user_api_token required) | user’s api token obtain via Connect’s get user token APIs. When this is provided, it will replace the recipient param as the payout target | 
 currency | string | optional | 3-letter ISO code for currency | Default to 'SGD'
 descriptions | string | optional | A short description for this payout. This will be part of the email/SMS that the recipient will be receiving from Xfers. | Payment for Rent for July
-bank_abbreviation | string | optional | Bank abbreviation of the [supported banks](/#supported-banks(singapore)) | DBS
-bank_account_no | string | optional | Bank account no of recipient | 4234126091
 no_expire | boolean | optional | Set this to true so this payout will not expire | Default to false
 
 ##### Payout Response Status
