@@ -840,11 +840,32 @@ All documents/images provided should not exceed 10MB per file.
 
 <p>On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. <strong>The user must also include his mobile phone number in the &ldquo;Initials&rdquo; and &ldquo;Comments for Recipient&rdquo; field when doing a bank transfer</strong> so Xfers can identify which user this bank transfer belongs to.</p>
 
-<p>If you want to guard against user forgetting to key in his contact number in the &ldquo;Initials&rdquo; and &ldquo;Comments for Recipient&rdquo; fields, refer to our <a href="/#intents">Intents API</a>.</p>
+<p>Due to interbank transfer charges for Indonesia,  Xfers offers the user a choice of different banks to top up. Right now we offer transfers to BCA, MANDIRI and BNI as indicated in our UI when you redirect.
+For withdrawals, you can withdraw to 6 banks as of now: BCA, MANDIRI, BNI, BRI, CIMB, PERMATA</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
 <p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/user/transfer_info</code></p>
+
+<h4 id="query-parameters">Query Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bank</td>
+<td>string</td>
+<td>optional</td>
+<td>Bank to transfer to (Only for Xfers Indonesia)</td>
+<td>bca, mandiri, bni</td>
+</tr>
+</tbody></table>
 
 <h3 id="register-updates-callback---coming-soon">Register Updates Callback - Coming soon</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/balance_callback"</span> <span class="se">\</span>
@@ -3815,7 +3836,7 @@ will not be able to save the token for reuse. Note that each credit card token c
 
 <h2 id="payouts">Payouts</h2>
 
-<p>Xfers Payout allows you to pay anyone with your Xfers balance via their phone no or email address. A SGD$1.00 fee will be charged to your account on every successful payout. You need to have sufficient available balance in your account to cover the amount + fees required for the payout.</p>
+<p>Xfers Payout allows you transfer money between Xfers Wallets with your Xfers balance via their phone no or email address. A SGD$1.00 fee will be charged to your account on every successful payout. You need to have sufficient available balance in your account to cover the amount + fees required for the payout.</p>
 
 <h3 id="creating-a-payout">Creating a Payout</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/payouts"</span> <span class="se">\</span>
@@ -3974,14 +3995,14 @@ Either the recipient field or the bank_account_no field must be filled in to ide
 <tr>
 <td>recipient</td>
 <td>string</td>
-<td>required</td>
+<td>optional (either recipient or user_api_token required)</td>
 <td>Email or Mobile Phone No of the recipient for this payout.</td>
 <td>+659728860</td>
 </tr>
 <tr>
 <td>user_api_token</td>
 <td>string</td>
-<td>optional</td>
+<td>optional (either recipient or user_api_token required)</td>
 <td>user’s api token obtain via Connect’s get user token APIs. When this is provided, it will replace the recipient param as the payout target</td>
 <td></td>
 </tr>
@@ -3998,20 +4019,6 @@ Either the recipient field or the bank_account_no field must be filled in to ide
 <td>optional</td>
 <td>A short description for this payout. This will be part of the email/SMS that the recipient will be receiving from Xfers.</td>
 <td>Payment for Rent for July</td>
-</tr>
-<tr>
-<td>bank_abbreviation</td>
-<td>string</td>
-<td>optional</td>
-<td>Bank abbreviation of the <a href="/#supported-banks(singapore)">supported banks</a></td>
-<td>DBS</td>
-</tr>
-<tr>
-<td>bank_account_no</td>
-<td>string</td>
-<td>optional</td>
-<td>Bank account no of recipient</td>
-<td>4234126091</td>
 </tr>
 <tr>
 <td>no_expire</td>
