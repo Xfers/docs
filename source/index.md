@@ -3871,8 +3871,8 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 amount | float | required | Amount that user intends to transfer | 5000
 currency | string | required | 3-letter ISO code for currency(IDR/SGD)
-bank | string | required | bank abbreviation (BCA or MBB). You can get the bank to transfer to via our Get Transfer Info API | BCA
 request_id | string | required | Unique ref no provided by requester. This will need to be unique or the intent request will be considered a duplicate and ignored. | AZ0001
+bank | string | optional | bank abbreviation (BCA or MBB). You can get the bank to transfer to via our Get Transfer Info API | BCA
 notify_url | string | optional | URL to receive callback notifications when transfer is received	 | https://mysite.com/payment_notification
 
 ### Intent Notifications
