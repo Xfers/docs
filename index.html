@@ -4565,18 +4565,18 @@ You cannot create more than 1 intents per user (previous old pending intents wil
 <td></td>
 </tr>
 <tr>
-<td>bank</td>
-<td>string</td>
-<td>required</td>
-<td>bank abbreviation (BCA or MBB). You can get the bank to transfer to via our Get Transfer Info API</td>
-<td>BCA</td>
-</tr>
-<tr>
 <td>request_id</td>
 <td>string</td>
 <td>required</td>
 <td>Unique ref no provided by requester. This will need to be unique or the intent request will be considered a duplicate and ignored.</td>
 <td>AZ0001</td>
+</tr>
+<tr>
+<td>bank</td>
+<td>string</td>
+<td>optional</td>
+<td>bank abbreviation (BCA or MBB). You can get the bank to transfer to via our Get Transfer Info API</td>
+<td>BCA</td>
 </tr>
 <tr>
 <td>notify_url</td>
