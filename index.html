@@ -1786,6 +1786,245 @@ For withdrawals, you can withdraw to 6 banks as of now: BCA, MANDIRI, BNI, BRI, 
 </tr>
 </tbody></table>
 
+<h2 id="prepaid-cards">Prepaid Cards</h2>
+
+<p>The follow APIs allow you to withdraw money into a prepaid card.</p>
+
+<h3 id="providers">Providers</h3>
+
+<p>wirecard_test_2</p>
+
+<h3 id="add-a-prepaid-card">Add a Prepaid Card</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/prepaid"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{"proxy_number": "21794", "description":"John card", "provider": "wirecard_test_2"}'</span>
+</code></pre>
+<pre class="highlight php"><code>
+COMING SOON
+
+</code></pre>
+<pre class="highlight python"><code>
+<span class="n">COMING</span> <span class="n">SOON</span>
+
+</code></pre>
+<pre class="highlight ruby"><code>
+<span class="no">COMING</span> <span class="no">SOON</span>
+
+</code></pre>
+<pre class="highlight java"><code>
+<span class="n">COMING</span> <span class="n">SOON</span>
+
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"12315"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"proxy_number"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"21794"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"John card"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wirecard_test_2"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/prepaid</code></p>
+
+<h4 id="response">Response</h4>
+
+<p>The prepaid card object.</p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>proxy_number</td>
+<td>string</td>
+<td>required</td>
+<td>The prepaid card&rsquo;s proxy number</td>
+<td>21794</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>string</td>
+<td>required</td>
+<td>Prepaid card provider type</td>
+<td>wirecard_test_2</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>optional</td>
+<td>Description about this prepaid card</td>
+<td>Sam&rsquo;s card</td>
+</tr>
+</tbody></table>
+
+<h3 id="topup-a-prepaid-card">Topup a Prepaid Card</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/prepaid/CARD-ID/topup"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{"amount": 10.59}'</span>
+</code></pre>
+<pre class="highlight php"><code>
+COMING SOON
+
+</code></pre>
+<pre class="highlight python"><code>
+<span class="n">COMING</span> <span class="n">SOON</span>
+
+</code></pre>
+<pre class="highlight ruby"><code>
+<span class="no">COMING</span> <span class="no">SOON</span>
+
+</code></pre>
+<pre class="highlight java"><code>
+<span class="n">COMING</span> <span class="n">SOON</span>
+
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"319095ff12474a50ada1f2874fd1d3b2"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"object"</span><span class="p">:</span><span class="s2">"charge"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"84.52"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"total_amount"</span><span class="p">:</span><span class="s2">"84.52"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"sgd"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"customer"</span><span class="p">:</span><span class="s2">"+6597288607"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"order_id"</span><span class="p">:</span><span class="s2">"XFER170113160234758"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"refundable"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Load card 21794"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"statement_descriptor"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"currency_symbol"</span><span class="p">:</span><span class="s2">"$"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"currency_precision"</span><span class="p">:</span><span class="mi">2</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/prepaid/CARD-ID/topup</code></p>
+
+<h4 id="response">Response</h4>
+
+<p>The completed charge object.</p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>float</td>
+<td>required</td>
+<td>How much to topup</td>
+<td>9.85</td>
+</tr>
+</tbody></table>
+
+<h3 id="list-all-prepaid-card">List all Prepaid Card</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/prepaid"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> 
+</code></pre>
+<pre class="highlight php"><code>
+COMING SOON
+
+</code></pre>
+<pre class="highlight python"><code>
+<span class="n">COMING</span> <span class="n">SOON</span>
+
+</code></pre>
+<pre class="highlight ruby"><code>
+<span class="no">COMING</span> <span class="no">SOON</span>
+
+</code></pre>
+<pre class="highlight java"><code>
+<span class="n">COMING</span> <span class="n">SOON</span>
+
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"554"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"proxy_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"444"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"helloworld"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wirecard_test_0"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> 
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"556"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"proxy_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"454"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"meng"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wirecard_test_2"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/prepaid</code></p>
+
+<h4 id="response">Response</h4>
+
+<p>List of prepaid cards added.</p>
+
+<h3 id="delete-prepaid-card">Delete Prepaid Card</h3>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s2">"https://sandbox.xfers.io/api/v3/prepaid/&lt;card_id&gt;"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
+</code></pre>
+<pre class="highlight php"><code>COMING SOON
+</code></pre>
+<pre class="highlight python"><code><span class="n">COMING</span> <span class="n">SOON</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="no">COMING</span> <span class="no">SOON</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">COMING</span> <span class="n">SOON</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"556"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"proxy_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"454"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"meng"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wirecard_test_2"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>This request allow you to delete an existing prepaid card. Note that this only deletes the prepaid card stored on Xfers; the card will still work and you can add back the card anytime.</p>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">DELETE https://sandbox.xfers.io/api/v3/prepaid/&lt;card_id&gt;</code></p>
+
+<h4 id="response">Response</h4>
+
+<p>List of all prepaid cards belonging to user.</p>
+
 <h2 id="charges">Charges</h2>
 
 <p>The following APIs allow anyone to pay you via an internet banking transfer or credit card.</p>
