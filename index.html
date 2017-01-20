@@ -5034,6 +5034,96 @@ You cannot create more than 1 intents per user (previous old pending intents wil
 
 <p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/intents</code></p>
 
+<h2 id="otp">OTP</h2>
+
+<h3 id="mock-otp">Mock OTP</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/get_mock_otp?phone_no=83999455"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
+</code></pre>
+<pre class="highlight php"><code></code></pre>
+<pre class="highlight python"><code></code></pre>
+<pre class="highlight ruby"><code></code></pre>
+<pre class="highlight java"><code></code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"otp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039087"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint allows you to retrieve the OTP of a number when doing testing on sandbox. It is NOT available in production.</p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>phone_no</td>
+<td>string</td>
+<td>required</td>
+<td>Phone number for the otp you want to retrieve</td>
+<td>83999455</td>
+</tr>
+</tbody></table>
+
+<h3 id="resend-otp">Resend OTP</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/checkout_transaction/request_otp"</span> <span class="se">\</span>
+-H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-X PUT <span class="se">\</span>
+-d <span class="s1">'{"phoneNumber": "85993955", "trans_id": "b840cc9fc5a359c22ed2ccef3427aacd"}'</span>
+</code></pre>
+<pre class="highlight php"><code></code></pre>
+<pre class="highlight python"><code></code></pre>
+<pre class="highlight ruby"><code></code></pre>
+<pre class="highlight java"><code></code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"number_valid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint allows you to resend the OTP to a phone.</p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>phoneNumber</td>
+<td>string</td>
+<td>required</td>
+<td>Phone number to resend to. If it is a registered user, please use their email instead.</td>
+<td>83999455</td>
+</tr>
+<tr>
+<td>trans_id</td>
+<td>string</td>
+<td>required</td>
+<td>ID of the transaction (charge)</td>
+<td>b840cc9fc5a359c22ed2ccef3427aacd</td>
+</tr>
+</tbody></table>
+
 <h1 id="xfers-connect">Xfers Connect</h1>
 
 <p>Xfers Connect is a set of APIs to gain access to your customers&rsquo; Xfers account, or to create &ldquo;ghost&rdquo; Xfers accounts on their behalf.</p>
