@@ -641,6 +641,13 @@ This endpoint returns information related to your account activites such as the 
 
 `GET https://sandbox.xfers.io/api/v3/user/activities`
 
+#### Query Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+limit | integer | optional | Max number of results to return | 50 (default)
+
+
 ### Get Transfer Info
 
 ```shell
