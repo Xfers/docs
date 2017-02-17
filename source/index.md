@@ -732,10 +732,7 @@ try {
 
 This will return transfer in info specific to the user. This information is used for topping up the user's Xfers account.
 
-On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. **The user must also include his mobile phone number in the "Initials" and "Comments for Recipient" field when doing a bank transfer** so Xfers can identify which user this bank transfer belongs to.
-
-Due to interbank transfer charges for Indonesia,  Xfers offers the user a choice of different banks to top up. Right now we offer transfers to BCA, MANDIRI and BNI as indicated in our UI when you redirect.
-For withdrawals, you can withdraw to 6 banks as of now: BCA, MANDIRI, BNI, BRI, CIMB, PERMATA
+On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. **For our Maybank account, the user must also include his mobile phone number in the "Initials" and "Comments for Recipient" field when doing a bank transfer** so Xfers can identify which user this bank transfer belongs to.
 
 #### HTTPS Request
 
@@ -746,7 +743,7 @@ For withdrawals, you can withdraw to 6 banks as of now: BCA, MANDIRI, BNI, BRI, 
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-bank | string | optional | Bank to transfer to (Only for Xfers Indonesia) | bca, mandiri, bni
+all | boolean | optional | Return an array of all banks available. Only for Indonesia | true (defaults to false)
 
 
 ### Register Updates Callback - Coming soon
@@ -1993,7 +1990,35 @@ try {
       "bank_unique_amt": 1.44,
       "bank_discount": 0.0
     }
-  }  
+  },
+  "transfer_info_array": [
+      {
+          "bank_name_full": "Bank Central Asia",
+          "bank_name_abbreviation": "BCA",
+          "bank_account_no": "1063003003",
+          "bank_code": "",
+          "branch_code": "",
+          "branch_area": "",
+          "unique_id": "89898989"
+      },
+      {
+          "bank_name_full": "Bank Mandiri",
+          "bank_name_abbreviation": "MANDIRI",
+          "bank_account_no": "1190006792749",
+          "bank_code": "",
+          "branch_code": "",
+          "branch_area": "",
+          "unique_id": "89898989"
+      },{
+          "bank_name_full": "Bank Negara Indonesia",
+          "bank_name_abbreviation": "BNI",
+          "bank_account_no": "8000067885",
+          "bank_code": "",
+          "branch_code": "",
+          "branch_area": "",
+          "unique_id": "89898989"
+      }
+  ]
 }
 ```
 
@@ -2028,6 +2053,23 @@ hrs_to_expirations | float | optional | No of hours before this transactons will
 meta_data | string | optional | A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification | {"firstname":"tianwei", "lastname":"liu"}
 receipt_email | string | optional | The email address to send this charge's receipt. | tianwei@xfers.io
 skip_notifications | boolean | optional | Setting this to true will not send transaction reminders/cancelled/expired emails/SMS. Users will still receive payment completed notification. | Default to false.
+
+#### Create Charge Response
+
+If a customer is given, ( through `user_api_token` or `customer` or `user_phone_no`) and the user has insufficient xfers wallet balance, the response will return the `transfer_info` object containing information about the bank the user should transfer to. If multiple banks are available, the `transfer_info_array` will also be returned.
+
+Xfers might use a `bank_unique_amt` to help in identifying the bank transfer in case the user forgets to enter his contact number in the comments section. This is a random amount with very small difference from actual amount(a few cents) which Xfers will absorb. However this is only to be used as a backup; the user should always enter his contact number.
+
+The table below explains some of these attributes:
+
+key | meaning
+---- | ------ |
+bank_unique_amt | This is the amount user should use to transfer to the bank.
+unique_id | The contact number of the user. This should be entered in the comments section of your bank when doing a bank transfer.
+total_txn | Total value of your payable transactions.
+total | total_txn - available Xfers balance of user.
+bank_discount | total - bank_unique_amt
+
 
 #### item hash
 You can provide itemized receipt for your customer by giving use informations with regards to each of them in the `items` field as a json array of hash. 
@@ -2066,22 +2108,6 @@ error_code | 'INVALID_CARD' | This is returned when a charge via user_api_token 
 <aside class="notice">
 You should always provide customer's firstname and lastname information whenever you can as it would help us detecting fraudulence charges or user who have made an mistaken in their bank transfer.
 </aside>
-
-#### Create Charge Response
-
-If the `user_api_token` or `customer` or `user_phone_no` field is used, and the user has insufficient xfers wallet balance, the response will return the `transfer_info` object containing information about the bank the user should transfer to. 
-
-Xfers might use a `bank_unique_amt` to help in identifying the bank transfer in case the user forgets to enter his contact number in the comments section. This is a random amount with very small difference from actual amount(a few cents) which Xfers will absorb. However this is only to be used as a backup; the user should always enter his contact number.
-
-The table below explains some of these attributes:
-
-key | meaning
----- | ------ |
-bank_unique_amt | This is the amount user should use to transfer to the bank.
-unique_id | The contact number of the user. This should be entered in the comments section of your bank when doing a bank transfer.
-total_txn | Total value of your payable transactions.
-total | total_txn - available Xfers balance of user.
-bank_discount | total - bank_unique_amt
 
 
 ### Payment Cancellation
