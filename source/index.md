@@ -799,7 +799,7 @@ meta_data | string | The json string you previously provided in the register req
 
 ## Bank Account
 
-The follow APIs allow you to add or update your bank account info, to fetch a list of available banks for withdrawal and to fetch the name belonging to a bank account.
+The follow APIs allow you to add or update your bank account info, to fetch a list of available banks for withdrawal and to fetch the account holder name of a bank account.
 
 ### Available Banks
 
@@ -929,6 +929,69 @@ This will provide you with a list of banks we support for withdrawing money.
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 country | string | required | Country to withdraw to  | sg or id
+
+
+### Account Holder Name
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/banks/fetch_name" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "Content-Type: application/json" \
+  -d '{"account_no": "03931234323", "abbreviation":"BCA", "notify_url": "https://mysite.com/fetch_name_callback"}'
+```
+
+```php
+
+```
+
+```python
+```
+
+```ruby
+```
+
+```java
+```
+
+> Response:
+
+```json
+{
+  "abbreviation": "BCA",
+  "account_no": "03931234323",
+  "notify_url": "https://mysite.com/fetch_name_callback",
+  "status": "processing"
+}
+```
+
+Only available for Indonesian banks. This can be used to fetch the name of a bank account holder.
+
+Responses are provided via a callback to the `notify_url` provided, and usually takes a few minutes. 
+
+#### HTTPS Request
+
+`POST https://sandbox.xfers.io/api/v3/banks/fetch_name`
+
+#### Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+abbreviation | string | required | The bank abbreviation. You can get this from the "Available Banks" API | BCA
+account_no | string | required | The bank account number  | 03931234323
+notify_url | string | required | URL to receive callback notifications once the account holder's name has been detected   | https://mysite.com/fetch_name_callback
+
+#### Callback Response Format
+
+Xfers will make a HTTPS POST request to the `notify_url` provided with the following parameters:
+
+
+Name | Type | Description | Value
+---- | ---- | ----------- | -----
+abbreviation | string | The bank abbreviation | BCA
+account_no | string | The bank account number | 03931234323
+account_holder_name | string | The account holder's name | Liu Tian Wei
+error | string | Error message, if any | Account number does not exist
+status | string | Status of the fetch_name request | "success" or "fail"
 
 
 ### Add a Bank Account
