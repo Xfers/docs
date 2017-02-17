@@ -799,67 +799,136 @@ meta_data | string | The json string you previously provided in the register req
 
 ## Bank Account
 
-The follow APIs allow you to add or update your bank account info.
+The follow APIs allow you to add or update your bank account info, to fetch a list of available banks for withdrawal and to fetch the name belonging to a bank account.
 
-### Supported banks(Singapore)
+### Available Banks
 
-Logo | Bank Name | Abbreviation | 
----- | ---- | ---- |
-![DBS][dbs]| Development Bank of Singapore | DBS |
-![POSB][posb]| Post Office Saving Bank | DBS |
-![UOB][uob]| United Oversea Bank | UOB |
-![MBB][mbb]| Malaysia Banking BHD | MBB |
-![OCBC][ocbc]| Oversea-Chinese Banking Corporation Limited | OCBC |
-![CITI][citi]| Citibank Singapore | CITI |
-![SCB][scb]| Standard Chartered Bank | SCB |
-![CIMB][cimb]| CIMB Bank Berhad | CIMB |
-![HSBC][hsbc]| Hong Kong and Shanghai Banking Corporation| HSBC |
-![ANZ][anz]| Australia and New Zealand Banking Group | ANZ |
-![DBAG][dbag]| Deutsche Bank AG | DBAG |
-![FEB][feb]| Far Eastern Bank | FEB |
-![RHB][rhb]| RHB Bank | RHB |
-![RBS][rbs]| The Royal Bank of scotland | RBS |
-![BOC][boc]| Bank of China | BOC |
-![SMFG][smfg]| Sumitomo Mitsui Banking Coporation | SMFG |
-![MUFG][mufg]| The Bank of Tokyo-Misubishi UFJ | MUFG |
-![BNP][bnp]| BNP Paribus | BNP |
+```shell
+curl "https://sandbox.xfers.io/api/v3/banks?country=sg" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
 
-[dbs]: bank-logo-30px-dbs.png
-[posb]: bank-logo-30px-posb.png
-[uob]: bank-logo-30px-uob.png
-[mbb]: bank-logo-30px-mbs.png
-[citi]: bank-logo-30px-citi.png
-[scb]: bank-logo-30px-scb.png
-[cimb]: bank-logo-30px-cimb.png
-[ocbc]: bank-logo-30px-ocbc.png
-[hsbc]: bank-logo-30px-hsbc.png
-[anz]: bank-logo-30px-anz.png
-[dbag]: bank-logo-30px-dbag.png
-[feb]: bank-logo-30px-feb.png
-[rhb]: bank-logo-30px-rhb.png
-[rbs]: bank-logo-30px-rbs.png
-[boc]: bank-logo-30px-boc.png
-[smfg]: bank-logo-30px-smfg.png
-[mufg]: bank-logo-30px-mufg.png
-[bnp]: bank-logo-30px-bnp.png
+```php
 
-### Supported banks(Indonesia)
+```
 
-Logo | Bank Name | Abbreviation | 
----- | ---- | ---- |
-![BCA][bca]| Bank Centra Asia | BCA |
-![BNI][bni]| Bank Negara Indonesia | BNI |
-![MANDIRI][mandiri]| Bank Mandiri | MANDIRI |
-![BRI][bri]| Bank Rakyat Indonesia | BRI |
-![CIMB][niaga]| PT Bank CIMB Niaga Tbk | CIMB |
-![PERMATA][permata]| Bank Permata | PERMATA |
+```python
+```
 
-[bca]: bank-logo-30px-bca.png
-[bni]: bank-logo-30px-bni.png
-[mandiri]: bank-logo-30px-mandiri.png
-[bri]: bank-logo-30px-bri.png
-[niaga]: bank-logo-30px-cimb-niaga.png
-[permata]: bank-logo-30px-permata.png
+```ruby
+```
+
+```java
+```
+
+> Response:
+
+```json
+[
+  {
+    "name": "Development Bank of Singapore",
+    "abbreviation": "DBS",
+    "country": "sg"
+  },
+  {
+    "name": "United Oversea Bank",
+    "abbreviation": "UOB",
+    "country": "sg"
+  },
+  {
+    "name": "Malaysia Banking BHD",
+    "abbreviation": "MBB",
+    "country": "sg"
+  },
+  {
+    "name": "Oversea-Chinese Banking Corporation Limited",
+    "abbreviation": "OCBC",
+    "country": "sg"
+  },
+  {
+    "name": "Citibank Singapore",
+    "abbreviation": "CITI",
+    "country": "sg"
+  },
+  {
+    "name": "Standard Chartered Bank",
+    "abbreviation": "SCB",
+    "country": "sg"
+  },
+  {
+    "name": "Australia and New Zealand Bank Group",
+    "abbreviation": "ANZ",
+    "country": "sg"
+  },
+  {
+    "name": "CIMB Bank Berhad",
+    "abbreviation": "CIMB",
+    "country": "sg"
+  },
+  {
+    "name": "Deutsche bank AG",
+    "abbreviation": "DBAG",
+    "country": "sg"
+  },
+  {
+    "name": "Far Eastern Bank Ltd",
+    "abbreviation": "FEB",
+    "country": "sg"
+  },
+  {
+    "name": "Hong Kong and Shanghai Banking Corporation",
+    "abbreviation": "HSBC",
+    "country": "sg"
+  },
+  {
+    "name": "RHB Bank Berhad",
+    "abbreviation": "RHB",
+    "country": "sg"
+  },
+  {
+    "name": "Sumitomo Mitsui Banking Corporation",
+    "abbreviation": "SMFG",
+    "country": "sg"
+  },
+  {
+    "name": "Bank of China",
+    "abbreviation": "BOC",
+    "country": "sg"
+  },
+  {
+    "name": "Bank of Tokyo-Mitsubshi UFJ",
+    "abbreviation": "MUFG",
+    "country": "sg"
+  },
+  {
+    "name": "BNP PARIBAS",
+    "abbreviation": "BNP",
+    "country": "sg"
+  },
+  {
+    "name": "HL BANK",
+    "abbreviation": "HLB",
+    "country": "sg"
+  },
+  {
+    "name": "Mizuho Bank",
+    "abbreviation": "MIZ",
+    "country": "sg"
+  }
+]
+```
+
+This will provide you with a list of banks we support for withdrawing money.
+
+#### HTTPS Request
+
+`GET https://sandbox.xfers.io/api/v3/banks?country=sg`
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+country | string | required | Country to withdraw to  | sg or id
 
 
 ### Add a Bank Account
@@ -1521,7 +1590,6 @@ unverified | Withdrawal request is awaiting confirmations
 pending | Withdrawal request is being process now.
 paid | Withdrawal request has been processed and completed.
 cancelled | Withdrawal request has been cancelled.
-
 
 ## Prepaid Cards
 
