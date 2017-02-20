@@ -862,10 +862,7 @@ All documents/images provided should not exceed 10MB per file.
 
 <p>This will return transfer in info specific to the user. This information is used for topping up the user&rsquo;s Xfers account.</p>
 
-<p>On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. <strong>The user must also include his mobile phone number in the &ldquo;Initials&rdquo; and &ldquo;Comments for Recipient&rdquo; field when doing a bank transfer</strong> so Xfers can identify which user this bank transfer belongs to.</p>
-
-<p>Due to interbank transfer charges for Indonesia,  Xfers offers the user a choice of different banks to top up. Right now we offer transfers to BCA, MANDIRI and BNI as indicated in our UI when you redirect.
-For withdrawals, you can withdraw to 6 banks as of now: BCA, MANDIRI, BNI, BRI, CIMB, PERMATA</p>
+<p>On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. <strong>For our Maybank account, the user must also include his mobile phone number in the &ldquo;Initials&rdquo; and &ldquo;Comments for Recipient&rdquo; field when doing a bank transfer</strong> so Xfers can identify which user this bank transfer belongs to.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -883,11 +880,11 @@ For withdrawals, you can withdraw to 6 banks as of now: BCA, MANDIRI, BNI, BRI, 
 </tr>
 </thead><tbody>
 <tr>
-<td>bank</td>
-<td>string</td>
+<td>all</td>
+<td>boolean</td>
 <td>optional</td>
-<td>Bank to transfer to (Only for Xfers Indonesia)</td>
-<td>bca, mandiri, bni</td>
+<td>Return an array of all banks available. Only for Indonesia</td>
+<td>true (defaults to false)</td>
 </tr>
 </tbody></table>
 
@@ -977,147 +974,138 @@ For withdrawals, you can withdraw to 6 banks as of now: BCA, MANDIRI, BNI, BRI, 
 
 <h2 id="bank-account">Bank Account</h2>
 
-<p>The follow APIs allow you to add or update your bank account info.</p>
+<p>The follow APIs allow you to add or update your bank account info and fetch a list of available banks for withdrawal.</p>
 
-<h3 id="supported-banks(singapore)">Supported banks(Singapore)</h3>
+<h3 id="available-banks">Available Banks</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/banks?country=sg"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
+</code></pre>
+<pre class="highlight php"><code>
+</code></pre>
+<pre class="highlight python"><code></code></pre>
+<pre class="highlight ruby"><code></code></pre>
+<pre class="highlight java"><code></code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Development Bank of Singapore"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United Oversea Bank"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UOB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Malaysia Banking BHD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MBB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Oversea-Chinese Banking Corporation Limited"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OCBC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Citibank Singapore"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CITI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standard Chartered Bank"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SCB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australia and New Zealand Bank Group"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ANZ"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CIMB Bank Berhad"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CIMB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deutsche bank AG"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBAG"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Far Eastern Bank Ltd"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FEB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hong Kong and Shanghai Banking Corporation"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HSBC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RHB Bank Berhad"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RHB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sumitomo Mitsui Banking Corporation"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMFG"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank of China"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank of Tokyo-Mitsubshi UFJ"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MUFG"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BNP PARIBAS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BNP"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HL BANK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HLB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mizuho Bank"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MIZ"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>This will provide you with a list of banks we support for withdrawing money.</p>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/banks?country=sg</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
 
 <table><thead>
 <tr>
-<th>Logo</th>
-<th>Bank Name</th>
-<th>Abbreviation</th>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><img alt="DBS" src="images/bank-logo-30px-dbs.png" /></td>
-<td>Development Bank of Singapore</td>
-<td>DBS</td>
-</tr>
-<tr>
-<td><img alt="POSB" src="images/bank-logo-30px-posb.png" /></td>
-<td>Post Office Saving Bank</td>
-<td>DBS</td>
-</tr>
-<tr>
-<td><img alt="UOB" src="images/bank-logo-30px-uob.png" /></td>
-<td>United Oversea Bank</td>
-<td>UOB</td>
-</tr>
-<tr>
-<td><img alt="MBB" src="images/bank-logo-30px-mbs.png" /></td>
-<td>Malaysia Banking BHD</td>
-<td>MBB</td>
-</tr>
-<tr>
-<td><img alt="OCBC" src="images/bank-logo-30px-ocbc.png" /></td>
-<td>Oversea-Chinese Banking Corporation Limited</td>
-<td>OCBC</td>
-</tr>
-<tr>
-<td><img alt="CITI" src="images/bank-logo-30px-citi.png" /></td>
-<td>Citibank Singapore</td>
-<td>CITI</td>
-</tr>
-<tr>
-<td><img alt="SCB" src="images/bank-logo-30px-scb.png" /></td>
-<td>Standard Chartered Bank</td>
-<td>SCB</td>
-</tr>
-<tr>
-<td><img alt="CIMB" src="images/bank-logo-30px-cimb.png" /></td>
-<td>CIMB Bank Berhad</td>
-<td>CIMB</td>
-</tr>
-<tr>
-<td><img alt="HSBC" src="images/bank-logo-30px-hsbc.png" /></td>
-<td>Hong Kong and Shanghai Banking Corporation</td>
-<td>HSBC</td>
-</tr>
-<tr>
-<td><img alt="ANZ" src="images/bank-logo-30px-anz.png" /></td>
-<td>Australia and New Zealand Banking Group</td>
-<td>ANZ</td>
-</tr>
-<tr>
-<td><img alt="DBAG" src="images/bank-logo-30px-dbag.png" /></td>
-<td>Deutsche Bank AG</td>
-<td>DBAG</td>
-</tr>
-<tr>
-<td><img alt="FEB" src="images/bank-logo-30px-feb.png" /></td>
-<td>Far Eastern Bank</td>
-<td>FEB</td>
-</tr>
-<tr>
-<td><img alt="RHB" src="images/bank-logo-30px-rhb.png" /></td>
-<td>RHB Bank</td>
-<td>RHB</td>
-</tr>
-<tr>
-<td><img alt="RBS" src="images/bank-logo-30px-rbs.png" /></td>
-<td>The Royal Bank of scotland</td>
-<td>RBS</td>
-</tr>
-<tr>
-<td><img alt="BOC" src="images/bank-logo-30px-boc.png" /></td>
-<td>Bank of China</td>
-<td>BOC</td>
-</tr>
-<tr>
-<td><img alt="SMFG" src="images/bank-logo-30px-smfg.png" /></td>
-<td>Sumitomo Mitsui Banking Coporation</td>
-<td>SMFG</td>
-</tr>
-<tr>
-<td><img alt="MUFG" src="images/bank-logo-30px-mufg.png" /></td>
-<td>The Bank of Tokyo-Misubishi UFJ</td>
-<td>MUFG</td>
-</tr>
-<tr>
-<td><img alt="BNP" src="images/bank-logo-30px-bnp.png" /></td>
-<td>BNP Paribus</td>
-<td>BNP</td>
-</tr>
-</tbody></table>
-
-<h3 id="supported-banks(indonesia)">Supported banks(Indonesia)</h3>
-
-<table><thead>
-<tr>
-<th>Logo</th>
-<th>Bank Name</th>
-<th>Abbreviation</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><img alt="BCA" src="images/bank-logo-30px-bca.png" /></td>
-<td>Bank Centra Asia</td>
-<td>BCA</td>
-</tr>
-<tr>
-<td><img alt="BNI" src="images/bank-logo-30px-bni.png" /></td>
-<td>Bank Negara Indonesia</td>
-<td>BNI</td>
-</tr>
-<tr>
-<td><img alt="MANDIRI" src="images/bank-logo-30px-mandiri.png" /></td>
-<td>Bank Mandiri</td>
-<td>MANDIRI</td>
-</tr>
-<tr>
-<td><img alt="BRI" src="images/bank-logo-30px-bri.png" /></td>
-<td>Bank Rakyat Indonesia</td>
-<td>BRI</td>
-</tr>
-<tr>
-<td><img alt="CIMB" src="images/bank-logo-30px-cimb-niaga.png" /></td>
-<td>PT Bank CIMB Niaga Tbk</td>
-<td>CIMB</td>
-</tr>
-<tr>
-<td><img alt="PERMATA" src="images/bank-logo-30px-permata.png" /></td>
-<td>Bank Permata</td>
-<td>PERMATA</td>
+<td>country</td>
+<td>string</td>
+<td>required</td>
+<td>Country to withdraw to</td>
+<td>sg or id</td>
 </tr>
 </tbody></table>
 
@@ -1236,16 +1224,69 @@ For withdrawals, you can withdraw to 6 banks as of now: BCA, MANDIRI, BNI, BRI, 
 <tr>
 <td>account_no</td>
 <td>string</td>
-<td>optional</td>
+<td>required</td>
 <td>bank account no</td>
 <td>03931234323</td>
 </tr>
 <tr>
 <td>bank</td>
 <td>string</td>
-<td>optional</td>
-<td>bank abbreviation (Refer to supported banks in <a href="?shell/#supported-banks(singapore)">Singapore</a> or <a href="?shell/#supported-banks(indonesia)">Indonesia</a>)</td>
+<td>required</td>
+<td>bank abbreviation (Refer to <a href="?shell/#available-banks">available banks</a></td>
 <td>DBS</td>
+</tr>
+<tr>
+<td>notify_url</td>
+<td>string</td>
+<td>optional</td>
+<td>URL to receive callback notifications once we detect the account holder&rsquo;s name</td>
+<td>https://mysite.com/fetch_name_callback</td>
+</tr>
+</tbody></table>
+
+<h4 id="callback-response-format">Callback Response Format</h4>
+
+<p>This feature is only available in Indonesia. To help users validate that the bank account they added is correct, Xfers will attempt to fetch the name tied to the account holder from the bank itself.</p>
+
+<p>As this process takes up to a few minutes, we will make a HTTPS POST request to the <code class="prettyprint">notify_url</code> provided with the following parameters once it is complete:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bank</td>
+<td>string</td>
+<td>The bank abbreviation</td>
+<td>BCA</td>
+</tr>
+<tr>
+<td>account_no</td>
+<td>string</td>
+<td>The bank account number</td>
+<td>03931234323</td>
+</tr>
+<tr>
+<td>account_holder_name</td>
+<td>string</td>
+<td>The account holder&rsquo;s name</td>
+<td>Liu Tian Wei</td>
+</tr>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>Error message, if any</td>
+<td>Account number does not exist</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Status of the name fetch</td>
+<td>&quot;success&rdquo; or &ldquo;fail&rdquo;</td>
 </tr>
 </tbody></table>
 
@@ -1453,7 +1494,7 @@ For withdrawals, you can withdraw to 6 banks as of now: BCA, MANDIRI, BNI, BRI, 
 <td>bank</td>
 <td>string</td>
 <td>optional</td>
-<td>bank abbreviation (Refer to <a href="?shell/#supported-banks(singapore)">supported banks</a>)</td>
+<td>bank abbreviation (Refer to <a href="?shell/#available-banks">available banks</a>)</td>
 <td>DBS</td>
 </tr>
 </tbody></table>
@@ -2249,7 +2290,35 @@ COMING SOON
       </span><span class="s2">"bank_unique_amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.44</span><span class="p">,</span><span class="w">
       </span><span class="s2">"bank_discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">  
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"transfer_info_array"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"bank_name_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Central Asia"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"bank_name_abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCA"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"bank_account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1063003003"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"bank_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"branch_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"branch_area"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"unique_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89898989"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"bank_name_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Mandiri"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"bank_name_abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MANDIRI"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"bank_account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1190006792749"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"bank_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"branch_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"branch_area"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"unique_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89898989"</span><span class="w">
+      </span><span class="p">},{</span><span class="w">
+          </span><span class="s2">"bank_name_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Negara Indonesia"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"bank_name_abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BNI"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"bank_account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8000067885"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"bank_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"branch_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"branch_area"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"unique_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89898989"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -2342,7 +2411,7 @@ COMING SOON
 <td>debit_only</td>
 <td>boolean</td>
 <td>optional</td>
-<td>When this is true, this charge will attempt to debit from users existing balance/card on file. Status returned will be &quot;completed&rdquo; on successful debit or &ldquo;cancelled&rdquo; when there insufficient funds / valid card on file in user wallet.</td>
+<td>When this is true, this charge will attempt to debit from users existing balance/card on file. Status returned will be &ldquo;completed&rdquo; on successful debit or &ldquo;cancelled&rdquo; when there insufficient funds / valid card on file in user wallet.</td>
 <td>Default to false</td>
 </tr>
 <tr>
@@ -2421,6 +2490,42 @@ COMING SOON
 <td>optional</td>
 <td>Setting this to true will not send transaction reminders/cancelled/expired emails/SMS. Users will still receive payment completed notification.</td>
 <td>Default to false.</td>
+</tr>
+</tbody></table>
+
+<h4 id="create-charge-response">Create Charge Response</h4>
+
+<p>If a customer is given, ( through <code class="prettyprint">user_api_token</code> or <code class="prettyprint">customer</code> or <code class="prettyprint">user_phone_no</code>) and the user has insufficient xfers wallet balance, the response will return the <code class="prettyprint">transfer_info</code> object containing information about the bank the user should transfer to. If multiple banks are available, the <code class="prettyprint">transfer_info_array</code> will also be returned.</p>
+
+<p>Xfers might use a <code class="prettyprint">bank_unique_amt</code> to help in identifying the bank transfer in case the user forgets to enter his contact number in the comments section. This is a random amount with very small difference from actual amount(a few cents) which Xfers will absorb. However this is only to be used as a backup; the user should always enter his contact number.</p>
+
+<p>The table below explains some of these attributes:</p>
+
+<table><thead>
+<tr>
+<th>key</th>
+<th>meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bank_unique_amt</td>
+<td>This is the amount user should use to transfer to the bank.</td>
+</tr>
+<tr>
+<td>unique_id</td>
+<td>The contact number of the user. This should be entered in the comments section of your bank when doing a bank transfer.</td>
+</tr>
+<tr>
+<td>total_txn</td>
+<td>Total value of your payable transactions.</td>
+</tr>
+<tr>
+<td>total</td>
+<td>total_txn - available Xfers balance of user.</td>
+</tr>
+<tr>
+<td>bank_discount</td>
+<td>total - bank_unique_amt</td>
 </tr>
 </tbody></table>
 
@@ -2530,42 +2635,6 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 <aside class="notice">
 You should always provide customer&rsquo;s firstname and lastname information whenever you can as it would help us detecting fraudulence charges or user who have made an mistaken in their bank transfer.
 </aside>
-
-<h4 id="create-charge-response">Create Charge Response</h4>
-
-<p>If the <code class="prettyprint">user_api_token</code> or <code class="prettyprint">customer</code> or <code class="prettyprint">user_phone_no</code> field is used, and the user has insufficient xfers wallet balance, the response will return the <code class="prettyprint">transfer_info</code> object containing information about the bank the user should transfer to. </p>
-
-<p>Xfers might use a <code class="prettyprint">bank_unique_amt</code> to help in identifying the bank transfer in case the user forgets to enter his contact number in the comments section. This is a random amount with very small difference from actual amount(a few cents) which Xfers will absorb. However this is only to be used as a backup; the user should always enter his contact number.</p>
-
-<p>The table below explains some of these attributes:</p>
-
-<table><thead>
-<tr>
-<th>key</th>
-<th>meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>bank_unique_amt</td>
-<td>This is the amount user should use to transfer to the bank.</td>
-</tr>
-<tr>
-<td>unique_id</td>
-<td>The contact number of the user. This should be entered in the comments section of your bank when doing a bank transfer.</td>
-</tr>
-<tr>
-<td>total_txn</td>
-<td>Total value of your payable transactions.</td>
-</tr>
-<tr>
-<td>total</td>
-<td>total_txn - available Xfers balance of user.</td>
-</tr>
-<tr>
-<td>bank_discount</td>
-<td>total - bank_unique_amt</td>
-</tr>
-</tbody></table>
 
 <h3 id="payment-cancellation">Payment Cancellation</h3>
 
@@ -4211,7 +4280,7 @@ will not be able to save the token for reuse. Note that each credit card token c
 
 <p>The following request will allow you to make a payout to the recipient. If you only provide us with bank details, Xfers will make a payout directly to that bank account.</p>
 
-<p>If only email/phone no is provided, Xfers will email/SMS the recipient to inform him of the payout and allow him to claim and withdrawal the funds to any of the <a href="/#supported-banks(singapore)">local banks we support</a>. However, if a user has an account with Xfers, we will credit the amount into the user&rsquo;s Xfers account immediately.</p>
+<p>If only email/phone no is provided, Xfers will email/SMS the recipient to inform him of the payout and allow him to claim and withdrawal the funds to any of the <a href="/#available-banks">local banks we support</a>. However, if a user has an account with Xfers, we will credit the amount into the user&rsquo;s Xfers account immediately.</p>
 
 <p>If both bank details and recipient informations are provided, we will credit directly to their bank account and send them a notification once their payout has been processed.</p>
 
