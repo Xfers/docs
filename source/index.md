@@ -799,7 +799,7 @@ meta_data | string | The json string you previously provided in the register req
 
 ## Bank Account
 
-The follow APIs allow you to add or update your bank account info, to fetch a list of available banks for withdrawal and to fetch the account holder name of a bank account.
+The follow APIs allow you to add or update your bank account info and fetch a list of available banks for withdrawal.
 
 ### Available Banks
 
@@ -931,69 +931,6 @@ Name | Type | Required | Description | Value
 country | string | required | Country to withdraw to  | sg or id
 
 
-### Account Holder Name
-
-```shell
-curl "https://sandbox.xfers.io/api/v3/banks/fetch_name" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
-  -H "Content-Type: application/json" \
-  -d '{"account_no": "03931234323", "abbreviation":"BCA", "notify_url": "https://mysite.com/fetch_name_callback"}'
-```
-
-```php
-
-```
-
-```python
-```
-
-```ruby
-```
-
-```java
-```
-
-> Response:
-
-```json
-{
-  "abbreviation": "BCA",
-  "account_no": "03931234323",
-  "notify_url": "https://mysite.com/fetch_name_callback",
-  "status": "processing"
-}
-```
-
-Only available for Indonesian banks. This can be used to fetch the name of a bank account holder.
-
-Responses are provided via a callback to the `notify_url` provided, and usually takes a few minutes. 
-
-#### HTTPS Request
-
-`POST https://sandbox.xfers.io/api/v3/banks/fetch_name`
-
-#### Parameters
-
-Name | Type | Required | Description | Value
----- | ---- | -------- | ----------- | -----
-abbreviation | string | required | The bank abbreviation. You can get this from the "Available Banks" API | BCA
-account_no | string | required | The bank account number  | 03931234323
-notify_url | string | required | URL to receive callback notifications once the account holder's name has been detected   | https://mysite.com/fetch_name_callback
-
-#### Callback Response Format
-
-Xfers will make a HTTPS POST request to the `notify_url` provided with the following parameters:
-
-
-Name | Type | Description | Value
----- | ---- | ----------- | -----
-abbreviation | string | The bank abbreviation | BCA
-account_no | string | The bank account number | 03931234323
-account_holder_name | string | The account holder's name | Liu Tian Wei
-error | string | Error message, if any | Account number does not exist
-status | string | Status of the fetch_name request | "success" or "fail"
-
-
 ### Add a Bank Account
 
 ```shell
@@ -1111,8 +1048,26 @@ List of all bank accounts belonging to user.
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-account_no | string | optional | bank account no | 03931234323
-bank | string | optional | bank abbreviation (Refer to supported banks in [Singapore](?shell/#supported-banks(singapore)) or [Indonesia](?shell/#supported-banks(indonesia))) | DBS
+account_no | string | required | bank account no | 03931234323
+bank | string | required | bank abbreviation (Refer to [available banks](?shell/#available-banks) | DBS
+notify_url | string | optional | URL to receive callback notifications once we detect the account holder's name   | https://mysite.com/fetch_name_callback
+
+
+#### Callback Response Format
+
+This feature is only available in Indonesia. To help users validate that the bank account they added is correct, Xfers will attempt to fetch the name tied to the account holder from the bank itself.
+
+As this process takes up to a few minutes, we will make a HTTPS POST request to the `notify_url` provided with the following parameters once it is complete:
+
+
+Name | Type | Description | Value
+---- | ---- | ----------- | -----
+bank | string | The bank abbreviation | BCA
+account_no | string | The bank account number | 03931234323
+account_holder_name | string | The account holder's name | Liu Tian Wei
+error | string | Error message, if any | Account number does not exist
+status | string | Status of the name fetch | "success" or "fail"
+
 
 ### List Bank Accounts
 
@@ -1322,7 +1277,7 @@ List of all bank accounts belonging to user.
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 account_no | string | optional | bank account no | 03931234323
-bank | string | optional | bank abbreviation (Refer to [supported banks](?shell/#supported-banks(singapore))) | DBS
+bank | string | optional | bank abbreviation (Refer to [available banks](?shell/#available-banks)) | DBS
 
 
 ### Delete Bank Account
@@ -3764,7 +3719,7 @@ try {
 
 The following request will allow you to make a payout to the recipient. If you only provide us with bank details, Xfers will make a payout directly to that bank account.
 
-If only email/phone no is provided, Xfers will email/SMS the recipient to inform him of the payout and allow him to claim and withdrawal the funds to any of the [local banks we support](/#supported-banks(singapore)). However, if a user has an account with Xfers, we will credit the amount into the user's Xfers account immediately.
+If only email/phone no is provided, Xfers will email/SMS the recipient to inform him of the payout and allow him to claim and withdrawal the funds to any of the [local banks we support](/#available-banks). However, if a user has an account with Xfers, we will credit the amount into the user's Xfers account immediately.
 
 If both bank details and recipient informations are provided, we will credit directly to their bank account and send them a notification once their payout has been processed.
 
