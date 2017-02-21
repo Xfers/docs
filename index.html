@@ -976,7 +976,7 @@ All documents/images provided should not exceed 10MB per file.
 
 <p>The follow APIs allow you to add or update your bank account info and fetch a list of available banks for withdrawal.</p>
 
-<h3 id="available-banks">Available Banks</h3>
+<h3 id="available-banks-(coming-soon)">Available Banks (Coming Soon)</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/banks?country=sg"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
 </code></pre>
@@ -1236,7 +1236,7 @@ All documents/images provided should not exceed 10MB per file.
 <td>DBS</td>
 </tr>
 <tr>
-<td>notify_url</td>
+<td>notify_url (Coming soon)</td>
 <td>string</td>
 <td>optional</td>
 <td>URL to receive callback notifications once we detect the account holder&rsquo;s name</td>
@@ -5570,6 +5570,12 @@ Note that the signature required here for /get_token  is different from the one 
 <li>Pass this <code class="prettyprint">user_api_token</code> as params when <a href="/#creating-a-payout">creating a payout</a> in place of the recipient field</li>
 <li>Use the header <code class="prettyprint">&quot;X-XFERS-USER-API-KEY&quot;: &quot;the user_api_token&quot;</code> (instead of <code class="prettyprint">&quot;X-XFERS-USER-API-KEY&quot;: &quot;your own token&quot;</code>) to modify <a href="/#user-account">user details</a> and <a href="/#bank-account">bank accounts</a> on behalf of your user</li>
 </ul>
+
+<h1 id="postman-collection-(coming-soon!)">Postman Collection (Coming soon!)</h1>
+
+<p><a href="https://www.getpostman.com">Postman</a> helps you to construct HTTP requests quickly, save them for later use and analyze the responses sent by the API.</p>
+
+<p>We have created a Postman collection so you can easily test out our APIs. All you need is a <a href="https://sandbox.xfers.io">sandbox account</a> to get started!</p>
 
 <h1 id="xfers-tokenize">Xfers Tokenize</h1>
 
