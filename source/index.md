@@ -801,7 +801,7 @@ meta_data | string | The json string you previously provided in the register req
 
 The follow APIs allow you to add or update your bank account info and fetch a list of available banks for withdrawal.
 
-### Available Banks
+### Available Banks (Coming Soon)
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/banks?country=sg" \
@@ -1050,7 +1050,7 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 account_no | string | required | bank account no | 03931234323
 bank | string | required | bank abbreviation (Refer to [available banks](?shell/#available-banks) | DBS
-notify_url | string | optional | URL to receive callback notifications once we detect the account holder's name   | https://mysite.com/fetch_name_callback
+notify_url (Coming soon) | string | optional | URL to receive callback notifications once we detect the account holder's name   | https://mysite.com/fetch_name_callback
 
 
 #### Callback Response Format
@@ -4863,6 +4863,13 @@ Now that you have gotten a `user_api_token` linked to your customer, you can
 - Pass this `user_api_token` as params when adding and charging credit cards cards 
 - Pass this `user_api_token` as params when [creating a payout](/#creating-a-payout) in place of the recipient field
 - Use the header `"X-XFERS-USER-API-KEY": "the user_api_token"` (instead of `"X-XFERS-USER-API-KEY": "your own token"`) to modify [user details] (/#user-account) and [bank accounts](/#bank-account) on behalf of your user
+
+
+# Postman Collection (Coming soon!)
+
+[Postman](https://www.getpostman.com) helps you to construct HTTP requests quickly, save them for later use and analyze the responses sent by the API.
+
+We have created a Postman collection so you can easily test out our APIs. All you need is a [sandbox account](https://sandbox.xfers.io) to get started!
 
 
 # Xfers Tokenize
