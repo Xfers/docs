@@ -828,92 +828,92 @@ curl "https://sandbox.xfers.io/api/v3/banks?country=sg" \
   {
     "name": "Development Bank of Singapore",
     "abbreviation": "DBS",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-dbs.png"
   },
   {
     "name": "United Oversea Bank",
     "abbreviation": "UOB",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-uob.png"
   },
   {
     "name": "Malaysia Banking BHD",
     "abbreviation": "MBB",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-mbb.png"
   },
   {
     "name": "Oversea-Chinese Banking Corporation Limited",
     "abbreviation": "OCBC",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-ocbc.png"
   },
   {
     "name": "Citibank Singapore",
     "abbreviation": "CITI",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-citi.png"
   },
   {
     "name": "Standard Chartered Bank",
     "abbreviation": "SCB",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-scb.png"
   },
   {
     "name": "Australia and New Zealand Bank Group",
     "abbreviation": "ANZ",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-anz.png"
   },
   {
     "name": "CIMB Bank Berhad",
     "abbreviation": "CIMB",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-cimb.png"
   },
   {
     "name": "Deutsche bank AG",
     "abbreviation": "DBAG",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-dbag.png"
   },
   {
     "name": "Far Eastern Bank Ltd",
     "abbreviation": "FEB",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-feb.png"
   },
   {
     "name": "Hong Kong and Shanghai Banking Corporation",
     "abbreviation": "HSBC",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-hsbc.png"
   },
   {
     "name": "RHB Bank Berhad",
     "abbreviation": "RHB",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-rhb.png"
   },
   {
     "name": "Sumitomo Mitsui Banking Corporation",
     "abbreviation": "SMFG",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-smfg.png"
   },
   {
     "name": "Bank of China",
     "abbreviation": "BOC",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-boc.png"
   },
   {
     "name": "Bank of Tokyo-Mitsubshi UFJ",
     "abbreviation": "MUFG",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-mufg.png"
   },
   {
     "name": "BNP PARIBAS",
     "abbreviation": "BNP",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-bnp.png"
   },
   {
     "name": "HL BANK",
     "abbreviation": "HLB",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-hlb.png"
   },
   {
     "name": "Mizuho Bank",
     "abbreviation": "MIZ",
-    "country": "sg"
+    "img_src": "https://xfers.com/bank-logo-miz.png"
   }
 ]
 ```
@@ -1051,6 +1051,8 @@ Name | Type | Required | Description | Value
 account_no | string | required | bank account no | 03931234323
 bank | string | required | bank abbreviation (Refer to [available banks](?shell/#available-banks) | DBS
 notify_url (Coming soon) | string | optional | URL to receive callback notifications once we detect the account holder's name   | https://mysite.com/fetch_name_callback
+funding_source (Coming soon) | boolean | optional | Is this bank account a funding source | true
+account_holder_name (Coming soon) | string | optional | Name of bank account holder | Tian Wei
 
 
 #### Callback Response Format
@@ -4519,6 +4521,131 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 phoneNumber | string | required | Phone number to resend to. If it is a registered user, please use their email instead. | 83999455
 trans_id | string | required | ID of the transaction (charge) | b840cc9fc5a359c22ed2ccef3427aacd
+
+## Support (Coming Soon)
+
+The following APIs allow you to integrate payment support functionality directly into your app.
+
+
+### Creating a Support Ticket
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/support" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+ -H "Content-Type: application/json" \
+  -d '{ "file": "bank_transfer_receipt.jpg", "charge_id": "6f5f85859a51cd08c8ae113412bb72c8", "callback_url": "https://mysite.com/support-callback"}'  
+```
+
+```php
+```
+
+```python
+```
+
+```ruby
+```
+
+```java
+```
+
+> Response:
+
+```json
+{
+  "support_id": "support_35331",
+  "charge_id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "account_holder_name": "Tian Wei",
+  "bank_abbrev": "BCA",
+  "account_no": "0124121241",
+  "status": "processing",
+  "status_time": "2015-06-23T16:08:39.000+08:00"
+}
+```
+
+Create a support ticket to be processed by Xfers Customer Support team.
+
+`POST https://sandbox.xfers.io/api/v3/support`
+
+
+#### Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+file | string | required | URL to the receipt image | bank_transfer_receipt.jpg
+charge_id | string | optional | ID of the charge | b840cc9fc5a359c22ed2ccef3427aacd
+callback_url | string | optional | URL to receive callback notifications when support status is updated  | https://mysite.com/notification
+
+### Retrieve Support Ticket
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/support/<SUPPORT_ID>" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
+
+```php
+```
+
+```python
+```
+
+```ruby
+```
+
+```java
+```
+
+> Processing Response:
+
+```json
+{
+  "support_id": "support_35331",
+  "charge_id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "account_holder_name": "Tian Wei",
+  "bank_abbrev": "BCA",
+  "account_no": "0124121241",
+  "status": "processing",
+  "status_time": "2015-06-23T16:08:39.000+08:00"
+}
+```
+
+> Resolved Response:
+
+```json
+{
+  "support_id": "support_topup_35331",
+  "charge_id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "account_holder_name": "Tian Wei",
+  "bank_abbrev": "BCA",
+  "account_no": "0124121241",
+  "status": "resolved",
+  "status_time": "2015-06-23T16:08:39.000+08:00",
+  "amount": "132549", 
+  "currency": "IDR",
+  "msg": "The bank transfer of Rp 132549 has been detected and credited into tianwei@xfers.io's account"
+}
+```
+
+
+> Attention Response:
+
+```json
+{
+  "support_id": "support_topup_35331",
+  "charge_id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "account_holder_name": "Tian Wei",
+  "bank_abbrev": "BCA",
+  "account_no": "0124121241",
+  "status": "attention",
+  "status_time": "2015-06-23T16:08:39.000+08:00",
+  "msg": "We are unable to find a matching bank transfer. Please contact support@xfers.io."
+}
+```
+
+Returns a particular support ticket.
+
+#### HTTPS Request
+
+`GET https://sandbox.xfers.io/api/v3/support/<SUPPORT_ID>`
 
 
 # Xfers Connect
