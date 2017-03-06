@@ -3719,17 +3719,11 @@ try {
 }
 ```
 
-The following request will allow you to make a payout to the recipient. If you only provide us with bank details, Xfers will make a payout directly to that bank account.
+The following request will allow you to make a payout to the recipient.
 
-If only email/phone no is provided, Xfers will email/SMS the recipient to inform him of the payout and allow him to claim and withdrawal the funds to any of the [local banks we support](/#available-banks). However, if a user has an account with Xfers, we will credit the amount into the user's Xfers account immediately.
-
-If both bank details and recipient informations are provided, we will credit directly to their bank account and send them a notification once their payout has been processed.
+If the user does not have an xfers account, they will be given a link via SMS/email with the relevant instructions. However, if a user has an account with Xfers, we will credit the amount into the user's Xfers account immediately.
 
 Note: If the recipient did not accept the payout within 14 days, the payout will be cancelled and its funds will be returned back to your Xfers balances.
-
-<aside class="notice">
-Either the recipient field or the bank_account_no field must be filled in to identify the recipient.
-</aside>
 
 `POST https://sandbox.xfers.io/api/v3/payouts`
 
