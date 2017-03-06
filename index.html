@@ -4292,17 +4292,11 @@ will not be able to save the token for reuse. Note that each credit card token c
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>The following request will allow you to make a payout to the recipient. If you only provide us with bank details, Xfers will make a payout directly to that bank account.</p>
+<p>The following request will allow you to make a payout to the recipient.</p>
 
-<p>If only email/phone no is provided, Xfers will email/SMS the recipient to inform him of the payout and allow him to claim and withdrawal the funds to any of the <a href="/#available-banks">local banks we support</a>. However, if a user has an account with Xfers, we will credit the amount into the user&rsquo;s Xfers account immediately.</p>
-
-<p>If both bank details and recipient informations are provided, we will credit directly to their bank account and send them a notification once their payout has been processed.</p>
+<p>If the user does not have an xfers account, they will be given a link via SMS/email with the relevant instructions. However, if a user has an account with Xfers, we will credit the amount into the user&rsquo;s Xfers account immediately.</p>
 
 <p>Note: If the recipient did not accept the payout within 14 days, the payout will be cancelled and its funds will be returned back to your Xfers balances.</p>
-
-<aside class="notice">
-Either the recipient field or the bank_account_no field must be filled in to identify the recipient.
-</aside>
 
 <p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/payouts</code></p>
 
