@@ -5654,7 +5654,9 @@ You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with y
   </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This API call will return the user&rsquo;s <code class="prettyprint">X-XFERS-USER-API-KEY</code> and a <code class="prettyprint">sign_up_url</code> if and ONLY IF they do not already have an Xfers account. The url can be loaded to serve a page that allow user to complete their Xfers account registration (this is optional and is only needed if the user wants to login to their Xfers Dashboard).</p>
+<p>This API call will return the user&rsquo;s <code class="prettyprint">user_api_token</code>. You should save this token in database for reuse. There is no need to go through the connect flow again for this user.</p>
+
+<p>It will also return a <code class="prettyprint">sign_up_url</code> if and ONLY IF they do not already have an Xfers account. The url can be loaded to serve a page that allow user to complete their Xfers account registration (this is optional and is only needed if the user wants to login to their Xfers Dashboard).</p>
 
 <p>If you choose to redirect new Xfers user to the unique sign_up_url to allow them to complete their Xfers account registrations, upon successfully account registration, Xfers will redirect user back to the <code class="prettyprint">return_url</code> specified or the default at &ldquo;&lt;Endpoint&gt;/api/v3/account_registration/completed&rdquo;. The automated SMS from Xfers will not be sent if user complete their account registration this way within 15mins.</p>
 
