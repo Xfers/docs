@@ -860,6 +860,43 @@ All documents/images provided should not exceed 10MB per file.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<blockquote>
+<p>All Banks Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"bank_name_full"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Central Asia"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_name_abbreviation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BCA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1063003003"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"branch_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"branch_area"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unique_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"97288607"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"img_src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://xfers.com/bank-logo-bca.png"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> 
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"bank_name_full"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Mandiri"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_name_abbreviation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MANDIRI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1190006792749"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"branch_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"branch_area"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unique_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"97288607"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"img_src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://xfers.com/bank-logo-mandiri.png"</span><span class="w">    
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"bank_name_full"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Negara Indonesia"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_name_abbreviation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BNI"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"8000067885"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"branch_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"branch_area"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unique_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"97288607"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"img_src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://xfers.com/bank-logo-bni.png"</span><span class="w">    
+  </span><span class="p">}</span><span class="w">    
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
 <p>This will return transfer in info specific to the user. This information is used for topping up the user&rsquo;s Xfers account.</p>
 
 <p>On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. <strong>For our Maybank account, the user must also include his mobile phone number in the &ldquo;Initials&rdquo; and &ldquo;Comments for Recipient&rdquo; field when doing a bank transfer</strong> so Xfers can identify which user this bank transfer belongs to.</p>
@@ -880,7 +917,7 @@ All documents/images provided should not exceed 10MB per file.
 </tr>
 </thead><tbody>
 <tr>
-<td>all</td>
+<td>all (Coming soon)</td>
 <td>boolean</td>
 <td>optional</td>
 <td>Return an array of all banks available. Only for Indonesia</td>
@@ -1083,7 +1120,7 @@ All documents/images provided should not exceed 10MB per file.
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>This will provide you with a list of banks we support for withdrawing money.</p>
+<p>This will provide you with a list of banks we support.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -1104,7 +1141,7 @@ All documents/images provided should not exceed 10MB per file.
 <td>country</td>
 <td>string</td>
 <td>required</td>
-<td>Country to withdraw to</td>
+<td>Country</td>
 <td>sg or id</td>
 </tr>
 </tbody></table>
@@ -1384,6 +1421,26 @@ All documents/images provided should not exceed 10MB per file.
 <h4 id="https-request">HTTPS Request</h4>
 
 <p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/user/bank_account</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type (Coming soon)</td>
+<td>string</td>
+<td>optional</td>
+<td>type of bank account</td>
+<td>Either &ldquo;funding_source” or “withdrawal” or “all”. Defaults to “all”</td>
+</tr>
+</tbody></table>
 
 <h3 id="update-a-bank-account">Update a Bank Account</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account/&lt;bank_account_id&gt;"</span> <span class="se">\</span>
@@ -2264,7 +2321,8 @@ COMING SOON
   </span><span class="s2">"cancel_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/cancel"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"object"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"charge"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bank_unique_amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"customer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"A012312"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"capture"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -2299,39 +2357,43 @@ COMING SOON
     </span><span class="s2">"branch_area"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jurong East"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"unique_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89898989"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"outstanding_amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.44</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"total_txn"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.44</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"bank_unique_amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.44</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_txn"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_unique_amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="p">,</span><span class="w">
       </span><span class="s2">"bank_discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"transfer_info_array"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"bank_name_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Central Asia"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"bank_name_abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCA"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"bank_account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1063003003"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"bank_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"branch_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"branch_area"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"unique_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89898989"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"bank_name_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Mandiri"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"bank_name_abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MANDIRI"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"bank_account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1190006792749"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"bank_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"branch_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"branch_area"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"unique_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89898989"</span><span class="w">
-      </span><span class="p">},{</span><span class="w">
-          </span><span class="s2">"bank_name_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Negara Indonesia"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"bank_name_abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BNI"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"bank_account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8000067885"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"bank_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"branch_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"branch_area"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"unique_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89898989"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"bank_name_full"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Central Asia"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_name_abbreviation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BCA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1063003003"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"branch_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"branch_area"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unique_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"97288607"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"img_src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://xfers.com/bank-logo-bca.png"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"bank_name_full"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Mandiri"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_name_abbreviation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MANDIRI"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1190006792749"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"branch_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"branch_area"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unique_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"97288607"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"img_src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://xfers.com/bank-logo-mandiri.png"</span><span class="w">    
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"bank_name_full"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Negara Indonesia"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_name_abbreviation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BNI"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"8000067885"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"branch_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"branch_area"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unique_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"97288607"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"img_src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://xfers.com/bank-logo-bni.png"</span><span class="w">    
+    </span><span class="p">}</span><span class="w">    
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -2425,7 +2487,7 @@ COMING SOON
 <td>debit_only</td>
 <td>boolean</td>
 <td>optional</td>
-<td>When this is true, this charge will attempt to debit from users existing balance/card on file. Status returned will be &ldquo;completed&rdquo; on successful debit or &ldquo;cancelled&rdquo; when there insufficient funds / valid card on file in user wallet.</td>
+<td>When this is true, this charge will attempt to debit from users existing balance/card on file. Status returned will be &quot;completed&rdquo; on successful debit or &ldquo;cancelled&rdquo; when there insufficient funds / valid card on file in user wallet.</td>
 <td>Default to false</td>
 </tr>
 <tr>
@@ -3155,6 +3217,7 @@ Please take note that at this point, payment may or may not have been completed 
   </span><span class="s2">"cancel_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/cancel"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"object"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"charge"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bank_unique_amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="p">,</span><span class="w">
   </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"customer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"A012312"</span><span class="p">,</span><span class="w">
@@ -3333,6 +3396,13 @@ Please take note that at this point, payment may or may not have been completed 
 <td>optional</td>
 <td>Only return charges for the customer specified by this customer ID.</td>
 <td>97288608</td>
+</tr>
+<tr>
+<td>status (Coming soon)</td>
+<td>string</td>
+<td>optional</td>
+<td>status of the charge to return</td>
+<td>pending</td>
 </tr>
 <tr>
 <td>ending_before</td>
@@ -5114,11 +5184,45 @@ You cannot create more than 1 intents per user (previous old pending intents wil
   </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0124121241"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"notify_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/topup_notification"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"expiration_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-09-09T17:55:51Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transfer_info_array"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"bank_name_full"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Central Asia"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_name_abbreviation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BCA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1063003003"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"branch_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"branch_area"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unique_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"97288607"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"img_src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://xfers.com/bank-logo-bca.png"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"bank_name_full"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Mandiri"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_name_abbreviation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MANDIRI"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1190006792749"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"branch_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"branch_area"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unique_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"97288607"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"img_src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://xfers.com/bank-logo-mandiri.png"</span><span class="w">    
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"bank_name_full"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Negara Indonesia"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_name_abbreviation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BNI"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"8000067885"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"branch_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"branch_area"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unique_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"97288607"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"img_src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://xfers.com/bank-logo-bni.png"</span><span class="w">    
+    </span><span class="p">}</span><span class="w">    
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <p>Returns the current pending intent of the user. If multiple intents are created, only the last one is returned.</p>
+
+<p>Coming soon: <code class="prettyprint">transfer_info_array</code> is returned so you can display a list of all Xfers banks to transfer to.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -5262,7 +5366,7 @@ You cannot create more than 1 intents per user (previous old pending intents wil
 <td>file</td>
 <td>string</td>
 <td>required</td>
-<td>URL to the receipt image</td>
+<td>URL or file of the receipt image</td>
 <td>bank_transfer_receipt.jpg</td>
 </tr>
 <tr>
