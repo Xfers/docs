@@ -1051,7 +1051,7 @@ Name | Type | Required | Description | Value
 account_no | string | required | bank account no | 03931234323
 bank | string | required | bank abbreviation (Refer to [available banks](?shell/#available-banks) | DBS
 notify_url (Coming soon) | string | optional | URL to receive callback notifications once we detect the account holder's name   | https://mysite.com/fetch_name_callback
-funding_source (Coming soon) | boolean | optional | Is this bank account a funding source | true
+type (Coming soon) | string | optional | Is this bank account to be used as a funding source or for withdrawals? | Either "funding_source" or "withdrawal" or "all". Defaults to "all"
 account_holder_name (Coming soon) | string | optional | Name of bank account holder | Tian Wei
 
 
@@ -4566,7 +4566,10 @@ Create a support ticket to be processed by Xfers Customer Support team.
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 file | string | required | URL to the receipt image | bank_transfer_receipt.jpg
+email | string | required | User's email so we can get back to them | bobby@gmail.com
 charge_id | string | optional | ID of the charge | b840cc9fc5a359c22ed2ccef3427aacd
+intent_id | string | optional | ID of the intent | b840cc9fc5a359c22ed2ccef3427aacd
+description | string | optional | Any additional information | I submitted without contact number in the initial/comments section 
 callback_url | string | optional | URL to receive callback notifications when support status is updated  | https://mysite.com/notification
 
 ### Retrieve Support Ticket
