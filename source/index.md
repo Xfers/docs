@@ -1956,7 +1956,7 @@ try {
         'order_id' => 'AZ9912',
         'description' => 'unused red dress',
         'shipping' => '2.50',
-        'redirect' => false,
+        'redirect' => 'false',
         'tax' => '0.0',
         'items' => json_encode($items),
         'meta_data' => $meta_data
