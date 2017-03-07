@@ -918,7 +918,7 @@ curl "https://sandbox.xfers.io/api/v3/banks?country=sg" \
 ]
 ```
 
-This will provide you with a list of banks we support for withdrawing money.
+This will provide you with a list of banks we support.
 
 #### HTTPS Request
 
@@ -928,7 +928,7 @@ This will provide you with a list of banks we support for withdrawing money.
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-country | string | required | Country to withdraw to  | sg or id
+country | string | required | Country | sg or id
 
 
 ### Add a Bank Account
