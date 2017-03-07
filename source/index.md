@@ -730,6 +730,44 @@ try {
 }
 ```
 
+> All Banks Response:
+
+```json
+[
+  {
+    "bank_name_full" : "Bank Central Asia",
+    "bank_name_abbreviation" : "BCA",
+    "bank_account_no" : "1063003003",
+    "bank_code" : "",
+    "branch_code" : "",
+    "branch_area" : "",
+    "unique_id" : "97288607",
+    "img_src": "https://xfers.com/bank-logo-bca.png"
+  }, 
+  {
+    "bank_name_full" : "Bank Mandiri",
+    "bank_name_abbreviation" : "MANDIRI",
+    "bank_account_no" : "1190006792749",
+    "bank_code" : "",
+    "branch_code" : "",
+    "branch_area" : "",
+    "unique_id" : "97288607",
+    "img_src": "https://xfers.com/bank-logo-mandiri.png"    
+  },
+  {
+    "bank_name_full" : "Bank Negara Indonesia",
+    "bank_name_abbreviation" : "BNI",
+    "bank_account_no" : "8000067885",
+    "bank_code" : "",
+    "branch_code" : "",
+    "branch_area" : "",
+    "unique_id" : "97288607",
+    "img_src": "https://xfers.com/bank-logo-bni.png"    
+  }    
+]
+```
+
+
 This will return transfer in info specific to the user. This information is used for topping up the user's Xfers account.
 
 On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. **For our Maybank account, the user must also include his mobile phone number in the "Initials" and "Comments for Recipient" field when doing a bank transfer** so Xfers can identify which user this bank transfer belongs to.
@@ -743,7 +781,7 @@ On your User Interface, instruct the user to make a bank transfer to the bank na
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-all | boolean | optional | Return an array of all banks available. Only for Indonesia | true (defaults to false)
+all (Coming soon) | boolean | optional | Return an array of all banks available. Only for Indonesia | true (defaults to false)
 
 
 ### Register Updates Callback - Coming soon
@@ -1161,6 +1199,14 @@ This will list all bank accounts belonging to the user.
 #### HTTPS Request
 
 `GET https://sandbox.xfers.io/api/v3/user/bank_account`
+
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+type (Coming soon) | string | optional | type of bank account | Either "funding_source” or “withdrawal” or “all”. Defaults to “all”
+
 
 ### Update a Bank Account
 
@@ -2038,6 +2084,7 @@ try {
   "cancel_url" : "https://mysite.com/cancel",
   "object" : "charge",
   "amount" : 9.99,
+  "bank_unique_amt": 9.99
   "currency" : "SGD",
   "customer" : "",
   "order_id" : "A012312",
@@ -2073,39 +2120,43 @@ try {
     "branch_area": "Jurong East",
     "unique_id": "89898989",
     "outstanding_amount": {
-      "total": 1.44,
-      "total_txn": 1.44,
-      "bank_unique_amt": 1.44,
+      "total": 9.99,
+      "total_txn": 9.99,
+      "bank_unique_amt": 9.99,
       "bank_discount": 0.0
     }
   },
   "transfer_info_array": [
-      {
-          "bank_name_full": "Bank Central Asia",
-          "bank_name_abbreviation": "BCA",
-          "bank_account_no": "1063003003",
-          "bank_code": "",
-          "branch_code": "",
-          "branch_area": "",
-          "unique_id": "89898989"
-      },
-      {
-          "bank_name_full": "Bank Mandiri",
-          "bank_name_abbreviation": "MANDIRI",
-          "bank_account_no": "1190006792749",
-          "bank_code": "",
-          "branch_code": "",
-          "branch_area": "",
-          "unique_id": "89898989"
-      },{
-          "bank_name_full": "Bank Negara Indonesia",
-          "bank_name_abbreviation": "BNI",
-          "bank_account_no": "8000067885",
-          "bank_code": "",
-          "branch_code": "",
-          "branch_area": "",
-          "unique_id": "89898989"
-      }
+    {
+      "bank_name_full" : "Bank Central Asia",
+      "bank_name_abbreviation" : "BCA",
+      "bank_account_no" : "1063003003",
+      "bank_code" : "",
+      "branch_code" : "",
+      "branch_area" : "",
+      "unique_id" : "97288607",
+      "img_src": "https://xfers.com/bank-logo-bca.png"
+    }, 
+    {
+      "bank_name_full" : "Bank Mandiri",
+      "bank_name_abbreviation" : "MANDIRI",
+      "bank_account_no" : "1190006792749",
+      "bank_code" : "",
+      "branch_code" : "",
+      "branch_area" : "",
+      "unique_id" : "97288607",
+      "img_src": "https://xfers.com/bank-logo-mandiri.png"    
+    },
+    {
+      "bank_name_full" : "Bank Negara Indonesia",
+      "bank_name_abbreviation" : "BNI",
+      "bank_account_no" : "8000067885",
+      "bank_code" : "",
+      "branch_code" : "",
+      "branch_area" : "",
+      "unique_id" : "97288607",
+      "img_src": "https://xfers.com/bank-logo-bni.png"    
+    }    
   ]
 }
 ```
@@ -2672,6 +2723,7 @@ Xfers.setSGSandbox();
   "cancel_url" : "https://mysite.com/cancel",
   "object" : "charge",
   "amount" : 9.99,
+  "bank_unique_amt": 9.99,
   "currency" : "SGD",
   "customer" : "",
   "order_id" : "A012312",
@@ -2851,6 +2903,7 @@ Returns a list of charges you've previously created. The charges are returned in
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 customer | string | optional | Only return charges for the customer specified by this customer ID. | 97288608
+status (Coming soon) | string | optional | status of the charge to return | pending
 ending_before | string | optional | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_bar, your subsequent call can include ending_before=obj_bar in order to fetch the previous page of the list. | 7364dc68a000eba1ec6d34f81c5006dc
 limit | integer | optional | A limit on the number of objects to be returned. Limit can range between 1 and 50 items. | Default to 10
 starting_after | string | optional | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list. | 7ba1ec6d34f64dc68a030e081c5006dc
@@ -4428,11 +4481,45 @@ try {
   "bank_account_no" : "0124121241",
   "notify_url" : "https://mysite.com/topup_notification",
   "expiration_date" : "2016-09-09T17:55:51Z",
-  "status" : "pending"
+  "status" : "pending",
+  "transfer_info_array": [
+    {
+      "bank_name_full" : "Bank Central Asia",
+      "bank_name_abbreviation" : "BCA",
+      "bank_account_no" : "1063003003",
+      "bank_code" : "",
+      "branch_code" : "",
+      "branch_area" : "",
+      "unique_id" : "97288607",
+      "img_src": "https://xfers.com/bank-logo-bca.png"
+    }, 
+    {
+      "bank_name_full" : "Bank Mandiri",
+      "bank_name_abbreviation" : "MANDIRI",
+      "bank_account_no" : "1190006792749",
+      "bank_code" : "",
+      "branch_code" : "",
+      "branch_area" : "",
+      "unique_id" : "97288607",
+      "img_src": "https://xfers.com/bank-logo-mandiri.png"    
+    },
+    {
+      "bank_name_full" : "Bank Negara Indonesia",
+      "bank_name_abbreviation" : "BNI",
+      "bank_account_no" : "8000067885",
+      "bank_code" : "",
+      "branch_code" : "",
+      "branch_area" : "",
+      "unique_id" : "97288607",
+      "img_src": "https://xfers.com/bank-logo-bni.png"    
+    }    
+  ]
 }
 ```
 
 Returns the current pending intent of the user. If multiple intents are created, only the last one is returned.
+
+Coming soon: `transfer_info_array` is returned so you can display a list of all Xfers banks to transfer to.
 
 #### HTTPS Request
 
@@ -4565,7 +4652,7 @@ Create a support ticket to be processed by Xfers Customer Support team.
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-file | string | required | URL to the receipt image | bank_transfer_receipt.jpg
+file | string | required | URL or file of the receipt image | bank_transfer_receipt.jpg
 email | string | required | User's email so we can get back to them | bobby@gmail.com
 charge_id | string | optional | ID of the charge | b840cc9fc5a359c22ed2ccef3427aacd
 intent_id | string | optional | ID of the intent | b840cc9fc5a359c22ed2ccef3427aacd
