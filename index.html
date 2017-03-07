@@ -1243,11 +1243,11 @@ All documents/images provided should not exceed 10MB per file.
 <td>https://mysite.com/fetch_name_callback</td>
 </tr>
 <tr>
-<td>funding_source (Coming soon)</td>
-<td>boolean</td>
+<td>type (Coming soon)</td>
+<td>string</td>
 <td>optional</td>
-<td>Is this bank account a funding source</td>
-<td>true</td>
+<td>Is this bank account to be used as a funding source or for withdrawals?</td>
+<td>Either &quot;funding_source&rdquo; or &ldquo;withdrawal&rdquo; or &ldquo;all&rdquo;. Defaults to &ldquo;all&rdquo;</td>
 </tr>
 <tr>
 <td>account_holder_name (Coming soon)</td>
@@ -1300,7 +1300,7 @@ All documents/images provided should not exceed 10MB per file.
 <td>status</td>
 <td>string</td>
 <td>Status of the name fetch</td>
-<td>&quot;success&rdquo; or &ldquo;fail&rdquo;</td>
+<td>&ldquo;success&rdquo; or &ldquo;fail&rdquo;</td>
 </tr>
 </tbody></table>
 
@@ -5266,11 +5266,32 @@ You cannot create more than 1 intents per user (previous old pending intents wil
 <td>bank_transfer_receipt.jpg</td>
 </tr>
 <tr>
+<td>email</td>
+<td>string</td>
+<td>required</td>
+<td>User&rsquo;s email so we can get back to them</td>
+<td>bobby@gmail.com</td>
+</tr>
+<tr>
 <td>charge_id</td>
 <td>string</td>
 <td>optional</td>
 <td>ID of the charge</td>
 <td>b840cc9fc5a359c22ed2ccef3427aacd</td>
+</tr>
+<tr>
+<td>intent_id</td>
+<td>string</td>
+<td>optional</td>
+<td>ID of the intent</td>
+<td>b840cc9fc5a359c22ed2ccef3427aacd</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>optional</td>
+<td>Any additional information</td>
+<td>I submitted without contact number in the initial/comments section</td>
 </tr>
 <tr>
 <td>callback_url</td>
