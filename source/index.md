@@ -2084,7 +2084,7 @@ try {
   "cancel_url" : "https://mysite.com/cancel",
   "object" : "charge",
   "amount" : 9.99,
-  "bank_unique_amt": 9.99
+  "bank_unique_amt": 9.99,
   "currency" : "SGD",
   "customer" : "",
   "order_id" : "A012312",
