@@ -842,7 +842,7 @@ The follow APIs allow you to add or update your bank account info and fetch a li
 ### Available Banks (Coming Soon)
 
 ```shell
-curl "https://sandbox.xfers.io/api/v3/banks?country=sg" \
+curl "https://sandbox.xfers.io/api/v3/banks" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
@@ -960,13 +960,7 @@ This will provide you with a list of banks we support.
 
 #### HTTPS Request
 
-`GET https://sandbox.xfers.io/api/v3/banks?country=sg`
-
-#### URL Parameters
-
-Name | Type | Required | Description | Value
----- | ---- | -------- | ----------- | -----
-country | string | required | Country | sg or id
+`GET https://sandbox.xfers.io/api/v3/banks`
 
 
 ### Add a Bank Account
@@ -975,7 +969,7 @@ country | string | required | Country | sg or id
 curl "https://sandbox.xfers.io/api/v3/user/bank_account" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
-  -d '{"account_no": "03931234323", "bank":"DBS"}'
+  -d '{"account_no": "03931234323", "bank":"DBS", "account_holder_name": "Tian Wei"}'
 ```
 
 ```php
@@ -1060,12 +1054,16 @@ try {
     {
        "id" : "12312",
        "account_no" : "039-312-3432-3",
-       "bank_abbrev" : "DBS"
+       "bank_abbrev" : "DBS",
+       "usage": "all",
+       "account_holder_name": "Tian Wei"       
     },
     {
        "id" : "12315",
        "account_no" : "129-880-1251-1",
-       "bank_abbrev" : "OCBC"
+       "bank_abbrev" : "OCBC",
+       "usage": "all",
+       "account_holder_name": "Tian Wei"       
     }
 ]
 ```
@@ -1089,7 +1087,7 @@ Name | Type | Required | Description | Value
 account_no | string | required | bank account no | 03931234323
 bank | string | required | bank abbreviation (Refer to [available banks](?shell/#available-banks) | DBS
 notify_url (Coming soon) | string | optional | URL to receive callback notifications once we detect the account holder's name   | https://mysite.com/fetch_name_callback
-type (Coming soon) | string | optional | Is this bank account to be used as a funding source or for withdrawals? | Either "funding_source" or "withdrawal" or "all". Defaults to "all"
+usage (Coming soon) | string | optional | Is this bank account to be used as a funding source or for withdrawals? | Either "funding_source" or "withdrawal" or "all". Defaults to "all"
 account_holder_name (Coming soon) | string | optional | Name of bank account holder | Tian Wei
 
 
@@ -1184,12 +1182,16 @@ try {
     {
        "id" : "12312",
        "account_no" : "039-312-3432-3",
-       "bank_abbrev" : "DBS"
+       "bank_abbrev" : "DBS",
+       "usage": "all",
+       "account_holder_name": "Tian Wei"              
     },
     {
        "id" : "12315",
        "account_no" : "129-880-1251-1",
-       "bank_abbrev" : "OCBC"
+       "bank_abbrev" : "OCBC",
+       "usage": "all",
+       "account_holder_name": "Tian Wei"                 
     }
 ]
 ```
@@ -1205,7 +1207,7 @@ This will list all bank accounts belonging to the user.
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-type (Coming soon) | string | optional | type of bank account | Either "funding_source” or “withdrawal” or “all”. Defaults to “all”
+usage (Coming soon) | string | optional | type of bank account | Either "funding_source” or “withdrawal” or “all”. Defaults to “all”
 
 
 ### Update a Bank Account
@@ -1299,17 +1301,21 @@ try {
     {
        "id" : "12312",
        "account_no" : "039-312-3432-1",
-       "bank_abbrev" : "DBS"
+       "bank_abbrev" : "DBS",
+       "usage": "all",
+       "account_holder_name": "Tian Wei"              
     },
     {
        "id" : "12315",
        "account_no" : "129-880-1251-1",
-       "bank_abbrev" : "OCBC"
+       "bank_abbrev" : "OCBC",
+       "usage": "all",
+       "account_holder_name": "Tian Wei"              
     }
 ]
 ```
 
-This request allow you to update an existing bank account record. 
+This request allows you to update an existing bank account record. 
 
 #### HTTPS Request
 
@@ -1326,6 +1332,8 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 account_no | string | optional | bank account no | 03931234323
 bank | string | optional | bank abbreviation (Refer to [available banks](?shell/#available-banks)) | DBS
+usage (Coming soon) | string | optional | Is this bank account to be used as a funding source or for withdrawals? | Either "funding_source" or "withdrawal" or "all".
+account_holder_name (Coming soon) | string | optional | Name of bank account holder | Tian Wei
 
 
 ### Delete Bank Account
@@ -4614,7 +4622,7 @@ The following APIs allow you to integrate payment support functionality directly
 curl "https://sandbox.xfers.io/api/v3/support" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
  -H "Content-Type: application/json" \
-  -d '{ "file": "bank_transfer_receipt.jpg", "charge_id": "6f5f85859a51cd08c8ae113412bb72c8", "callback_url": "https://mysite.com/support-callback"}'  
+  -d '{ "file": "bank_transfer_receipt.jpg", "intent_id": "6f5f85859a51cd08c8ae113412bb72c8", "description": "Transferred an hour ago but money still not credited", "email": "bobby@gmail.com", "amount": 5.89, "date": "13/02/2017", "time": "23:59"}'  
 ```
 
 ```php
@@ -4633,17 +4641,21 @@ curl "https://sandbox.xfers.io/api/v3/support" \
 
 ```json
 {
-  "support_id": "support_35331",
-  "charge_id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "support_id": "35331",
+  "intent_id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "date": "2016-08-13",
+  "time": "3:39",
   "account_holder_name": "Tian Wei",
   "bank_abbrev": "BCA",
   "account_no": "0124121241",
-  "status": "processing",
-  "status_time": "2015-06-23T16:08:39.000+08:00"
+  "amount": 132549, 
+  "currency": "IDR",
+  "status": "processing"
 }
 ```
 
 Create a support ticket to be processed by Xfers Customer Support team.
+You can use either `application/x-www-form-urlencoded` (HTTP URL to file) or `multipart/form-data` (file upload) Content-Types.
 
 `POST https://sandbox.xfers.io/api/v3/support`
 
@@ -4652,12 +4664,14 @@ Create a support ticket to be processed by Xfers Customer Support team.
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-file | string | required | URL or file of the receipt image | bank_transfer_receipt.jpg
+description | string | required | Any additional information | I submitted without contact number in the initial/comments section 
+date | string | required | Date the transfer was made (DD/MM/YYYY)| 13/08/2017 
+time | string | required | Approximate time the transfer was made (HH:MM)| 21:30 
 email | string | required | User's email so we can get back to them | bobby@gmail.com
-charge_id | string | optional | ID of the charge | b840cc9fc5a359c22ed2ccef3427aacd
-intent_id | string | optional | ID of the intent | b840cc9fc5a359c22ed2ccef3427aacd
-description | string | optional | Any additional information | I submitted without contact number in the initial/comments section 
-callback_url | string | optional | URL to receive callback notifications when support status is updated  | https://mysite.com/notification
+amount | float | required | Amount user transferred | 5.89
+file | string | required | File or URL of the receipt image | bank_transfer_receipt.jpg
+charge_id | string | Either charge or intent required | ID of the charge | b840cc9fc5a359c22ed2ccef3427aacd
+intent_id | string | Either charge or intent required | ID of the intent | b840cc9fc5a359c22ed2ccef3427aacd
 
 ### Retrieve Support Ticket
 
@@ -4682,13 +4696,16 @@ curl "https://sandbox.xfers.io/api/v3/support/<SUPPORT_ID>" \
 
 ```json
 {
-  "support_id": "support_35331",
-  "charge_id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "support_id": "35331",
+  "intent_id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "date": "2016-08-13",
+  "time": "3:39",
   "account_holder_name": "Tian Wei",
   "bank_abbrev": "BCA",
   "account_no": "0124121241",
-  "status": "processing",
-  "status_time": "2015-06-23T16:08:39.000+08:00"
+  "amount": 132549, 
+  "currency": "IDR",
+  "status": "processing"
 }
 ```
 
@@ -4696,14 +4713,15 @@ curl "https://sandbox.xfers.io/api/v3/support/<SUPPORT_ID>" \
 
 ```json
 {
-  "support_id": "support_topup_35331",
-  "charge_id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "support_id": "35331",
+  "intent_id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "date": "2016-08-13",
+  "time": "3:39",
   "account_holder_name": "Tian Wei",
   "bank_abbrev": "BCA",
   "account_no": "0124121241",
   "status": "resolved",
-  "status_time": "2015-06-23T16:08:39.000+08:00",
-  "amount": "132549", 
+  "amount": 132549, 
   "currency": "IDR",
   "msg": "The bank transfer of Rp 132549 has been detected and credited into tianwei@xfers.io's account"
 }
@@ -4714,13 +4732,14 @@ curl "https://sandbox.xfers.io/api/v3/support/<SUPPORT_ID>" \
 
 ```json
 {
-  "support_id": "support_topup_35331",
-  "charge_id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "support_id": "35331",
+  "intent_id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "date": "2016-08-13",
+  "time": "3:39",
   "account_holder_name": "Tian Wei",
   "bank_abbrev": "BCA",
   "account_no": "0124121241",
   "status": "attention",
-  "status_time": "2015-06-23T16:08:39.000+08:00",
   "msg": "We are unable to find a matching bank transfer. Please contact support@xfers.io."
 }
 ```
