@@ -4751,6 +4751,71 @@ Returns a particular support ticket.
 `GET https://sandbox.xfers.io/api/v3/support/<SUPPORT_ID>`
 
 
+### List all Support Tickets
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/support" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
+
+```php
+```
+
+```python
+```
+
+```ruby
+```
+
+```java
+```
+
+> Response:
+
+```json
+[
+  {
+    "support_id": "35331",
+    "intent_id": "b840cc9fc5a359c22ed2ccef3427aacd",
+    "date": "2016-08-13",
+    "time": "3:39",
+    "account_holder_name": "Tian Wei",
+    "bank_abbrev": "BCA",
+    "account_no": "0124121241",
+    "amount": 132549, 
+    "currency": "IDR",
+    "status": "processing"
+  },
+  {
+    "support_id": "40000",
+    "intent_id": "94b72ef0fbdb4d55a26c581a8b1a2451",
+    "date": "2016-08-22",
+    "time": "23:45",
+    "account_holder_name": "Ying Ling",
+    "bank_abbrev": "MANDIRI",
+    "account_no": "038838383884",
+    "amount": 48854, 
+    "currency": "IDR",
+    "status": "resolved"
+  }  
+]
+```
+
+List all support tickets linked to your platform.
+
+#### HTTPS Request
+
+`GET https://sandbox.xfers.io/api/v3/support`
+
+
+#### Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+status | string | optional | Filter by status | 'resolved' or 'attention' or 'processing'
+
+
+
 # Xfers Connect
 
 Xfers Connect is a set of APIs to gain access to your customers' Xfers account, or to create "ghost" Xfers accounts on their behalf.
