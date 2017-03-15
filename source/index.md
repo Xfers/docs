@@ -837,7 +837,7 @@ meta_data | string | The json string you previously provided in the register req
 
 ## Bank Account
 
-The follow APIs allow you to add or update your bank account info and fetch a list of available banks for withdrawal.
+The follow APIs allow you to add or update your bank account info and fetch a list of available banks.
 
 ### Available Banks
 
