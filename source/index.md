@@ -781,7 +781,7 @@ On your User Interface, instruct the user to make a bank transfer to the bank na
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-all (Coming soon) | boolean | optional | Return an array of all banks available. Only for Indonesia | true (defaults to false)
+all | boolean | optional | Return an array of all banks available. Only for Indonesia | true (defaults to false)
 
 
 ### Register Updates Callback - Coming soon
@@ -839,7 +839,7 @@ meta_data | string | The json string you previously provided in the register req
 
 The follow APIs allow you to add or update your bank account info and fetch a list of available banks for withdrawal.
 
-### Available Banks (Coming Soon)
+### Available Banks
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/banks" \
@@ -1087,8 +1087,8 @@ Name | Type | Required | Description | Value
 account_no | string | required | bank account no | 03931234323
 bank | string | required | bank abbreviation (Refer to [available banks](?shell/#available-banks) | DBS
 notify_url (Coming soon) | string | optional | URL to receive callback notifications once we detect the account holder's name   | https://mysite.com/fetch_name_callback
-usage (Coming soon) | string | optional | Is this bank account to be used as a funding source or for withdrawals? | Either "funding_source" or "withdrawal" or "all". Defaults to "all"
-account_holder_name (Coming soon) | string | optional | Name of bank account holder | Tian Wei
+usage | string | optional | Is this bank account to be used as a funding source or for withdrawals? | Either "funding_source" or "withdrawal" or "all". Defaults to "all"
+account_holder_name | string | optional | Name of bank account holder | Tian Wei
 
 
 #### Callback Response Format
@@ -1207,7 +1207,7 @@ This will list all bank accounts belonging to the user.
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-usage (Coming soon) | string | optional | type of bank account | Either "funding_source” or “withdrawal” or “all”. Defaults to “all”
+usage | string | optional | type of bank account | Either "funding_source” or “withdrawal” or “all”. Defaults to “all”
 
 
 ### Update a Bank Account
@@ -1332,8 +1332,8 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 account_no | string | optional | bank account no | 03931234323
 bank | string | optional | bank abbreviation (Refer to [available banks](?shell/#available-banks)) | DBS
-usage (Coming soon) | string | optional | Is this bank account to be used as a funding source or for withdrawals? | Either "funding_source" or "withdrawal" or "all".
-account_holder_name (Coming soon) | string | optional | Name of bank account holder | Tian Wei
+usage | string | optional | Is this bank account to be used as a funding source or for withdrawals? | Either "funding_source" or "withdrawal" or "all".
+account_holder_name | string | optional | Name of bank account holder | Tian Wei
 
 
 ### Delete Bank Account
@@ -4527,7 +4527,7 @@ try {
 
 Returns the current pending intent of the user. If multiple intents are created, only the last one is returned.
 
-Coming soon: `transfer_info_array` is returned so you can display a list of all Xfers banks to transfer to.
+`transfer_info_array` is returned so you can display a list of all Xfers banks to transfer to.
 
 #### HTTPS Request
 
@@ -4611,7 +4611,7 @@ Name | Type | Required | Description | Value
 phoneNumber | string | required | Phone number to resend to. If it is a registered user, please use their email instead. | 83999455
 trans_id | string | required | ID of the transaction (charge) | b840cc9fc5a359c22ed2ccef3427aacd
 
-## Support (Coming Soon)
+## Support
 
 The following APIs allow you to integrate payment support functionality directly into your app.
 
