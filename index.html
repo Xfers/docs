@@ -917,7 +917,7 @@ All documents/images provided should not exceed 10MB per file.
 </tr>
 </thead><tbody>
 <tr>
-<td>all (Coming soon)</td>
+<td>all</td>
 <td>boolean</td>
 <td>optional</td>
 <td>Return an array of all banks available. Only for Indonesia</td>
@@ -1011,9 +1011,9 @@ All documents/images provided should not exceed 10MB per file.
 
 <h2 id="bank-account">Bank Account</h2>
 
-<p>The follow APIs allow you to add or update your bank account info and fetch a list of available banks for withdrawal.</p>
+<p>The follow APIs allow you to add or update your bank account info and fetch a list of available banks.</p>
 
-<h3 id="available-banks-(coming-soon)">Available Banks (Coming Soon)</h3>
+<h3 id="available-banks">Available Banks</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/banks"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
 </code></pre>
@@ -1264,14 +1264,14 @@ All documents/images provided should not exceed 10MB per file.
 <td>https://mysite.com/fetch_name_callback</td>
 </tr>
 <tr>
-<td>usage (Coming soon)</td>
+<td>usage</td>
 <td>string</td>
 <td>optional</td>
 <td>Is this bank account to be used as a funding source or for withdrawals?</td>
 <td>Either &quot;funding_source&rdquo; or &ldquo;withdrawal&rdquo; or &ldquo;all&rdquo;. Defaults to &ldquo;all&rdquo;</td>
 </tr>
 <tr>
-<td>account_holder_name (Coming soon)</td>
+<td>account_holder_name</td>
 <td>string</td>
 <td>optional</td>
 <td>Name of bank account holder</td>
@@ -1422,7 +1422,7 @@ All documents/images provided should not exceed 10MB per file.
 </tr>
 </thead><tbody>
 <tr>
-<td>usage (Coming soon)</td>
+<td>usage</td>
 <td>string</td>
 <td>optional</td>
 <td>type of bank account</td>
@@ -1561,14 +1561,14 @@ All documents/images provided should not exceed 10MB per file.
 <td>DBS</td>
 </tr>
 <tr>
-<td>usage (Coming soon)</td>
+<td>usage</td>
 <td>string</td>
 <td>optional</td>
 <td>Is this bank account to be used as a funding source or for withdrawals?</td>
 <td>Either &quot;funding_source&rdquo; or &ldquo;withdrawal&rdquo; or &ldquo;all&rdquo;.</td>
 </tr>
 <tr>
-<td>account_holder_name (Coming soon)</td>
+<td>account_holder_name</td>
 <td>string</td>
 <td>optional</td>
 <td>Name of bank account holder</td>
@@ -5228,7 +5228,7 @@ You cannot create more than 1 intents per user (previous old pending intents wil
 
 <p>Returns the current pending intent of the user. If multiple intents are created, only the last one is returned.</p>
 
-<p>Coming soon: <code class="prettyprint">transfer_info_array</code> is returned so you can display a list of all Xfers banks to transfer to.</p>
+<p><code class="prettyprint">transfer_info_array</code> is returned so you can display a list of all Xfers banks to transfer to.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -5324,7 +5324,7 @@ You cannot create more than 1 intents per user (previous old pending intents wil
 </tr>
 </tbody></table>
 
-<h2 id="support-(coming-soon)">Support (Coming Soon)</h2>
+<h2 id="support">Support</h2>
 
 <p>The following APIs allow you to integrate payment support functionality directly into your app.</p>
 
