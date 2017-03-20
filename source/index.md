@@ -505,7 +505,7 @@ annual_income | integer | optional | Annual income of user in the local currency
 id_front_url | string | optional | URL storing the front image of user identity card
 id_back_url | string | optional | URL storing the back image of user identity card
 selfie_2id_url | string | optional | URL storing the selfie of user holding their id card or a second form of id like driving license or passport
-proof_of_address_url | string | optional | URL storing the image/pdf of proof of address document of user like bank statement or telco bill. For business, please provide your Arca Bizfile.
+proof_of_address_url | string | optional | URL storing the image/pdf of proof of address document of user like bank statement or telco bill. 
 support_document_1_url | string | optional | URL storing the image/pdf of support documents like proof of user income
 support_document_2_url | string | optional | URL storing the image/pdf of support documents like proof of user income
 support_document_3_url | string | optional | URL storing the image/pdf of support documents like proof of user income
@@ -833,6 +833,271 @@ Name | Type | Description | Value
 ---- | ---- | -------- | -----------
 available_balance | float | Account's current available balance| 250.50
 meta_data | string | The json string you previously provided in the register request | {"email”:“tianwei@xfers.io”, “orderId”:“AZ12312”}
+
+
+
+## Merchant
+
+The merchant API supports querying and making changes to a user's business details for compliance purposes.
+
+### Get Merchant Info
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/merchant" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
+
+```php
+```
+
+```python
+```
+
+```ruby
+```
+
+```java
+```
+
+> Response:
+
+```json
+{
+  "business_id": "53348831Z",
+  "business_name" : "Alpha Events",
+  "business_type" : "Private Company",
+  "business_position" : "Director",
+  "business_address_line_1" : "78 Lucky Plaza",
+  "business_address_line_2" : "#14-39",
+  "business_postal_code" : "938884",
+  "business_telephone" : "+6583994012",
+  "bizfile_document" : "BIZFILE.pdf",
+  "business_verified" : false,
+  "shareholders": [
+   {
+      "firstName":"Samson",
+      "lastName":"Leo",
+      "nricNumber":"S8781203Q",
+      "dateOfBirth":"19/02/1987",
+      "nationality":"Singaporean",
+      "address1":"Blk 600 Elias Road",
+      "address2":"#09-123",
+      "postalCode":"510600",
+      "phoneNumber":"+6583004848",
+      "businessType":"Private Company",
+      "businessPosition":"Director"
+   }
+  ]
+}
+```
+
+This endpoint returns merchant information related to your account.
+
+#### HTTPS Request
+
+`GET https://sandbox.xfers.io/api/v3/merchant`
+
+### Update Merchant Info
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/merchant" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "Content-Type: application/json" \
+  -X PUT \
+  -d '{"business_id": "53348831Z", "business_name": "Alpha Events", "business_type": "Private Company"}'
+```
+
+```php
+```
+
+
+```python
+```
+
+```ruby
+```
+
+```java
+```
+
+> Response:
+
+```json
+{
+  "business_id": "53348831Z",
+  "business_name" : "Alpha Events",
+  "business_type" : "Private Company",
+  "business_position" : "Director",
+  "business_address_line_1" : "78 Lucky Plaza",
+  "business_address_line_2" : "#14-39",
+  "business_postal_code" : "938884",
+  "business_telephone" : "+6583994012",
+  "bizfile_document" : "BIZFILE.pdf",
+  "business_verified" : false,
+  "shareholders": [
+   {
+      "firstName":"Samson",
+      "lastName":"Leo",
+      "nricNumber":"S8781203Q",
+      "dateOfBirth":"19/02/1987",
+      "nationality":"Singaporean",
+      "address1":"Blk 600 Elias Road",
+      "address2":"#09-123",
+      "postalCode":"510600",
+      "phoneNumber":"+6583004848",
+      "businessType":"Private Company",
+      "businessPosition":"Director"
+   }
+  ]
+}
+```
+
+This endpoint allows user to update their merchant information. If the user is not yet a merchant, this process converts them to a merchant.
+
+#### HTTPS Request
+
+`PUT https://sandbox.xfers.io/api/v3/merchant`
+
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+business_id | string | optional | Enter your singapore recognized bizfile ID. (eg: UEN, incorporation number, business registration number).
+business_position | string | optional | Position in the business. | "Owner", "Partner", "Director", "Shareholder", "Director & Shareholder", "Chairperson", "Treasurer", "Civil Servant"
+business_name | string | optional | Enter in the name of your business.
+business_type | string | optional | Type of your business| "Individual", "Sole Proprietorship", "Partnership", "Private Company", "Public Company", "Societies / Nonprofit organisations", "Government Entity"
+business_address_line_1 | string | optional | Enter in the first line of your business' address. | 123 Xfers Road
+business_address_line_2 | string | optional | Enter in the last line of your business' address. | Block 10 #17A
+business_postal_code | string | optional | Enter in your business' postal code. | S323233
+business_telephone | string | optional | Enter your business' phone number along with the country code. | +6591234567
+bizfile_document | string | optional | URL storing the ACRA Bizfile document as proof of your business details
+
+
+### Add Shareholder
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/merchant/shareholder" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "Content-Type: application/json" \
+  -d '{"firstName": "wenbin", "lastName": "tay", "nricNumber": "Blk 712 loyang Avenue 5", "dateOfBirth": "#01-41", "nationality": "Singaporean", "postalCode": "340712", "nricNumber": "s86917127G", "businessType": "Private Company", "businessPosition": "Director", "phoneNumber":"+6583004848"}'
+```
+
+```php
+```
+
+
+```python
+```
+
+```ruby
+```
+
+```java
+```
+
+> Response:
+
+```json
+{
+  "business_id": "53348831Z",
+  "business_name" : "Alpha Events",
+  "business_type" : "Private Company",
+  "business_position" : "Director",
+  "business_address_line_1" : "78 Lucky Plaza",
+  "business_address_line_2" : "#14-39",
+  "business_postal_code" : "938884",
+  "business_telephone" : "+6583994012",
+  "bizfile_document" : "BIZFILE.pdf",
+  "business_verified" : false,
+  "shareholders": [
+   {
+      "firstName":"Samson",
+      "lastName":"Leo",
+      "nricNumber":"S8781203Q",
+      "dateOfBirth":"19/02/1987",
+      "nationality":"Singaporean",
+      "address1":"Blk 600 Elias Road",
+      "address2":"#09-123",
+      "postalCode":"510600",
+      "phoneNumber":"+6583004848",
+      "businessType":"Private Company",
+      "businessPosition":"Director"
+   }
+  ]
+}
+```
+
+This endpoint allows businesses to add a shareholder.
+
+#### HTTPS Request
+
+`POST https://sandbox.xfers.io/api/v3/merchant/shareholder`
+
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+firstName | string | required | First name | Samson
+lastName | string | required | Last name | Leo
+nricNumber | string | required | National identity number | S8781203Q
+dateOfBirth | string | required | Date of birth | 19/02/1987
+nationality | string | required | Nationality | Singaporean
+address1 | string | required | First line of address | Blk 600 Elias Road
+address2 | string | required | Last line of address | #09-123
+postalCode | string | required | Postal code | 510600
+phoneNumber | string | required | Phone number with country code | +6583004848
+businessType | string | required | Business type | "Individual", "Sole Proprietorship", "Partnership", "Private Company", "Public Company", "Societies / Nonprofit organisations", "Government Entity"
+businessPosition | string | required | Business position | "Owner", "Partner", "Director", "Shareholder", "Director & Shareholder", "Chairperson", "Treasurer", "Civil Servant"
+
+
+### Delete Shareholder
+
+```shell
+curl -X DELETE "https://sandbox.xfers.io/api/v3/merchant/shareholder/<shareholder_nric_number>" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
+
+```php
+```
+
+```python
+```
+
+```ruby
+```
+
+```java
+```
+
+> Response:
+
+```json
+{
+  "business_id": "53348831Z",
+  "business_name" : "Alpha Events",
+  "business_type" : "Private Company",
+  "business_position" : "Director",
+  "business_address_line_1" : "78 Lucky Plaza",
+  "business_address_line_2" : "#14-39",
+  "business_postal_code" : "938884",
+  "business_telephone" : "+6583994012",
+  "bizfile_document" : "BIZFILE.pdf",
+  "business_verified" : false,
+  "shareholders": [
+  ]
+}
+```
+
+This request allow you to delete an existing shareholder. 
+
+#### HTTPS Request
+
+`DELETE https://sandbox.xfers.io/api/v3/merchant/shareholder/<shareholder_nric_number>`
+
+#### Response
+The latest business details.
 
 
 ## Bank Account
@@ -1782,7 +2047,6 @@ COMING SOON
    "currency":"sgd",
    "customer":"+6597288607",
    "order_id":"XFER170113160234758",
-   "refundable":false,
    "description":"Load card 21794",
    "statement_descriptor":null,
    "status":"completed",
@@ -2097,7 +2361,6 @@ try {
   "customer" : "",
   "order_id" : "A012312",
   "capture" : true,
-  "refundable" : true,
   "description" : "Carousell user - Konsolidate",
   "items" : [
     {
@@ -2405,13 +2668,6 @@ currency | string | 3-letter ISO code for currency | SGD
 status | string | Payment status. | "cancelled" or "paid" or "expired"
 
 
-### Payment Settlement   
-   
-After refundable charge become "paid", its funds(minus our fees) will be added to your account ledger balance.    
-    
-By default, its funds(minus our fees) will be "withheld" by Xfers for another 10 days(for refund and dispute purposes) before the charge becomes "completed" and it's funds(minus our fees) will be credited to your Xfers account available balance.   
-
-
 ### Authorize a Charge
 
 ```shell
@@ -2506,7 +2762,6 @@ try {
   "customer" : "",
   "order_id" : "A012312",
   "capture" : true,
-  "refundable" : true,
   "shipment_date" : "2015-07-02T06:26:51Z",
   "settlement_date" : "2015-07-05T06:26:51Z",
   "description" : "Carousell user - Konsolidate",
@@ -2736,7 +2991,6 @@ Xfers.setSGSandbox();
   "customer" : "",
   "order_id" : "A012312",
   "capture" : true,
-  "refundable" : true,
   "shipment_date" : "2015-07-02T06:26:51Z",
   "settlement_date" : "2015-07-05T06:26:51Z",
   "description" : "Carousell user - Konsolidate",
@@ -2872,7 +3126,6 @@ try {
     "order_id" : "A012312",
     "cash_on_delivery" : true,
     "capture" : true,
-    "refundable" : true,
     "shipment_date" : "2015-07-02T06:26:51Z",
     "settlement_date" : "2015-07-05T06:26:51Z",    
     "description" : "Carousell user - Konsolidate",
@@ -3776,7 +4029,7 @@ try {
   "bank_account_no" : "XXX-XXX-6091",
   "created_date" : "2015-07-01T19:01:25Z",
   "completed_date" : "",
-  "status" : "unclaimed"
+  "status" : "completed"
 }
 ```
 
@@ -3806,7 +4059,6 @@ The below are the possible response status and their meaning.
 
 Name | Description
 ---- | ------------
-unclaimed | Payout has not been accepted by recipient. New Xfers user and payout has yet to be claimed.
 completed  | Payout has been completed. Existing Xfers user and payout has been credited to his account.
 
 
@@ -3886,7 +4138,7 @@ Xfers.setSGSandbox();
   "bank_account_no" : "XXX-XXX-6091",
   "created_date" : "2015-07-01T19:01:25Z",
   "completed_date" : "",
-  "status" : "unclaimed"
+  "status" : "completed"
 }
 ```
 
@@ -3903,7 +4155,6 @@ The below is a list of payout status and their respective meanings.
 
 Name | Description
 ---- | ------------
-unclaimed | Payout has not been accepted by recipient.
 completed  | Payout has been completed.
 cancelled  | Payout has been cancelled.
 
