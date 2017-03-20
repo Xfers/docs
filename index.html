@@ -605,7 +605,7 @@ name and bank account information.</p>
 <td>proof_of_address_url</td>
 <td>string</td>
 <td>optional</td>
-<td>URL storing the image/pdf of proof of address document of user like bank statement or telco bill. For business, please provide your Arca Bizfile.</td>
+<td>URL storing the image/pdf of proof of address document of user like bank statement or telco bill.</td>
 <td></td>
 </tr>
 <tr>
@@ -1009,6 +1009,360 @@ All documents/images provided should not exceed 10MB per file.
 </tr>
 </tbody></table>
 
+<h2 id="merchant">Merchant</h2>
+
+<p>The merchant API supports querying and making changes to a user&rsquo;s business details for compliance purposes.</p>
+
+<h3 id="get-merchant-info">Get Merchant Info</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/merchant"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
+</code></pre>
+<pre class="highlight php"><code></code></pre>
+<pre class="highlight python"><code></code></pre>
+<pre class="highlight ruby"><code></code></pre>
+<pre class="highlight java"><code></code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53348831Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Alpha Events"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Private Company"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_position"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Director"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_address_line_1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"78 Lucky Plaza"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_address_line_2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"#14-39"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_postal_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"938884"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_telephone"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+6583994012"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bizfile_document"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BIZFILE.pdf"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_verified"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shareholders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="s2">"Samson"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="s2">"Leo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nricNumber"</span><span class="p">:</span><span class="s2">"S8781203Q"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dateOfBirth"</span><span class="p">:</span><span class="s2">"19/02/1987"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nationality"</span><span class="p">:</span><span class="s2">"Singaporean"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address1"</span><span class="p">:</span><span class="s2">"Blk 600 Elias Road"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address2"</span><span class="p">:</span><span class="s2">"#09-123"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="s2">"510600"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phoneNumber"</span><span class="p">:</span><span class="s2">"+6583004848"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"businessType"</span><span class="p">:</span><span class="s2">"Private Company"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"businessPosition"</span><span class="p">:</span><span class="s2">"Director"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint returns merchant information related to your account.</p>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/merchant</code></p>
+
+<h3 id="update-merchant-info">Update Merchant Info</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/merchant"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -X PUT <span class="se">\</span>
+  -d <span class="s1">'{"business_id": "53348831Z", "business_name": "Alpha Events", "business_type": "Private Company"}'</span>
+</code></pre>
+<pre class="highlight php"><code></code></pre>
+<pre class="highlight python"><code></code></pre>
+<pre class="highlight ruby"><code></code></pre>
+<pre class="highlight java"><code></code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53348831Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Alpha Events"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Private Company"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_position"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Director"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_address_line_1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"78 Lucky Plaza"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_address_line_2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"#14-39"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_postal_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"938884"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_telephone"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+6583994012"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bizfile_document"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BIZFILE.pdf"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_verified"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shareholders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="s2">"Samson"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="s2">"Leo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nricNumber"</span><span class="p">:</span><span class="s2">"S8781203Q"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dateOfBirth"</span><span class="p">:</span><span class="s2">"19/02/1987"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nationality"</span><span class="p">:</span><span class="s2">"Singaporean"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address1"</span><span class="p">:</span><span class="s2">"Blk 600 Elias Road"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address2"</span><span class="p">:</span><span class="s2">"#09-123"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="s2">"510600"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phoneNumber"</span><span class="p">:</span><span class="s2">"+6583004848"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"businessType"</span><span class="p">:</span><span class="s2">"Private Company"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"businessPosition"</span><span class="p">:</span><span class="s2">"Director"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint allows user to update their merchant information. If the user is not yet a merchant, this process converts them to a merchant.</p>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">PUT https://sandbox.xfers.io/api/v3/merchant</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>business_id</td>
+<td>string</td>
+<td>optional</td>
+<td>Enter your singapore recognized bizfile ID. (eg: UEN, incorporation number, business registration number).</td>
+<td></td>
+</tr>
+<tr>
+<td>business_position</td>
+<td>string</td>
+<td>optional</td>
+<td>Position in the business.</td>
+<td>&quot;Owner&rdquo;, &ldquo;Partner&rdquo;, &ldquo;Director&rdquo;, &ldquo;Shareholder&rdquo;, &ldquo;Director &amp; Shareholder&rdquo;, &ldquo;Chairperson&rdquo;, &ldquo;Treasurer&rdquo;, &ldquo;Civil Servant&rdquo;</td>
+</tr>
+<tr>
+<td>business_name</td>
+<td>string</td>
+<td>optional</td>
+<td>Enter in the name of your business.</td>
+<td></td>
+</tr>
+<tr>
+<td>business_type</td>
+<td>string</td>
+<td>optional</td>
+<td>Type of your business</td>
+<td>&ldquo;Individual&rdquo;, &ldquo;Sole Proprietorship&rdquo;, &ldquo;Partnership&rdquo;, &ldquo;Private Company&rdquo;, &ldquo;Public Company&rdquo;, &ldquo;Societies / Nonprofit organisations&rdquo;, &ldquo;Government Entity&rdquo;</td>
+</tr>
+<tr>
+<td>business_address_line_1</td>
+<td>string</td>
+<td>optional</td>
+<td>Enter in the first line of your business&rsquo; address.</td>
+<td>123 Xfers Road</td>
+</tr>
+<tr>
+<td>business_address_line_2</td>
+<td>string</td>
+<td>optional</td>
+<td>Enter in the last line of your business&rsquo; address.</td>
+<td>Block 10 #17A</td>
+</tr>
+<tr>
+<td>business_postal_code</td>
+<td>string</td>
+<td>optional</td>
+<td>Enter in your business&rsquo; postal code.</td>
+<td>S323233</td>
+</tr>
+<tr>
+<td>business_telephone</td>
+<td>string</td>
+<td>optional</td>
+<td>Enter your business&rsquo; phone number along with the country code.</td>
+<td>+6591234567</td>
+</tr>
+<tr>
+<td>bizfile_document</td>
+<td>string</td>
+<td>optional</td>
+<td>URL storing the ACRA Bizfile document as proof of your business details</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h3 id="add-shareholder">Add Shareholder</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/merchant/shareholder"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{"firstName": "wenbin", "lastName": "tay", "nricNumber": "Blk 712 loyang Avenue 5", "dateOfBirth": "#01-41", "nationality": "Singaporean", "postalCode": "340712", "nricNumber": "s86917127G", "businessType": "Private Company", "businessPosition": "Director", "phoneNumber":"+6583004848"}'</span>
+</code></pre>
+<pre class="highlight php"><code></code></pre>
+<pre class="highlight python"><code></code></pre>
+<pre class="highlight ruby"><code></code></pre>
+<pre class="highlight java"><code></code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53348831Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Alpha Events"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Private Company"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_position"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Director"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_address_line_1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"78 Lucky Plaza"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_address_line_2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"#14-39"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_postal_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"938884"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_telephone"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+6583994012"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bizfile_document"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BIZFILE.pdf"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_verified"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shareholders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="s2">"Samson"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="s2">"Leo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nricNumber"</span><span class="p">:</span><span class="s2">"S8781203Q"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dateOfBirth"</span><span class="p">:</span><span class="s2">"19/02/1987"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nationality"</span><span class="p">:</span><span class="s2">"Singaporean"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address1"</span><span class="p">:</span><span class="s2">"Blk 600 Elias Road"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address2"</span><span class="p">:</span><span class="s2">"#09-123"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="s2">"510600"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phoneNumber"</span><span class="p">:</span><span class="s2">"+6583004848"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"businessType"</span><span class="p">:</span><span class="s2">"Private Company"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"businessPosition"</span><span class="p">:</span><span class="s2">"Director"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint allows businesses to add a shareholder.</p>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/merchant/shareholder</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>firstName</td>
+<td>string</td>
+<td>required</td>
+<td>First name</td>
+<td>Samson</td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>string</td>
+<td>required</td>
+<td>Last name</td>
+<td>Leo</td>
+</tr>
+<tr>
+<td>nricNumber</td>
+<td>string</td>
+<td>required</td>
+<td>National identity number</td>
+<td>S8781203Q</td>
+</tr>
+<tr>
+<td>dateOfBirth</td>
+<td>string</td>
+<td>required</td>
+<td>Date of birth</td>
+<td>19/02/1987</td>
+</tr>
+<tr>
+<td>nationality</td>
+<td>string</td>
+<td>required</td>
+<td>Nationality</td>
+<td>Singaporean</td>
+</tr>
+<tr>
+<td>address1</td>
+<td>string</td>
+<td>required</td>
+<td>First line of address</td>
+<td>Blk 600 Elias Road</td>
+</tr>
+<tr>
+<td>address2</td>
+<td>string</td>
+<td>required</td>
+<td>Last line of address</td>
+<td>#09-123</td>
+</tr>
+<tr>
+<td>postalCode</td>
+<td>string</td>
+<td>required</td>
+<td>Postal code</td>
+<td>510600</td>
+</tr>
+<tr>
+<td>phoneNumber</td>
+<td>string</td>
+<td>required</td>
+<td>Phone number with country code</td>
+<td>+6583004848</td>
+</tr>
+<tr>
+<td>businessType</td>
+<td>string</td>
+<td>required</td>
+<td>Business type</td>
+<td>&ldquo;Individual&rdquo;, &ldquo;Sole Proprietorship&rdquo;, &ldquo;Partnership&rdquo;, &ldquo;Private Company&rdquo;, &ldquo;Public Company&rdquo;, &ldquo;Societies / Nonprofit organisations&rdquo;, &ldquo;Government Entity&rdquo;</td>
+</tr>
+<tr>
+<td>businessPosition</td>
+<td>string</td>
+<td>required</td>
+<td>Business position</td>
+<td>&ldquo;Owner&rdquo;, &ldquo;Partner&rdquo;, &ldquo;Director&rdquo;, &ldquo;Shareholder&rdquo;, &ldquo;Director &amp; Shareholder&rdquo;, &ldquo;Chairperson&rdquo;, &ldquo;Treasurer&rdquo;, &ldquo;Civil Servant&rdquo;</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-shareholder">Delete Shareholder</h3>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s2">"https://sandbox.xfers.io/api/v3/merchant/shareholder/&lt;shareholder_nric_number&gt;"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
+</code></pre>
+<pre class="highlight php"><code></code></pre>
+<pre class="highlight python"><code></code></pre>
+<pre class="highlight ruby"><code></code></pre>
+<pre class="highlight java"><code></code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"business_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53348831Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Alpha Events"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Private Company"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_position"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Director"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_address_line_1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"78 Lucky Plaza"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_address_line_2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"#14-39"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_postal_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"938884"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_telephone"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+6583994012"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bizfile_document"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BIZFILE.pdf"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business_verified"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shareholders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This request allow you to delete an existing shareholder. </p>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">DELETE https://sandbox.xfers.io/api/v3/merchant/shareholder/&lt;shareholder_nric_number&gt;</code></p>
+
+<h4 id="response">Response</h4>
+
+<p>The latest business details.</p>
+
 <h2 id="bank-account">Bank Account</h2>
 
 <p>The follow APIs allow you to add or update your bank account info and fetch a list of available banks.</p>
@@ -1268,7 +1622,7 @@ All documents/images provided should not exceed 10MB per file.
 <td>string</td>
 <td>optional</td>
 <td>Is this bank account to be used as a funding source or for withdrawals?</td>
-<td>Either &quot;funding_source&rdquo; or &ldquo;withdrawal&rdquo; or &ldquo;all&rdquo;. Defaults to &ldquo;all&rdquo;</td>
+<td>Either &ldquo;funding_source&rdquo; or &ldquo;withdrawal&rdquo; or &ldquo;all&rdquo;. Defaults to &ldquo;all&rdquo;</td>
 </tr>
 <tr>
 <td>account_holder_name</td>
@@ -2042,7 +2396,6 @@ COMING SOON
    </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"sgd"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"customer"</span><span class="p">:</span><span class="s2">"+6597288607"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="s2">"XFER170113160234758"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"refundable"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
    </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Load card 21794"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"statement_descriptor"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
@@ -2332,7 +2685,6 @@ COMING SOON
   </span><span class="s2">"customer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"A012312"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"capture"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"refundable"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Carousell user - Konsolidate"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"items"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -2917,12 +3269,6 @@ Please take note that at this point, payment may or may not have been completed 
 </tr>
 </tbody></table>
 
-<h3 id="payment-settlement">Payment Settlement</h3>
-
-<p>After refundable charge become &ldquo;paid&rdquo;, its funds(minus our fees) will be added to your account ledger balance.    </p>
-
-<p>By default, its funds(minus our fees) will be &ldquo;withheld&rdquo; by Xfers for another 10 days(for refund and dispute purposes) before the charge becomes &ldquo;completed&rdquo; and it&rsquo;s funds(minus our fees) will be credited to your Xfers account available balance.   </p>
-
 <h3 id="authorize-a-charge">Authorize a Charge</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges/&lt;id&gt;/authorize"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
@@ -3007,7 +3353,6 @@ Please take note that at this point, payment may or may not have been completed 
   </span><span class="s2">"customer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"A012312"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"capture"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"refundable"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"shipment_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-02T06:26:51Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"settlement_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T06:26:51Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Carousell user - Konsolidate"</span><span class="p">,</span><span class="w">
@@ -3228,7 +3573,6 @@ Please take note that at this point, payment may or may not have been completed 
   </span><span class="s2">"customer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"A012312"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"capture"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"refundable"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"shipment_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-02T06:26:51Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"settlement_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T06:26:51Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Carousell user - Konsolidate"</span><span class="p">,</span><span class="w">
@@ -3352,7 +3696,6 @@ Please take note that at this point, payment may or may not have been completed 
     </span><span class="s2">"order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"A012312"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"cash_on_delivery"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"capture"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"refundable"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"shipment_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-02T06:26:51Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"settlement_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-05T06:26:51Z"</span><span class="p">,</span><span class="w">    
     </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Carousell user - Konsolidate"</span><span class="p">,</span><span class="w">
@@ -4364,7 +4707,7 @@ will not be able to save the token for reuse. Note that each credit card token c
   </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"XXX-XXX-6091"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"created_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-01T19:01:25Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"completed_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"unclaimed"</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -4449,10 +4792,6 @@ will not be able to save the token for reuse. Note that each credit card token c
 </tr>
 </thead><tbody>
 <tr>
-<td>unclaimed</td>
-<td>Payout has not been accepted by recipient. New Xfers user and payout has yet to be claimed.</td>
-</tr>
-<tr>
 <td>completed</td>
 <td>Payout has been completed. Existing Xfers user and payout has been credited to his account.</td>
 </tr>
@@ -4524,7 +4863,7 @@ will not be able to save the token for reuse. Note that each credit card token c
   </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"XXX-XXX-6091"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"created_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-01T19:01:25Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"completed_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"unclaimed"</span><span class="w">
+  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -4544,10 +4883,6 @@ will not be able to save the token for reuse. Note that each credit card token c
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>unclaimed</td>
-<td>Payout has not been accepted by recipient.</td>
-</tr>
 <tr>
 <td>completed</td>
 <td>Payout has been completed.</td>
