@@ -3170,7 +3170,7 @@ limit | integer | optional | A limit on the number of objects to be returned. Li
 starting_after | string | optional | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list. | 7ba1ec6d34f64dc68a030e081c5006dc
 
 
-## Cards
+## Cards (Singapore)
 
 The following APIs allow you to add or update credit cards to a connected user (which means you have to go through our [Xfers Connect flow](/#xfers-connect) to get their `user_api_token`). You are also able to charge a credit card without creating an Xfers account for your user (see [Charge Guest Card](#charge-guest-card)) or to charge the default card belonging to a user (see [Charge Existing Card](#charge-existing-card)).
 
@@ -3902,6 +3902,64 @@ The following request will allow you to charge a user with his existing default 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 txn_id | string | required | The id of the created charge | b840cc9fc5a359c22ed2ccef3427aacd
+
+
+## Cards (Indonesia)
+
+
+### List Cards
+
+```shell
+curl "https://sandbox-id.xfers.com/api/v3/tokenize/get_tokens?customer=8377473838" \
+-H "X-XFERS-USER-API-KEY: WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o"
+```
+
+```php
+COMING SOON
+```
+
+```python
+COMING SOON
+```
+
+```ruby
+COMING SOON
+```
+
+```java
+COMING SOON
+
+```
+
+> Response:
+
+```json
+[
+   {
+      "card_number_partial":"123456xxx4444",
+      "card_type":"V",
+      "card_name":"John Tan",
+      "token":"7AEC1AE2-8B66-490D-9DAE-CB8CBF3326E0"
+   },
+   {
+      "card_number_partial":"777777xxx4444",
+      "card_type":"M",
+      "card_name":"John Tan",
+      "token":"7AZZZZZZ-8B66-490D-9DAE-CB8CBF3326E0"
+   }
+]
+```
+
+
+The following request will allow you to list all credit cards added to a user
+
+`GET https://sandbox-id.xfers.com/api/v3/tokenize/get_tokens`
+
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+customer | string | required | To identify the customer. Either phone number or email | john@gmail.com
 
 
 ## Payouts
@@ -5435,6 +5493,7 @@ Xfers Tokenize is a set of SDKs that allow you to collect credit card details wi
 
 Credit card tokenization is the process of sending the credit card information to a PCI compliant party which will store the credit card details on your behalf and return a credit card token. This token can then be used to charge the credit card or to save the card with a user. 
 
+##Singapore
 There are two ways of doing this tokenization: 
 
 1. After [creating a Charge](/#creating-a-charge), a `checkout_url` is returned. If `user_api_token` and `card_only` params are used, the `checkout_url` will lead directly to the credit card form. You can either redirect the user to that page, or embed it as a webview (usually for mobile apps). Thus you are in control of all aspects of the UI except for the credit card form. 
@@ -5447,10 +5506,15 @@ There are two ways of using the tokenized credit card response.
 1. Use [Charge Guest Card](/#charge-guest-card) to charge this credit card for guest user. This can be done on the client side and does not need API key authentication
 2. Send the response to your server and [add the card](/#add-a-card) to your user
 
+##Indonesia
+- Use [Indonesia Xfers.js](https://github.com/Xfers/xfers-indo.js) to redirect your customers to the credit card form
+- To use a saved credit card token, retrieve the list of cards saved from the [Cards API](#cards-(indonesia)). Make this API call in your backend, then pass the result to frontend.
+- Let your user select the appropriate card, and pass the token to `Xfers.chargeCard` in Xfers.js
 
 ## Web
 
-[Xfers.js](https://github.com/Xfers/xfers.js) is our client-side Javascript library for credit card tokenization.
+[Singapore Xfers.js](https://github.com/Xfers/xfers.js) is our client-side Javascript library for credit card tokenization.
+[Indonesia Xfers.js](https://github.com/Xfers/xfers-indo.js) is our client-side Javascript library for credit card tokenization.
 
 ## Android
 
