@@ -3962,6 +3962,17 @@ Name | Type | Required | Description | Value
 customer | string | required | To identify the customer. Either phone number or email | john@gmail.com
 
 
+#### Response
+
+Card types:
+
+MasterCard = M
+Visa = V
+JCB = J
+Amex = A
+
+
+
 ## Payouts
 
 Xfers Payout allows you transfer money between Xfers Wallets with your Xfers balance via their phone no or email address. A SGD$1.00 fee will be charged to your account on every successful payout. You need to have sufficient available balance in your account to cover the amount + fees required for the payout.
