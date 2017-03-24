@@ -3776,7 +3776,7 @@ Please take note that at this point, payment may or may not have been completed 
 </tr>
 </tbody></table>
 
-<h2 id="cards">Cards</h2>
+<h2 id="cards-(singapore)">Cards (Singapore)</h2>
 
 <p>The following APIs allow you to add or update credit cards to a connected user (which means you have to go through our <a href="/#xfers-connect">Xfers Connect flow</a> to get their <code class="prettyprint">user_api_token</code>). You are also able to charge a credit card without creating an Xfers account for your user (see <a href="#charge-guest-card">Charge Guest Card</a>) or to charge the default card belonging to a user (see <a href="#charge-existing-card">Charge Existing Card</a>).</p>
 
@@ -4589,6 +4589,65 @@ will not be able to save the token for reuse. Note that each credit card token c
 <td>required</td>
 <td>The id of the created charge</td>
 <td>b840cc9fc5a359c22ed2ccef3427aacd</td>
+</tr>
+</tbody></table>
+
+<h2 id="cards-(indonesia)">Cards (Indonesia)</h2>
+
+<h3 id="list-cards">List Cards</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox-id.xfers.com/api/v3/tokenize/get_tokens?customer=8377473838"</span> <span class="se">\</span>
+-H <span class="s2">"X-XFERS-USER-API-KEY: WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o"</span>
+</code></pre>
+<pre class="highlight php"><code>COMING SOON
+</code></pre>
+<pre class="highlight python"><code><span class="n">COMING</span> <span class="n">SOON</span>
+</code></pre>
+<pre class="highlight ruby"><code><span class="no">COMING</span> <span class="no">SOON</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">COMING</span> <span class="n">SOON</span>
+
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"card_number_partial"</span><span class="p">:</span><span class="s2">"123456xxx4444"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"card_type"</span><span class="p">:</span><span class="s2">"V"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"card_name"</span><span class="p">:</span><span class="s2">"John Tan"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"token"</span><span class="p">:</span><span class="s2">"7AEC1AE2-8B66-490D-9DAE-CB8CBF3326E0"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"card_number_partial"</span><span class="p">:</span><span class="s2">"777777xxx4444"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"card_type"</span><span class="p">:</span><span class="s2">"M"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"card_name"</span><span class="p">:</span><span class="s2">"John Tan"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"token"</span><span class="p">:</span><span class="s2">"7AZZZZZZ-8B66-490D-9DAE-CB8CBF3326E0"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>The following request will allow you to list all credit cards added to a user</p>
+
+<p><code class="prettyprint">GET https://sandbox-id.xfers.com/api/v3/tokenize/get_tokens</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer</td>
+<td>string</td>
+<td>required</td>
+<td>To identify the customer. Either phone number or email</td>
+<td>john@gmail.com</td>
 </tr>
 </tbody></table>
 
@@ -6284,6 +6343,8 @@ Note that the signature required here for /get_token  is different from the one 
 
 <p>Credit card tokenization is the process of sending the credit card information to a PCI compliant party which will store the credit card details on your behalf and return a credit card token. This token can then be used to charge the credit card or to save the card with a user. </p>
 
+<h2 id="singapore">Singapore</h2>
+
 <p>There are two ways of doing this tokenization: </p>
 
 <ol>
@@ -6300,9 +6361,18 @@ Note that the signature required here for /get_token  is different from the one 
 <li>Send the response to your server and <a href="/#add-a-card">add the card</a> to your user</li>
 </ol>
 
+<h2 id="indonesia">Indonesia</h2>
+
+<ul>
+<li>Use <a href="https://github.com/Xfers/xfers-indo.js">Indonesia Xfers.js</a> to redirect your customers to the credit card form</li>
+<li>To use a saved credit card token, retrieve the list of cards saved from the <a href="#cards-(indonesia)">Cards API</a>. Make this API call in your backend, then pass the result to frontend.</li>
+<li>Let your user select the appropriate card, and pass the token to <code class="prettyprint">Xfers.chargeCard</code> in Xfers.js</li>
+</ul>
+
 <h2 id="web">Web</h2>
 
-<p><a href="https://github.com/Xfers/xfers.js">Xfers.js</a> is our client-side Javascript library for credit card tokenization.</p>
+<p><a href="https://github.com/Xfers/xfers.js">Singapore Xfers.js</a> is our client-side Javascript library for credit card tokenization.
+<a href="https://github.com/Xfers/xfers-indo.js">Indonesia Xfers.js</a> is our client-side Javascript library for credit card tokenization.</p>
 
 <h2 id="android">Android</h2>
 
