@@ -4594,11 +4594,258 @@ will not be able to save the token for reuse. Note that each credit card token c
 
 <h2 id="cards-(indonesia)">Cards (Indonesia)</h2>
 
+<h3 id="charge-guest-card">Charge Guest Card</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox-id.xfers.com/api/v3/credit_card_charges/charge_card_guest"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{ "txn_id": "&lt;charge_id&gt;", "card_name": "Visnu", "card_type": "V", "card_no": "4137180300023783", "card_cvc": "666", "expiry_month": "01", "expiry_year": "2021", "save_card": true}'</span>
+</code></pre>
+<pre class="highlight php"><code>
+<span class="cp">&lt;?php</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
+
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setIDSandbox</span><span class="p">();</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"Charge guest card</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="nv">$chargeId</span> <span class="o">=</span> <span class="s1">'051ac2fe464d45b19ec736cf04d66653'</span><span class="p">;</span> <span class="c1">// you must create a charge first
+</span>    <span class="nv">$params</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'txn_id'</span> <span class="o">=&gt;</span> <span class="nv">$chargeId</span><span class="p">,</span>
+        <span class="s1">'card_name'</span> <span class="o">=&gt;</span> <span class="s1">'Visnu'</span><span class="p">,</span>
+        <span class="s1">'card_type'</span> <span class="o">=&gt;</span> <span class="s1">'V'</span><span class="p">,</span>
+        <span class="s1">'card_no'</span> <span class="o">=&gt;</span> <span class="s1">'4137180300023783'</span><span class="p">,</span>
+        <span class="s1">'card_cvc'</span> <span class="o">=&gt;</span> <span class="s1">'666'</span><span class="p">,</span>
+        <span class="s1">'expiry_month'</span> <span class="o">=&gt;</span> <span class="s1">'01'</span><span class="p">,</span>
+        <span class="s1">'expiry_year'</span> <span class="o">=&gt;</span> <span class="s1">'2021'</span><span class="p">,</span>
+        <span class="s1">'save_card'</span> <span class="o">=&gt;</span> <span class="kc">true</span>
+    <span class="p">);</span>
+    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Card</span><span class="o">::</span><span class="na">chargeGuest</span><span class="p">(</span><span class="nv">$params</span><span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight python"><code>
+
+</code></pre>
+<pre class="highlight ruby"><code>
+
+</code></pre>
+<pre class="highlight java"><code>
+
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>No API key authentication is needed. Instead, we will only charge a card if a valid charge id is found together with valid credit card details.</p>
+
+<p><code class="prettyprint">POST https://sandbox-id.xfers.com/api/v3/credit_card_charges/charge_card_guest</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>txn_id</td>
+<td>string</td>
+<td>required</td>
+<td>The id of the created charge</td>
+<td>b840cc9fc5a359c22ed2ccef3427aacd</td>
+</tr>
+<tr>
+<td>card_name</td>
+<td>string</td>
+<td>required</td>
+<td>Name as on credit card</td>
+<td>Visnu</td>
+</tr>
+<tr>
+<td>card_type</td>
+<td>string</td>
+<td>required</td>
+<td>MasterCard = M Visa = V JCB = J Amex = A</td>
+<td>V</td>
+</tr>
+<tr>
+<td>card_no</td>
+<td>string</td>
+<td>required</td>
+<td>Credit card number</td>
+<td>4137180300023783</td>
+</tr>
+<tr>
+<td>card_cvc</td>
+<td>string</td>
+<td>required</td>
+<td>Card CVC</td>
+<td>123</td>
+</tr>
+<tr>
+<td>expiry_month</td>
+<td>string</td>
+<td>required</td>
+<td>2 digits month</td>
+<td>01</td>
+</tr>
+<tr>
+<td>expiry_year</td>
+<td>string</td>
+<td>required</td>
+<td>4 digits year</td>
+<td>2021</td>
+</tr>
+<tr>
+<td>save_card</td>
+<td>boolean</td>
+<td>optional</td>
+<td>Whether to save card. Default false. Cards saved can be retrieved with List Cards API</td>
+<td>true</td>
+</tr>
+</tbody></table>
+
+<h3 id="charge-existing-card">Charge Existing Card</h3>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox-id.xfers.com/api/v3/credit_card_charges/charge_card"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{ "txn_id": "&lt;charge_id&gt;", "token": "47B23760-3073-490D-8AAA-548E83CD29F4"}'</span>
+</code></pre>
+<pre class="highlight php"><code>
+<span class="cp">&lt;?php</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setIDSandbox</span><span class="p">();</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"Charge existing card</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="nv">$chargeId</span> <span class="o">=</span> <span class="s1">'ae9647515a234b95919ce5dbd6e073e8'</span><span class="p">;</span> 
+    <span class="nv">$token</span> <span class="o">=</span> <span class="s1">'47B23760-3073-490D-8AAA-548E83CD29F4'</span><span class="p">;</span>
+    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Card</span><span class="o">::</span><span class="na">chargeExisting</span><span class="p">(</span><span class="nv">$chargeId</span><span class="p">,</span> <span class="nv">$token</span><span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre>
+<pre class="highlight python"><code>
+
+</code></pre>
+<pre class="highlight ruby"><code>
+</code></pre>
+<pre class="highlight java"><code>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The following request will allow you to charge a user with his existing card. Before this, retrieve the token using List Card API.</p>
+
+<p>No API key authentication is needed. Instead, we will only charge a card if a valid charge id is found together with valid credit card details.</p>
+
+<p><code class="prettyprint">POST https://sandbox-id.xfers.com/api/v3/credit_card_charges/charge_card</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>txn_id</td>
+<td>string</td>
+<td>required</td>
+<td>The id of the created charge</td>
+<td>b840cc9fc5a359c22ed2ccef3427aacd</td>
+</tr>
+<tr>
+<td>token</td>
+<td>string</td>
+<td>required</td>
+<td>The credit card token</td>
+<td>47B23760-3073-490D-8AAA-548E83CD29F4</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-card">Delete Card</h3>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s2">"https://sandbox-id.xfers.com/api/v3/cards/&lt;token&gt;"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> 
+</code></pre>
+<pre class="highlight php"><code>
+<span class="cp">&lt;?php</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setApiKey</span><span class="p">(</span><span class="s1">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span><span class="p">);</span>
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setIDSandbox</span><span class="p">();</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"Deleting card</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="nv">$token</span> <span class="o">=</span> <span class="s1">'3A27AAC0-7569-4A63-8E22-E7EB2155504C'</span><span class="p">;</span>
+    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Card</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span><span class="nv">$token</span><span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight python"><code>
+</code></pre>
+<pre class="highlight ruby"><code>
+</code></pre>
+<pre class="highlight java"><code>
+
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3A27AAC0-7569-4A63-8E22-E7EB2155504C"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The following request will allow you to delete your user&rsquo;s credit card.</p>
+
+<p><code class="prettyprint">DELETE https://sandbox-id.xfers.com/api/v3/cards/&lt;card_token&gt;</code></p>
+
 <h3 id="list-cards">List Cards</h3>
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox-id.xfers.com/api/v3/tokenize/get_tokens?customer=8377473838"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox-id.xfers.com/api/v3/cards?customer=hello@xfers.io"</span> <span class="se">\</span>
 -H <span class="s2">"X-XFERS-USER-API-KEY: WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o"</span>
 </code></pre>
-<pre class="highlight php"><code>COMING SOON
+<pre class="highlight php"><code>
+<span class="cp">&lt;?php</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setApiKey</span><span class="p">(</span><span class="s1">'WuTp3zM7UEpmUkeAyGPxRHmnXAx-hXJ7jzdqmxY6S1o'</span><span class="p">);</span>
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setIDSandbox</span><span class="p">();</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"Listing all cards</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="nv">$customer</span> <span class="o">=</span> <span class="s2">"hello@xfers.io"</span><span class="p">;</span>
+    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Card</span><span class="o">::</span><span class="na">listAll</span><span class="p">(</span><span class="nv">$customer</span><span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Caught InvalidRequest exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+
+
 </code></pre>
 <pre class="highlight python"><code><span class="n">COMING</span> <span class="n">SOON</span>
 </code></pre>
@@ -4629,7 +4876,7 @@ will not be able to save the token for reuse. Note that each credit card token c
 
 <p>The following request will allow you to list all credit cards added to a user</p>
 
-<p><code class="prettyprint">GET https://sandbox-id.xfers.com/api/v3/tokenize/get_tokens</code></p>
+<p><code class="prettyprint">GET https://sandbox-id.xfers.com/api/v3/cards?customer=hello@xfers.io</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
