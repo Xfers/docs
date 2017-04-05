@@ -4312,9 +4312,6 @@ try {
 
 The following request will allow you to make a payout to the recipient.
 
-If the user does not have an xfers account, they will be given a link via SMS/email with the relevant instructions. However, if a user has an account with Xfers, we will credit the amount into the user's Xfers account immediately.
-
-Note: If the recipient did not accept the payout within 14 days, the payout will be cancelled and its funds will be returned back to your Xfers balances.
 
 `POST https://sandbox.xfers.io/api/v3/payouts`
 
