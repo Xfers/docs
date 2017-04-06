@@ -5359,15 +5359,6 @@ In general, if you’re building a platform or marketplace that needs to pay thi
 
 ## Authentication
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "https://sandbox.xfers.io/api/v3/authorize/connect" \
-  -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg" \
-  -H "Content-Type: application/json" \
-  -d '{"hello": "world", "signature": "5341eb694dada7866166ece5f46d1c2884839a3f"}'
-```
-
-> Make sure to replace `Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg` with your API key.
 
 Xfers Connect uses a pair of API Keys and API Secret to access its APIs.
 
@@ -5381,20 +5372,6 @@ Xfers Connect expects the API key to be included in all API requests to the serv
 
 These keys are different from the usual API keys which you include in the `X-XFERS-USER-API-KEY` header. App Connect API keys are only used for the Xfers Connect APIs. Thus instead of `X-XFERS-USER-API-KEY: YOUR-NORMAL-USER-API-KEY` , you pass in `X-XFERS-APP-API-KEY: THE-APP-API-KEY` as the header instead.
 
-
-
-> The above command returns JSON structured like this on success:
-
-```json
-  {
-    "msg": "Hello world"
-  }
-```
-
-
-<aside class="notice">
-You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with your Xfers Connect's API key. These are not the same as your user API Key found in your account settings page.
-</aside>
 
 
 ## Signup/login to Xfers
