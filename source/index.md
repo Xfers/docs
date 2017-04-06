@@ -3967,11 +3967,13 @@ try {
 
 > Error response format (Display to users the param "msg"):
 
+```json
 {
   "error": "Sorry, your card is invalid and we are unable to accept your card. Please try with another card.",
   "err_code": "5518",
   "msg": "The credit card information entered is incomplete/invalid. Please confirm your credit card details and submit again."
 }
+```
 
 
 No API key authentication is needed. Instead, we will only charge a card if a valid charge id is found together with valid credit card details.
