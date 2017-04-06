@@ -4642,6 +4642,18 @@ will not be able to save the token for reuse. Note that each credit card token c
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<blockquote>
+<p>Error response format:</p>
+
+<h1 id="display-to-users-&quot;msg&quot;">Display to users &ldquo;msg&rdquo;</h1>
+</blockquote>
+
+<p>{
+  &ldquo;error&rdquo;: &ldquo;Sorry, your card is invalid and we are unable to accept your card. Please try with another card.&rdquo;,
+  &ldquo;err_code&rdquo;: &ldquo;5518&rdquo;,
+  &ldquo;msg&rdquo;: &ldquo;The credit card information entered is incomplete/invalid. Please confirm your credit card details and submit again.&rdquo;
+}</p>
+
 <p>No API key authentication is needed. Instead, we will only charge a card if a valid charge id is found together with valid credit card details.</p>
 
 <p><code class="prettyprint">POST https://sandbox-id.xfers.com/api/v3/credit_card_charges/charge_card_guest</code></p>
@@ -4714,6 +4726,10 @@ will not be able to save the token for reuse. Note that each credit card token c
 <td>true</td>
 </tr>
 </tbody></table>
+
+<h4 id="invalid-card">Invalid Card</h4>
+
+<p>For invalid test card, use <code class="prettyprint">card_type = M</code> and <code class="prettyprint">card_no =  4137180300023784</code></p>
 
 <h3 id="charge-existing-card">Charge Existing Card</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox-id.xfers.com/api/v3/credit_card_charges/charge_card"</span> <span class="se">\</span>
