@@ -6223,16 +6223,6 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
 <p>In general, if you’re building a platform or marketplace that needs to pay third-parties or building applications that help Xfers users do more with their account or their data, Connect is likely the right solution for you.</p>
 
 <h2 id="authentication">Authentication</h2>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/connect"</span> <span class="se">\</span>
-  -H <span class="s2">"X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"</span> <span class="se">\</span>
-  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -d <span class="s1">'{"hello": "world", "signature": "5341eb694dada7866166ece5f46d1c2884839a3f"}'</span>
-</code></pre>
-
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with your API key.</p>
-</blockquote>
 
 <p>Xfers Connect uses a pair of API Keys and API Secret to access its APIs.</p>
 
@@ -6244,18 +6234,6 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 <p><code class="prettyprint">X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code></p>
 
 <p>These keys are different from the usual API keys which you include in the <code class="prettyprint">X-XFERS-USER-API-KEY</code> header. App Connect API keys are only used for the Xfers Connect APIs. Thus instead of <code class="prettyprint">X-XFERS-USER-API-KEY: YOUR-NORMAL-USER-API-KEY</code> , you pass in <code class="prettyprint">X-XFERS-APP-API-KEY: THE-APP-API-KEY</code> as the header instead.</p>
-
-<blockquote>
-<p>The above command returns JSON structured like this on success:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello world"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<aside class="notice">
-You must replace <code>Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code> with your Xfers Connect&rsquo;s API key. These are not the same as your user API Key found in your account settings page.
-</aside>
 
 <h2 id="signup/login-to-xfers">Signup/login to Xfers</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/signup_login"</span><span class="se">\</span>
