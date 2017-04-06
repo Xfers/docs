@@ -4645,12 +4645,12 @@ will not be able to save the token for reuse. Note that each credit card token c
 <blockquote>
 <p>Error response format (Display to users the param &ldquo;msg&rdquo;):</p>
 </blockquote>
-
-<p>{
-  &ldquo;error&rdquo;: &ldquo;Sorry, your card is invalid and we are unable to accept your card. Please try with another card.&rdquo;,
-  &ldquo;err_code&rdquo;: &ldquo;5518&rdquo;,
-  &ldquo;msg&rdquo;: &ldquo;The credit card information entered is incomplete/invalid. Please confirm your credit card details and submit again.&rdquo;
-}</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sorry, your card is invalid and we are unable to accept your card. Please try with another card."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5518"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The credit card information entered is incomplete/invalid. Please confirm your credit card details and submit again."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <p>No API key authentication is needed. Instead, we will only charge a card if a valid charge id is found together with valid credit card details.</p>
 
