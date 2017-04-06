@@ -3965,8 +3965,7 @@ try {
 }
 ```
 
-> Error response format:
-> # Display to users "msg"
+> Error response format (Display to users the param "msg"):
 
 {
   "error": "Sorry, your card is invalid and we are unable to accept your card. Please try with another card.",
