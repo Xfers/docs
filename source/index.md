@@ -3965,6 +3965,15 @@ try {
 }
 ```
 
+> Error response format:
+> # Display to users "msg"
+
+{
+  "error": "Sorry, your card is invalid and we are unable to accept your card. Please try with another card.",
+  "err_code": "5518",
+  "msg": "The credit card information entered is incomplete/invalid. Please confirm your credit card details and submit again."
+}
+
 
 No API key authentication is needed. Instead, we will only charge a card if a valid charge id is found together with valid credit card details.
 
@@ -3982,6 +3991,9 @@ card_cvc | string | required | Card CVC | 123
 expiry_month | string | required | 2 digits month | 01
 expiry_year | string | required | 4 digits year | 2021
 save_card | boolean | optional | Whether to save card. Default false. Cards saved can be retrieved with List Cards API | true
+
+#### Invalid Card
+For invalid test card, use `card_type = M` and `card_no =  4137180300023784`
 
 
 ### Charge Existing Card
