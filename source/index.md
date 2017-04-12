@@ -597,11 +597,12 @@ try {
   "msg" : "success",
   "activities" : [
     {
-      "type": "normal",
-      "trans_type": "transaction",
+      "id": "e2738cc957034ecaab3252f4b23e1c6e",
+      "type": "transaction",
       "display_time": "2015-06-22T06:21:31.000+08:00",
       "description": "Victor Liew",
       "plus_minus": "+",
+      "display_status": "completed",
       "display_amount": "30.0",
       "transaction_items":
       [
@@ -621,6 +622,7 @@ try {
       "display_image_url": "https://www.xfers.io/assets/displayImageUser-c610a87e219afbe0bfc27bcddd67b8f831f967aedb01aef82a9009e9b6eb36c2.png"
     },
     {
+      "id": "6614",
       "type": "external",
       "trans_type": "deposit",
       "display_time": "2015-06-23T16:08:39.000+08:00",
