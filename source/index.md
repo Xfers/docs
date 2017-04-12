@@ -287,6 +287,7 @@ try {
   "postal_code" : "340712",
   "identity_no" : "s86917127G",
   "country" : "sg",
+  "gender": "male",
   "email" : "tianyao@example.com",
   "id_back" : "nricBackPlaceholder.png",
   "id_document" : "nricDocumentPlaceholder.png",
@@ -453,6 +454,7 @@ try {
   "postal_code" : "340712",
   "identity_no" : "s86917127G",
   "country" : "sg",
+  "gender": "male",
   "annunal_income" : "60000",
   "email" : "tianyao@example.com",
   "id_front" : "nricFrontPlaceholder.png",
@@ -495,6 +497,7 @@ first_name | string | optional | Account holder firstname | Tianwei
 last_name | string | optional | Account holder lastname | Liu
 email | string | optional | User email | tianwei@xfers.io
 date_of_birth | string | optional | Date of birth for account holder in yyyy-mm-dd | 1986-02-27
+gender | string | optional | Gender | male / female
 address_line_1 | string | optional | Address line 1 | Blk 212 Jurong East St 50
 address_line_2 | string | optional | Address line 2 | #08-41
 nationality | string | optional | Account holder nationality | Singaporean
@@ -2444,7 +2447,7 @@ Name | Type | Required | Description | Value
 amount | float | required | Total value for items, excluding taxes and shipping fees | 9.99
 currency | string | required | 3-letter ISO code for currency | SGD
 order_id | string | required | Unique ref no provided by you to prevent double charging, this cannot be repeated | A012312
-description | string | required | Description of transaction for display purposes | Carousell user - Konsolidate
+description | string | optional | Description of transaction for display purposes | Carousell user - Konsolidate
 customer | string | optional | Customer email or phone number. If provided, only that user can use the checkout_url returned. If the customer does not exist, an account will be created for them using the email/phone number provided. An OTP will be sent to the email/phone for the user to log in | johnny@xfers.com or +6597288608
 notify_url | string | optional | URL to receive callback notifications on charge success/failure/expiration | https://mysite.com/payment_notification
 return_url | string | optional | URL Xfers will redirect customer to on completion of Xfers checkout | https://mysite.com/return
