@@ -632,6 +632,7 @@ try {
       "transaction_items":
       [
       ],
+      "display_status": "completed",
       "display_image_url": "https://www.xfers.io/assets/displayImageUser-c610a87e219afbe0bfc27bcddd67b8f831f967aedb01aef82a9009e9b6eb36c2.png"
     }
   ]
