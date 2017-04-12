@@ -304,6 +304,7 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
   </span><span class="s2">"postal_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"340712"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"identity_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"s86917127G"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"male"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tianyao@example.com"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_back"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricBackPlaceholder.png"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_document"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricDocumentPlaceholder.png"</span><span class="p">,</span><span class="w">
@@ -459,6 +460,7 @@ name and bank account information.</p>
   </span><span class="s2">"postal_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"340712"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"identity_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"s86917127G"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"male"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"annunal_income"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"60000"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tianyao@example.com"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id_front"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricFrontPlaceholder.png"</span><span class="p">,</span><span class="w">
@@ -530,6 +532,13 @@ name and bank account information.</p>
 <td>optional</td>
 <td>Date of birth for account holder in yyyy-mm-dd</td>
 <td>1986-02-27</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>string</td>
+<td>optional</td>
+<td>Gender</td>
+<td>male / female</td>
 </tr>
 <tr>
 <td>address_line_1</td>
@@ -2795,7 +2804,7 @@ COMING SOON
 <tr>
 <td>description</td>
 <td>string</td>
-<td>required</td>
+<td>optional</td>
 <td>Description of transaction for display purposes</td>
 <td>Carousell user - Konsolidate</td>
 </tr>
