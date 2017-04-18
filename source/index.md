@@ -4825,7 +4825,7 @@ try {
   "status" : "pending"
 }
 ```
-The following request will allow you to create a intent for a transfer and register a callback notification once a transfer has be received or expired(all intents expires in 24 hours.)
+The following request will allow you to create a intent for a transfer and register a callback notification once a transfer has be received or expired(all intents expires in 72 hours.)
 
 User should be prompted to transfer `unique_amount` amount to the `bank_account_no` and `bank_name` provided.  Once the user deposits with `unique_amount`, the full amount will be credited to his account.
 
