@@ -5498,7 +5498,7 @@ Jane wishes to transfer 5000 Indonesian Rupiah via <code class="prettyprint">/in
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/intents"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -d <span class="s1">'{ "amount": "5000", "currency": "SGD", "bank": "BCA", "intent_id" : "AZ0001", "notify_url" : "https://mysite.com/topup_notification"}'</span>  
+  -d <span class="s1">'{ "amount": "5000", "currency": "SGD", "bank": "BCA", "request_id" : "AZ0001", "notify_url" : "https://mysite.com/topup_notification"}'</span>  
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
@@ -5510,7 +5510,7 @@ Jane wishes to transfer 5000 Indonesian Rupiah via <code class="prettyprint">/in
         <span class="s1">'amount'</span> <span class="o">=&gt;</span> <span class="s1">'5000'</span><span class="p">,</span>
         <span class="s1">'currency'</span> <span class="o">=&gt;</span> <span class="s1">'SGD'</span><span class="p">,</span>
         <span class="s1">'bank'</span> <span class="o">=&gt;</span> <span class="s1">'BCA'</span><span class="p">,</span>
-        <span class="s1">'intent_id'</span> <span class="o">=&gt;</span> <span class="s1">'AZ0001'</span><span class="p">,</span>
+        <span class="s1">'request_id'</span> <span class="o">=&gt;</span> <span class="s1">'AZ0001'</span><span class="p">,</span>
         <span class="s1">'notify_url'</span> <span class="o">=&gt;</span> <span class="s1">'https://mysite.com/topup_notification'</span>
     <span class="p">));</span>
     <span class="nv">$intentId</span> <span class="o">=</span> <span class="nv">$resp</span><span class="p">[</span><span class="s2">"id"</span><span class="p">];</span>
@@ -5530,7 +5530,7 @@ Jane wishes to transfer 5000 Indonesian Rupiah via <code class="prettyprint">/in
         <span class="s">'amount'</span><span class="p">:</span> <span class="s">'5000'</span><span class="p">,</span>
         <span class="s">'currency'</span><span class="p">:</span> <span class="s">'SGD'</span><span class="p">,</span>
         <span class="s">'bank'</span><span class="p">:</span> <span class="s">'BCA'</span><span class="p">,</span>
-        <span class="s">'intent_id'</span><span class="p">:</span> <span class="s">'AZ0001'</span><span class="p">,</span>
+        <span class="s">'request_id'</span><span class="p">:</span> <span class="s">'AZ0001'</span><span class="p">,</span>
         <span class="s">'notify_url'</span><span class="p">:</span> <span class="s">'https://mysite.com/topup_notification'</span>
     <span class="p">}</span>
     <span class="n">resp</span> <span class="o">=</span> <span class="n">xfintent</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
@@ -5551,7 +5551,7 @@ Jane wishes to transfer 5000 Indonesian Rupiah via <code class="prettyprint">/in
       <span class="s1">'amount'</span> <span class="o">=&gt;</span> <span class="s1">'5000'</span><span class="p">,</span>
       <span class="s1">'currency'</span> <span class="o">=&gt;</span> <span class="s1">'SGD'</span><span class="p">,</span>
       <span class="s1">'bank'</span> <span class="o">=&gt;</span> <span class="s1">'BCA'</span><span class="p">,</span>
-      <span class="s1">'intent_id'</span> <span class="o">=&gt;</span> <span class="s1">'AZ0001'</span><span class="p">,</span>
+      <span class="s1">'request_id'</span> <span class="o">=&gt;</span> <span class="s1">'AZ0001'</span><span class="p">,</span>
       <span class="s1">'notify_url'</span> <span class="o">=&gt;</span> <span class="s1">'https://mysite.com/topup_notification'</span>
   <span class="p">}</span>
   <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Intent</span><span class="p">.</span><span class="nf">create</span> <span class="n">params</span>
