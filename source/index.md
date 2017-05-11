@@ -4710,7 +4710,7 @@ Jane wishes to transfer 5000 Indonesian Rupiah via `/intents`.
 curl "https://sandbox.xfers.io/api/v3/intents" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
  -H "Content-Type: application/json" \
-  -d '{ "amount": "5000", "currency": "SGD", "bank": "BCA", "intent_id" : "AZ0001", "notify_url" : "https://mysite.com/topup_notification"}'  
+  -d '{ "amount": "5000", "currency": "SGD", "bank": "BCA", "request_id" : "AZ0001", "notify_url" : "https://mysite.com/topup_notification"}'  
 ```
 
 ```php
@@ -4724,7 +4724,7 @@ try {
         'amount' => '5000',
         'currency' => 'SGD',
         'bank' => 'BCA',
-        'intent_id' => 'AZ0001',
+        'request_id' => 'AZ0001',
         'notify_url' => 'https://mysite.com/topup_notification'
     ));
     $intentId = $resp["id"];
@@ -4746,7 +4746,7 @@ try:
         'amount': '5000',
         'currency': 'SGD',
         'bank': 'BCA',
-        'intent_id': 'AZ0001',
+        'request_id': 'AZ0001',
         'notify_url': 'https://mysite.com/topup_notification'
     }
     resp = xfintent.create(params)
@@ -4769,7 +4769,7 @@ begin
       'amount' => '5000',
       'currency' => 'SGD',
       'bank' => 'BCA',
-      'intent_id' => 'AZ0001',
+      'request_id' => 'AZ0001',
       'notify_url' => 'https://mysite.com/topup_notification'
   }
   resp = Xfers::Intent.create params
