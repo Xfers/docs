@@ -1597,6 +1597,8 @@ All documents/images provided should not exceed 10MB per file.
 
 <p>List of all bank accounts belonging to user.</p>
 
+<p>For Xfers Indonesia API, an additional attribute <code class="prettyprint">detected_name</code> will be returned. This is the actual name of the bank account holder gotten directly from the bank.</p>
+
 <h4 id="url-parameters">URL Parameters</h4>
 
 <table><thead>
@@ -1623,13 +1625,6 @@ All documents/images provided should not exceed 10MB per file.
 <td>DBS</td>
 </tr>
 <tr>
-<td>notify_url (Coming soon)</td>
-<td>string</td>
-<td>optional</td>
-<td>URL to receive callback notifications once we detect the account holder&rsquo;s name</td>
-<td>https://mysite.com/fetch_name_callback</td>
-</tr>
-<tr>
 <td>usage</td>
 <td>string</td>
 <td>optional</td>
@@ -1642,52 +1637,6 @@ All documents/images provided should not exceed 10MB per file.
 <td>optional</td>
 <td>Name of bank account holder</td>
 <td>Tian Wei</td>
-</tr>
-</tbody></table>
-
-<h4 id="callback-response-format">Callback Response Format</h4>
-
-<p>This feature is only available in Indonesia. To help users validate that the bank account they added is correct, Xfers will attempt to fetch the name tied to the account holder from the bank itself.</p>
-
-<p>As this process takes up to a few minutes, we will make a HTTPS POST request to the <code class="prettyprint">notify_url</code> provided with the following parameters once it is complete:</p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>bank</td>
-<td>string</td>
-<td>The bank abbreviation</td>
-<td>BCA</td>
-</tr>
-<tr>
-<td>account_no</td>
-<td>string</td>
-<td>The bank account number</td>
-<td>03931234323</td>
-</tr>
-<tr>
-<td>account_holder_name</td>
-<td>string</td>
-<td>The account holder&rsquo;s name</td>
-<td>Liu Tian Wei</td>
-</tr>
-<tr>
-<td>error</td>
-<td>string</td>
-<td>Error message, if any</td>
-<td>Account number does not exist</td>
-</tr>
-<tr>
-<td>status</td>
-<td>string</td>
-<td>Status of the name fetch</td>
-<td>&ldquo;success&rdquo; or &ldquo;fail&rdquo;</td>
 </tr>
 </tbody></table>
 
@@ -1939,6 +1888,13 @@ All documents/images provided should not exceed 10MB per file.
 <td>optional</td>
 <td>Name of bank account holder</td>
 <td>Tian Wei</td>
+</tr>
+<tr>
+<td>detect_name</td>
+<td>string</td>
+<td>optional</td>
+<td>Whether to refresh the detected name</td>
+<td>defaults to false</td>
 </tr>
 </tbody></table>
 
