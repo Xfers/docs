@@ -1350,6 +1350,8 @@ This request will add a new bank account to this Xfers account. You will be able
 
 List of all bank accounts belonging to user.
 
+For Xfers Indonesia API, an additional attribute `detected_name` will be returned. This is the actual name of the bank account holder gotten directly from the bank.
+
 
 #### URL Parameters
 
@@ -1357,25 +1359,8 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 account_no | string | required | bank account no | 03931234323
 bank | string | required | bank abbreviation (Refer to [available banks](?shell/#available-banks) | DBS
-notify_url (Coming soon) | string | optional | URL to receive callback notifications once we detect the account holder's name   | https://mysite.com/fetch_name_callback
 usage | string | optional | Is this bank account to be used as a funding source or for withdrawals? | Either "funding_source" or "withdrawal" or "all". Defaults to "all"
 account_holder_name | string | optional | Name of bank account holder | Tian Wei
-
-
-#### Callback Response Format
-
-This feature is only available in Indonesia. To help users validate that the bank account they added is correct, Xfers will attempt to fetch the name tied to the account holder from the bank itself.
-
-As this process takes up to a few minutes, we will make a HTTPS POST request to the `notify_url` provided with the following parameters once it is complete:
-
-
-Name | Type | Description | Value
----- | ---- | ----------- | -----
-bank | string | The bank abbreviation | BCA
-account_no | string | The bank account number | 03931234323
-account_holder_name | string | The account holder's name | Liu Tian Wei
-error | string | Error message, if any | Account number does not exist
-status | string | Status of the name fetch | "success" or "fail"
 
 
 ### List Bank Accounts
@@ -1605,6 +1590,7 @@ account_no | string | optional | bank account no | 03931234323
 bank | string | optional | bank abbreviation (Refer to [available banks](?shell/#available-banks)) | DBS
 usage | string | optional | Is this bank account to be used as a funding source or for withdrawals? | Either "funding_source" or "withdrawal" or "all".
 account_holder_name | string | optional | Name of bank account holder | Tian Wei
+detect_name | string | optional | Whether to refresh the detected name | defaults to false
 
 
 ### Delete Bank Account
