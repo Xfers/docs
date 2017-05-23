@@ -1590,7 +1590,7 @@ account_no | string | optional | bank account no | 03931234323
 bank | string | optional | bank abbreviation (Refer to [available banks](?shell/#available-banks)) | DBS
 usage | string | optional | Is this bank account to be used as a funding source or for withdrawals? | Either "funding_source" or "withdrawal" or "all".
 account_holder_name | string | optional | Name of bank account holder | Tian Wei
-detect_name | string | optional | Whether to refresh the detected name | defaults to false
+detect_name | string | optional | Whether to refresh the detected name (Only available for Xfers Indonesia) | defaults to false
 
 
 ### Delete Bank Account
