@@ -5546,20 +5546,45 @@ Jane wishes to transfer 5000 Indonesian Rupiah via <code class="prettyprint">/in
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6f5f85859a51cd08c8ae113412bb72c8"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"request_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0001"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w"> 
-  </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"unique_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4999"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"bank_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Central Asia"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BCA"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"account_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Xveria Media Indonesia"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"bank_account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0124121241"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"notify_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/topup_notification"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"expiration_date"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-09-09T17:55:51Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="err">=&gt;</span><span class="s2">"a975f036cb4b43f3b2d1ff90040ec292"</span><span class="err">,</span><span class="w">
+  </span><span class="s2">"request_id"</span><span class="err">=&gt;</span><span class="s2">"AI1001"</span><span class="err">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="err">=&gt;</span><span class="s2">"30000.0"</span><span class="err">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="err">=&gt;</span><span class="s2">"IDR"</span><span class="err">,</span><span class="w">
+  </span><span class="s2">"unique_amount"</span><span class="err">=&gt;</span><span class="s2">"29999"</span><span class="err">,</span><span class="w">
+  </span><span class="s2">"bank_abbrev"</span><span class="err">=&gt;</span><span class="s2">"MANDIRI"</span><span class="err">,</span><span class="w">
+  </span><span class="s2">"bank_name"</span><span class="err">=&gt;</span><span class="s2">"Bank Mandiri"</span><span class="err">,</span><span class="w">
+  </span><span class="s2">"account_name"</span><span class="err">=&gt;</span><span class="s2">"PT Media Indonusa"</span><span class="err">,</span><span class="w">
+  </span><span class="s2">"bank_account_no"</span><span class="err">=&gt;</span><span class="s2">"8855845678901235"</span><span class="err">,</span><span class="w">
+  </span><span class="s2">"notify_url"</span><span class="err">=&gt;</span><span class="s2">"https://mysite.com/topup_notification"</span><span class="err">,</span><span class="w">
+  </span><span class="s2">"expiration_date"</span><span class="err">=&gt;</span><span class="s2">"2017-06-01T07:46:40Z"</span><span class="err">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="err">=&gt;</span><span class="s2">"pending"</span><span class="err">,</span><span class="w">
+  </span><span class="s2">"transfer_info_array"</span><span class="err">=&gt;</span><span class="w">
+  </span><span class="err">[</span><span class="w">
+    </span><span class="err">{</span><span class="w">
+      </span><span class="s2">"bank_name_full"</span><span class="err">=&gt;</span><span class="s2">"Bank Central Asia"</span><span class="err">,</span><span class="w">
+      </span><span class="s2">"bank_name_abbreviation"</span><span class="err">=&gt;</span><span class="s2">"BCA"</span><span class="err">,</span><span class="w">
+      </span><span class="s2">"bank_account_no"</span><span class="err">=&gt;</span><span class="s2">"1063003003"</span><span class="err">,</span><span class="w">
+      </span><span class="s2">"bank_code"</span><span class="err">=&gt;</span><span class="s2">""</span><span class="err">,</span><span class="w">
+      </span><span class="s2">"branch_code"</span><span class="err">=&gt;</span><span class="s2">""</span><span class="err">,</span><span class="w">
+      </span><span class="s2">"branch_area"</span><span class="err">=&gt;</span><span class="s2">""</span><span class="err">,</span><span class="w">
+      </span><span class="s2">"unique_id"</span><span class="err">=&gt;</span><span class="s2">"97266867"</span><span class="err">,</span><span class="w">
+      </span><span class="s2">"img_src"</span><span class="err">=&gt;</span><span class="s2">"https://www.xfers.io/images/bankLogos/bank-logo-bca.png"</span><span class="w">
+    </span><span class="err">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"bank_name_full"</span><span class="err">=&gt;</span><span class="s2">"Bank Mandiri"</span><span class="err">,</span><span class="w">
+      </span><span class="s2">"bank_name_abbreviation"</span><span class="err">=&gt;</span><span class="s2">"MANDIRI"</span><span class="err">,</span><span class="w">
+      </span><span class="s2">"bank_account_no"</span><span class="err">=&gt;</span><span class="s2">"8855845678901235"</span><span class="err">,</span><span class="w">
+      </span><span class="s2">"bank_code"</span><span class="err">=&gt;</span><span class="s2">""</span><span class="err">,</span><span class="w">
+      </span><span class="s2">"branch_code"</span><span class="err">=&gt;</span><span class="s2">""</span><span class="err">,</span><span class="w">
+      </span><span class="s2">"branch_area"</span><span class="err">=&gt;</span><span class="s2">""</span><span class="err">,</span><span class="w">
+      </span><span class="s2">"unique_id"</span><span class="err">=&gt;</span><span class="s2">"97266867"</span><span class="err">,</span><span class="w">
+      </span><span class="s2">"img_src"</span><span class="err">=&gt;</span><span class="s2">"https://www.xfers.io/images/bankLogos/bank-logo-mandiri.png"</span><span class="w">
+    </span><span class="err">}</span><span class="w">
+  </span><span class="err">]</span><span class="w">
+</span><span class="err">}</span><span class="w">
+
 </span></code></pre>
 
 <p>The following request will allow you to create a intent for a transfer and register a callback notification once a transfer has be received or expired(all intents expires in 72 hours.)</p>
