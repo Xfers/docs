@@ -4798,39 +4798,39 @@ try {
 ```json
 
 {
-  "id"=>"a975f036cb4b43f3b2d1ff90040ec292",
-  "request_id"=>"AI1001",
-  "amount"=>"30000.0",
-  "currency"=>"IDR",
-  "unique_amount"=>"29999",
-  "bank_abbrev"=>"MANDIRI",
-  "bank_name"=>"Bank Mandiri",
-  "account_name"=>"PT Media Indonusa",
-  "bank_account_no"=>"8855845678901235",
-  "notify_url"=>"https://mysite.com/topup_notification",
-  "expiration_date"=>"2017-06-01T07:46:40Z",
-  "status"=>"pending",
-  "transfer_info_array"=>
+  "id": "a975f036cb4b43f3b2d1ff90040ec292",
+  "request_id": "AI1001",
+  "amount": "30000.0",
+  "currency": "IDR",
+  "unique_amount": "29999",
+  "bank_abbrev": "MANDIRI",
+  "bank_name": "Bank Mandiri",
+  "account_name": "PT Media Indonusa",
+  "bank_account_no": "8855845678901235",
+  "notify_url": "https://mysite.com/topup_notification",
+  "expiration_date": "2017-06-01T07:46:40Z",
+  "status": "pending",
+  "transfer_info_array": 
   [
     {
-      "bank_name_full"=>"Bank Central Asia",
-      "bank_name_abbreviation"=>"BCA",
-      "bank_account_no"=>"1063003003",
-      "bank_code"=>"",
-      "branch_code"=>"",
-      "branch_area"=>"",
-      "unique_id"=>"97266867",
-      "img_src"=>"https://www.xfers.io/images/bankLogos/bank-logo-bca.png"
+      "bank_name_full": "Bank Central Asia",
+      "bank_name_abbreviation": "BCA",
+      "bank_account_no": "1063003003",
+      "bank_code": "",
+      "branch_code": "",
+      "branch_area": "",
+      "unique_id": "97266867",
+      "img_src": "https://www.xfers.io/images/bankLogos/bank-logo-bca.png"
     },
     {
-      "bank_name_full"=>"Bank Mandiri",
-      "bank_name_abbreviation"=>"MANDIRI",
-      "bank_account_no"=>"8855845678901235",
-      "bank_code"=>"",
-      "branch_code"=>"",
-      "branch_area"=>"",
-      "unique_id"=>"97266867",
-      "img_src"=>"https://www.xfers.io/images/bankLogos/bank-logo-mandiri.png"
+      "bank_name_full": "Bank Mandiri",
+      "bank_name_abbreviation": "MANDIRI",
+      "bank_account_no": "8855845678901235",
+      "bank_code": "",
+      "branch_code": "",
+      "branch_area": "",
+      "unique_id": "97266867",
+      "img_src": "https://www.xfers.io/images/bankLogos/bank-logo-mandiri.png"
     }
   ]
 }
@@ -4854,7 +4854,7 @@ Name | Type | Required | Description | Value
 amount | float | required | Amount that user intends to transfer | 5000
 currency | string | required | 3-letter ISO code for currency(IDR/SGD)
 request_id | string | required | Unique ref no provided by requester. This will need to be unique or the intent request will be considered a duplicate and ignored. | AZ0001
-bank | string | optional | bank abbreviation (BCA or MBB). You can get the bank to transfer to via our Get Transfer Info API | BCA
+bank | string | optional | bank abbreviation (BCA, UOB, MANDIRI) | BCA
 notify_url | string | optional | URL to receive callback notifications when transfer is received	 | https://mysite.com/payment_notification
 
 ### Intent Notifications
