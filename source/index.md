@@ -4796,20 +4796,45 @@ try {
 > Response:
 
 ```json
+
 {
-  "id": "6f5f85859a51cd08c8ae113412bb72c8",
-  "request_id" : "AZ0001",
-  "amount" : "5000", 
-  "currency" : "IDR",
-  "unique_amount" : "4999",
-  "bank_name" : "Bank Central Asia",
-  "bank_abbrev" : "BCA",
-  "account_name" : "Xveria Media Indonesia",
-  "bank_account_no" : "0124121241",
-  "notify_url" : "https://mysite.com/topup_notification",
-  "expiration_date" : "2016-09-09T17:55:51Z",
-  "status" : "pending"
+  "id"=>"a975f036cb4b43f3b2d1ff90040ec292",
+  "request_id"=>"AI1001",
+  "amount"=>"30000.0",
+  "currency"=>"IDR",
+  "unique_amount"=>"29999",
+  "bank_abbrev"=>"MANDIRI",
+  "bank_name"=>"Bank Mandiri",
+  "account_name"=>"PT Media Indonusa",
+  "bank_account_no"=>"8855845678901235",
+  "notify_url"=>"https://mysite.com/topup_notification",
+  "expiration_date"=>"2017-06-01T07:46:40Z",
+  "status"=>"pending",
+  "transfer_info_array"=>
+  [
+    {
+      "bank_name_full"=>"Bank Central Asia",
+      "bank_name_abbreviation"=>"BCA",
+      "bank_account_no"=>"1063003003",
+      "bank_code"=>"",
+      "branch_code"=>"",
+      "branch_area"=>"",
+      "unique_id"=>"97266867",
+      "img_src"=>"https://www.xfers.io/images/bankLogos/bank-logo-bca.png"
+    },
+    {
+      "bank_name_full"=>"Bank Mandiri",
+      "bank_name_abbreviation"=>"MANDIRI",
+      "bank_account_no"=>"8855845678901235",
+      "bank_code"=>"",
+      "branch_code"=>"",
+      "branch_area"=>"",
+      "unique_id"=>"97266867",
+      "img_src"=>"https://www.xfers.io/images/bankLogos/bank-logo-mandiri.png"
+    }
+  ]
 }
+
 ```
 The following request will allow you to create a intent for a transfer and register a callback notification once a transfer has be received or expired(all intents expires in 72 hours.)
 
