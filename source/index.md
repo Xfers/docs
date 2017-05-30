@@ -4856,6 +4856,8 @@ currency | string | required | 3-letter ISO code for currency(IDR/SGD)
 request_id | string | required | Unique ref no provided by requester. This will need to be unique or the intent request will be considered a duplicate and ignored. | AZ0001
 bank | string | optional | bank abbreviation (BCA, UOB, MANDIRI) | BCA
 notify_url | string | optional | URL to receive callback notifications when transfer is received	 | https://mysite.com/payment_notification
+disable_va | boolean | optional | If true, does not return a Virtual Account for this intent | Defaults to false
+
 
 ### Intent Notifications
 
