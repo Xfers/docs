@@ -5091,6 +5091,13 @@ Returns the current pending intent of the user. If multiple intents are created,
 `GET https://sandbox.xfers.io/api/v3/intents`
 
 
+#### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+disable_va | boolean | optional | If true, does not return a Virtual Account for intent | Defaults to false
+
+
 ## OTP
 
 
