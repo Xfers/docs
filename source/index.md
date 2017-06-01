@@ -4675,7 +4675,14 @@ Creating a new refund will refund a charge that has previously been created and 
 
 ## Intents
 
-When doing a top up via [GET /transfer_info](/#get-transfer-info), users might forget to enter their contact number which is needed for our system to identify them. 
+The Intent API serve two purposes. 
+
+1. It allow Xfers to generate unique transfer amount to better identity the owner of incoming transfer when non virtual account system is being used.
+2. It allow developers to register for a callback notification when user fund their Xfers wallet.
+
+<b>For user case 1:</b>
+
+when a user is performing a top up via [GET /transfer_info](/#get-transfer-info), they might forget to enter their contact number which is needed for our system to identify them. 
 
 The Intents API solves this issue by requiring the user to transfer a unique amount to Xfers which will be used to identify them. The difference between the `unique_amount` and the actual `amount` will be very small, and Xfers provides the difference for free to the user.
 
@@ -4689,6 +4696,20 @@ Jane wishes to transfer 5000 Indonesian Rupiah via `/intents`.
 3. Jane makes a transfer of 4999 to Xfers BCA. Within a few minutes, Xfers detects the transfer and tops up Jane's Xfers account with 5000. Xfers absorbs the difference for free. 
 4. If `notify_url` is given, Xfers will send a callback to this url.
 
+<aside class="notice">
+Note the above scenario is only valid when disable_va is set to True
+</aside>
+
+<b>For user case 2:</b>
+
+Intent can also be use a means to get callback notifications from Xfers when a user successfully fund their virtual account on Xfers.
+
+Example:
+Jane wishes to transfer 5000 Indonesian Rupiah via `/intents` to her virtual Xfers account and get a callback notification when it successful
+
+1. She makes a HTTP POST request to create an intent with disable_va set to false(default) and provide a `notify_url`. The response will provide a list of virtual account nos she can fund her account with from a list of bank that Xfers support.
+2. Jane makes a transfer of 500 to the Xfers BCA Virtual account that the intent api provide. Within a few minutes, Xfers detects the transfer and tops up Jane's Xfers account with 5000.
+3. Since `notify_url` is provided, Xfers will send a callback to this url.
 
 ### Creating an Intent
 
