@@ -5434,7 +5434,16 @@ Amex = A</p>
 
 <h2 id="intents">Intents</h2>
 
-<p>When doing a top up via <a href="/#get-transfer-info">GET /transfer_info</a>, users might forget to enter their contact number which is needed for our system to identify them. </p>
+<p>The Intent API serve two purposes. </p>
+
+<ol>
+<li>It allow Xfers to generate unique transfer amount to better identity the owner of incoming transfer when non virtual account system is being used.</li>
+<li>It allow developers to register for a callback notification when user fund their Xfers wallet.</li>
+</ol>
+
+<p><b>For user case 1:</b></p>
+
+<p>when a user is performing a top up via <a href="/#get-transfer-info">GET /transfer_info</a>, they might forget to enter their contact number which is needed for our system to identify them. </p>
 
 <p>The Intents API solves this issue by requiring the user to transfer a unique amount to Xfers which will be used to identify them. The difference between the <code class="prettyprint">unique_amount</code> and the actual <code class="prettyprint">amount</code> will be very small, and Xfers provides the difference for free to the user.</p>
 
@@ -5448,6 +5457,23 @@ Jane wishes to transfer 5000 Indonesian Rupiah via <code class="prettyprint">/in
 <li>She makes a HTTP POST request to create an intent. The response tells her to make a bank transfer of 4999 to Xfers. </li>
 <li>Jane makes a transfer of 4999 to Xfers BCA. Within a few minutes, Xfers detects the transfer and tops up Jane&rsquo;s Xfers account with 5000. Xfers absorbs the difference for free. </li>
 <li>If <code class="prettyprint">notify_url</code> is given, Xfers will send a callback to this url.</li>
+</ol>
+
+<aside class="notice">
+Note the above scenario is only valid when disable_va is set to True
+</aside>
+
+<p><b>For user case 2:</b></p>
+
+<p>Intent can also be use a means to get callback notifications from Xfers when a user successfully fund their virtual account on Xfers.</p>
+
+<p>Example:
+Jane wishes to transfer 5000 Indonesian Rupiah via <code class="prettyprint">/intents</code> to her virtual Xfers account and get a callback notification when it successful</p>
+
+<ol>
+<li>She makes a HTTP POST request to create an intent with disable_va set to false(default) and provide a <code class="prettyprint">notify_url</code>. The response will provide a list of virtual account nos she can fund her account with from a list of bank that Xfers support.</li>
+<li>Jane makes a transfer of 500 to the Xfers BCA Virtual account that the intent api provide. Within a few minutes, Xfers detects the transfer and tops up Jane&rsquo;s Xfers account with 5000.</li>
+<li>Since <code class="prettyprint">notify_url</code> is provided, Xfers will send a callback to this url.</li>
 </ol>
 
 <h3 id="creating-an-intent">Creating an Intent</h3>
