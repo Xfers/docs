@@ -5722,6 +5722,66 @@ Now that you have gotten a `user_api_token` linked to your customer, you can
 - Use the header `"X-XFERS-USER-API-KEY": "the user_api_token"` (instead of `"X-XFERS-USER-API-KEY": "your own token"`) to modify [user details] (/#user-account) and [bank accounts](/#bank-account) on behalf of your user
 
 
+# Xfers Connect (Private)
+
+Xfers Connect (Private) works exactly the same as Xfers Connect. The only difference is that instead of getting a shared Xfers wallet (which other merchants might use), you get a private wallet unique to your platform.
+
+No OTP is needed in the creation of this wallet.
+
+Please contact support@xfers.io to enable this feature for you.
+
+
+## Signup/login to Private Wallet
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/authorize/private_wallet"\
+  -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"\
+  -H "Content-Type: application/json" \
+  -d '{"phone_no" : "+6597288608", "signature" : "c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"}'
+```
+
+```php
+
+```
+
+```python
+
+```
+
+```ruby
+
+```
+
+```java
+
+```
+
+> Response
+
+```json
+  {
+    "msg": "success",
+    "user_api_token": "1DnsZkv3qXwKx4EAdps8AJ8jXCPsxP2sKSygMHTAFLM"
+  }
+```
+
+This API call will attempt to login (if there is an existing private wallet) or signup a new private wallet for that user, tied to your platform.
+
+
+### HTTPS Request
+
+`POST https://sandbox.xfers.io/api/v3/authorize/private_wallet`
+
+
+### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+phone_no | string | required | User mobile no | +6597288608
+signature | string | required | SHA1 of phone_no + APP_SECRET_KEY  | Digest::SHA1.hexdigest("+6597288608xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU") = c5535aa2c4d25aa1e18a6a7e421a34e51bda5565
+
+
+
 # Postman Collection (Coming soon!)
 
 [Postman](https://www.getpostman.com) helps you to construct HTTP requests quickly, save them for later use and analyze the responses sent by the API.
