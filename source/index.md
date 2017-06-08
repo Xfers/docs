@@ -5425,7 +5425,7 @@ Xfers Connect uses a pair of API Keys and API Secret to access its APIs.
 Write in to us at support@xfers.io to request for your Xfers Connect API Keys.
 You will provided with a pair of keys named `X-XFERS-APP-API-KEY` and `X-XFERS-APP-SECRET-KEY`.
 
-Xfers Connect expects the API key to be included in all API requests to the server in a header that looks like the following:
+Xfers Connect expects the API key to be included in the "Signup/login to Xfers" and "Get User API Token" process to look like the following:
 
 `X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg`
 
