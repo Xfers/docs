@@ -23,13 +23,13 @@ search: true
 
 # Introduction
 
-The **Xfers Core API** provides a set of simple RESTFUL APIs to allow businesses to 
-integrate internet banking and credit card payments into your business or applications. 
+The **Xfers Core API** provides a set of simple RESTFUL APIs to allow businesses to
+integrate internet banking and credit card payments into your business or applications.
 
-You will make use of the Xfers Core API to manage your own account programmatically. 
+You will make use of the Xfers Core API to manage your own account programmatically.
 
-**Xfers Connect** is for accepting payments on behalf of others, think of this as a super user that can manage and 
-create accounts on the behalf of others. 
+**Xfers Connect** is for accepting payments on behalf of others, think of this as a super user that can manage and
+create accounts on the behalf of others.
 
 **Official SDKs** for the Xfers API are [available in several languages](https://github.com/Xfers).
 
@@ -41,8 +41,8 @@ We've made a testing guide at [https://www.xfers.com/sg/developers/getting-start
 
 # APIs endpoints
 
-Xfers provides a **dedicated sandbox environment** where you can simulate an incoming bank transfer for testing purposes. 
-Note that this feature will not be available in production mode. 
+Xfers provides a **dedicated sandbox environment** where you can simulate an incoming bank transfer for testing purposes.
+Note that this feature will not be available in production mode.
 
 ```php
 <?php
@@ -113,15 +113,15 @@ Sandbox and Production are two separate environments. Please ensure your registe
 All the examples code in this document will be pointing to our sandbox endpoint.
 </aside>
 
-Note that all API calls are done through HTTPS, please do not attempt to hit our endpoint via HTTP, as you will also be 
+Note that all API calls are done through HTTPS, please do not attempt to hit our endpoint via HTTP, as you will also be
 exposing your API key in plain text.
 
 # Xfers Core
 
-The **Xfers Core API** provides a set of simple RESTFUL APIs to allow businesses to 
-integrate internet banking and credit card payments into your business or applications. 
+The **Xfers Core API** provides a set of simple RESTFUL APIs to allow businesses to
+integrate internet banking and credit card payments into your business or applications.
 
-You will make use of the Xfers Core API to manage your own account programmatically. 
+You will make use of the Xfers Core API to manage your own account programmatically.
 
 ## Authentication
 
@@ -184,9 +184,9 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 ### Types of API Keys
 
 
-Type | Version | Description  | 
+Type | Version | Description  |
 ---- | ----------- | ------------ |
-X-XFERS-APP-API-KEY | V3 | Only used for Xfers Connect 
+X-XFERS-APP-API-KEY | V3 | Only used for Xfers Connect
 X-XFERS-USER-API-KEY| V3 | The majority of our APIs uses this
 X-XFERS-USER-API-KEY | V2 (Legacy) | Our legacy V2 API keys. These are only used for our WooCommerce, Opencart and Magento plugins.
 
@@ -254,11 +254,11 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
     System.out.println("Retrieving current user");
-    User user = User.retrieve();
+    User user = User.retrieve(apiKey);
     System.out.println(user.getFirstName());
     System.out.println(user.getDateOfBirth());
     for (BankAccount bankAccount : user.getBankAccounts()) {
@@ -410,7 +410,7 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 
 try {
@@ -425,7 +425,7 @@ try {
     updateParams.put("identity_no", "s86917127G");
     updateParams.put("country", "sg");
 
-    User user = User.update(updateParams);
+    User user = User.update(updateParams,apiKey);
     System.out.println(user.getFirstName());
     System.out.println(user.getLastName());
     System.out.println(user.getDateOfBirth());
@@ -508,7 +508,7 @@ annual_income | integer | optional | Annual income of user in the local currency
 id_front_url | string | optional | URL storing the front image of user identity card
 id_back_url | string | optional | URL storing the back image of user identity card
 selfie_2id_url | string | optional | URL storing the selfie of user holding their id card or a second form of id like driving license or passport
-proof_of_address_url | string | optional | URL storing the image/pdf of proof of address document of user like bank statement or telco bill. 
+proof_of_address_url | string | optional | URL storing the image/pdf of proof of address document of user like bank statement or telco bill.
 support_document_1_url | string | optional | URL storing the image/pdf of support documents like proof of user income
 support_document_2_url | string | optional | URL storing the image/pdf of support documents like proof of user income
 support_document_3_url | string | optional | URL storing the image/pdf of support documents like proof of user income
@@ -574,11 +574,11 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
     System.out.println("Retrieving current user activities");
-    List<Activity> activities = User.activities();
+    List<Activity> activities = User.activities(apiKey);
     for (Activity activity : activities) {
         System.out.println(activity.getTransType());
         System.out.println(activity.getTransactionItems().toString());
@@ -703,12 +703,12 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 
 try {
     System.out.println("Retrieving current user transfer info");
-    TransferInfo transferInfo = User.transferInfo();
+    TransferInfo transferInfo = User.transferInfo(apiKey);
     System.out.println(transferInfo.getBankNameFull());
     System.out.println(transferInfo.getBankNameAbbreviation());
     System.out.println(transferInfo.getBankAccountNo());
@@ -749,7 +749,7 @@ try {
     "branch_area" : "",
     "unique_id" : "97288607",
     "img_src": "https://xfers.com/bank-logo-bca.png"
-  }, 
+  },
   {
     "bank_name_full" : "Bank Mandiri",
     "bank_name_abbreviation" : "MANDIRI",
@@ -1096,7 +1096,7 @@ curl -X DELETE "https://sandbox.xfers.io/api/v3/merchant/shareholder/<shareholde
 }
 ```
 
-This request allow you to delete an existing shareholder. 
+This request allow you to delete an existing shareholder.
 
 #### HTTPS Request
 
@@ -1240,7 +1240,7 @@ This will provide you with a list of banks we support.
 curl "https://sandbox.xfers.io/api/v3/user/bank_account" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
-  -d '{"account_no": "03931234323", "bank":"DBS", "account_holder_name": "Tian Wei"}'
+  -d '{"account_no": "0393123432", "bank":"DBS", "account_holder_name": "Tian Wei"}'
 ```
 
 ```php
@@ -1302,14 +1302,15 @@ end
 ```
 
 ```java
-Xfers.apiKey = "G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo";
+String apiKey = "G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo";
 Xfers.setSGSandbox();
 
 try {
     Map<String, Object> params = new HashMap<String, Object>();
+    System.out.println("Adding Bank Account");
     params.put("account_no", "03931234323");
     params.put("bank", "DBS");
-    List<BankAccount> bankAccounts = BankAccount.add(params);
+    List<BankAccount> bankAccounts = BankAccount.add(params,apiKey);
     for (BankAccount bankAccount : bankAccounts) {
         System.out.println(bankAccount.toString());
     }
@@ -1339,7 +1340,7 @@ try {
 ]
 ```
 
-This request will add a new bank account to this Xfers account. You will be able to withdraw your Xfers available balances to these account(s). 
+This request will add a new bank account to this Xfers account. You will be able to withdraw your Xfers available balances to these account(s).
 
 
 #### HTTPS Request
@@ -1418,11 +1419,12 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 
 try {
-    List<BankAccount> bankAccounts = BankAccount.retrieve();
+    System.out.println("Retrieving Bank Account");
+    List<BankAccount> bankAccounts = BankAccount.retrieve(apiKey);
     for (BankAccount bankAccount : bankAccounts) {
         System.out.println(bankAccount.toString());
     }
@@ -1473,7 +1475,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
   -X PUT \
-  -d '{"account_no": "03931234321", "bank":"DBS"}'
+  -d '{"account_no": "0393123432", "bank":"DBS"}'
 ```
 
 ```php
@@ -1533,15 +1535,16 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 
 try {
     Map<String, Object> params = new HashMap<String, Object>();
+    System.out.println("Updating Bank Account");
     params.put("account_no", "03931234321");
     params.put("bank", "DBS");
 
-    List<BankAccount> bankAccounts = BankAccount.update("<bank_account_id>", params);
+    List<BankAccount> bankAccounts = BankAccount.update("<bank_account_id>", params, apiKey);
     for (BankAccount bankAccount : bankAccounts) {
         System.out.println(bankAccount.toString());
     }
@@ -1571,7 +1574,7 @@ try {
 ]
 ```
 
-This request allows you to update an existing bank account record. 
+This request allows you to update an existing bank account record.
 
 #### HTTPS Request
 
@@ -1644,10 +1647,11 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
-    List<BankAccount> bankAccounts = BankAccount.delete("<bank_account_id>");
+    System.out.println("Deleting Bank Account");
+    List<BankAccount> bankAccounts = BankAccount.delete("<bank_account_id>",apiKey);
     for (BankAccount bankAccount : bankAccounts) {
         System.out.println(bankAccount.toString());
     }
@@ -1668,7 +1672,7 @@ try {
 ]
 ```
 
-This request allow you to delete an existing bank account record. 
+This request allow you to delete an existing bank account record.
 
 #### HTTPS Request
 
@@ -1740,14 +1744,15 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
     Map<String, Object> params = new HashMap<String, Object>();
+    System.out.println("Making a withdrawal request");
     params.put("amount", "50.0");
     params.put("express", false);
 
-    Withdrawal withdrawal = BankAccount.withdraw("<bank_account_id>", params);
+    Withdrawal withdrawal = BankAccount.withdraw("<bank_account_id>", params, apiKey);
     System.out.println(withdrawal.getId());
     System.out.println(withdrawal.getAccountNo());
     System.out.println(withdrawal.getBankAbbrev());
@@ -1859,10 +1864,11 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
-    List<Withdrawal> withdrawalRequests = BankAccount.withdrawalRequests("pending");
+    System.out.println("Listing all withdrawal request");
+    List<Withdrawal> withdrawalRequests = BankAccount.withdrawalRequests("pending", apiKey);
     for (Withdrawal withdrawal : withdrawalRequests) {
         System.out.println(withdrawal.toString());
     }
@@ -2069,7 +2075,7 @@ amount | float | required | How much to topup | 9.85
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/prepaid" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" 
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
 ```php
@@ -2105,7 +2111,7 @@ COMING SOON
     "proxy_number": "444",
     "description": "helloworld",
     "provider": "wirecard_test_0"
-  }, 
+  },
   {
     "id": "556",
     "proxy_number": "454",
@@ -2295,6 +2301,8 @@ end
 
 ```java
 try {
+    String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+
     System.out.println("Creating a charge");
     Vector<Map<String, String>> items = new Vector<Map<String, String>>();
     Map<String, String> item = new HashMap<String, String>();
@@ -2324,7 +2332,7 @@ try {
     params.put("items", gson.toJson(items));
     params.put("meta_data", gson.toJson(meta_data));
 
-    Charge charge = Charge.create(params);
+    Charge charge = Charge.create(params, apiKey);
     System.out.println(charge.getId());
     System.out.println(charge.getAmount());
     System.out.println(charge.getCheckoutUrl());
@@ -2399,7 +2407,7 @@ try {
       "branch_area" : "",
       "unique_id" : "97288607",
       "img_src": "https://xfers.com/bank-logo-bca.png"
-    }, 
+    },
     {
       "bank_name_full" : "Bank Mandiri",
       "bank_name_abbreviation" : "MANDIRI",
@@ -2474,7 +2482,7 @@ bank_discount | total - bank_unique_amt
 
 
 #### item hash
-You can provide itemized receipt for your customer by giving use informations with regards to each of them in the `items` field as a json array of hash. 
+You can provide itemized receipt for your customer by giving use informations with regards to each of them in the `items` field as a json array of hash.
 
 The below is the list of attribute supported in the hash.
 
@@ -2492,7 +2500,7 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 
 #### meta data
 
-You can use the `meta_data` parameter to attach json data. This is useful for storing additional structured information about the charge. As an example, you could store your user's first name, last name or any corresponding unique identifier from your system a Xfers charge. 
+You can use the `meta_data` parameter to attach json data. This is useful for storing additional structured information about the charge. As an example, you could store your user's first name, last name or any corresponding unique identifier from your system a Xfers charge.
 
 The description and meta_data you specify is returned in API responses.
 
@@ -2531,7 +2539,7 @@ Please take note that at this point, payment may or may not have been completed 
 
 ### Payment Notifications
 
-After payment has been completed and verified by Xfers backend, Xfers will send a callback to the `notify_url` you provided. This is a server to server HTTPS POST and you will need to acknowledge the callback by providing a HTTP 200 status. It is important to take note that this notification can arrive at your server before or after the customer is redirected to the return_url you provided. 
+After payment has been completed and verified by Xfers backend, Xfers will send a callback to the `notify_url` you provided. This is a server to server HTTPS POST and you will need to acknowledge the callback by providing a HTTP 200 status. It is important to take note that this notification can arrive at your server before or after the customer is redirected to the return_url you provided.
 
 `POST https://mysite.com/payment_notification`
 
@@ -2616,7 +2624,7 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 
 try {
@@ -2626,7 +2634,7 @@ try {
     params.put("currency", "SGD");
     params.put("order_id", "A012312");
     params.put("status", "paid");
-    String message = Charge.validate("<txn_id>", params);
+    String message = Charge.validate("<txn_id>", params, apiKey);
     System.out.println(message);
 } catch (Exception e) {
     e.printStackTrace();
@@ -2641,7 +2649,7 @@ try {
 }
 ```
 
-After receiving a payment notification from Xfers, you should do verification with Xfers to confirm that that it did indeed originate from Xfers. The post parameters must include all the fields in the payment notification that was sent from Xfers to you. 
+After receiving a payment notification from Xfers, you should do verification with Xfers to confirm that that it did indeed originate from Xfers. The post parameters must include all the fields in the payment notification that was sent from Xfers to you.
 
 Xfers will response with HTTP 200 status and a JSON string { "msg": "VERIFIED" } if the notification is valid or a JSON string { "msg": "INVALID" } when its not.
 
@@ -2677,7 +2685,7 @@ require_once('vendor/autoload.php');
 \Xfers\Xfers::setSGSandbox();
 
 try {
-    // You must create the charge with user_phone_no param passed in 
+    // You must create the charge with user_phone_no param passed in
     $chargeId = '782f2a6e1b5642edb10c8b6b215c4814';
     $authCode = '213779';
     $resp = \Xfers\Charge::authorize($chargeId, $authCode);
@@ -2724,14 +2732,14 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 
 try {
     System.out.println("Authorize a charge");
     String chargeId = "236d026fb4a5457ca9f60d3b1e806bbc";
     String authCode = "482729";
-    Charge charge = Charge.authorize(chargeId, authCode);
+    Charge charge = Charge.authorize(chargeId, authCode, apiKey);
     System.out.println(charge.toString());
 } catch (Exception e) {
     e.printStackTrace();
@@ -2847,11 +2855,11 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
     System.out.println("Cancelling a charge");
-    Charge charge = Charge.cancel("<CHARGE_ID>");
+    Charge charge = Charge.cancel("<CHARGE_ID>", apiKey);
     System.out.println(charge.toString());
 } catch (Exception e) {
     e.printStackTrace();
@@ -2956,11 +2964,11 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
  try {
     System.out.println("Retrieving a charge");
-    Charge charge = Charge.retrieve("<id>");
+    Charge charge = Charge.retrieve("<id>", apiKey);
     System.out.println(charge.toString());
 } catch (Exception e) {
     e.printStackTrace();
@@ -3074,11 +3082,11 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
     System.out.println("Listing charges without filter");
-    List<Charge> charges = Charge.listAll();
+    List<Charge> charges = Charge.listAll(apiKey);
     for (Charge charge : charges) {
         System.out.println(charge.toString());
         List<Item> items = charge.getItems();
@@ -3306,7 +3314,7 @@ The following request will allow you to add a credit card to your connected user
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 user_api_token | string | required | Buyer’s api token obtain via Connect’s get user token API. | osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ
-credit_card_token | string | required | Tokenized credit card from Xfers Tokenize | tok_197O8gB8MXWbQJDjPMILsIr6 | 
+credit_card_token | string | required | Tokenized credit card from Xfers Tokenize | tok_197O8gB8MXWbQJDjPMILsIr6 |
 first6 | string | required | First 6 digits of credit card. Returned via Xfers Tokenize | 424242
 last4 | string | required | Last 4 digits of credit card. Returned via Xfers Tokenize | 4242
 
@@ -3315,13 +3323,13 @@ last4 | string | required | Last 4 digits of credit card. Returned via Xfers Tok
 An Xfers Card object.
 
 Name | Type | Description
----- | ---- | ----------- 
+---- | ---- | -----------
 card_id | string | The id of the card added
 last_4 | string | Last 4 digits of credit card
 card_type | string | Card brand. Can be Visa, American Express, MasterCard, Discover, JCB, Diners Club, or Unknown
 card_country | string | Two-letter ISO code representing the country of the card. You could use this attribute to get a sense of the international breakdown of cards you’ve collected
 exp_yr | string | Credit card year
-exp_month | string | Credit card expiry month 
+exp_month | string | Credit card expiry month
 is_default | boolean | Is this the default card to be charged
 
 
@@ -3772,7 +3780,7 @@ try {
 ```
 
 
-The following request will allow you to charge a newly obtained credit card token from [Xfers Tokenize](/#xfers-tokenize). This credit card charge is not linked to any user, so you 
+The following request will allow you to charge a newly obtained credit card token from [Xfers Tokenize](/#xfers-tokenize). This credit card charge is not linked to any user, so you
 will not be able to save the token for reuse. Note that each credit card token can only be used once - either charge it directly with this endpoint, or add the token to a user.
 
 One use case is to be able to charge a credit card without the user having to go through OTP, since no Xfers account needs to be created (usually because it is a guest user on your platform and you want to speed up the checkout process).
@@ -4005,7 +4013,7 @@ require_once('vendor/autoload.php');
 
 try {
     echo "Charge existing card\n";
-    $chargeId = 'ae9647515a234b95919ce5dbd6e073e8'; 
+    $chargeId = 'ae9647515a234b95919ce5dbd6e073e8';
     $token = '47B23760-3073-490D-8AAA-548E83CD29F4';
     $resp = \Xfers\Card::chargeExisting($chargeId, $token);
     print_r($resp);
@@ -4057,7 +4065,7 @@ token | string | required | The credit card token | 47B23760-3073-490D-8AAA-548E
 ```shell
 curl -X DELETE "https://sandbox-id.xfers.com/api/v3/cards/<token>" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
-  -H "Content-Type: application/json" 
+  -H "Content-Type: application/json"
 ```
 
 ```php
@@ -4270,7 +4278,7 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
     System.out.println("Creating a payout");
@@ -4280,7 +4288,7 @@ try {
     params.put("recipient", "+6597288608");
     params.put("descriptions", "Payment for Rent for July");
 
-    Payout payout = Payout.create(params);
+    Payout payout = Payout.create(params,apiKey);
     payoutId = payout.getId();
     System.out.println(payout.getId());
     System.out.println(payout.getRecipient());
@@ -4327,7 +4335,7 @@ Name | Type | Required | Description | Value
 amount | float | required | Total value for items. | 150.00
 invoice_id | string | required | Unique ref no provided by merchant. This will need to be unique or the payout request will be considered a duplicate and ignored. | AZ0001
 recipient | string | optional (either recipient or user_api_token required) | Email or Mobile Phone No of the recipient for this payout. | +659728860
-user_api_token | string | optional (either recipient or user_api_token required) | user’s api token obtain via Connect’s get user token APIs. When this is provided, it will replace the recipient param as the payout target | 
+user_api_token | string | optional (either recipient or user_api_token required) | user’s api token obtain via Connect’s get user token APIs. When this is provided, it will replace the recipient param as the payout target |
 currency | string | optional | 3-letter ISO code for currency | Default to 'SGD'
 descriptions | string | optional | A short description for this payout. This will be part of the email/SMS that the recipient will be receiving from Xfers. | Payment for Rent for July
 no_expire | boolean | optional | Set this to true so this payout will not expire | Default to false
@@ -4392,11 +4400,11 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
  try {
     System.out.println("Retrieving a payout");
-    Payout payout = Payout.retrieve("<id>");
+    Payout payout = Payout.retrieve("<id>", apiKey);
     System.out.println(payout.toString());
 } catch (Exception e) {
     e.printStackTrace();
@@ -4421,7 +4429,7 @@ Xfers.setSGSandbox();
 }
 ```
 
-Retrieves the details of a payout that has previously been created. Supply the unique payout ID that was returned from your previous request, and Xfers will return the corresponding payout information. 
+Retrieves the details of a payout that has previously been created. Supply the unique payout ID that was returned from your previous request, and Xfers will return the corresponding payout information.
 
 
 #### HTTPS Request
@@ -4496,14 +4504,14 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 
 try {
     System.out.println("Listing payouts");
     Map<String, Object> params = new HashMap<String, Object>();
     params.put("recipient", "+6597288608");
-    List<Payout> payouts = Payout.listAll(params);
+    List<Payout> payouts = Payout.listAll(params, apiKey);
     for (Payout payout : payouts) {
         System.out.println(payout.getId());
         System.out.println(payout.getInvoiceId());
@@ -4616,11 +4624,11 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
     System.out.println("Refunding a charge");
-    Charge charge = Charge.refund("<id>");
+    Charge charge = Charge.refund("<id>", apiKey);
     System.out.println(charge.toString());
 } catch (Exception e) {
     e.printStackTrace();
@@ -4675,14 +4683,14 @@ Creating a new refund will refund a charge that has previously been created and 
 
 ## Intents
 
-The Intent API serve two purposes. 
+The Intent API serve two purposes.
 
 1. It allow Xfers to generate unique transfer amount to better identity the owner of incoming transfer when non virtual account system is being used.
 2. It allow developers to register for a callback notification when user fund their Xfers wallet.
 
 <b>For user case 1:</b>
 
-when a user is performing a top up via [GET /transfer_info](/#get-transfer-info), they might forget to enter their contact number which is needed for our system to identify them. 
+when a user is performing a top up via [GET /transfer_info](/#get-transfer-info), they might forget to enter their contact number which is needed for our system to identify them.
 
 The Intents API solves this issue by requiring the user to transfer a unique amount to Xfers which will be used to identify them. The difference between the `unique_amount` and the actual `amount` will be very small, and Xfers provides the difference for free to the user.
 
@@ -4692,8 +4700,8 @@ Example:
 Jane wishes to transfer 5000 Indonesian Rupiah via `/intents`.
 
 1. She makes a HTTP GET request to `/user/transfer_info` to get the correct Xfers bank to transfer to (we have many banks!). The response tells her to transfer to Bank Central Asia (BCA).
-2. She makes a HTTP POST request to create an intent. The response tells her to make a bank transfer of 4999 to Xfers. 
-3. Jane makes a transfer of 4999 to Xfers BCA. Within a few minutes, Xfers detects the transfer and tops up Jane's Xfers account with 5000. Xfers absorbs the difference for free. 
+2. She makes a HTTP POST request to create an intent. The response tells her to make a bank transfer of 4999 to Xfers.
+3. Jane makes a transfer of 4999 to Xfers BCA. Within a few minutes, Xfers detects the transfer and tops up Jane's Xfers account with 5000. Xfers absorbs the difference for free.
 4. If `notify_url` is given, Xfers will send a callback to this url.
 
 <aside class="notice">
@@ -4788,7 +4796,7 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
     System.out.println("Creating an intent");
@@ -4799,16 +4807,15 @@ try {
     params.put("request_id", "AZ0001");
     params.put("notify_url", "https://mysite.com/topup_notification");
 
-    Intent intent = Intent.create(params);
+    Intent intent = Intent.create(params, apiKey);
     System.out.println(intent.getId());
     System.out.println(intent.getAmount());
     System.out.println(intent.getCurrency());
-    System.out.println(intent.getBank());
-    System.out.println(intent.getStatus());
-    System.out.println(intent.getCheckoutUrl());
+    System.out.println(intent.getBankName());
+    System.out.println(intent.getBankAbbrev());
+    System.out.println(intent.getBankAccountNo());
     System.out.println(intent.getRequestId());
     System.out.println(intent.getNotifyUrl());
-    System.out.println(intent.getBankName());
 } catch (Exception e) {
     e.printStackTrace();
 }
@@ -4831,7 +4838,7 @@ try {
   "notify_url": "https://mysite.com/topup_notification",
   "expiration_date": "2017-06-01T07:46:40Z",
   "status": "pending",
-  "transfer_info_array": 
+  "transfer_info_array":
   [
     {
       "bank_name_full": "Bank Central Asia",
@@ -4949,11 +4956,11 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
     System.out.println("Cancelling an intent");
-    Intent intent = Intent.cancel("<INTENT_ID>");
+    Intent intent = Intent.cancel("<INTENT_ID>", apiKey);
     System.out.println(intent.toString());
 } catch (Exception e) {
     e.printStackTrace();
@@ -4966,8 +4973,8 @@ try {
 {
   "id": "6f5f85859a51cd08c8ae113412bb72c8",
   "request_id" : "AZ0001",
-  "amount" : "5000", 
-  "currency" : "IDR", 
+  "amount" : "5000",
+  "currency" : "IDR",
   "amount_to_transfer" : "4999",
   "bank_name" : "Bank Central Asia",
   "bank_abbrev" : "BCA",
@@ -5032,20 +5039,19 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
     System.out.println("Retrieving latest intent");
-    Intent intent = Intent.retrieve();
+    Intent intent = Intent.retrieve(apiKey);
     System.out.println(intent.getId());
     System.out.println(intent.getAmount());
     System.out.println(intent.getCurrency());
-    System.out.println(intent.getBank());
-    System.out.println(intent.getStatus());
-    System.out.println(intent.getCheckoutUrl());
+    System.out.println(intent.getBankName());
+    System.out.println(intent.getBankAbbrev());
+    System.out.println(intent.getBankAccountNo());
     System.out.println(intent.getRequestId());
     System.out.println(intent.getNotifyUrl());
-    System.out.println(intent.getBankName());
 } catch (Exception e) {
     e.printStackTrace();
 }
@@ -5078,7 +5084,7 @@ try {
       "branch_area" : "",
       "unique_id" : "97288607",
       "img_src": "https://xfers.com/bank-logo-bca.png"
-    }, 
+    },
     {
       "bank_name_full" : "Bank Mandiri",
       "bank_name_abbreviation" : "MANDIRI",
@@ -5233,7 +5239,7 @@ curl "https://sandbox.xfers.io/api/v3/support" \
   "account_holder_name": "Tian Wei",
   "bank_abbrev": "BCA",
   "account_no": "0124121241",
-  "amount": 132549, 
+  "amount": 132549,
   "currency": "IDR",
   "status": "processing"
 }
@@ -5249,9 +5255,9 @@ You can use either `application/x-www-form-urlencoded` (HTTP URL to file) or `mu
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-description | string | required | Any additional information | I submitted without contact number in the initial/comments section 
-date | string | required | Date the transfer was made (DD/MM/YYYY)| 13/08/2017 
-time | string | required | Approximate time the transfer was made (HH:MM)| 21:30 
+description | string | required | Any additional information | I submitted without contact number in the initial/comments section
+date | string | required | Date the transfer was made (DD/MM/YYYY)| 13/08/2017
+time | string | required | Approximate time the transfer was made (HH:MM)| 21:30
 email | string | required | User's email so we can get back to them | bobby@gmail.com
 amount | float | required | Amount user transferred | 5.89
 file | string | required | File or URL of the receipt image | bank_transfer_receipt.jpg
@@ -5288,7 +5294,7 @@ curl "https://sandbox.xfers.io/api/v3/support/<SUPPORT_ID>" \
   "account_holder_name": "Tian Wei",
   "bank_abbrev": "BCA",
   "account_no": "0124121241",
-  "amount": 132549, 
+  "amount": 132549,
   "currency": "IDR",
   "status": "processing"
 }
@@ -5306,7 +5312,7 @@ curl "https://sandbox.xfers.io/api/v3/support/<SUPPORT_ID>" \
   "bank_abbrev": "BCA",
   "account_no": "0124121241",
   "status": "resolved",
-  "amount": 132549, 
+  "amount": 132549,
   "currency": "IDR",
   "msg": "The bank transfer of Rp 132549 has been detected and credited into tianwei@xfers.io's account"
 }
@@ -5367,7 +5373,7 @@ curl "https://sandbox.xfers.io/api/v3/support" \
     "account_holder_name": "Tian Wei",
     "bank_abbrev": "BCA",
     "account_no": "0124121241",
-    "amount": 132549, 
+    "amount": 132549,
     "currency": "IDR",
     "status": "processing"
   },
@@ -5379,7 +5385,7 @@ curl "https://sandbox.xfers.io/api/v3/support" \
     "account_holder_name": "Ying Ling",
     "bank_abbrev": "MANDIRI",
     "account_no": "038838383884",
-    "amount": 48854, 
+    "amount": 48854,
     "currency": "IDR",
     "status": "resolved"
   }  
@@ -5408,7 +5414,7 @@ Xfers Connect is a set of APIs to gain access to your customers' Xfers account, 
 
 You might use Connect if you:
 
-- Are building a platform that enables e-commerce like Shopify or tackthis. 
+- Are building a platform that enables e-commerce like Shopify or tackthis.
 
 - Need to easily accept payments and pay out your service providers, like Grabtaxi with its drivers or yesHelper with its workers. (You can even create Xfers accounts for your users, so they only ever interact with your platform.)
 
@@ -5502,13 +5508,13 @@ end
 ```java
 Xfers.setSGSandbox();
 String xfersAppApiKey = "Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg";
+String xfersAppSecretKey = "c5535aa2c4d25aa1e18a6a7e421a34e51bda5565";
 
 try {
     System.out.println("Authorizing");
     Map<String, Object> params = new HashMap<String, Object>();
     params.put("phone_no", "+6597288608");
-    params.put("signature", "a4f001729fe3accdbb0d9cfaf3b49b0678a4c91b");
-    Response response = Connect.authorize(params, xfersAppApiKey);
+    Response response = Connect.authorize(params, xfersAppApiKey, xfersAppSecretKey);
     System.out.println(response.getMsg());
 } catch (Exception e) {
     e.printStackTrace();
@@ -5545,7 +5551,7 @@ signature | string | required | SHA1 of phone_no + APP_SECRET_KEY  | Digest::SHA
 curl "https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=%2B6597288608&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91" \
   -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"
 
-# You can now change the X-XFERS-USER-API-KEY to the returned user_api_token 
+# You can now change the X-XFERS-USER-API-KEY to the returned user_api_token
 # and make API calls on behalf of the connect user.
 ```
 
@@ -5564,7 +5570,7 @@ try {
     ), $xfers_app_api_key);
     print_r($resp);
 
-    # You can now call \Xfers\Xfers::setApiKey again to change the X-XFERS-USER-API-KEY to the returned user_api_token 
+    # You can now call \Xfers\Xfers::setApiKey again to change the X-XFERS-USER-API-KEY to the returned user_api_token
     # and make API calls on behalf of the connect user.
     $user_api_token = $resp['user_api_token'];
     \Xfers\Xfers::setApiKey($user_api_token);
@@ -5595,7 +5601,7 @@ try:
     resp = xfconnect.get_token(params, XFERS_APP_API_KEY)
     print resp
 
-    # You can now set xfers.api_key again to change the X-XFERS-USER-API-KEY to the returned user_api_token 
+    # You can now set xfers.api_key again to change the X-XFERS-USER-API-KEY to the returned user_api_token
     # and make API calls on behalf of the connect user.
     xfers.api_key = resp['user_api_token']
     connected_user = xfuser.retrieve()
@@ -5622,7 +5628,7 @@ begin
   user_api_token =  resp[:user_api_token]
   puts resp
 
-  # You can now call Xfers.set_api_key again to change the X-XFERS-USER-API-KEY to the returned user_api_token 
+  # You can now call Xfers.set_api_key again to change the X-XFERS-USER-API-KEY to the returned user_api_token
   # and make API calls on behalf of the connect user.
 
   Xfers.set_api_key user_api_token
@@ -5642,20 +5648,20 @@ end
 ```java
 Xfers.setSGSandbox();
 String xfersAppApiKey = "AeWpKz5cdPoJFUwF53sBee_WsSoqym_hspiX3bcoB_Y";
+String xfersAppSecretKey = "Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg";
 
 try {
     System.out.println("Getting token");
     Map<String, Object> params = new HashMap<String, Object>();
     params.put("otp", "541231");
     params.put("phone_no", "+6597288608");
-    params.put("signature", "132e60cc2b6076824fac1ac4c1bb6b47cc3f9036");
     params.put("return_url", "https://mywebsite.com/api/v3/account_registration/completed");
-    Response response = Connect.getToken(params, xfersAppApiKey);
+    Response response = Connect.getToken(params, xfersAppApiKey, xfersAppSecretKey);
     System.out.println(response.getMsg());
     System.out.println(response.getUserApiToken());
     System.out.println(response.getSignUpUrl());
 
-    // You can now set Xfers.apiKey again to change the X-XFERS-USER-API-KEY to the returned user_api_token 
+    // You can now set Xfers.apiKey again to change the X-XFERS-USER-API-KEY to the returned user_api_token
     // and make API calls on behalf of the connect user.
 
     Xfers.apiKey = response.getUserApiToken();
@@ -5704,7 +5710,7 @@ return_url | string | optional | Url that new user will be redirected after they
 
 
 <aside class="notice">
-Note that the signature required here for /get_token  is different from the one for /signup_login. 
+Note that the signature required here for /get_token  is different from the one for /signup_login.
 </aside>
 
 `/authorize/signup_login` - SHA1 of phone_no + APP_SECRET_KEY
@@ -5714,10 +5720,10 @@ Note that the signature required here for /get_token  is different from the one 
 
 ## What's Next
 
-Now that you have gotten a `user_api_token` linked to your customer, you can 
+Now that you have gotten a `user_api_token` linked to your customer, you can
 
 - Pass this `user_api_token` as params when [creating a charge](/#creating-a-charge) to bypass authentication for your customer
-- Pass this `user_api_token` as params when adding and charging credit cards cards 
+- Pass this `user_api_token` as params when adding and charging credit cards cards
 - Pass this `user_api_token` as params when [creating a payout](/#creating-a-payout) in place of the recipient field
 - Use the header `"X-XFERS-USER-API-KEY": "the user_api_token"` (instead of `"X-XFERS-USER-API-KEY": "your own token"`) to modify [user details] (/#user-account) and [bank accounts](/#bank-account) on behalf of your user
 
@@ -5753,6 +5759,21 @@ curl "https://sandbox.xfers.io/api/v3/authorize/private_wallet"\
 ```
 
 ```java
+
+Xfers.setSGSandbox();
+String xfersAppApiKey = "Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg";
+String xfersAppSecretKey = "c5535aa2c4d25aa1e18a6a7e421a34e51bda5565";
+
+try {
+    System.out.println("Authorizing");
+    Map<String, Object> params = new HashMap<String, Object>();
+    params.put("phone_no", "+6597288608");
+    Response response = Connect.privateAuthorize(params, xfersAppApiKey, xfersAppSecretKey);
+    System.out.println(response.getMsg());
+    System.out.println(response.getUserApiToken());
+} catch (Exception e) {
+    e.printStackTrace();
+}
 
 ```
 
@@ -5804,12 +5825,12 @@ We have created a Postman collection so you can easily test out our APIs. All yo
 
 Xfers Tokenize is a set of SDKs that allow you to collect credit card details without having the sensitive information touch your server. By doing this, you do not have to deal with [PCI compliance issues](https://www.pcisecuritystandards.org/index.php).
 
-Credit card tokenization is the process of sending the credit card information to a PCI compliant party which will store the credit card details on your behalf and return a credit card token. This token can then be used to charge the credit card or to save the card with a user. 
+Credit card tokenization is the process of sending the credit card information to a PCI compliant party which will store the credit card details on your behalf and return a credit card token. This token can then be used to charge the credit card or to save the card with a user.
 
 ##Singapore
-There are two ways of doing this tokenization: 
+There are two ways of doing this tokenization:
 
-1. After [creating a Charge](/#creating-a-charge), a `checkout_url` is returned. If `user_api_token` and `card_only` params are used, the `checkout_url` will lead directly to the credit card form. You can either redirect the user to that page, or embed it as a webview (usually for mobile apps). Thus you are in control of all aspects of the UI except for the credit card form. 
+1. After [creating a Charge](/#creating-a-charge), a `checkout_url` is returned. If `user_api_token` and `card_only` params are used, the `checkout_url` will lead directly to the credit card form. You can either redirect the user to that page, or embed it as a webview (usually for mobile apps). Thus you are in control of all aspects of the UI except for the credit card form.
 2. Use Xfers Tokenize to return a credit card token which you can use to complete a credit card charge, or to add the credit card to your user's account. Xfers Tokenize will make use of the form you created to collect credit card details, so the styling is entirely in your control.
 
 As you can see, the two ways have a tradeoff between UI/UX customization and the amount of technical integration required on your end.  
@@ -5836,6 +5857,3 @@ Coming soon
 ## iOS
 
 Coming soon
-
-
-
