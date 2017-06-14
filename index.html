@@ -54,13 +54,13 @@
 
 <h1 id="introduction">Introduction</h1>
 
-<p>The <strong>Xfers Core API</strong> provides a set of simple RESTFUL APIs to allow businesses to 
-integrate internet banking and credit card payments into your business or applications. </p>
+<p>The <strong>Xfers Core API</strong> provides a set of simple RESTFUL APIs to allow businesses to
+integrate internet banking and credit card payments into your business or applications.</p>
 
-<p>You will make use of the Xfers Core API to manage your own account programmatically. </p>
+<p>You will make use of the Xfers Core API to manage your own account programmatically.</p>
 
-<p><strong>Xfers Connect</strong> is for accepting payments on behalf of others, think of this as a super user that can manage and 
-create accounts on the behalf of others. </p>
+<p><strong>Xfers Connect</strong> is for accepting payments on behalf of others, think of this as a super user that can manage and
+create accounts on the behalf of others.</p>
 
 <p><strong>Official SDKs</strong> for the Xfers API are <a href="https://github.com/Xfers">available in several languages</a>.</p>
 
@@ -70,8 +70,8 @@ create accounts on the behalf of others. </p>
 
 <h1 id="apis-endpoints">APIs endpoints</h1>
 
-<p>Xfers provides a <strong>dedicated sandbox environment</strong> where you can simulate an incoming bank transfer for testing purposes. 
-Note that this feature will not be available in production mode. </p>
+<p>Xfers provides a <strong>dedicated sandbox environment</strong> where you can simulate an incoming bank transfer for testing purposes.
+Note that this feature will not be available in production mode.</p>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
 
@@ -133,15 +133,15 @@ Sandbox and Production are two separate environments. Please ensure your registe
 All the examples code in this document will be pointing to our sandbox endpoint.
 </aside>
 
-<p>Note that all API calls are done through HTTPS, please do not attempt to hit our endpoint via HTTP, as you will also be 
+<p>Note that all API calls are done through HTTPS, please do not attempt to hit our endpoint via HTTP, as you will also be
 exposing your API key in plain text.</p>
 
 <h1 id="xfers-core">Xfers Core</h1>
 
-<p>The <strong>Xfers Core API</strong> provides a set of simple RESTFUL APIs to allow businesses to 
-integrate internet banking and credit card payments into your business or applications. </p>
+<p>The <strong>Xfers Core API</strong> provides a set of simple RESTFUL APIs to allow businesses to
+integrate internet banking and credit card payments into your business or applications.</p>
 
-<p>You will make use of the Xfers Core API to manage your own account programmatically. </p>
+<p>You will make use of the Xfers Core API to manage your own account programmatically.</p>
 
 <h2 id="authentication">Authentication</h2>
 
@@ -271,11 +271,11 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving current user"</span><span class="o">);</span>
-    <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+    <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">retrieve</span><span class="o">(</span><span class="n">apiKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getFirstName</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getDateOfBirth</span><span class="o">());</span>
     <span class="k">for</span> <span class="o">(</span><span class="n">BankAccount</span> <span class="n">bankAccount</span> <span class="o">:</span> <span class="n">user</span><span class="o">.</span><span class="na">getBankAccounts</span><span class="o">())</span> <span class="o">{</span>
@@ -416,7 +416,7 @@ name and bank account information.</p>
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 
 <span class="k">try</span> <span class="o">{</span>
@@ -431,7 +431,7 @@ name and bank account information.</p>
     <span class="n">updateParams</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"identity_no"</span><span class="o">,</span> <span class="s">"s86917127G"</span><span class="o">);</span>
     <span class="n">updateParams</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"country"</span><span class="o">,</span> <span class="s">"sg"</span><span class="o">);</span>
 
-    <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">updateParams</span><span class="o">);</span>
+    <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">updateParams</span><span class="o">,</span><span class="n">apiKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getFirstName</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getLastName</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getDateOfBirth</span><span class="o">());</span>
@@ -707,11 +707,11 @@ All documents/images provided should not exceed 10MB per file.
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving current user activities"</span><span class="o">);</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">Activity</span><span class="o">&gt;</span> <span class="n">activities</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">activities</span><span class="o">();</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Activity</span><span class="o">&gt;</span> <span class="n">activities</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">activities</span><span class="o">(</span><span class="n">apiKey</span><span class="o">);</span>
     <span class="k">for</span> <span class="o">(</span><span class="n">Activity</span> <span class="n">activity</span> <span class="o">:</span> <span class="n">activities</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">activity</span><span class="o">.</span><span class="na">getTransType</span><span class="o">());</span>
         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">activity</span><span class="o">.</span><span class="na">getTransactionItems</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
@@ -839,12 +839,12 @@ All documents/images provided should not exceed 10MB per file.
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving current user transfer info"</span><span class="o">);</span>
-    <span class="n">TransferInfo</span> <span class="n">transferInfo</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">transferInfo</span><span class="o">();</span>
+    <span class="n">TransferInfo</span> <span class="n">transferInfo</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">transferInfo</span><span class="o">(</span><span class="n">apiKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">transferInfo</span><span class="o">.</span><span class="na">getBankNameFull</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">transferInfo</span><span class="o">.</span><span class="na">getBankNameAbbreviation</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">transferInfo</span><span class="o">.</span><span class="na">getBankAccountNo</span><span class="o">());</span>
@@ -885,7 +885,7 @@ All documents/images provided should not exceed 10MB per file.
     </span><span class="s2">"branch_area"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="s2">"unique_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"97288607"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"img_src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://xfers.com/bank-logo-bca.png"</span><span class="w">
-  </span><span class="p">},</span><span class="w"> 
+  </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"bank_name_full"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Mandiri"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bank_name_abbreviation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MANDIRI"</span><span class="p">,</span><span class="w">
@@ -1365,7 +1365,7 @@ All documents/images provided should not exceed 10MB per file.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This request allow you to delete an existing shareholder. </p>
+<p>This request allow you to delete an existing shareholder.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -1496,7 +1496,7 @@ All documents/images provided should not exceed 10MB per file.
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -d <span class="s1">'{"account_no": "03931234323", "bank":"DBS", "account_holder_name": "Tian Wei"}'</span>
+  -d <span class="s1">'{"account_no": "0393123432", "bank":"DBS", "account_holder_name": "Tian Wei"}'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
@@ -1550,14 +1550,15 @@ All documents/images provided should not exceed 10MB per file.
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Adding Bank Account"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"account_no"</span><span class="o">,</span> <span class="s">"03931234323"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"bank"</span><span class="o">,</span> <span class="s">"DBS"</span><span class="o">);</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">BankAccount</span><span class="o">&gt;</span> <span class="n">bankAccounts</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">BankAccount</span><span class="o">&gt;</span> <span class="n">bankAccounts</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">params</span><span class="o">,</span><span class="n">apiKey</span><span class="o">);</span>
     <span class="k">for</span> <span class="o">(</span><span class="n">BankAccount</span> <span class="n">bankAccount</span> <span class="o">:</span> <span class="n">bankAccounts</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">bankAccount</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
     <span class="o">}</span>
@@ -1587,7 +1588,7 @@ All documents/images provided should not exceed 10MB per file.
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>This request will add a new bank account to this Xfers account. You will be able to withdraw your Xfers available balances to these account(s). </p>
+<p>This request will add a new bank account to this Xfers account. You will be able to withdraw your Xfers available balances to these account(s).</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -1685,11 +1686,12 @@ All documents/images provided should not exceed 10MB per file.
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 
 <span class="k">try</span> <span class="o">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">BankAccount</span><span class="o">&gt;</span> <span class="n">bankAccounts</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving Bank Account"</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">BankAccount</span><span class="o">&gt;</span> <span class="n">bankAccounts</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">retrieve</span><span class="o">(</span><span class="n">apiKey</span><span class="o">);</span>
     <span class="k">for</span> <span class="o">(</span><span class="n">BankAccount</span> <span class="n">bankAccount</span> <span class="o">:</span> <span class="n">bankAccounts</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">bankAccount</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
     <span class="o">}</span>
@@ -1750,7 +1752,7 @@ All documents/images provided should not exceed 10MB per file.
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -X PUT <span class="se">\</span>
-  -d <span class="s1">'{"account_no": "03931234321", "bank":"DBS"}'</span>
+  -d <span class="s1">'{"account_no": "0393123432", "bank":"DBS"}'</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
@@ -1802,15 +1804,16 @@ All documents/images provided should not exceed 10MB per file.
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Updating Bank Account"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"account_no"</span><span class="o">,</span> <span class="s">"03931234321"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"bank"</span><span class="o">,</span> <span class="s">"DBS"</span><span class="o">);</span>
 
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">BankAccount</span><span class="o">&gt;</span> <span class="n">bankAccounts</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="s">"&lt;bank_account_id&gt;"</span><span class="o">,</span> <span class="n">params</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">BankAccount</span><span class="o">&gt;</span> <span class="n">bankAccounts</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="s">"&lt;bank_account_id&gt;"</span><span class="o">,</span> <span class="n">params</span><span class="o">,</span> <span class="n">apiKey</span><span class="o">);</span>
     <span class="k">for</span> <span class="o">(</span><span class="n">BankAccount</span> <span class="n">bankAccount</span> <span class="o">:</span> <span class="n">bankAccounts</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">bankAccount</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
     <span class="o">}</span>
@@ -1840,7 +1843,7 @@ All documents/images provided should not exceed 10MB per file.
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>This request allows you to update an existing bank account record. </p>
+<p>This request allows you to update an existing bank account record.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -1939,10 +1942,11 @@ All documents/images provided should not exceed 10MB per file.
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 <span class="k">try</span> <span class="o">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">BankAccount</span><span class="o">&gt;</span> <span class="n">bankAccounts</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">"&lt;bank_account_id&gt;"</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Deleting Bank Account"</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">BankAccount</span><span class="o">&gt;</span> <span class="n">bankAccounts</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">"&lt;bank_account_id&gt;"</span><span class="o">,</span><span class="n">apiKey</span><span class="o">);</span>
     <span class="k">for</span> <span class="o">(</span><span class="n">BankAccount</span> <span class="n">bankAccount</span> <span class="o">:</span> <span class="n">bankAccounts</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">bankAccount</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
     <span class="o">}</span>
@@ -1963,7 +1967,7 @@ All documents/images provided should not exceed 10MB per file.
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>This request allow you to delete an existing bank account record. </p>
+<p>This request allow you to delete an existing bank account record.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -2024,14 +2028,15 @@ All documents/images provided should not exceed 10MB per file.
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Making a withdrawal request"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="s">"50.0"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"express"</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
 
-    <span class="n">Withdrawal</span> <span class="n">withdrawal</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">withdraw</span><span class="o">(</span><span class="s">"&lt;bank_account_id&gt;"</span><span class="o">,</span> <span class="n">params</span><span class="o">);</span>
+    <span class="n">Withdrawal</span> <span class="n">withdrawal</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">withdraw</span><span class="o">(</span><span class="s">"&lt;bank_account_id&gt;"</span><span class="o">,</span> <span class="n">params</span><span class="o">,</span> <span class="n">apiKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">withdrawal</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">withdrawal</span><span class="o">.</span><span class="na">getAccountNo</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">withdrawal</span><span class="o">.</span><span class="na">getBankAbbrev</span><span class="o">());</span>
@@ -2153,10 +2158,11 @@ All documents/images provided should not exceed 10MB per file.
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 <span class="k">try</span> <span class="o">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">Withdrawal</span><span class="o">&gt;</span> <span class="n">withdrawalRequests</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">withdrawalRequests</span><span class="o">(</span><span class="s">"pending"</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Listing all withdrawal request"</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Withdrawal</span><span class="o">&gt;</span> <span class="n">withdrawalRequests</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">withdrawalRequests</span><span class="o">(</span><span class="s">"pending"</span><span class="o">,</span> <span class="n">apiKey</span><span class="o">);</span>
     <span class="k">for</span> <span class="o">(</span><span class="n">Withdrawal</span> <span class="n">withdrawal</span> <span class="o">:</span> <span class="n">withdrawalRequests</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">withdrawal</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
     <span class="o">}</span>
@@ -2402,7 +2408,7 @@ COMING SOON
 
 <h3 id="list-all-prepaid-card">List all Prepaid Card</h3>
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/prepaid"</span> <span class="se">\</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> 
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
 </code></pre>
 <pre class="highlight php"><code>
 COMING SOON
@@ -2430,7 +2436,7 @@ COMING SOON
     </span><span class="s2">"proxy_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"444"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"helloworld"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wirecard_test_0"</span><span class="w">
-  </span><span class="p">},</span><span class="w"> 
+  </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"556"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"proxy_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"454"</span><span class="p">,</span><span class="w">
@@ -2595,6 +2601,8 @@ COMING SOON
 <span class="k">end</span>
 </code></pre>
 <pre class="highlight java"><code><span class="k">try</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Creating a charge"</span><span class="o">);</span>
     <span class="n">Vector</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">items</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vector</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;();</span>
     <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">item</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;();</span>
@@ -2624,7 +2632,7 @@ COMING SOON
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"items"</span><span class="o">,</span> <span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">items</span><span class="o">));</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"meta_data"</span><span class="o">,</span> <span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">meta_data</span><span class="o">));</span>
 
-    <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">apiKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">getAmount</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">getCheckoutUrl</span><span class="o">());</span>
@@ -2699,7 +2707,7 @@ COMING SOON
       </span><span class="s2">"branch_area"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="s2">"unique_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"97288607"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"img_src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://xfers.com/bank-logo-bca.png"</span><span class="w">
-    </span><span class="p">},</span><span class="w"> 
+    </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"bank_name_full"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Mandiri"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"bank_name_abbreviation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MANDIRI"</span><span class="p">,</span><span class="w">
@@ -2933,7 +2941,7 @@ COMING SOON
 
 <h4 id="item-hash">item hash</h4>
 
-<p>You can provide itemized receipt for your customer by giving use informations with regards to each of them in the <code class="prettyprint">items</code> field as a json array of hash. </p>
+<p>You can provide itemized receipt for your customer by giving use informations with regards to each of them in the <code class="prettyprint">items</code> field as a json array of hash.</p>
 
 <p>The below is the list of attribute supported in the hash.</p>
 
@@ -2989,7 +2997,7 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 
 <h4 id="meta-data">meta data</h4>
 
-<p>You can use the <code class="prettyprint">meta_data</code> parameter to attach json data. This is useful for storing additional structured information about the charge. As an example, you could store your user&rsquo;s first name, last name or any corresponding unique identifier from your system a Xfers charge. </p>
+<p>You can use the <code class="prettyprint">meta_data</code> parameter to attach json data. This is useful for storing additional structured information about the charge. As an example, you could store your user&rsquo;s first name, last name or any corresponding unique identifier from your system a Xfers charge.</p>
 
 <p>The description and meta_data you specify is returned in API responses.</p>
 
@@ -3056,7 +3064,7 @@ Please take note that at this point, payment may or may not have been completed 
 
 <h3 id="payment-notifications">Payment Notifications</h3>
 
-<p>After payment has been completed and verified by Xfers backend, Xfers will send a callback to the <code class="prettyprint">notify_url</code> you provided. This is a server to server HTTPS POST and you will need to acknowledge the callback by providing a HTTP 200 status. It is important to take note that this notification can arrive at your server before or after the customer is redirected to the return_url you provided. </p>
+<p>After payment has been completed and verified by Xfers backend, Xfers will send a callback to the <code class="prettyprint">notify_url</code> you provided. This is a server to server HTTPS POST and you will need to acknowledge the callback by providing a HTTP 200 status. It is important to take note that this notification can arrive at your server before or after the customer is redirected to the return_url you provided.</p>
 
 <p><code class="prettyprint">POST https://mysite.com/payment_notification</code></p>
 
@@ -3168,7 +3176,7 @@ Please take note that at this point, payment may or may not have been completed 
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 
 <span class="k">try</span> <span class="o">{</span>
@@ -3178,7 +3186,7 @@ Please take note that at this point, payment may or may not have been completed 
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"currency"</span><span class="o">,</span> <span class="s">"SGD"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"order_id"</span><span class="o">,</span> <span class="s">"A012312"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"status"</span><span class="o">,</span> <span class="s">"paid"</span><span class="o">);</span>
-    <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"&lt;txn_id&gt;"</span><span class="o">,</span> <span class="n">params</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="s">"&lt;txn_id&gt;"</span><span class="o">,</span> <span class="n">params</span><span class="o">,</span> <span class="n">apiKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
@@ -3193,7 +3201,7 @@ Please take note that at this point, payment may or may not have been completed 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>After receiving a payment notification from Xfers, you should do verification with Xfers to confirm that that it did indeed originate from Xfers. The post parameters must include all the fields in the payment notification that was sent from Xfers to you. </p>
+<p>After receiving a payment notification from Xfers, you should do verification with Xfers to confirm that that it did indeed originate from Xfers. The post parameters must include all the fields in the payment notification that was sent from Xfers to you.</p>
 
 <p>Xfers will response with HTTP 200 status and a JSON string { &ldquo;msg&rdquo;: &ldquo;VERIFIED&rdquo; } if the notification is valid or a JSON string { &ldquo;msg&rdquo;: &ldquo;INVALID&rdquo; } when its not.</p>
 
@@ -3250,7 +3258,7 @@ Please take note that at this point, payment may or may not have been completed 
 <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
 
 <span class="k">try</span> <span class="p">{</span>
-    <span class="c1">// You must create the charge with user_phone_no param passed in 
+    <span class="c1">// You must create the charge with user_phone_no param passed in
 </span>    <span class="nv">$chargeId</span> <span class="o">=</span> <span class="s1">'782f2a6e1b5642edb10c8b6b215c4814'</span><span class="p">;</span>
     <span class="nv">$authCode</span> <span class="o">=</span> <span class="s1">'213779'</span><span class="p">;</span>
     <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Charge</span><span class="o">::</span><span class="na">authorize</span><span class="p">(</span><span class="nv">$chargeId</span><span class="p">,</span> <span class="nv">$authCode</span><span class="p">);</span>
@@ -3291,14 +3299,14 @@ Please take note that at this point, payment may or may not have been completed 
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Authorize a charge"</span><span class="o">);</span>
     <span class="n">String</span> <span class="n">chargeId</span> <span class="o">=</span> <span class="s">"236d026fb4a5457ca9f60d3b1e806bbc"</span><span class="o">;</span>
     <span class="n">String</span> <span class="n">authCode</span> <span class="o">=</span> <span class="s">"482729"</span><span class="o">;</span>
-    <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">authorize</span><span class="o">(</span><span class="n">chargeId</span><span class="o">,</span> <span class="n">authCode</span><span class="o">);</span>
+    <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">authorize</span><span class="o">(</span><span class="n">chargeId</span><span class="o">,</span> <span class="n">authCode</span><span class="o">,</span> <span class="n">apiKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
@@ -3417,11 +3425,11 @@ Please take note that at this point, payment may or may not have been completed 
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Cancelling a charge"</span><span class="o">);</span>
-    <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">cancel</span><span class="o">(</span><span class="s">"&lt;CHARGE_ID&gt;"</span><span class="o">);</span>
+    <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">cancel</span><span class="o">(</span><span class="s">"&lt;CHARGE_ID&gt;"</span><span class="o">,</span> <span class="n">apiKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
@@ -3514,11 +3522,11 @@ Please take note that at this point, payment may or may not have been completed 
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
  <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving a charge"</span><span class="o">);</span>
-    <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">retrieve</span><span class="o">(</span><span class="s">"&lt;id&gt;"</span><span class="o">);</span>
+    <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">retrieve</span><span class="o">(</span><span class="s">"&lt;id&gt;"</span><span class="o">,</span> <span class="n">apiKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
@@ -3620,11 +3628,11 @@ Please take note that at this point, payment may or may not have been completed 
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Listing charges without filter"</span><span class="o">);</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">Charge</span><span class="o">&gt;</span> <span class="n">charges</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">listAll</span><span class="o">();</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Charge</span><span class="o">&gt;</span> <span class="n">charges</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">listAll</span><span class="o">(</span><span class="n">apiKey</span><span class="o">);</span>
     <span class="k">for</span> <span class="o">(</span><span class="n">Charge</span> <span class="n">charge</span> <span class="o">:</span> <span class="n">charges</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
         <span class="n">List</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span> <span class="n">items</span> <span class="o">=</span> <span class="n">charge</span><span class="o">.</span><span class="na">getItems</span><span class="o">();</span>
@@ -4403,7 +4411,7 @@ Please take note that at this point, payment may or may not have been completed 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>The following request will allow you to charge a newly obtained credit card token from <a href="/#xfers-tokenize">Xfers Tokenize</a>. This credit card charge is not linked to any user, so you 
+<p>The following request will allow you to charge a newly obtained credit card token from <a href="/#xfers-tokenize">Xfers Tokenize</a>. This credit card charge is not linked to any user, so you
 will not be able to save the token for reuse. Note that each credit card token can only be used once - either charge it directly with this endpoint, or add the token to a user.</p>
 
 <p>One use case is to be able to charge a credit card without the user having to go through OTP, since no Xfers account needs to be created (usually because it is a guest user on your platform and you want to speed up the checkout process).</p>
@@ -4709,7 +4717,7 @@ will not be able to save the token for reuse. Note that each credit card token c
 
 <span class="k">try</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s2">"Charge existing card</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
-    <span class="nv">$chargeId</span> <span class="o">=</span> <span class="s1">'ae9647515a234b95919ce5dbd6e073e8'</span><span class="p">;</span> 
+    <span class="nv">$chargeId</span> <span class="o">=</span> <span class="s1">'ae9647515a234b95919ce5dbd6e073e8'</span><span class="p">;</span>
     <span class="nv">$token</span> <span class="o">=</span> <span class="s1">'47B23760-3073-490D-8AAA-548E83CD29F4'</span><span class="p">;</span>
     <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Card</span><span class="o">::</span><span class="na">chargeExisting</span><span class="p">(</span><span class="nv">$chargeId</span><span class="p">,</span> <span class="nv">$token</span><span class="p">);</span>
     <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
@@ -4770,7 +4778,7 @@ will not be able to save the token for reuse. Note that each credit card token c
 <h3 id="delete-card">Delete Card</h3>
 <pre class="highlight shell"><code>curl -X DELETE <span class="s2">"https://sandbox-id.xfers.com/api/v3/cards/&lt;token&gt;"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span> <span class="se">\</span>
-  -H <span class="s2">"Content-Type: application/json"</span> 
+  -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
 <pre class="highlight php"><code>
 <span class="cp">&lt;?php</span>
@@ -4963,7 +4971,7 @@ Amex = A</p>
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Creating a payout"</span><span class="o">);</span>
@@ -4973,7 +4981,7 @@ Amex = A</p>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"recipient"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"descriptions"</span><span class="o">,</span> <span class="s">"Payment for Rent for July"</span><span class="o">);</span>
 
-    <span class="n">Payout</span> <span class="n">payout</span> <span class="o">=</span> <span class="n">Payout</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="n">Payout</span> <span class="n">payout</span> <span class="o">=</span> <span class="n">Payout</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">params</span><span class="o">,</span><span class="n">apiKey</span><span class="o">);</span>
     <span class="n">payoutId</span> <span class="o">=</span> <span class="n">payout</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getRecipient</span><span class="o">());</span>
@@ -5131,11 +5139,11 @@ Amex = A</p>
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
  <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving a payout"</span><span class="o">);</span>
-    <span class="n">Payout</span> <span class="n">payout</span> <span class="o">=</span> <span class="n">Payout</span><span class="o">.</span><span class="na">retrieve</span><span class="o">(</span><span class="s">"&lt;id&gt;"</span><span class="o">);</span>
+    <span class="n">Payout</span> <span class="n">payout</span> <span class="o">=</span> <span class="n">Payout</span><span class="o">.</span><span class="na">retrieve</span><span class="o">(</span><span class="s">"&lt;id&gt;"</span><span class="o">,</span> <span class="n">apiKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
@@ -5160,7 +5168,7 @@ Amex = A</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retrieves the details of a payout that has previously been created. Supply the unique payout ID that was returned from your previous request, and Xfers will return the corresponding payout information. </p>
+<p>Retrieves the details of a payout that has previously been created. Supply the unique payout ID that was returned from your previous request, and Xfers will return the corresponding payout information.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -5234,14 +5242,14 @@ Amex = A</p>
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Listing payouts"</span><span class="o">);</span>
     <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"recipient"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">Payout</span><span class="o">&gt;</span> <span class="n">payouts</span> <span class="o">=</span> <span class="n">Payout</span><span class="o">.</span><span class="na">listAll</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Payout</span><span class="o">&gt;</span> <span class="n">payouts</span> <span class="o">=</span> <span class="n">Payout</span><span class="o">.</span><span class="na">listAll</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">apiKey</span><span class="o">);</span>
     <span class="k">for</span> <span class="o">(</span><span class="n">Payout</span> <span class="n">payout</span> <span class="o">:</span> <span class="n">payouts</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getInvoiceId</span><span class="o">());</span>
@@ -5375,11 +5383,11 @@ Amex = A</p>
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Refunding a charge"</span><span class="o">);</span>
-    <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">refund</span><span class="o">(</span><span class="s">"&lt;id&gt;"</span><span class="o">);</span>
+    <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">refund</span><span class="o">(</span><span class="s">"&lt;id&gt;"</span><span class="o">,</span> <span class="n">apiKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
@@ -5434,7 +5442,7 @@ Amex = A</p>
 
 <h2 id="intents">Intents</h2>
 
-<p>The Intent API serve two purposes. </p>
+<p>The Intent API serve two purposes.</p>
 
 <ol>
 <li>It allow Xfers to generate unique transfer amount to better identity the owner of incoming transfer when non virtual account system is being used.</li>
@@ -5443,7 +5451,7 @@ Amex = A</p>
 
 <p><b>For user case 1:</b></p>
 
-<p>when a user is performing a top up via <a href="/#get-transfer-info">GET /transfer_info</a>, they might forget to enter their contact number which is needed for our system to identify them. </p>
+<p>when a user is performing a top up via <a href="/#get-transfer-info">GET /transfer_info</a>, they might forget to enter their contact number which is needed for our system to identify them.</p>
 
 <p>The Intents API solves this issue by requiring the user to transfer a unique amount to Xfers which will be used to identify them. The difference between the <code class="prettyprint">unique_amount</code> and the actual <code class="prettyprint">amount</code> will be very small, and Xfers provides the difference for free to the user.</p>
 
@@ -5454,8 +5462,8 @@ Jane wishes to transfer 5000 Indonesian Rupiah via <code class="prettyprint">/in
 
 <ol>
 <li>She makes a HTTP GET request to <code class="prettyprint">/user/transfer_info</code> to get the correct Xfers bank to transfer to (we have many banks!). The response tells her to transfer to Bank Central Asia (BCA).</li>
-<li>She makes a HTTP POST request to create an intent. The response tells her to make a bank transfer of 4999 to Xfers. </li>
-<li>Jane makes a transfer of 4999 to Xfers BCA. Within a few minutes, Xfers detects the transfer and tops up Jane&rsquo;s Xfers account with 5000. Xfers absorbs the difference for free. </li>
+<li>She makes a HTTP POST request to create an intent. The response tells her to make a bank transfer of 4999 to Xfers.</li>
+<li>Jane makes a transfer of 4999 to Xfers BCA. Within a few minutes, Xfers detects the transfer and tops up Jane&rsquo;s Xfers account with 5000. Xfers absorbs the difference for free.</li>
 <li>If <code class="prettyprint">notify_url</code> is given, Xfers will send a callback to this url.</li>
 </ol>
 
@@ -5543,7 +5551,7 @@ Jane wishes to transfer 5000 Indonesian Rupiah via <code class="prettyprint">/in
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Creating an intent"</span><span class="o">);</span>
@@ -5554,16 +5562,15 @@ Jane wishes to transfer 5000 Indonesian Rupiah via <code class="prettyprint">/in
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"request_id"</span><span class="o">,</span> <span class="s">"AZ0001"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"notify_url"</span><span class="o">,</span> <span class="s">"https://mysite.com/topup_notification"</span><span class="o">);</span>
 
-    <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="n">Intent</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="n">Intent</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">apiKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getAmount</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getCurrency</span><span class="o">());</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getBank</span><span class="o">());</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getStatus</span><span class="o">());</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getCheckoutUrl</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getBankName</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getBankAbbrev</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getBankAccountNo</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getRequestId</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getNotifyUrl</span><span class="o">());</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getBankName</span><span class="o">());</span>
 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
 <span class="o">}</span>
@@ -5586,7 +5593,7 @@ Jane wishes to transfer 5000 Indonesian Rupiah via <code class="prettyprint">/in
   </span><span class="s2">"notify_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://mysite.com/topup_notification"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"expiration_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-01T07:46:40Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"transfer_info_array"</span><span class="p">:</span><span class="w"> 
+  </span><span class="s2">"transfer_info_array"</span><span class="p">:</span><span class="w">
   </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"bank_name_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Central Asia"</span><span class="p">,</span><span class="w">
@@ -5768,11 +5775,11 @@ You cannot create more than 1 intents per user (previous old pending intents wil
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Cancelling an intent"</span><span class="o">);</span>
-    <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="n">Intent</span><span class="o">.</span><span class="na">cancel</span><span class="o">(</span><span class="s">"&lt;INTENT_ID&gt;"</span><span class="o">);</span>
+    <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="n">Intent</span><span class="o">.</span><span class="na">cancel</span><span class="o">(</span><span class="s">"&lt;INTENT_ID&gt;"</span><span class="o">,</span> <span class="n">apiKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
@@ -5785,8 +5792,8 @@ You cannot create more than 1 intents per user (previous old pending intents wil
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6f5f85859a51cd08c8ae113412bb72c8"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"request_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0001"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w"> 
-  </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount_to_transfer"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4999"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bank_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Central Asia"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BCA"</span><span class="p">,</span><span class="w">
@@ -5841,20 +5848,19 @@ You cannot create more than 1 intents per user (previous old pending intents wil
   <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
 <span class="k">end</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs"</span><span class="o">;</span>
 <span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving latest intent"</span><span class="o">);</span>
-    <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="n">Intent</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+    <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="n">Intent</span><span class="o">.</span><span class="na">retrieve</span><span class="o">(</span><span class="n">apiKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getAmount</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getCurrency</span><span class="o">());</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getBank</span><span class="o">());</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getStatus</span><span class="o">());</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getCheckoutUrl</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getBankName</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getBankAbbrev</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getBankAccountNo</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getRequestId</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getNotifyUrl</span><span class="o">());</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getBankName</span><span class="o">());</span>
 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
 <span class="o">}</span>
@@ -5887,7 +5893,7 @@ You cannot create more than 1 intents per user (previous old pending intents wil
       </span><span class="s2">"branch_area"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="s2">"unique_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"97288607"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"img_src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://xfers.com/bank-logo-bca.png"</span><span class="w">
-    </span><span class="p">},</span><span class="w"> 
+    </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"bank_name_full"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank Mandiri"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"bank_name_abbreviation"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MANDIRI"</span><span class="p">,</span><span class="w">
@@ -6056,7 +6062,7 @@ You cannot create more than 1 intents per user (previous old pending intents wil
   </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tian Wei"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bank_abbrev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCA"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0124121241"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">132549</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">132549</span><span class="p">,</span><span class="w">
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -6156,7 +6162,7 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
   </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tian Wei"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bank_abbrev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCA"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0124121241"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">132549</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">132549</span><span class="p">,</span><span class="w">
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -6174,7 +6180,7 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
   </span><span class="s2">"bank_abbrev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCA"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0124121241"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resolved"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">132549</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">132549</span><span class="p">,</span><span class="w">
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The bank transfer of Rp 132549 has been detected and credited into tianwei@xfers.io's account"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -6223,7 +6229,7 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
     </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tian Wei"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bank_abbrev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCA"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0124121241"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">132549</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">132549</span><span class="p">,</span><span class="w">
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"processing"</span><span class="w">
   </span><span class="p">},</span><span class="w">
@@ -6235,7 +6241,7 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
     </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ying Ling"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"bank_abbrev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MANDIRI"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"038838383884"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">48854</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">48854</span><span class="p">,</span><span class="w">
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IDR"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resolved"</span><span class="w">
   </span><span class="p">}</span><span class="w">  
@@ -6275,7 +6281,7 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
 <p>You might use Connect if you:</p>
 
 <ul>
-<li><p>Are building a platform that enables e-commerce like Shopify or tackthis. </p></li>
+<li><p>Are building a platform that enables e-commerce like Shopify or tackthis.</p></li>
 <li><p>Need to easily accept payments and pay out your service providers, like Grabtaxi with its drivers or yesHelper with its workers. (You can even create Xfers accounts for your users, so they only ever interact with your platform.)</p></li>
 <li><p>Want to integrate Xfers wallet directly into your mobile or e-commerce app.</p></li>
 </ul>
@@ -6289,7 +6295,7 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
 <p>Write in to us at support@xfers.io to request for your Xfers Connect API Keys.
 You will provided with a pair of keys named <code class="prettyprint">X-XFERS-APP-API-KEY</code> and <code class="prettyprint">X-XFERS-APP-SECRET-KEY</code>.</p>
 
-<p>Xfers Connect expects the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>Xfers Connect expects the API key to be included in the &ldquo;Signup/login to Xfers&rdquo; and &ldquo;Get User API Token&rdquo; process to look like the following:</p>
 
 <p><code class="prettyprint">X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg</code></p>
 
@@ -6353,13 +6359,13 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 </code></pre>
 <pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 <span class="n">String</span> <span class="n">xfersAppApiKey</span> <span class="o">=</span> <span class="s">"Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">xfersAppSecretKey</span> <span class="o">=</span> <span class="s">"c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"</span><span class="o">;</span>
 
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Authorizing"</span><span class="o">);</span>
     <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"phone_no"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
-    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"signature"</span><span class="o">,</span> <span class="s">"a4f001729fe3accdbb0d9cfaf3b49b0678a4c91b"</span><span class="o">);</span>
-    <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">Connect</span><span class="o">.</span><span class="na">authorize</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">xfersAppApiKey</span><span class="o">);</span>
+    <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">Connect</span><span class="o">.</span><span class="na">authorize</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">xfersAppApiKey</span><span class="o">,</span> <span class="n">xfersAppSecretKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getMsg</span><span class="o">());</span>
 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
@@ -6413,7 +6419,7 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&amp;phone_no=%2B6597288608&amp;signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"</span>
 
-<span class="c"># You can now change the X-XFERS-USER-API-KEY to the returned user_api_token </span>
+<span class="c"># You can now change the X-XFERS-USER-API-KEY to the returned user_api_token</span>
 <span class="c"># and make API calls on behalf of the connect user.</span>
 </code></pre>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
@@ -6430,7 +6436,7 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
     <span class="p">),</span> <span class="nv">$xfers_app_api_key</span><span class="p">);</span>
     <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
 
-    <span class="c1"># You can now call \Xfers\Xfers::setApiKey again to change the X-XFERS-USER-API-KEY to the returned user_api_token 
+    <span class="c1"># You can now call \Xfers\Xfers::setApiKey again to change the X-XFERS-USER-API-KEY to the returned user_api_token
 </span>    <span class="c1"># and make API calls on behalf of the connect user.
 </span>    <span class="nv">$user_api_token</span> <span class="o">=</span> <span class="nv">$resp</span><span class="p">[</span><span class="s1">'user_api_token'</span><span class="p">];</span>
     <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setApiKey</span><span class="p">(</span><span class="nv">$user_api_token</span><span class="p">);</span>
@@ -6459,7 +6465,7 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
     <span class="n">resp</span> <span class="o">=</span> <span class="n">xfconnect</span><span class="o">.</span><span class="n">get_token</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">XFERS_APP_API_KEY</span><span class="p">)</span>
     <span class="k">print</span> <span class="n">resp</span>
 
-    <span class="c"># You can now set xfers.api_key again to change the X-XFERS-USER-API-KEY to the returned user_api_token </span>
+    <span class="c"># You can now set xfers.api_key again to change the X-XFERS-USER-API-KEY to the returned user_api_token</span>
     <span class="c"># and make API calls on behalf of the connect user.</span>
     <span class="n">xfers</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">resp</span><span class="p">[</span><span class="s">'user_api_token'</span><span class="p">]</span>
     <span class="n">connected_user</span> <span class="o">=</span> <span class="n">xfuser</span><span class="o">.</span><span class="n">retrieve</span><span class="p">()</span>
@@ -6484,7 +6490,7 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
   <span class="n">user_api_token</span> <span class="o">=</span>  <span class="n">resp</span><span class="p">[</span><span class="ss">:user_api_token</span><span class="p">]</span>
   <span class="nb">puts</span> <span class="n">resp</span>
 
-  <span class="c1"># You can now call Xfers.set_api_key again to change the X-XFERS-USER-API-KEY to the returned user_api_token </span>
+  <span class="c1"># You can now call Xfers.set_api_key again to change the X-XFERS-USER-API-KEY to the returned user_api_token</span>
   <span class="c1"># and make API calls on behalf of the connect user.</span>
 
   <span class="no">Xfers</span><span class="p">.</span><span class="nf">set_api_key</span> <span class="n">user_api_token</span>
@@ -6502,20 +6508,20 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 </code></pre>
 <pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
 <span class="n">String</span> <span class="n">xfersAppApiKey</span> <span class="o">=</span> <span class="s">"AeWpKz5cdPoJFUwF53sBee_WsSoqym_hspiX3bcoB_Y"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">xfersAppSecretKey</span> <span class="o">=</span> <span class="s">"Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"</span><span class="o">;</span>
 
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Getting token"</span><span class="o">);</span>
     <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"otp"</span><span class="o">,</span> <span class="s">"541231"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"phone_no"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
-    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"signature"</span><span class="o">,</span> <span class="s">"132e60cc2b6076824fac1ac4c1bb6b47cc3f9036"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"return_url"</span><span class="o">,</span> <span class="s">"https://mywebsite.com/api/v3/account_registration/completed"</span><span class="o">);</span>
-    <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">Connect</span><span class="o">.</span><span class="na">getToken</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">xfersAppApiKey</span><span class="o">);</span>
+    <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">Connect</span><span class="o">.</span><span class="na">getToken</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">xfersAppApiKey</span><span class="o">,</span> <span class="n">xfersAppSecretKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getMsg</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getUserApiToken</span><span class="o">());</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getSignUpUrl</span><span class="o">());</span>
 
-    <span class="c1">// You can now set Xfers.apiKey again to change the X-XFERS-USER-API-KEY to the returned user_api_token </span>
+    <span class="c1">// You can now set Xfers.apiKey again to change the X-XFERS-USER-API-KEY to the returned user_api_token</span>
     <span class="c1">// and make API calls on behalf of the connect user.</span>
 
     <span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getUserApiToken</span><span class="o">();</span>
@@ -6593,7 +6599,7 @@ Remember to encode the &rsquo;+&rsquo; sign in your phone no during your GET req
 </tbody></table>
 
 <aside class="notice">
-Note that the signature required here for /get_token  is different from the one for /signup_login. 
+Note that the signature required here for /get_token  is different from the one for /signup_login.
 </aside>
 
 <p><code class="prettyprint">/authorize/signup_login</code> - SHA1 of phone_no + APP_SECRET_KEY</p>
@@ -6602,11 +6608,11 @@ Note that the signature required here for /get_token  is different from the one 
 
 <h2 id="what&#39;s-next">What&rsquo;s Next</h2>
 
-<p>Now that you have gotten a <code class="prettyprint">user_api_token</code> linked to your customer, you can </p>
+<p>Now that you have gotten a <code class="prettyprint">user_api_token</code> linked to your customer, you can</p>
 
 <ul>
 <li>Pass this <code class="prettyprint">user_api_token</code> as params when <a href="/#creating-a-charge">creating a charge</a> to bypass authentication for your customer</li>
-<li>Pass this <code class="prettyprint">user_api_token</code> as params when adding and charging credit cards cards </li>
+<li>Pass this <code class="prettyprint">user_api_token</code> as params when adding and charging credit cards cards</li>
 <li>Pass this <code class="prettyprint">user_api_token</code> as params when <a href="/#creating-a-payout">creating a payout</a> in place of the recipient field</li>
 <li>Use the header <code class="prettyprint">&quot;X-XFERS-USER-API-KEY&quot;: &quot;the user_api_token&quot;</code> (instead of <code class="prettyprint">&quot;X-XFERS-USER-API-KEY&quot;: &quot;your own token&quot;</code>) to modify <a href="/#user-account">user details</a> and <a href="/#bank-account">bank accounts</a> on behalf of your user</li>
 </ul>
@@ -6632,6 +6638,21 @@ Note that the signature required here for /get_token  is different from the one 
 <pre class="highlight ruby"><code>
 </code></pre>
 <pre class="highlight java"><code>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="n">String</span> <span class="n">xfersAppApiKey</span> <span class="o">=</span> <span class="s">"Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">xfersAppSecretKey</span> <span class="o">=</span> <span class="s">"c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"</span><span class="o">;</span>
+
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Authorizing"</span><span class="o">);</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"phone_no"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
+    <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">Connect</span><span class="o">.</span><span class="na">privateAuthorize</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">xfersAppApiKey</span><span class="o">,</span> <span class="n">xfersAppSecretKey</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getMsg</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getUserApiToken</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+
 </code></pre>
 
 <blockquote>
@@ -6696,14 +6717,14 @@ Note that the signature required here for /get_token  is different from the one 
 
 <p>Xfers Tokenize is a set of SDKs that allow you to collect credit card details without having the sensitive information touch your server. By doing this, you do not have to deal with <a href="https://www.pcisecuritystandards.org/index.php">PCI compliance issues</a>.</p>
 
-<p>Credit card tokenization is the process of sending the credit card information to a PCI compliant party which will store the credit card details on your behalf and return a credit card token. This token can then be used to charge the credit card or to save the card with a user. </p>
+<p>Credit card tokenization is the process of sending the credit card information to a PCI compliant party which will store the credit card details on your behalf and return a credit card token. This token can then be used to charge the credit card or to save the card with a user.</p>
 
 <h2 id="singapore">Singapore</h2>
 
-<p>There are two ways of doing this tokenization: </p>
+<p>There are two ways of doing this tokenization:</p>
 
 <ol>
-<li>After <a href="/#creating-a-charge">creating a Charge</a>, a <code class="prettyprint">checkout_url</code> is returned. If <code class="prettyprint">user_api_token</code> and <code class="prettyprint">card_only</code> params are used, the <code class="prettyprint">checkout_url</code> will lead directly to the credit card form. You can either redirect the user to that page, or embed it as a webview (usually for mobile apps). Thus you are in control of all aspects of the UI except for the credit card form. </li>
+<li>After <a href="/#creating-a-charge">creating a Charge</a>, a <code class="prettyprint">checkout_url</code> is returned. If <code class="prettyprint">user_api_token</code> and <code class="prettyprint">card_only</code> params are used, the <code class="prettyprint">checkout_url</code> will lead directly to the credit card form. You can either redirect the user to that page, or embed it as a webview (usually for mobile apps). Thus you are in control of all aspects of the UI except for the credit card form.</li>
 <li>Use Xfers Tokenize to return a credit card token which you can use to complete a credit card charge, or to add the credit card to your user&rsquo;s account. Xfers Tokenize will make use of the form you created to collect credit card details, so the styling is entirely in your control.</li>
 </ol>
 
