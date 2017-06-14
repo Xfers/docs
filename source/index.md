@@ -1128,6 +1128,13 @@ curl "https://sandbox.xfers.io/api/v3/banks" \
 ```
 
 ```java
+
+System.out.println("Listing all available xfers Banks");
+List<BankAccount> bankAccounts = BankAccount.availableBanks();
+for (BankAccount bankAccount : bankAccounts) {
+    System.out.println(bankAccount.toString());
+}
+
 ```
 
 > Response:
