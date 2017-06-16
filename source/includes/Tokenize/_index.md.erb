@@ -1,0 +1,47 @@
+# Xfers Tokenize
+
+> Tokenized credit card response
+
+```json
+{
+  "first6": "424242",
+  "last4": "4242",
+  "credit_card_token": "tok_197O8gB8MXWbQJDjPMILsIr6"
+}
+```
+
+
+Xfers Tokenize is a set of SDKs that allow you to collect credit card details without having the sensitive information touch your server. By doing this, you do not have to deal with [PCI compliance issues](https://www.pcisecuritystandards.org/index.php).
+
+Credit card tokenization is the process of sending the credit card information to a PCI compliant party which will store the credit card details on your behalf and return a credit card token. This token can then be used to charge the credit card or to save the card with a user.
+
+##Singapore
+There are two ways of doing this tokenization:
+
+1. After [creating a Charge](/#creating-a-charge), a `checkout_url` is returned. If `user_api_token` and `card_only` params are used, the `checkout_url` will lead directly to the credit card form. You can either redirect the user to that page, or embed it as a webview (usually for mobile apps). Thus you are in control of all aspects of the UI except for the credit card form.
+2. Use Xfers Tokenize to return a credit card token which you can use to complete a credit card charge, or to add the credit card to your user's account. Xfers Tokenize will make use of the form you created to collect credit card details, so the styling is entirely in your control.
+
+As you can see, the two ways have a tradeoff between UI/UX customization and the amount of technical integration required on your end.  
+
+There are two ways of using the tokenized credit card response.
+
+1. Use [Charge Guest Card](/#charge-guest-card) to charge this credit card for guest user. This can be done on the client side and does not need API key authentication
+2. Send the response to your server and [add the card](/#add-a-card) to your user
+
+##Indonesia
+- Use [Indonesia Xfers.js](https://github.com/Xfers/xfers-indo.js) to redirect your customers to the credit card form
+- To use a saved credit card token, retrieve the list of cards saved from the [Cards API](#cards-(indonesia)). Make this API call in your backend, then pass the result to frontend.
+- Let your user select the appropriate card, and pass the token to `Xfers.chargeCard` in Xfers.js
+
+## Web
+
+[Singapore Xfers.js](https://github.com/Xfers/xfers.js) is our client-side Javascript library for credit card tokenization.
+[Indonesia Xfers.js](https://github.com/Xfers/xfers-indo.js) is our client-side Javascript library for credit card tokenization.
+
+## Android
+
+Coming soon
+
+## iOS
+
+Coming soon

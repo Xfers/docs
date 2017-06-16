@@ -1,0 +1,74 @@
+# Xfers Connect (Private)
+
+Xfers Connect (Private) works exactly the same as Xfers Connect. The only difference is that instead of getting a shared Xfers wallet (which other merchants might use), you get a private wallet unique to your platform.
+
+No OTP is needed in the creation of this wallet.
+
+Please contact support@xfers.io to enable this feature for you.
+
+
+## Signup/login to Private Wallet
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/authorize/private_wallet"\
+  -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"\
+  -H "Content-Type: application/json" \
+  -d '{"phone_no" : "+6597288608", "signature" : "c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"}'
+```
+
+```php
+
+```
+
+```python
+
+```
+
+```ruby
+
+```
+
+```java
+
+Xfers.setSGSandbox();
+String xfersAppApiKey = "Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg";
+String xfersAppSecretKey = "c5535aa2c4d25aa1e18a6a7e421a34e51bda5565";
+
+try {
+    System.out.println("Authorizing");
+    Map<String, Object> params = new HashMap<String, Object>();
+    params.put("phone_no", "+6597288608");
+    Response response = Connect.privateAuthorize(params, xfersAppApiKey, xfersAppSecretKey);
+    System.out.println(response.getMsg());
+    System.out.println(response.getUserApiToken());
+} catch (Exception e) {
+    e.printStackTrace();
+}
+
+```
+
+> Response
+
+```json
+  {
+    "msg": "success",
+    "user_api_token": "1DnsZkv3qXwKx4EAdps8AJ8jXCPsxP2sKSygMHTAFLM"
+  }
+```
+
+This API call will attempt to login (if there is an existing private wallet) or signup a new private wallet for that user, tied to your platform.
+
+
+### HTTPS Request
+
+`POST https://sandbox.xfers.io/api/v3/authorize/private_wallet`
+
+
+### URL Parameters
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+phone_no | string | required | User mobile no | +6597288608
+signature | string | required | SHA1 of phone_no + APP_SECRET_KEY  | Digest::SHA1.hexdigest("+6597288608xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU") = c5535aa2c4d25aa1e18a6a7e421a34e51bda5565
+
+

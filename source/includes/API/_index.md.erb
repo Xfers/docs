@@ -1,0 +1,76 @@
+# APIs endpoints
+
+Xfers provides a **dedicated sandbox environment** where you can simulate an incoming bank transfer for testing purposes.
+Note that this feature will not be available in production mode.
+
+```php
+<?php
+require_once('vendor/autoload.php');
+
+# SG: Singapore
+# ID: Indonesia
+# Set one of the following endpoints below:
+\Xfers\Xfers::setSGProduction();
+\Xfers\Xfers::setSGSandbox();
+\Xfers\Xfers::setIDProduction();
+\Xfers\Xfers::setIDSandbox();
+```
+
+```python
+# SG: Singapore
+# ID: Indonesia
+# Set one of the following endpoints below:
+import xfers
+xfers.set_sg_production()
+xfers.set_sg_sandbox()
+xfers.set_id_production()
+xfers.set_id_sandbox()
+```
+
+```ruby
+# SG: Singapore
+# ID: Indonesia
+# Set one of the following endpoints below:
+require 'xfers'
+Xfers.set_sg_production
+Xfers.set_sg_sandbox
+Xfers.set_id_production
+Xfers.set_id_sandbox
+```
+
+```java
+// SG: Singapore
+// ID: Indonesia
+// Set one of the following endpoints below:
+Xfers.setSGProduction();
+Xfers.setSGSandbox();
+Xfers.setIDProduction();
+Xfers.setIDSandbox();
+```
+
+For testing purposes, we highly recommend that your head over to [sandbox.xfers.io](https://sandbox.xfers.io) and create a sandbox account.
+
+While in testing mode, point to our sandbox API endpoint at:
+
+Singapore:
+`https://sandbox.xfers.io/api/v3`
+
+Indonesia:`https://sandbox-id.xfers.com/api/v3`
+
+To switch to production, point to our production API endpoint at:
+
+Singapore: `https://www.xfers.io/api/v3`
+
+Indonesia: `https://id.xfers.com/api/v3`
+
+
+<aside class="notice">
+Sandbox and Production are two separate environments. Please ensure your register for an account at EACH environment and use their individual API Key.
+</aside>
+
+<aside class="notice">
+All the examples code in this document will be pointing to our sandbox endpoint.
+</aside>
+
+Note that all API calls are done through HTTPS, please do not attempt to hit our endpoint via HTTP, as you will also be
+exposing your API key in plain text.
