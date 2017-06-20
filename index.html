@@ -16,43 +16,9 @@
         $(function() {
           setupLanguages(["shell","php","python","ruby","java"]);
         });
-
       </script>
   </head>
-<style>
-/* The programmer doesn't know how to use sass yet*/
 
-.btn-group button {
-    background-color: #4CAF50; /* Green background */
-    border: 1px solid green; /* Green border */
-    color: white; /* White text */
-    cursor: pointer; /* Pointer/hand icon */
-    float: left; /* Float the buttons side by side */
-    font-size:80%;
-}
-
-/* Clear floats (clearfix hack) */
-.btn-group:after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-.btn-group button:not(:last-child) {
-    border-right: none; /* Prevent double borders */
-}
-
-/* Add a background color on hover */
-.btn-group button:hover {
-    background-color: #3e8e41;
-}
-.center {
-  display: table;
-  margin: auto;
-  margin-bottom: 10px;
-}
-
-</style>
   <body class="index">
     <a href="#" id="nav-button">
       <span>
@@ -69,18 +35,6 @@
               <a href="#" data-language-name="ruby">ruby</a>
               <a href="#" data-language-name="java">java</a>
         </div>
-      <div class="key-replace">
-        <input type="text" class="key-replace" placeholder="Your API Key (replace)">
-      </div>
-          <button type="button" class="center" id="replaceApiKey">Replace</button>
-
-      <div class="btn-group">
-            <button type="button" onclick="changeEndpoint('sandbox','sg')">Sandbox SG</button>
-            <button type="button" onclick="changeEndpoint('sandbox','id')">Sandbox ID</button>
-            <button type="button" onclick="changeEndpoint('production','sg')">Production SG</button>
-            <button type="button" onclick="changeEndpoint('production','id')">Production ID</button>
-      </div>
-
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
