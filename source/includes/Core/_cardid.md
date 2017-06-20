@@ -159,7 +159,7 @@ token | string | required | The credit card token | 47B23760-3073-490D-8AAA-548E
 
 ```shell
 curl -X DELETE "https://sandbox-id.xfers.com/api/v3/cards/<token>" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
   -H "Content-Type: application/json"
 ```
 

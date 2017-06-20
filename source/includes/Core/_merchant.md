@@ -6,7 +6,7 @@ The merchant API supports querying and making changes to a user's business detai
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/merchant" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
 ```
 
 ```php
@@ -63,7 +63,7 @@ This endpoint returns merchant information related to your account.
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/merchant" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
   -H "Content-Type: application/json" \
   -X PUT \
   -d '{"business_id": "53348831Z", "business_name": "Alpha Events", "business_type": "Private Company"}'
@@ -140,7 +140,7 @@ bizfile_document | string | optional | URL storing the ACRA Bizfile document as 
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/merchant/shareholder" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
   -H "Content-Type: application/json" \
   -d '{"firstName": "wenbin", "lastName": "tay", "nricNumber": "Blk 712 loyang Avenue 5", "dateOfBirth": "#01-41", "nationality": "Singaporean", "postalCode": "340712", "nricNumber": "s86917127G", "businessType": "Private Company", "businessPosition": "Director", "phoneNumber":"+6583004848"}'
 ```
@@ -218,7 +218,7 @@ businessPosition | string | required | Business position | "Owner", "Partner", "
 
 ```shell
 curl -X DELETE "https://sandbox.xfers.io/api/v3/merchant/shareholder/<shareholder_nric_number>" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
 ```
 
 ```php

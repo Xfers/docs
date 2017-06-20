@@ -6,14 +6,14 @@ The account info API supports querying and making changes to a User's account.
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
 ```
 
 ```php
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
 \Xfers\Xfers::setSGSandbox();
 $resp = \Xfers\User::retrieve();
 print_r($resp);
@@ -24,7 +24,7 @@ print_r($resp);
 import xfers
 from xfers import xfuser
 from xfers import error
-xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 xfers.set_sg_sandbox()
 try:
     print 'Retrieving user...'
@@ -44,7 +44,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 Xfers.set_sg_sandbox
 begin
   puts 'Retrieving user...'
@@ -59,7 +59,7 @@ end
 ```
 
 ```java
-String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 Xfers.setSGSandbox();
 try {
     System.out.println("Retrieving current user");
@@ -130,7 +130,7 @@ name and bank account information.
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
   -H "Content-Type: application/json" \
   -X PUT \
   -d '{"first_name": "wenbin", "last_name": "tay", "address_line_1": "Blk 712 loyang Avenue 5", "address_line_2": "#01-41", "nationality": "Singaporean", "postal_code": "340712", "identity_no": "s86917127G", "country": "sg"}'
@@ -140,7 +140,7 @@ curl "https://sandbox.xfers.io/api/v3/user" \
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
 \Xfers\Xfers::setSGSandbox();
 $resp = \Xfers\User::update(array(
     'first_name' => 'wenbin',
@@ -161,7 +161,7 @@ import xfers
 from xfers import xfuser
 from xfers import error
 
-xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 xfers.set_sg_sandbox()
 
 try:
@@ -189,7 +189,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 Xfers.set_sg_sandbox
 
 begin
@@ -215,7 +215,7 @@ end
 ```
 
 ```java
-String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 Xfers.setSGSandbox();
 
 try {
@@ -333,14 +333,14 @@ The activities API only supports querying of a user's activity.
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/activities" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
 ```
 
 ```php
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
 \Xfers\Xfers::setSGSandbox();
 $resp = \Xfers\User::activities();
 print_r($resp);
@@ -350,7 +350,7 @@ print_r($resp);
 import xfers
 from xfers import xfuser
 from xfers import error
-xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 xfers.set_sg_sandbox()
 try:
     print 'Getting activities...'
@@ -364,7 +364,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 Xfers.set_sg_sandbox
 
 begin
@@ -379,7 +379,7 @@ end
 ```
 
 ```java
-String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 Xfers.setSGSandbox();
 try {
     System.out.println("Retrieving current user activities");
@@ -463,14 +463,14 @@ limit | integer | optional | Max number of results to return | 50 (default)
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/transfer_info" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
 ```
 
 ```php
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
 \Xfers\Xfers::setSGSandbox();
 $resp = \Xfers\User::transferInfo();
 print_r($resp);
@@ -481,7 +481,7 @@ import xfers
 from xfers import xfuser
 from xfers import error
 
-xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 xfers.set_sg_sandbox()
 
 try:
@@ -495,7 +495,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 Xfers.set_sg_sandbox
 
 begin
@@ -508,7 +508,7 @@ end
 ```
 
 ```java
-String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 Xfers.setSGSandbox();
 
 try {
@@ -685,7 +685,7 @@ details | Additional details. For deposit, it would be the bank the user did a t
 
 ```shell
 curl -X DELETE "https://sandbox.xfers.io/api/v3/user/balance_callback" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
 ```
 
 > Response:

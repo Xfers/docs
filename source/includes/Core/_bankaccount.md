@@ -6,7 +6,7 @@ The follow APIs allow you to add or update your bank account info and fetch a li
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/banks" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
 ```
 
 ```php
@@ -20,7 +20,7 @@ curl "https://sandbox.xfers.io/api/v3/banks" \
 ```
 
 ```java
-String apiKey = "G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo";
+String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 
 System.out.println("Listing all available xfers Banks");
 
@@ -139,7 +139,7 @@ This will provide you with a list of banks we support.
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/bank_account" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
   -H "Content-Type: application/json" \
   -d '{"account_no": "0393123432", "bank":"DBS", "account_holder_name": "Tian Wei"}'
 ```
@@ -148,7 +148,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account" \
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
 \Xfers\Xfers::setSGSandbox();
 try {
     $resp = \Xfers\BankAccount::add(array(
@@ -166,7 +166,7 @@ import xfers
 from xfers import xfbankaccount
 from xfers import error
 
-xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 xfers.set_sg_sandbox()
 
 try:
@@ -185,7 +185,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 Xfers.set_sg_sandbox
 
 begin
@@ -203,7 +203,7 @@ end
 ```
 
 ```java
-String apiKey = "G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo";
+String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 Xfers.setSGSandbox();
 
 try {
@@ -269,14 +269,14 @@ account_holder_name | string | optional | Name of bank account holder | Tian Wei
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/bank_account" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
 ```
 
 ```php
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
 \Xfers\Xfers::setSGSandbox();
 try {
     $resp = \Xfers\BankAccount::retrieve();
@@ -291,7 +291,7 @@ import xfers
 from xfers import xfbankaccount
 from xfers import error
 
-xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 xfers.set_sg_sandbox()
 
 try:
@@ -306,7 +306,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 Xfers.set_sg_sandbox
 
 begin
@@ -320,7 +320,7 @@ end
 ```
 
 ```java
-String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 Xfers.setSGSandbox();
 
 try {
@@ -373,7 +373,7 @@ usage | string | optional | type of bank account | Either "funding_source” or 
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
   -H "Content-Type: application/json" \
   -X PUT \
   -d '{"account_no": "0393123432", "bank":"DBS"}'
@@ -383,7 +383,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>" \
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
 \Xfers\Xfers::setSGSandbox();
 try {
     $resp = \Xfers\BankAccount::update('<bank_account_id>', array(
@@ -401,7 +401,7 @@ import xfers
 from xfers import xfbankaccount
 from xfers import error
 
-xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 xfers.set_sg_sandbox()
 
 try:
@@ -419,7 +419,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 Xfers.set_sg_sandbox
 
 begin
@@ -436,7 +436,7 @@ end
 ```
 
 ```java
-String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 Xfers.setSGSandbox();
 
 try {
@@ -501,14 +501,14 @@ account_holder_name | string | optional | Name of bank account holder | Tian Wei
 
 ```shell
 curl -X DELETE "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
 ```
 
 ```php
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
 \Xfers\Xfers::setSGSandbox();
 try {
     $resp = \Xfers\BankAccount::delete('<bank_account_id>');
@@ -522,7 +522,7 @@ try {
 import xfers
 from xfers import xfbankaccount
 from xfers import error
-xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 xfers.set_sg_sandbox()
 try:
     print 'Deleting bank account {}...'.format('<bank_account_id>')
@@ -535,7 +535,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 Xfers.set_sg_sandbox
 
 begin
@@ -548,7 +548,7 @@ end
 ```
 
 ```java
-String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 Xfers.setSGSandbox();
 try {
     System.out.println("Deleting Bank Account");
@@ -588,7 +588,7 @@ List of all bank accounts belonging to user.
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>/withdraw" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
   -H "Content-Type: application/json" \
   -d '{"amount": "50.0"}'
 ```
@@ -597,7 +597,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/<bank_account_id>/withdr
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
 \Xfers\Xfers::setSGSandbox();
 try {
     $resp = \Xfers\BankAccount::withdraw('<bank_account_id>', array(
@@ -613,7 +613,7 @@ try {
 import xfers
 from xfers import xfbankaccount
 from xfers import error
-xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 xfers.set_sg_sandbox()
 try:
     print 'Withdrawing from bank account {}...'.format('<bank_account_id>')
@@ -629,7 +629,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 Xfers.set_sg_sandbox
 
 begin
@@ -645,7 +645,7 @@ end
 ```
 
 ```java
-String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 Xfers.setSGSandbox();
 try {
     Map<String, Object> params = new HashMap<String, Object>();
@@ -725,14 +725,14 @@ payout_invoice_id | string | required | Unique ref no provided by merchant. This
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdraw_requests" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
 ```
 
 ```php
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
+\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
 \Xfers\Xfers::setSGSandbox();
 try {
     $resp = \Xfers\BankAccount::withdrawalRequests(array(
@@ -748,7 +748,7 @@ try {
 import xfers
 from xfers import xfbankaccount
 from xfers import error
-xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 xfers.set_sg_sandbox()
 try:
     print 'Listing withdrawal requests...'
@@ -765,7 +765,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
+Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 Xfers.set_sg_sandbox
 
 begin
@@ -781,7 +781,7 @@ end
 ```
 
 ```java
-String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 Xfers.setSGSandbox();
 try {
     System.out.println("Listing all withdrawal request");
