@@ -588,13 +588,6 @@ On your User Interface, instruct the user to make a bank transfer to the bank na
 `GET https://sandbox.xfers.io/api/v3/user/transfer_info`
 
 
-#### Query Parameters
-
-Name | Type | Required | Description | Value
----- | ---- | -------- | ----------- | -----
-all | boolean | optional | Return an array of all banks available. Only for Indonesia | true (defaults to false)
-
-
 ### Register Updates Callback - Coming soon
 
 ```shell
