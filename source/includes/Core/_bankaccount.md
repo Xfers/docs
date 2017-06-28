@@ -700,7 +700,7 @@ Standard withdrawal takes 2-3 business day to arrive at recipient bank.
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-amount | string | required | Amount to withdraw in SGD | 50.0
+amount | string | required | Amount to withdraw | 50.0
 express | string | optional | Default to 'false' | 50.0
 
 ### List Withdrawal Request
