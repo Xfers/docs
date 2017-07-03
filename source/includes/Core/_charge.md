@@ -603,13 +603,30 @@ try {
   "meta_data" : {
     "firstname":"Tianwei",
     "lastname": "Liu"
+  },
+   "transfer_info": {
+    "bank_name_full": "Oversea-Chinese Banking Corporation Limited",
+    "bank_name_abbreviation": "OCBC",
+    "bank_account_no": "646004424001",
+    "bank_code": "7339",
+    "branch_code": "646",
+    "branch_area": "Jurong East",
+    "unique_id": "89898989",
+    "outstanding_amount": {
+      "total": 9.99,
+      "total_txn": 9.99,
+      "bank_unique_amt": 9.99,
+      "bank_discount": 0.0
+    }
   }
 }
 ```
 
 Authorize a previously created charge. This is an optional process that will allow buyer to skip the sign in flow on Xfers, allowing checkout to be completed on merchant site. If a correct auth_code is provided, the charge will immediately become "accepted" by the buyer.
 
-This endpoint is only used if `user_phone_no` param was passed in during charge creation.
+This endpoint is only used if `user_phone_no` param was passed in during charge creation. The response will return the `transfer_info` object containing information the bank the user should transfer to. If multiple banks are available, the `transfer_info_array` will also be returned.
+
+
 
 #### HTTPS Request
 
