@@ -3012,7 +3012,7 @@ COMING SOON
 
 <h4 id="create-charge-response">Create Charge Response</h4>
 
-<p>If a customer is given, ( through <code class="prettyprint">user_api_token</code> or <code class="prettyprint">customer</code> or <code class="prettyprint">user_phone_no</code>) and the user has insufficient xfers wallet balance, the response will return the <code class="prettyprint">transfer_info</code> object containing information about the bank the user should transfer to. If multiple banks are available, the <code class="prettyprint">transfer_info_array</code> will also be returned.</p>
+<p>If a <code class="prettyprint">user_api_token</code> is given and the user has insufficient xfers wallet balance, the response will return the <code class="prettyprint">transfer_info</code> object containing information about the bank the user should transfer to. If multiple banks are available, the <code class="prettyprint">transfer_info_array</code> will also be returned.</p>
 
 <p>Xfers might use a <code class="prettyprint">bank_unique_amt</code> to help in identifying the bank transfer in case the user forgets to enter his contact number in the comments section. This is a random amount with very small difference from actual amount(a few cents) which Xfers will absorb. However this is only to be used as a backup; the user should always enter his contact number.</p>
 
