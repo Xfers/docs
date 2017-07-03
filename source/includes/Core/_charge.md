@@ -286,7 +286,7 @@ skip_notifications | boolean | optional | Setting this to true will not send tra
 
 #### Create Charge Response
 
-If a customer is given, ( through `user_api_token` or `customer` or `user_phone_no`) and the user has insufficient xfers wallet balance, the response will return the `transfer_info` object containing information about the bank the user should transfer to. If multiple banks are available, the `transfer_info_array` will also be returned.
+If a `user_api_token` is given and the user has insufficient xfers wallet balance, the response will return the `transfer_info` object containing information about the bank the user should transfer to. If multiple banks are available, the `transfer_info_array` will also be returned.
 
 Xfers might use a `bank_unique_amt` to help in identifying the bank transfer in case the user forgets to enter his contact number in the comments section. This is a random amount with very small difference from actual amount(a few cents) which Xfers will absorb. However this is only to be used as a backup; the user should always enter his contact number.
 
