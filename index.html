@@ -3469,13 +3469,28 @@ Please take note that at this point, payment may or may not have been completed 
   </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"firstname"</span><span class="p">:</span><span class="s2">"Tianwei"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Liu"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"transfer_info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"bank_name_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Oversea-Chinese Banking Corporation Limited"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_name_abbreviation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OCBC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646004424001"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bank_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7339"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"branch_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"branch_area"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jurong East"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unique_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"89898989"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"outstanding_amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_txn"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_unique_amt"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bank_discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <p>Authorize a previously created charge. This is an optional process that will allow buyer to skip the sign in flow on Xfers, allowing checkout to be completed on merchant site. If a correct auth_code is provided, the charge will immediately become &ldquo;accepted&rdquo; by the buyer.</p>
 
-<p>This endpoint is only used if <code class="prettyprint">user_phone_no</code> param was passed in during charge creation.</p>
+<p>This endpoint is only used if <code class="prettyprint">user_phone_no</code> param was passed in during charge creation. The response will return the <code class="prettyprint">transfer_info</code> object containing information the bank the user should transfer to. If multiple banks are available, the <code class="prettyprint">transfer_info_array</code> will also be returned.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
