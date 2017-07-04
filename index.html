@@ -1427,9 +1427,11 @@ All documents/images provided should not exceed 10MB per file.
 
 <pre class="highlight ruby"><code></code></pre>
 
-<pre class="highlight java"><code>
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo"</span><span class="o">;</span>
+
 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Listing all available xfers Banks"</span><span class="o">);</span>
-<span class="n">List</span><span class="o">&lt;</span><span class="n">BankAccount</span><span class="o">&gt;</span> <span class="n">bankAccounts</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">availableBanks</span><span class="o">();</span>
+
+<span class="n">List</span><span class="o">&lt;</span><span class="n">BankAccount</span><span class="o">&gt;</span> <span class="n">bankAccounts</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">availableBanks</span><span class="o">(</span><span class="n">apiKey</span><span class="o">);</span>
 <span class="k">for</span> <span class="o">(</span><span class="n">BankAccount</span> <span class="n">bankAccount</span> <span class="o">:</span> <span class="n">bankAccounts</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">bankAccount</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
 <span class="o">}</span>
