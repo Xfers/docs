@@ -1,6 +1,12 @@
 ## Refunds
 
-The following APIs allow you to refund a charge that has previously been created and paid by your buyer. Funds will be refunded to the buyer's Xfers account. The fees you were originally charged are also refunded.
+The following APIs allow you to refund a charge that has previously been created and paid by your buyer. 
+
+For bank transfer transaction, funds will be refunded to the buyer's Xfers account. The fees you were originally charged are also refunded.
+
+For credit card (SG) transaction, refund will be done directly to the credit card account and customer will be able to see it in 5-10 business days. Once issued, credit card refund cannot be canceled.
+
+For credit card (ID) transaction, refund is not yet available.
 
 ### Creating a Refund
 
