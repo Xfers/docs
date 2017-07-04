@@ -20,9 +20,11 @@ curl "https://sandbox.xfers.io/api/v3/banks" \
 ```
 
 ```java
+String apiKey = "G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo";
 
 System.out.println("Listing all available xfers Banks");
-List<BankAccount> bankAccounts = BankAccount.availableBanks();
+
+List<BankAccount> bankAccounts = BankAccount.availableBanks(apiKey);
 for (BankAccount bankAccount : bankAccounts) {
     System.out.println(bankAccount.toString());
 }
