@@ -688,11 +688,13 @@ try {
 }
 ```
 
-This will make a withdrawal request to the bank account given, provided that your account have sufficient available balance.
+This will make a withdrawal request to the bank account given, provided that your account has sufficient available balance.
 
 For same day withdrawal(additional fees applies), set 'express' field to true. Funds will arrive at recipient bank within 24 hrs.
 
 Standard withdrawal takes 2-3 business day to arrive at recipient bank.
+
+If you wish to withdraw to a bank account not belonging to you, simply put the user's `bank_account_id` in the URL and his `user_api_token` in the params. 
 
 #### HTTPS Request
 
@@ -703,7 +705,8 @@ Standard withdrawal takes 2-3 business day to arrive at recipient bank.
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 amount | string | required | Amount to withdraw | 50.0
-express | string | optional | Default to 'false' | 50.0
+express | string | optional | Default to 'false' | true
+user_api_token | string | optional | Use this param if you want to withdraw to another user's bank account instead of your own. | efgowZwKoMoPL_dxV7zpuoakM7STLb14uQrtX4J2F4o
 
 ### List Withdrawal Request
 
