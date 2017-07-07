@@ -694,7 +694,6 @@ For same day withdrawal(additional fees applies), set 'express' field to true. F
 
 Standard withdrawal takes 2-3 business day to arrive at recipient bank.
 
-If you wish to withdraw to a bank account not belonging to you, simply put the user's `bank_account_id` in the URL and his `user_api_token` in the params. 
 
 #### HTTPS Request
 
@@ -706,7 +705,21 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 amount | string | required | Amount to withdraw | 50.0
 express | string | optional | Default to 'false' | true
-user_api_token | string | optional | Use this param if you want to withdraw to another user's bank account instead of your own. | efgowZwKoMoPL_dxV7zpuoakM7STLb14uQrtX4J2F4o
+
+
+#### Withdrawing on behalf
+
+If you wish to withdraw to a bank account not belonging to you, add in two additional params. 
+(1) The user's `user_api_token` 
+(2) A unique `payout_invoice_id` in the params. 
+
+Behind the scenes, Xfers does a payout of funds from your Xfers account to that user's Xfers account, followed by a withdrawal. This is required for compliance purposes as we cannot directly withdraw funds to a bank account not belonging to you.
+
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+user_api_token | string | required | Use this param if you want to withdraw to another user's bank account instead of your own. | efgowZwKoMoPL_dxV7zpuoakM7STLb14uQrtX4J2F4o
+payout_invoice_id | string | required | Unique ref no provided by merchant. This will need to be unique. | AZ0001
 
 ### List Withdrawal Request
 
