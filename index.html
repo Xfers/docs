@@ -2150,8 +2150,6 @@ All documents/images provided should not exceed 10MB per file.
 
 <p>Standard withdrawal takes 2-3 business day to arrive at recipient bank.</p>
 
-<p>If you wish to withdraw to a bank account not belonging to you, simply put the user&rsquo;s <code class="prettyprint">bank_account_id</code> in the URL and his <code class="prettyprint">user_api_token</code> in the params. </p>
-
 <h4 id="https-request">HTTPS Request</h4>
 
 <p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/user/bank_account/&lt;bank_account_id&gt;/withdraw</code></p>
@@ -2181,12 +2179,38 @@ All documents/images provided should not exceed 10MB per file.
 <td>Default to &lsquo;false&rsquo;</td>
 <td>true</td>
 </tr>
+</tbody></table>
+
+<h4 id="withdrawing-on-behalf">Withdrawing on behalf</h4>
+
+<p>If you wish to withdraw to a bank account not belonging to you, add in two additional params. 
+(1) The user&rsquo;s <code class="prettyprint">user_api_token</code> 
+(2) A unique <code class="prettyprint">payout_invoice_id</code> in the params. </p>
+
+<p>Behind the scenes, Xfers does a payout of funds from your Xfers account to that user&rsquo;s Xfers account, followed by a withdrawal. This is required for compliance purposes as we cannot directly withdraw funds to a bank account not belonging to you.</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
 <tr>
 <td>user_api_token</td>
 <td>string</td>
-<td>optional</td>
+<td>required</td>
 <td>Use this param if you want to withdraw to another user&rsquo;s bank account instead of your own.</td>
 <td>efgowZwKoMoPL_dxV7zpuoakM7STLb14uQrtX4J2F4o</td>
+</tr>
+<tr>
+<td>payout_invoice_id</td>
+<td>string</td>
+<td>required</td>
+<td>Unique ref no provided by merchant. This will need to be unique.</td>
+<td>AZ0001</td>
 </tr>
 </tbody></table>
 
