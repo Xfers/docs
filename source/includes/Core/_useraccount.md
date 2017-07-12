@@ -588,30 +588,30 @@ On your User Interface, instruct the user to make a bank transfer to the bank na
 `GET https://sandbox.xfers.io/api/v3/user/transfer_info`
 
 
-### Register Updates Callback - Coming soon
+### Register Updates Callback 
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/balance_callback" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -H "X-XFERS-USER-API-KEY: unzJPsC_JvQ5MDbPYsrgqipzzbgS7ouKARWr5eG_g8s" \
   -H "Content-Type: application/json" \
-  -X PUT \
-  -d '{"callback_url": "www.example.com/update", "meta_data": {"key1" : "value1", "key2" : "value2"}}'
+  -d '{"callback_url": "www.example.com/update", "name": "hello-world", "events":"[\"deposit\"]"}'
 ```
 
 > Response:
 
 ```json
-  {
-    "msg": "success",
-    "callback_url": "http://www.example.com/updates",
-    "meta_data" : {
-    	"key1" : "value1",
-    	"key2" : "value2"
-    }
-  }
+{
+  "callback_id":"1",
+  "callback_url":"www.example.com/update",
+  "name":"hello-world",
+  "events":["deposit"],
+  "created_at":"2017-07-12T03:36:28Z"
+}
 ```
 
-This will allow you to register for a callback which will be fired whenever there are user account changes(like change in account balances). This callback request is only valid for 24hrs.
+This will allow you to register for a callback which will be triggered whenever the event you registered for occurs.
+
+There can only be one registration at any point. Any existing ones will be overwritten.
 
 #### HTTPS Request
 
@@ -622,20 +622,92 @@ This will allow you to register for a callback which will be fired whenever ther
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 callback_url | string | required | URL to receive callback notifications on account changes | https://www.example.com/updates
-meta_data | string | optional | A set of key/value pairs that you can attach to this request. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification | {"email”:“tianwei@xfers.io”, “orderId”:“AZ12312”}
+events | array | required | Array of events to subscribe to. This should be a valid JSON array. Refer to the section below on the types of events available| ["deposit"]
+name | string | optional | A name that you can attach to this request. It can be useful for storing additional information. You will be provided with this field in your callback notification | xyz-123
+
+#### Types of Events
+Name | Description
+---- | -------------
+deposit | Triggered when a user makes a deposit to his Xfers Account via a bank transfer.
 
 
-### Updates Callback Notifications - Coming soon
+#### Callback Notification Format
 
-After registering for a account callback notifications. Whenever they are any account changes(like a change in account balances), Xfers will send a callback to the `callback_url` you previously provided. This is a server to server HTTPS/HTTP POST and you will need to acknowledge the callback by providing a HTTP 200 status.
+This is a server to server HTTPS/HTTP POST and **you will need to acknowledge the callback by responding with a HTTP 200 status**.
 
+If your callback_url given is `https://www.example.com/updates`, Xfers will send:
 `POST https://www.example.com/updates`
 
 The following parameters will be part of the HTTPS/HTTP POST:
 
+
+> Callback Format:
+
+```json
+{
+  "notification_id": "5",
+  "callback_id":"1",
+  "name":"hello-world",
+  "event_type":"deposit",
+  "created_at":"2017-08-08T03:36:28Z",
+  "user_contact":"83994956",
+  "data": {
+    "ledger_balance": 436750.00,
+    "available_balance": 336750.00,
+    "credit": 335000.00,
+    "debit": 0.00,
+    "details": "BCA Transfer"    
+  }
+}
+```
+
 Name | Type | Description | Value
 ---- | ---- | -------- | -----------
-available_balance | float | Account's current available balance| 250.50
-meta_data | string | The json string you previously provided in the register request | {"email”:“tianwei@xfers.io”, “orderId”:“AZ12312”}
+notification_id | string | A unique ID for this particular event| 5
+callback_id | string | The ID of your callback registration| 1
+name | string | The string you previously provided in the register request | hello-world
+event_type | string | The type of event| deposit
+created_at | string | When this event was triggered. In ISO8601 datetime format| 2017-08-08T03:36:28Z
+user_contact | string | Contact number of the user| 83994956
+data | dictionary | Additional information about the event| Look at the below table
+
+#### Additional information about the event
+
+Key | Description| Value Type | Value 
+---- | ---------|------------|-------
+ledger_balance | Ledger balance of the user at this point in time | float| 436750.00
+available_balance | Available balance of the user at this point in time | float| 336750.00
+credit | How much was credited in this event | float| 335000.00
+debit | How much was debited in this event | float| 0.00
+details | Additional details. For deposit, it would be the bank the user did a transfer from | String| BCA Transfer
+
+### Cancel Updates Callback 
+
+```shell
+curl -X DELETE "https://sandbox.xfers.io/api/v3/user/balance_callback" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
+
+> Response:
+
+```json
+{
+  "callback_id":"1",
+  "callback_url":"www.example.com/update",
+  "name":"hello-world",
+  "events":["deposit"],
+  "created_at":"2017-07-12T03:36:28Z",
+  "deleted": true
+}
+```
+
+Deletes the existing callback subscription
+
+#### HTTPS Request
+
+`DELETE https://sandbox.xfers.io/api/v3/user/balance_callback`
+
+
+
 
 
