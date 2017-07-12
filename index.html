@@ -946,30 +946,30 @@ All documents/images provided should not exceed 10MB per file.
 
 <p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/user/transfer_info</code></p>
 
-<h3 id="register-updates-callback---coming-soon">Register Updates Callback - Coming soon</h3>
+<h3 id="register-updates-callback">Register Updates Callback</h3>
 
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/balance_callback"</span> <span class="se">\</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: unzJPsC_JvQ5MDbPYsrgqipzzbgS7ouKARWr5eG_g8s"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -X PUT <span class="se">\</span>
-  -d <span class="s1">'{"callback_url": "www.example.com/update", "meta_data": {"key1" : "value1", "key2" : "value2"}}'</span>
+  -d <span class="s1">'{"callback_url": "www.example.com/update", "name": "hello-world", "events":"[\"deposit\"]"}'</span>
 </code></pre>
 
 <blockquote>
 <p>Response:</p>
 </blockquote>
 
-<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"callback_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.example.com/updates"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"key1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"value1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"key2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"value2"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"callback_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"callback_url"</span><span class="p">:</span><span class="s2">"www.example.com/update"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"hello-world"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"events"</span><span class="p">:[</span><span class="s2">"deposit"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2017-07-12T03:36:28Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This will allow you to register for a callback which will be fired whenever there are user account changes(like change in account balances). This callback request is only valid for 24hrs.</p>
+<p>This will allow you to register for a callback which will be triggered whenever the event you registered for occurs.</p>
+
+<p>There can only be one registration at any point. Any existing ones will be overwritten.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -994,21 +994,64 @@ All documents/images provided should not exceed 10MB per file.
 <td>https://www.example.com/updates</td>
 </tr>
 <tr>
-<td>meta_data</td>
+<td>events</td>
+<td>array</td>
+<td>required</td>
+<td>Array of events to subscribe to. This should be a valid JSON array. Refer to the section below on the types of events available</td>
+<td>[&ldquo;deposit&rdquo;]</td>
+</tr>
+<tr>
+<td>name</td>
 <td>string</td>
 <td>optional</td>
-<td>A set of key/value pairs that you can attach to this request. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification</td>
-<td>{&ldquo;email”:“tianwei@xfers.io”, “orderId”:“AZ12312”}</td>
+<td>A name that you can attach to this request. It can be useful for storing additional information. You will be provided with this field in your callback notification</td>
+<td>xyz-123</td>
 </tr>
 </tbody></table>
 
-<h3 id="updates-callback-notifications---coming-soon">Updates Callback Notifications - Coming soon</h3>
+<h4 id="types-of-events">Types of Events</h4>
 
-<p>After registering for a account callback notifications. Whenever they are any account changes(like a change in account balances), Xfers will send a callback to the <code class="prettyprint">callback_url</code> you previously provided. This is a server to server HTTPS/HTTP POST and you will need to acknowledge the callback by providing a HTTP 200 status.</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>deposit</td>
+<td>Triggered when a user makes a deposit to his Xfers Account via a bank transfer.</td>
+</tr>
+</tbody></table>
 
-<p><code class="prettyprint">POST https://www.example.com/updates</code></p>
+<h4 id="callback-notification-format">Callback Notification Format</h4>
+
+<p>This is a server to server HTTPS/HTTP POST and <strong>you will need to acknowledge the callback by responding with a HTTP 200 status</strong>.</p>
+
+<p>If your callback_url given is <code class="prettyprint">https://www.example.com/updates</code>, Xfers will send:
+<code class="prettyprint">POST https://www.example.com/updates</code></p>
 
 <p>The following parameters will be part of the HTTPS/HTTP POST:</p>
+
+<blockquote>
+<p>Callback Format:</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"notification_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"callback_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"hello-world"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"event_type"</span><span class="p">:</span><span class="s2">"deposit"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2017-08-08T03:36:28Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user_contact"</span><span class="p">:</span><span class="s2">"83994956"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ledger_balance"</span><span class="p">:</span><span class="w"> </span><span class="mf">436750.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"available_balance"</span><span class="p">:</span><span class="w"> </span><span class="mf">336750.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"credit"</span><span class="p">:</span><span class="w"> </span><span class="mf">335000.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"debit"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCA Transfer"</span><span class="w">    
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <table><thead>
 <tr>
@@ -1019,18 +1062,116 @@ All documents/images provided should not exceed 10MB per file.
 </tr>
 </thead><tbody>
 <tr>
-<td>available_balance</td>
-<td>float</td>
-<td>Account&rsquo;s current available balance</td>
-<td>250.50</td>
+<td>notification_id</td>
+<td>string</td>
+<td>A unique ID for this particular event</td>
+<td>5</td>
 </tr>
 <tr>
-<td>meta_data</td>
+<td>callback_id</td>
 <td>string</td>
-<td>The json string you previously provided in the register request</td>
-<td>{&ldquo;email”:“tianwei@xfers.io”, “orderId”:“AZ12312”}</td>
+<td>The ID of your callback registration</td>
+<td>1</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>The string you previously provided in the register request</td>
+<td>hello-world</td>
+</tr>
+<tr>
+<td>event_type</td>
+<td>string</td>
+<td>The type of event</td>
+<td>deposit</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>string</td>
+<td>When this event was triggered. In ISO8601 datetime format</td>
+<td>2017-08-08T03:36:28Z</td>
+</tr>
+<tr>
+<td>user_contact</td>
+<td>string</td>
+<td>Contact number of the user</td>
+<td>83994956</td>
+</tr>
+<tr>
+<td>data</td>
+<td>dictionary</td>
+<td>Additional information about the event</td>
+<td>Look at the below table</td>
 </tr>
 </tbody></table>
+
+<h4 id="additional-information-about-the-event">Additional information about the event</h4>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Value Type</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ledger_balance</td>
+<td>Ledger balance of the user at this point in time</td>
+<td>float</td>
+<td>436750.00</td>
+</tr>
+<tr>
+<td>available_balance</td>
+<td>Available balance of the user at this point in time</td>
+<td>float</td>
+<td>336750.00</td>
+</tr>
+<tr>
+<td>credit</td>
+<td>How much was credited in this event</td>
+<td>float</td>
+<td>335000.00</td>
+</tr>
+<tr>
+<td>debit</td>
+<td>How much was debited in this event</td>
+<td>float</td>
+<td>0.00</td>
+</tr>
+<tr>
+<td>details</td>
+<td>Additional details. For deposit, it would be the bank the user did a transfer from</td>
+<td>String</td>
+<td>BCA Transfer</td>
+</tr>
+</tbody></table>
+
+<h3 id="cancel-updates-callback">Cancel Updates Callback</h3>
+
+<pre class="highlight shell"><code>curl -X DELETE <span class="s2">"https://sandbox.xfers.io/api/v3/user/balance_callback"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"callback_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"callback_url"</span><span class="p">:</span><span class="s2">"www.example.com/update"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"hello-world"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"events"</span><span class="p">:[</span><span class="s2">"deposit"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="s2">"2017-07-12T03:36:28Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Deletes the existing callback subscription</p>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">DELETE https://sandbox.xfers.io/api/v3/user/balance_callback</code></p>
 
 <h2 id="merchant">Merchant</h2>
 
@@ -1951,7 +2092,7 @@ All documents/images provided should not exceed 10MB per file.
 <td>string</td>
 <td>optional</td>
 <td>Is this bank account to be used as a funding source or for withdrawals?</td>
-<td>Either &quot;funding_source&rdquo; or &ldquo;withdrawal&rdquo; or &ldquo;all&rdquo;.</td>
+<td>Either &ldquo;funding_source&rdquo; or &ldquo;withdrawal&rdquo; or &ldquo;all&rdquo;.</td>
 </tr>
 <tr>
 <td>account_holder_name</td>
