@@ -152,7 +152,7 @@ require_once('vendor/autoload.php');
 \Xfers\Xfers::setSGSandbox();
 try {
     $resp = \Xfers\BankAccount::add(array(
-        'account_no' => '03931234323',
+        'account_no' => '0393123432',
         'bank' => 'DBS'
     ));
     print_r($resp);
@@ -172,7 +172,7 @@ xfers.set_sg_sandbox()
 try:
     print 'Adding bank account...'
     params = {
-        'account_no': '03931234323',
+        'account_no': '0393123432',
         'bank': 'DBS'
     }
     bank_accounts = xfbankaccount.add(params)
@@ -191,7 +191,7 @@ Xfers.set_sg_sandbox
 begin
   puts 'Adding bank account...'
   params = {
-      'account_no'=> '03931234321',
+      'account_no'=> '0393123432',
       'bank'=> 'DBS'
   }
   bank_accounts = Xfers::BankAccount.add params
@@ -209,7 +209,7 @@ Xfers.setSGSandbox();
 try {
     Map<String, Object> params = new HashMap<String, Object>();
     System.out.println("Adding Bank Account");
-    params.put("account_no", "03931234323");
+    params.put("account_no", "0393123432");
     params.put("bank", "DBS");
     List<BankAccount> bankAccounts = BankAccount.add(params,apiKey);
     for (BankAccount bankAccount : bankAccounts) {
@@ -226,14 +226,14 @@ try {
 [
     {
        "id" : "12312",
-       "account_no" : "039-312-3432-3",
+       "account_no" : "039-312-3432",
        "bank_abbrev" : "DBS",
        "usage": "all",
        "account_holder_name": "Tian Wei"       
     },
     {
        "id" : "12315",
-       "account_no" : "129-880-1251-1",
+       "account_no" : "129-880-1251",
        "bank_abbrev" : "OCBC",
        "usage": "all",
        "account_holder_name": "Tian Wei"       
@@ -259,7 +259,7 @@ For Xfers Indonesia API, an additional attribute `detected_name` will be returne
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-account_no | string | required | bank account no | 03931234323
+account_no | string | required | bank account no | 0393123432
 bank | string | required | bank abbreviation (Refer to [available banks](?shell/#available-banks) | DBS
 usage | string | optional | Is this bank account to be used as a funding source or for withdrawals? | Either "funding_source" or "withdrawal" or "all". Defaults to "all"
 account_holder_name | string | optional | Name of bank account holder | Tian Wei
@@ -340,14 +340,14 @@ try {
 [
     {
        "id" : "12312",
-       "account_no" : "039-312-3432-3",
+       "account_no" : "039-312-3432",
        "bank_abbrev" : "DBS",
        "usage": "all",
        "account_holder_name": "Tian Wei"              
     },
     {
        "id" : "12315",
-       "account_no" : "129-880-1251-1",
+       "account_no" : "129-880-1251",
        "bank_abbrev" : "OCBC",
        "usage": "all",
        "account_holder_name": "Tian Wei"                 
@@ -387,7 +387,7 @@ require_once('vendor/autoload.php');
 \Xfers\Xfers::setSGSandbox();
 try {
     $resp = \Xfers\BankAccount::update('<bank_account_id>', array(
-        'account_no' => '03931234321',
+        'account_no' => '0393123432',
         'bank' => 'DBS'
     ));
     print_r($resp);
@@ -407,7 +407,7 @@ xfers.set_sg_sandbox()
 try:
     print 'Updating bank account {}...'.format('<bank_account_id>')
     params = {
-        'account_no': '03931234321',
+        'account_no': '0393123432',
         'bank': 'DBS'
     }
     resp = xfbankaccount.update('<bank_account_id>', params)
@@ -424,7 +424,7 @@ Xfers.set_sg_sandbox
 
 begin
   params = {
-      'account_no'=> '03931234321',
+      'account_no'=> '0393123432',
       'bank'=> 'DBS'
   }
   puts 'Updating bank account...'
@@ -442,7 +442,7 @@ Xfers.setSGSandbox();
 try {
     Map<String, Object> params = new HashMap<String, Object>();
     System.out.println("Updating Bank Account");
-    params.put("account_no", "03931234321");
+    params.put("account_no", "0393123432");
     params.put("bank", "DBS");
 
     List<BankAccount> bankAccounts = BankAccount.update("<bank_account_id>", params, apiKey);
@@ -460,14 +460,14 @@ try {
 [
     {
        "id" : "12312",
-       "account_no" : "039-312-3432-1",
+       "account_no" : "039-312-3432",
        "bank_abbrev" : "DBS",
        "usage": "all",
        "account_holder_name": "Tian Wei"              
     },
     {
        "id" : "12315",
-       "account_no" : "129-880-1251-1",
+       "account_no" : "129-880-1251",
        "bank_abbrev" : "OCBC",
        "usage": "all",
        "account_holder_name": "Tian Wei"              
@@ -490,7 +490,7 @@ List of all bank accounts belonging to user.
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-account_no | string | optional | bank account no | 03931234323
+account_no | string | optional | bank account no | 0393123432
 bank | string | optional | bank abbreviation (Refer to [available banks](?shell/#available-banks)) | DBS
 usage | string | optional | Is this bank account to be used as a funding source or for withdrawals? | Either "funding_source" or "withdrawal" or "all".
 account_holder_name | string | optional | Name of bank account holder | Tian Wei
@@ -567,7 +567,7 @@ try {
 [
     {
        "id" : "12312",
-       "account_no" : "039-312-3432-1",
+       "account_no" : "039-312-3432",
        "bank_abbrev" : "DBS"
     }
 ]
@@ -677,7 +677,7 @@ try {
   "withdrawal_request" :
     {
        "id" : "59",
-       "account_no" : "039-312-3432-3",
+       "account_no" : "039-312-3432",
        "bank_abbrev" : "DBS",
        "amount" : "50.0",
        "fees" : "0.0",
@@ -801,7 +801,7 @@ try {
   "withdrawal_requests" : [
     {
        "id" : "59",
-       "account_no" : "039-312-3432-3",
+       "account_no" : "039-312-3432",
        "bank_abbrev" : "DBS",
        "amount" : "50.0",
        "fees" : "0.0",
@@ -811,7 +811,7 @@ try {
     },
     {
        "id" : "99",
-       "account_no" : "129-880-1251-1",
+       "account_no" : "129-880-1251",
        "bank_abbrev" : "OCBC",
        "amount" : "250.0",       
        "fees" : "2.99",

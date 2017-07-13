@@ -107,12 +107,12 @@ try {
   "bank_accounts" : [
     {
        "id" : "12312",
-       "account_no" : "039-312-3432-3",
+       "account_no" : "039-312-3432",
        "bank_abbrev" : "DBS"
     },
     {
        "id" : "12315",
-       "account_no" : "129-880-1251-1",
+       "account_no" : "129-880-1251",
        "bank_abbrev" : "OCBC"
     }
   ]
@@ -275,12 +275,12 @@ try {
   "bank_accounts" : [
     {
        "id" : "12312",
-       "account_no" : "039-312-3432-3",
+       "account_no" : "039-312-3432",
        "bank_abbrev" : "DBS"
     },
     {
        "id" : "12315",
-       "account_no" : "129-880-1251-1",
+       "account_no" : "129-880-1251",
        "bank_abbrev" : "OCBC"
     }
   ]
