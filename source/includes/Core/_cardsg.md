@@ -7,7 +7,7 @@ The following APIs allow you to add or update credit cards to a connected user (
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/cards" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
   -H "Content-Type: application/json" \
   -d '{ "user_api_token": "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ", "credit_card_token": "tok_197O8gB8MXWbQJDjPMILsIr6", "first6": "424242", "last4": "4242"}'
 ```
@@ -91,7 +91,7 @@ end
 
 ```java
 
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 Xfers.setSGSandbox();
 String user_api_token = "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ";
 
@@ -232,7 +232,7 @@ end
 
 ```java
 
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 Xfers.setSGSandbox();
 String user_api_token = "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ";
 
@@ -290,7 +290,7 @@ user_api_token | string | required | Buyer’s api token obtain via Connect’s 
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/cards/<the_card_id>/set_default" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
   -H "Content-Type: application/json" \
   -d '{ "user_api_token": "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ"}'
 ```
@@ -358,7 +358,7 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 Xfers.setSGSandbox();
 String user_api_token = "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ";
 
@@ -403,7 +403,7 @@ user_api_token | string | required | Buyer’s api token obtain via Connect’s 
 
 ```shell
 curl -X DELETE "https://sandbox.xfers.io/api/v3/cards/<the_card_id>" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
   -H "Content-Type: application/json" \
   -d '{ "user_api_token": "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ"}'
 ```
@@ -473,7 +473,7 @@ end
 
 ```java
 
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 Xfers.setSGSandbox();
 String user_api_token = "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ";
 
@@ -631,7 +631,7 @@ last4 | string | required | Last 4 digits of credit card | 4242
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/credit_card_charges/charge_card" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
   -H "Content-Type: application/json" \
   -d '{ "txn_id": "<charge_id>"}'
 ```
@@ -694,7 +694,7 @@ end
 ```
 
 ```java
-Xfers.apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
+Xfers.apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 Xfers.setSGSandbox();
 String user_api_token = "osEdbc8uzxY5vaXA-oe-7E86sVWCYTCVPuHQyFQ-uPQ";
 

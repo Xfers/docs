@@ -7,7 +7,7 @@ The following APIs allow you to integrate payment support functionality directly
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/support" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
  -H "Content-Type: application/json" \
   -d '{ "file": "bank_transfer_receipt.jpg", "intent_id": "6f5f85859a51cd08c8ae113412bb72c8", "description": "Transferred an hour ago but money still not credited", "email": "bobby@gmail.com", "amount": 5.89, "date": "13/02/2017", "time": "23:59"}'  
 ```
@@ -64,7 +64,7 @@ intent_id | string | Either charge or intent required | ID of the intent | b840c
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/support/<SUPPORT_ID>" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
 ```
 
 ```php
@@ -142,7 +142,7 @@ Returns a particular support ticket.
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/support" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
 ```
 
 ```php

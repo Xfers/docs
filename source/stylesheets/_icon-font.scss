@@ -51,3 +51,8 @@
   @extend %icon;
   content: "\e607";
 }
+/* I don't know how to add icon yet. This needs to be changed*/
+%icon-key {
+  @extend %icon;
+  content: "\e602";
+}
