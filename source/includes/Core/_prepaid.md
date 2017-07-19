@@ -11,7 +11,7 @@ wirecard_test_2
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/prepaid" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
   -d '{"proxy_number": "21794", "description":"John card", "provider": "wirecard_test_2"}'
 ```
@@ -75,7 +75,7 @@ description | string | optional | Description about this prepaid card | Sam's ca
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/prepaid/CARD-ID/topup" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
   -d '{"amount": 10.59}'
 ```
@@ -145,7 +145,7 @@ amount | float | required | How much to topup | 9.85
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/prepaid" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
 ```php
@@ -206,7 +206,7 @@ List of prepaid cards added.
 
 ```shell
 curl -X DELETE "https://sandbox.xfers.io/api/v3/prepaid/<card_id>" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
 ```php

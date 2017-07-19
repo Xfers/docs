@@ -94,7 +94,7 @@ html, body {
     display: block;
   }
 
-  &>.search, &>.key-replace {
+  &>.search {
     position: relative;
 
     input {
@@ -103,26 +103,19 @@ html, body {
       border-color: $search-box-border-color;
       padding: 6px 0 6px 20px;
       @include box-sizing(border-box);
-      margin: $nav-v-padding 0 $nav-v-padding $nav-padding;
+      margin: $nav-v-padding $nav-padding;
       width: $nav-width - 30;
       outline: none;
       color: $nav-text;
       border-radius: 0; /* ios has a default border radius */
     }
 
-    &.search:before {
+    &:before {
       position: absolute;
       top: 17px;
       left: $nav-padding;
       color: $nav-text;
       @extend %icon-search;
-    }
-    &.key-replace:before {
-      position: absolute;
-      top: 17px;
-      left: $nav-padding;
-      color: $nav-text;
-      @extend %icon-key;
     }
   }
 
@@ -487,11 +480,6 @@ html, body {
     @extend %code-font;
   }
 
- .prettyprint
-  {
-    color:#000080;
-    border: 1px solid rgba(0,0,0,0.2);
-  }
   pre>code {
     background-color: transparent;
     padding: 0;

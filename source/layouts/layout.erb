@@ -37,55 +37,10 @@ under the License.
         $(function() {
           setupLanguages(<%= language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>);
         });
-
       </script>
     <% end %>
   </head>
-<style>
-/* The programmer doesn't know how to use sass yet*/
 
-.btn-group button {
-    background-color: #4CAF50; /* Green background */
-    border: 1px solid green; /* Green border */
-    color: white; /* White text */
-    cursor: pointer; /* Pointer/hand icon */
-    float: left; /* Float the buttons side by side */
-    font-size:80%;
-    width: 50%;
-
-}
-
-/* Clear floats (clearfix hack) */
-.btn-group:after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-.btn-group button:not(:last-child) {
-    border-right: none; /* Prevent double borders */
-}
-
-/* Add a background color on hover */
-.btn-group button:hover {
-    background-color: #3e8e41;
-}
-.replacebtn {
-  }
-
-.btn-group > .active {
-    background-color: red;
-}
-
-#user-key-replace {
-  width : 60%;
-}
-
-#app-key-replace {
-  width : 60%;
-}
-
-</style>
   <body class="<%= page_classes %>">
     <a href="#" id="nav-button">
       <span>
@@ -106,26 +61,6 @@ under the License.
           <% end %>
         </div>
       <% end %>
-
-       <div class="btn-group">
-        <button type="button" id="sandboxsg" onclick="changeEndpoint('sandbox','sg')" class='active'>Sandbox SG</button>
-        <button type="button" id="sandboxid" onclick="changeEndpoint('sandbox','id')">Sandbox ID</button>
-        <button type="button" id="productionsg" onclick="changeEndpoint('production','sg')">Production SG</button>
-        <button type="button" id="productionid" onclick="changeEndpoint('production','id')">Production ID</button>
-      </div>
-
-      <div class="key-replace">
-        <input type="text" id="user-key-replace" placeholder="Your User API Key">
-        <button type="button" class="replacebtn" id="replaceUserApiKey">Replace</button>
-      </div>
-
-      <div class="key-replace">
-        <input type="text" id="app-key-replace" placeholder="Your App API keys">
-        <button type="button" class="replacebtn" id="replaceAppApiKey">Replace</button>
-      </div>
-
-
-
       <% if current_page.data.search %>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">

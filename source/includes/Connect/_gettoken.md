@@ -2,7 +2,7 @@
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=%2B6597288608&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91" \
-  -H "X-XFERS-APP-API-KEY: yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ"
+  -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"
 
 # You can now change the X-XFERS-USER-API-KEY to the returned user_api_token
 # and make API calls on behalf of the connect user.
@@ -13,12 +13,12 @@ curl "https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=%2
 require_once('vendor/autoload.php');
 
 \Xfers\Xfers::setSGSandbox();
-$xfers_app_api_key = 'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ';
+$xfers_app_api_key = 'Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg';
 try {
     $resp = \Xfers\Connect::getToken(array(
         'otp' => '541231',
         'phone_no' => '+6597288608',
-        'signature' => '178502abfa891b69a9a2f72192d51f5fc141f978',
+        'signature' => 'c5535aa2c4d25aa1e18a6a7e421a34e51bda5565',
         'return_url' => 'https://mywebsite.com/api/v3/account_registration/completed'
     ), $xfers_app_api_key);
     print_r($resp);
@@ -41,14 +41,14 @@ from xfers import xfuser
 from xfers import error
 
 xfers.set_sg_sandbox()
-XFERS_APP_API_KEY = 'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ'
+XFERS_APP_API_KEY = 'Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg'
 
 try:
     print 'Getting token...'
     params = {
         'otp': '541231',
         'phone_no': '+6597288608',
-        'signature': '178502abfa891b69a9a2f72192d51f5fc141f978',
+        'signature': 'c5535aa2c4d25aa1e18a6a7e421a34e51bda5565',
         'return_url': 'https://mywebsite.com/api/v3/account_registration/completed'
     }
     resp = xfconnect.get_token(params, XFERS_APP_API_KEY)
@@ -67,14 +67,14 @@ except error.XfersError as e:
 require 'xfers'
 
 Xfers.set_sg_sandbox
-XFERS_APP_API_KEY = 'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ'
+XFERS_APP_API_KEY = 'Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg'
 
 begin
   puts 'Getting connect token...'
   params = {
       'otp'=> '541231',
       'phone_no'=> '+6597288608',
-      'signature'=> '178502abfa891b69a9a2f72192d51f5fc141f978',
+      'signature'=> 'c5535aa2c4d25aa1e18a6a7e421a34e51bda5565',
       'return_url'=> 'https://mywebsite.com/api/v3/account_registration/completed'
   }
   resp = Xfers::Connect.get_token params, XFERS_APP_API_KEY
@@ -101,7 +101,7 @@ end
 ```java
 Xfers.setSGSandbox();
 String xfersAppApiKey = "AeWpKz5cdPoJFUwF53sBee_WsSoqym_hspiX3bcoB_Y";
-String xfersAppSecretKey = "yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ";
+String xfersAppSecretKey = "Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg";
 
 try {
     System.out.println("Getting token");
@@ -158,7 +158,7 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 otp | string | required | 6 digit one-time-password send over SMS | 541231
 phone_no | string | required | User mobile no | +6597288608
-signature | string | required | SHA1 of phone_no + OTP + APP_SECRET_KEY | Phone Number: <input type="text" id="phone_gettoken" value="+6597288608"><br/>OTP: <input type="text" id="otp_gettoken" value="541231"><br/>Secret Key: <input type="text" id="secretkey_gettoken" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_gettoken">a972388d58c1443295cb89cc9c6f59789630a45f</span>
+signature | string | required | SHA1 of phone_no + OTP + APP_SECRET_KEY | Digest::SHA1.hexdigest("+659728860851231xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU") = bdc26373b3a78dd11dc840a1b7973f197cf34c91
 return_url | string | optional | Url that new user will be redirected after they completed Xfers account registration at `sign_up_url` provided. | Default "\<Endpoint>/api/v3/account_registration/completed"
 
 

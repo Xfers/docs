@@ -40,7 +40,7 @@ Jane wishes to transfer 5000 Indonesian Rupiah via `/intents` to her virtual Xfe
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/intents" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
  -H "Content-Type: application/json" \
   -d '{ "amount": "5000", "currency": "SGD", "bank": "BCA", "request_id" : "AZ0001", "notify_url" : "https://mysite.com/topup_notification"}'  
 ```
@@ -49,7 +49,7 @@ curl "https://sandbox.xfers.io/api/v3/intents" \
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
 \Xfers\Xfers::setSGSandbox();
 try {
     $resp = \Xfers\Intent::create(array(
@@ -70,7 +70,7 @@ try {
 import xfers
 from xfers import xfintent
 from xfers import error
-xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
 try:
     print 'Creating intent...'
@@ -92,7 +92,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 Xfers.set_sg_sandbox
 
 begin
@@ -113,7 +113,7 @@ end
 ```
 
 ```java
-String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
     System.out.println("Creating an intent");
@@ -225,7 +225,7 @@ status | string | Transfer status. | "expired" or "completed"
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/intent/<INTENT_ID>/cancel" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
   -X POST
 ```
 
@@ -233,7 +233,7 @@ curl "https://sandbox.xfers.io/api/v3/intent/<INTENT_ID>/cancel" \
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
 \Xfers\Xfers::setSGSandbox();
 try {
     $resp = \Xfers\Intent::cancel('<INTENT_ID>');
@@ -247,7 +247,7 @@ try {
 import xfers
 from xfers import xfintent
 from xfers import error
-xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
 try:
     print 'Cancelling intent {}...'.format('<INTENT_ID>')
@@ -260,7 +260,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 Xfers.set_sg_sandbox
 
 begin
@@ -273,7 +273,7 @@ end
 ```
 
 ```java
-String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
     System.out.println("Cancelling an intent");
@@ -313,14 +313,14 @@ Cancelling a intent that has been previously created by not yet completed.
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/intents" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
 ```php
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
 \Xfers\Xfers::setSGSandbox();
 $resp = \Xfers\Intent::retrieve();
 print_r($resp);
@@ -330,7 +330,7 @@ print_r($resp);
 import xfers
 from xfers import xfintent
 from xfers import error
-xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
 try:
     print 'Current intent...'
@@ -343,7 +343,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 Xfers.set_sg_sandbox
 
 begin
@@ -356,7 +356,7 @@ end
 ```
 
 ```java
-String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
     System.out.println("Retrieving latest intent");

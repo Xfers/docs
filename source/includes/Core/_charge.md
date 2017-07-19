@@ -12,7 +12,7 @@ Our checkout page contains the relevant instructions for the user to login/signu
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
   -d '{ "amount": "9.99", "currency": "SGD", "redirect": "false", "notify_url": "https://mysite.com/payment_notification", "return_url": "https://mysite.com/return", "cancel_url": "https://mysite.com/cancel", "order_id": "AZ9912", "description":"unused red dress", "shipping": "2.50", "tax": "0.0", "items" : [{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}], "meta_data": {"firstname":"Tianwei", "lastname":"Liu"}}'
 ```
@@ -62,7 +62,7 @@ import json
 import xfers
 from xfers import xfcharge
 from xfers import error
-xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
 try:
     print 'Creating charge...'
@@ -92,7 +92,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 Xfers.set_sg_sandbox
 
 begin
@@ -121,7 +121,7 @@ end
 
 ```java
 try {
-    String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
+    String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 
     System.out.println("Creating a charge");
     Vector<Map<String, String>> items = new Vector<Map<String, String>>();
@@ -378,7 +378,7 @@ meta_data | string | meta data previous provided in your charge call. | "{'first
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<txn_id>/validate" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
   -d '{"total_amount": "24.99", "currency": "SGD", "order_id": "A012312", "status": "paid"}'
 ```
@@ -387,7 +387,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<txn_id>/validate" \
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
 \Xfers\Xfers::setSGSandbox();
 try {
     $resp = \Xfers\Charge::validate("<txn_id>", array(
@@ -406,7 +406,7 @@ try {
 import xfers
 from xfers import xfcharge
 from xfers import error
-xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
 try:
     params = {
@@ -425,7 +425,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 Xfers.set_sg_sandbox
 
 begin
@@ -444,7 +444,7 @@ end
 ```
 
 ```java
-String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 
 try {
@@ -492,7 +492,7 @@ status | string | Payment status. | "cancelled" or "paid" or "expired"
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<id>/authorize" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
   -d '{"auth_code": "512312"}'
 ```
@@ -552,7 +552,7 @@ end
 ```
 
 ```java
-String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 
 try {
@@ -643,7 +643,7 @@ auth_code | string | Required | PIN code provided to the buyer | 512312
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<CHARGE_ID>/cancel" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
   -X POST
 ```
 
@@ -651,7 +651,7 @@ curl "https://sandbox.xfers.io/api/v3/charges/<CHARGE_ID>/cancel" \
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
 \Xfers\Xfers::setSGSandbox();
 try {
     $resp = \Xfers\Charge::cancel("<CHARGE_ID>");
@@ -665,7 +665,7 @@ try {
 import xfers
 from xfers import xfcharge
 from xfers import error
-xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
 try:
     print 'Cancelling charge {}...'.format('<CHARGE_ID>')
@@ -678,7 +678,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 Xfers.set_sg_sandbox
 
 begin
@@ -692,7 +692,7 @@ end
 ```
 
 ```java
-String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
     System.out.println("Cancelling a charge");
@@ -753,14 +753,14 @@ Cancelling a charge that has been previously created by not yet paid. To refund 
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges/<id>" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
 ```php
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
 \Xfers\Xfers::setSGSandbox();
 try {
     $resp = \Xfers\Charge::retrieve("<id>");
@@ -774,7 +774,7 @@ try {
 import xfers
 from xfers import xfcharge
 from xfers import error
-xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
 try:
     print 'Retrieving charge {}...'.format('<id>')
@@ -787,7 +787,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 Xfers.set_sg_sandbox
 
 begin
@@ -801,7 +801,7 @@ end
 ```
 
 ```java
-String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
  try {
     System.out.println("Retrieving a charge");
@@ -865,14 +865,14 @@ Retrieves the details of a charge that has previously been created. Supply the u
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/charges?limit=1" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
 ```php
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
 \Xfers\Xfers::setSGSandbox();
 $resp = \Xfers\Charge::listAll(array(
     'customer' => '97288608',
@@ -884,7 +884,7 @@ $resp = \Xfers\Charge::listAll(array(
 import xfers
 from xfers import xfcharge
 from xfers import error
-xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
 try:
     print 'Listing all charges...'
@@ -901,7 +901,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 Xfers.set_sg_sandbox
 
 begin
@@ -919,7 +919,7 @@ end
 ```
 
 ```java
-String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
     System.out.println("Listing charges without filter");

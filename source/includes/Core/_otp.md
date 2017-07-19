@@ -5,7 +5,7 @@
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/authorize/get_mock_otp?phone_no=83999455" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
 ```php
@@ -43,7 +43,7 @@ phone_no | string | required | Phone number for the otp you want to retrieve | 8
 
 ```shell
 curl "https://sandbox.xfers.io/checkout_transaction/request_otp" \
--H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
+-H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
 -H "Content-Type: application/json" \
 -X PUT \
 -d '{"phoneNumber": "85993955", "trans_id": "b840cc9fc5a359c22ed2ccef3427aacd"}'

@@ -6,7 +6,7 @@ Xfers Payout allows you transfer money between Xfers Wallets with your Xfers bal
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/payouts" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc" \
   -H "Content-Type: application/json" \
   -d '{"amount": "150.00", "invoice_id": "AZ0001", "descriptions": "Payment for Rent for July", "recipient": "+6597288608"}'
 ```
@@ -15,7 +15,7 @@ curl "https://sandbox.xfers.io/api/v3/payouts" \
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
 \Xfers\Xfers::setSGSandbox();
 try {
     $resp = \Xfers\Payout::create(array(
@@ -37,7 +37,7 @@ try {
 import xfers
 from xfers import xfpayout
 from xfers import error
-xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
 try:
     print 'Creating payout...'
@@ -60,7 +60,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 Xfers.set_sg_sandbox
 
 begin
@@ -82,7 +82,7 @@ end
 ```
 
 ```java
-String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 try {
     System.out.println("Creating a payout");
@@ -157,14 +157,14 @@ completed  | Payout has been completed. Existing Xfers user and payout has been 
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/payouts/<id>" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
 ```php
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
 \Xfers\Xfers::setSGSandbox();
 try {
     $resp = \Xfers\Payout::retrieve("<id>");
@@ -178,7 +178,7 @@ try {
 import xfers
 from xfers import xfpayout
 from xfers import error
-xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
 try:
     print 'Retrieving payout {}...'.format('<id>')
@@ -191,7 +191,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 Xfers.set_sg_sandbox
 
 begin
@@ -204,7 +204,7 @@ end
 ```
 
 ```java
-String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
  try {
     System.out.println("Retrieving a payout");
@@ -254,14 +254,14 @@ cancelled  | Payout has been cancelled.
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/payouts?limit=1" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
 ```php
 <?php
 require_once('vendor/autoload.php');
 
-\Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
+\Xfers\Xfers::setApiKey('G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo');
 \Xfers\Xfers::setSGSandbox();
 $resp = \Xfers\Payout::listAll(array(
     'limit' => '1'
@@ -273,7 +273,7 @@ print_r($resp);
 import xfers
 from xfers import xfpayout
 from xfers import error
-xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+xfers.api_key = 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 xfers.set_sg_sandbox()
 try:
     print 'Listing all payouts...'
@@ -290,7 +290,7 @@ except error.XfersError as e:
 ```ruby
 require 'xfers'
 
-Xfers.set_api_key '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
+Xfers.set_api_key 'G-zsfAEScrqdU8GhWTEdjfdnb3XRdU8q1fH-nuWfSzo'
 Xfers.set_sg_sandbox
 
 begin
@@ -308,7 +308,7 @@ end
 ```
 
 ```java
-String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
+String apiKey = "pXcfdAKNorDe_o1eou1NSp4mwssiEzem_6sg8fwnZWs";
 Xfers.setSGSandbox();
 
 try {

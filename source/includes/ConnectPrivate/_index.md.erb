@@ -11,9 +11,9 @@ Please contact support@xfers.io to enable this feature for you.
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/authorize/private_wallet"\
-  -H "X-XFERS-APP-API-KEY: yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ"\
+  -H "X-XFERS-APP-API-KEY: Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg"\
   -H "Content-Type: application/json" \
-  -d '{"phone_no" : "+6597288608", "signature" : "178502abfa891b69a9a2f72192d51f5fc141f978"}'
+  -d '{"phone_no" : "+6597288608", "signature" : "c5535aa2c4d25aa1e18a6a7e421a34e51bda5565"}'
 ```
 
 ```php
@@ -31,8 +31,8 @@ curl "https://sandbox.xfers.io/api/v3/authorize/private_wallet"\
 ```java
 
 Xfers.setSGSandbox();
-String xfersAppApiKey = "yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ";
-String xfersAppSecretKey = "178502abfa891b69a9a2f72192d51f5fc141f978";
+String xfersAppApiKey = "Kx4EAd1DnsZkv3qXwps8AJ8jXCPsxPMHTAFLM2sKSyg";
+String xfersAppSecretKey = "c5535aa2c4d25aa1e18a6a7e421a34e51bda5565";
 
 try {
     System.out.println("Authorizing");
@@ -69,6 +69,6 @@ This API call will attempt to login (if there is an existing private wallet) or 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 phone_no | string | required | User mobile no | +6597288608
-signature | string | required | SHA1 of phone_no + APP_SECRET_KEY  | Digest::SHA1.hexdigest("+6597288608YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY") = 178502abfa891b69a9a2f72192d51f5fc141f978
+signature | string | required | SHA1 of phone_no + APP_SECRET_KEY  | Digest::SHA1.hexdigest("+6597288608xHsrB268LjLfrzxAraYXLHdRMpTA5XRVLDbe9gmVQTU") = c5535aa2c4d25aa1e18a6a7e421a34e51bda5565
 
 
