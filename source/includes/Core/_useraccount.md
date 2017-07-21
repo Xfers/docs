@@ -125,7 +125,7 @@ try {
     {
        "id" : "2",
        "available_balance": "100.00",
-       "ledger_balance" : "100.00",
+       "ledger_balance" : "100.00"
     }
   ]
 }
