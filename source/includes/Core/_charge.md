@@ -283,6 +283,7 @@ hrs_to_expirations | float | optional | No of hours before this transactons will
 meta_data | string | optional | A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification | {"firstname":"tianwei", "lastname":"liu"}
 receipt_email | string | optional | The email address to send this charge's receipt. | tianwei@xfers.io
 skip_notifications | boolean | optional | Setting this to true will not send transaction reminders/cancelled/expired emails/SMS. Users will still receive payment completed notification. | Default to false.
+wallet_id | integer | optional | Coming Soon | Default to XFERS Wallet
 
 #### Create Charge Response
 

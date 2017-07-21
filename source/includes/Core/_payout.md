@@ -143,6 +143,7 @@ user_api_token | string | optional (either recipient or user_api_token required)
 currency | string | optional | 3-letter ISO code for currency | Default to 'SGD'
 descriptions | string | optional | A short description for this payout. This will be part of the email/SMS that the recipient will be receiving from Xfers. | Payment for Rent for July
 no_expire | boolean | optional | Set this to true so this payout will not expire | Default to false
+wallet_id | integer | optional | Coming Soon | Default to XFERS Wallet
 
 ##### Payout Response Status
 
@@ -368,4 +369,5 @@ recipient | string | optional | Only return charges for the recipient(email for 
 ending_before | string | optional | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_bar, your subsequent call can include ending_before=obj_bar in order to fetch the previous page of the list. | 6fa51cd08c8ae115f858593412bb72c8
 limit | integer | optional | A limit on the number of objects to be returned. Limit can range between 1 and 50 items. | Default to 10
 starting_after | string | optional | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list. | 6fa51cd08c8ae115f858593412bb72c8
+
 

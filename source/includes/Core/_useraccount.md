@@ -115,6 +115,18 @@ try {
        "account_no" : "129-880-1251",
        "bank_abbrev" : "OCBC"
     }
+  ],
+  "wallets" : [
+    {
+       "id" : "1",
+       "available_balance": "50.00",
+       "ledger_balance" : "250.00"
+    },
+    {
+       "id" : "2",
+       "available_balance": "100.00",
+       "ledger_balance" : "100.00",
+    }
   ]
 }
 ```
