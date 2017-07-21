@@ -403,6 +403,18 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
        </span><span class="s2">"account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"129-880-1251"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"OCBC"</span><span class="w">
     </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"wallets"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+       </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"available_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"ledger_balance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"250.00"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+       </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"available_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"ledger_balance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00"</span><span class="p">,</span><span class="w">
+    </span><span class="err">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -3250,6 +3262,13 @@ COMING SOON
 <td>Setting this to true will not send transaction reminders/cancelled/expired emails/SMS. Users will still receive payment completed notification.</td>
 <td>Default to false.</td>
 </tr>
+<tr>
+<td>wallet_id</td>
+<td>integer</td>
+<td>optional</td>
+<td>Coming Soon</td>
+<td>Default to XFERS Wallet</td>
+</tr>
 </tbody></table>
 
 <h4 id="create-charge-response">Create Charge Response</h4>
@@ -5540,6 +5559,13 @@ Amex = A</p>
 <td>optional</td>
 <td>Set this to true so this payout will not expire</td>
 <td>Default to false</td>
+</tr>
+<tr>
+<td>wallet_id</td>
+<td>integer</td>
+<td>optional</td>
+<td>Coming Soon</td>
+<td>Default to XFERS Wallet</td>
 </tr>
 </tbody></table>
 
