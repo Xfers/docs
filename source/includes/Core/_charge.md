@@ -283,8 +283,7 @@ hrs_to_expirations | float | optional | No of hours before this transactons will
 meta_data | string | optional | A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification | {"firstname":"tianwei", "lastname":"liu"}
 receipt_email | string | optional | The email address to send this charge's receipt. | tianwei@xfers.io
 skip_notifications | boolean | optional | Setting this to true will not send transaction reminders/cancelled/expired emails/SMS. Users will still receive payment completed notification. | Default to false.
-commission_email | string | optional | The email address to send a a portion of the charged amount to (COMING SOON) | victor@xfers.io
-commission_amount | float | optional | The amount (from amount) to send to comission_email (COMING SOON) | 1.00
+application_fee | float | optional | A fee that will be applied to the charge and transferred to the application owner's account. To use an application fee, the request must be made on behalf of another account, using via Xfers Connect. (COMING SOON) | 1.00
 
 #### Create Charge Response
 
