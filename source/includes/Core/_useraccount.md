@@ -80,6 +80,7 @@ try {
 ```json
 {
   "available_balance": "50.00",
+  "wallet_id": 1,
   "ledger_balance" : "250.00",
   "credit_card_rate" : "3.5",
   "credit_card_fee" : "NA",
@@ -114,18 +115,6 @@ try {
        "id" : "12315",
        "account_no" : "129-880-1251",
        "bank_abbrev" : "OCBC"
-    }
-  ],
-  "wallets" : [
-    {
-       "id" : "1",
-       "available_balance": "50.00",
-       "ledger_balance" : "250.00"
-    },
-    {
-       "id" : "2",
-       "available_balance": "100.00",
-       "ledger_balance" : "100.00"
     }
   ]
 }
