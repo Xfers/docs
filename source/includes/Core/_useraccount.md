@@ -547,35 +547,37 @@ try {
 ```json
 [
   {
-    "bank_name_full" : "Bank Central Asia",
-    "bank_name_abbreviation" : "BCA",
-    "bank_account_no" : "1063003003",
-    "bank_code" : "",
-    "branch_code" : "",
-    "branch_area" : "",
-    "unique_id" : "97288607",
-    "img_src": "https://xfers.com/bank-logo-bca.png"
-  },
-  {
-    "bank_name_full" : "Bank Mandiri",
-    "bank_name_abbreviation" : "MANDIRI",
-    "bank_account_no" : "1190006792749",
-    "bank_code" : "",
-    "branch_code" : "",
-    "branch_area" : "",
-    "unique_id" : "97288607",
-    "img_src": "https://xfers.com/bank-logo-mandiri.png"    
-  },
-  {
-    "bank_name_full" : "Bank Negara Indonesia",
-    "bank_name_abbreviation" : "BNI",
-    "bank_account_no" : "8000067885",
-    "bank_code" : "",
-    "branch_code" : "",
-    "branch_area" : "",
-    "unique_id" : "97288607",
-    "img_src": "https://xfers.com/bank-logo-bni.png"    
-  }    
+    "bank_name_full": "Bank Mandiri",
+    "bank_name_abbreviation": "MANDIRI",
+    "bank_account_no": "8855845678901242",
+    "bank_code": "",
+    "branch_code": "",
+    "branch_area": "",
+    "unique_id": "81128125",
+    "img_src": "https://www.xfers.io/images/bankLogos/bank-logo-mandiri.png",
+    "transfer_info_array": [
+      {
+        "bank_name_full": "Bank Central Asia",
+        "bank_name_abbreviation": "BCA",
+        "bank_account_no": "06420856789021",
+        "bank_code": "",
+        "branch_code": "",
+        "branch_area": "",
+        "unique_id": "81128125",
+        "img_src": "https://www.xfers.io/images/bankLogos/bank-logo-bca.png"
+      },
+      {
+        "bank_name_full": "Bank Mandiri",
+        "bank_name_abbreviation": "MANDIRI",
+        "bank_account_no": "8855845678901242",
+        "bank_code": "",
+        "branch_code": "",
+        "branch_area": "",
+        "unique_id": "81128125",
+        "img_src": "https://www.xfers.io/images/bankLogos/bank-logo-mandiri.png"
+      }
+    ]
+  }  
 ]
 ```
 
