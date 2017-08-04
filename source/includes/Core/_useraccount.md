@@ -533,7 +533,7 @@ try {
 ```json
 {
   "bank_name_full" : "Malaysia Banking BHD",
-  "bank_name_abbreviation" : "MBB",
+  "bank_abbrev" : "MBB",
   "bank_account_no" : "04111066899",
   "bank_code" : "7302",
   "branch_code" : "001",
@@ -548,7 +548,7 @@ try {
 [
   {
     "bank_name_full": "Bank Mandiri",
-    "bank_name_abbreviation": "MANDIRI",
+    "bank_abbrev": "MANDIRI",
     "bank_account_no": "8855845678901242",
     "bank_code": "",
     "branch_code": "",
@@ -558,7 +558,7 @@ try {
     "transfer_info_array": [
       {
         "bank_name_full": "Bank Central Asia",
-        "bank_name_abbreviation": "BCA",
+        "bank_abbrev": "BCA",
         "bank_account_no": "06420856789021",
         "bank_code": "",
         "branch_code": "",
@@ -568,7 +568,7 @@ try {
       },
       {
         "bank_name_full": "Bank Mandiri",
-        "bank_name_abbreviation": "MANDIRI",
+        "bank_abbrev": "MANDIRI",
         "bank_account_no": "8855845678901242",
         "bank_code": "",
         "branch_code": "",
