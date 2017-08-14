@@ -25,7 +25,7 @@ includes:
   - Errors/index
   - ConnectPrivate/index
 
-<!-- if want to add new tab, remember to change hideConnectPrivate.js as it is hard coded -->
 
 search: true
 ---
+<!-- if want to add new tab, remember to change hideConnectPrivate.js as it is hard coded -->
