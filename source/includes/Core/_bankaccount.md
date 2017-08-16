@@ -705,6 +705,7 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 amount | string | required | Amount to withdraw | 50.0
 express | string | optional | Default to 'false' | true
+notify_url | string | optional | To receive HTTP POST callback notifications on withdrawal status changes | https://www.mysite.com/withdrawal
 
 
 #### Withdrawing on behalf
@@ -720,6 +721,37 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 user_api_token | string | required | Use this param if you want to withdraw to another user's bank account instead of your own. | efgowZwKoMoPL_dxV7zpuoakM7STLb14uQrtX4J2F4o
 payout_invoice_id | string | required | Unique ref no provided by merchant. This will need to be unique. | AZ0001
+
+### Get Withdrawal Request
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdraw_requests/<withdrawal_request_id>" \
+  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+```
+
+
+> Response:
+
+```json
+  {
+       "id" : "59",
+       "account_no" : "039-312-3432-3",
+       "bank_abbrev" : "DBS",
+       "amount" : "50.0",
+       "fees" : "0.0",
+       "express" : "false",
+       "status" : "pending",
+       "arrival" : "31 March 2016"
+    }
+```
+
+This will retrieve one withdrawal request made previously.
+
+#### HTTPS Request
+
+`GET https://sandbox.xfers.io/api/v3/user/bank_account/withdrawal_requests/<withdrawal_request_id>`
+
+
 
 ### List Withdrawal Request
 

@@ -20,6 +20,7 @@ includes:
   - API/index
   - Core/index
   - Connect/index
+  - ConnectPrivate/index
   - Postman/index
   - Tokenize/index
   - Errors/index
