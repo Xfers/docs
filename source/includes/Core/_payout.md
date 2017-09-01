@@ -119,8 +119,8 @@ try {
   "amount" : 150.00,
   "currency" : "SGD",
   "descriptions" : "Payment for Rent for July",
-  "bank" : "DBS",
-  "bank_account_no" : "XXX-XXX-6091",
+  "bank" : "",
+  "bank_account_no" : "",
   "created_date" : "2015-07-01T19:01:25Z",
   "completed_date" : "",
   "status" : "completed"
@@ -226,8 +226,8 @@ Xfers.setSGSandbox();
   "amount" : 150.00,
   "currency" : "SGD",
   "descriptions" : "Payment for Rent for July",
-  "bank" : "DBS",
-  "bank_account_no" : "XXX-XXX-6091",
+  "bank" : "",
+  "bank_account_no" : "",
   "created_date" : "2015-07-01T19:01:25Z",
   "completed_date" : "",
   "status" : "completed"
@@ -346,8 +346,8 @@ try {
     "amount" : 150.00,
     "currency" : "SGD",
     "descriptions" : "Payment for Rent for July",
-    "bank" : "DBS",
-    "bank_account_no" : "XXX-XXX-6091",
+    "bank" : "",
+    "bank_account_no" : "",
     "created_date" : "2015-07-01T19:01:25Z",
     "completed_date" : "",
     "status" : "completed"
