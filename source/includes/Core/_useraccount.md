@@ -310,6 +310,7 @@ nationality | string | optional | Account holder nationality | Singaporean
 postal_code | string | optional | Address postal code | 640212
 identity_no | string | optional | Account holder national identity no | s841212318g
 country | string | optional | Account holder country of residence| Singapore
+city | string | optional | Account holder city of residence| Singapore
 annual_income | integer | optional | Annual income of user in the local currency (SGD/IDR) | 60000
 id_front_url | string | optional | URL storing the front image of user identity card
 id_back_url | string | optional | URL storing the back image of user identity card
