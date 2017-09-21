@@ -486,7 +486,7 @@ Name | Type | Description | Value
 order_id | string | Unique ref no provided by your during your charge call | A012312
 total_amount | float | 12.49 | Total value for items
 currency | string | 3-letter ISO code for currency | SGD
-status | string | Payment status. | "cancelled" or "paid" or "expired"
+status | string | Payment status. | "cancelled", "paid", "expired", "refunded", ...
 
 
 ### Authorize a Charge
