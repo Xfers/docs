@@ -291,6 +291,8 @@ If a `user_api_token` is given and the user has insufficient xfers wallet balanc
 
 Xfers might use a `bank_unique_amt` to help in identifying the bank transfer in case the user forgets to enter his contact number in the comments section. This is a random amount with very small difference from actual amount(a few cents) which Xfers will absorb. However this is only to be used as a backup; the user should always enter his contact number.
 
+If you receive a status code of 503, please retry the request after a period of time. A "Retry-After" header is provided by the response to indicate the length of time (in seconds) before you should retry.
+
 The table below explains some of these attributes:
 
 key | meaning
