@@ -31,7 +31,7 @@ curl "https://sandbox.xfers.io/api/v3/authorize/get_mock_otp?phone_no=83999455" 
 This endpoint allows you to retrieve the OTP of a number when doing testing on sandbox. It is NOT available in production.
 For international number, you can use '%2B' to replace the plus('+') sign. (i.e. use %2B6287785725657 instead of +6287785725657)
 
-`POST https://sandbox-id.xfers.com/api/v3/authorize/get_mock_otp`
+`GET https://sandbox-id.xfers.com/api/v3/authorize/get_mock_otp`
 
 
 #### URL Parameters
