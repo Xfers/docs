@@ -3331,6 +3331,8 @@ COMING SOON
 
 <p>Xfers might use a <code class="prettyprint">bank_unique_amt</code> to help in identifying the bank transfer in case the user forgets to enter his contact number in the comments section. This is a random amount with very small difference from actual amount(a few cents) which Xfers will absorb. However this is only to be used as a backup; the user should always enter his contact number.</p>
 
+<p>If you receive a status code of 503, please retry the request after a period of time. A &ldquo;Retry-After&rdquo; header is provided by the response to indicate the length of time (in seconds) before you should retry.</p>
+
 <p>The table below explains some of these attributes:</p>
 
 <table><thead>
@@ -5073,6 +5075,8 @@ will not be able to save the token for reuse. Note that each credit card token c
 
 <h2 id="cards-(indonesia)">Cards (Indonesia)</h2>
 
+<p>Currently Credit card system in Indonesia supports MasterCard, Visa, JCB, Amex</p>
+
 <h3 id="charge-guest-card">Charge Guest Card</h3>
 
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox-id.xfers.com/api/v3/credit_card_charges/charge_card_guest"</span> <span class="se">\</span>
@@ -5171,7 +5175,7 @@ will not be able to save the token for reuse. Note that each credit card token c
 <td>card_type</td>
 <td>string</td>
 <td>required</td>
-<td>MasterCard = M Visa = V</td>
+<td>MasterCard = M Visa = V , J = JCB . A = AMEX</td>
 <td>V</td>
 </tr>
 <tr>
@@ -6556,6 +6560,8 @@ You cannot create more than 1 intents per user (previous old pending intents wil
 
 <p>This endpoint allows you to retrieve the OTP of a number when doing testing on sandbox. It is NOT available in production.
 For international number, you can use &rsquo;%2B&rsquo; to replace the plus(&rsquo;+&rsquo;) sign. (i.e. use %2B6287785725657 instead of +6287785725657)</p>
+
+<p><code class="prettyprint">POST https://sandbox-id.xfers.com/api/v3/authorize/get_mock_otp</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
