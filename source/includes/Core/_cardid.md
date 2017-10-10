@@ -1,6 +1,6 @@
 
 ## Cards (Indonesia)
-
+Currently Credit card system in Indonesia supports MasterCard, Visa, JCB, Amex
 
 ### Charge Guest Card
 
@@ -81,7 +81,7 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 txn_id | string | required | The id of the created charge | b840cc9fc5a359c22ed2ccef3427aacd
 card_name | string | required | Name as on credit card | Visnu
-card_type | string | required | MasterCard = M Visa = V | V
+card_type | string | required | MasterCard = M Visa = V , J = JCB . A = AMEX| V
 card_no | string | required | Credit card number | 4137180300023783
 card_cvc | string | required | Card CVC | 123
 expiry_month | string | required | 2 digits month | 01
