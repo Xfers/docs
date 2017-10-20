@@ -142,7 +142,6 @@ recipient | string | optional (either recipient or user_api_token required) | Em
 user_api_token | string | optional (either recipient or user_api_token required) | user’s api token obtain via Connect’s get user token APIs. When this is provided, it will replace the recipient param as the payout target |
 currency | string | optional | 3-letter ISO code for currency | Default to 'SGD'
 descriptions | string | optional | A short description for this payout. This will be part of the email/SMS that the recipient will be receiving from Xfers. | Payment for Rent for July
-no_expire | boolean | optional | Set this to true so this payout will not expire | Default to false
 wallet_id | integer | optional | Coming Soon | Default to XFERS Wallet
 
 ##### Payout Response Status
