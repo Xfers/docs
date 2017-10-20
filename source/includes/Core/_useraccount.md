@@ -595,7 +595,7 @@ On your User Interface, instruct the user to make a bank transfer to the bank na
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-disable_va | string | optional | Set it into true to get the account for normal bank for Xfers | true
+disable_va | boolean | optional | Set it into true to get the account for normal bank for Xfers | true
 
 
 ### Register Updates Callback 
