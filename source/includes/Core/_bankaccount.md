@@ -704,7 +704,7 @@ Standard withdrawal takes 2-3 business day to arrive at recipient bank.
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 amount | string | required | Amount to withdraw | 50.0
-express | string | optional | Default to 'false' | true
+express | boolean | optional | Default to 'false' | true
 notify_url | string | optional | To receive HTTP POST callback notifications on withdrawal status changes | https://www.mysite.com/withdrawal
 
 
@@ -725,7 +725,7 @@ payout_invoice_id | string | required | Unique ref no provided by merchant. This
 ### Get Withdrawal Request
 
 ```shell
-curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdraw_requests/<withdrawal_request_id>" \
+curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdrawal_requests/<withdrawal_request_id>" \
   -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
 ```
 
@@ -756,7 +756,7 @@ This will retrieve one withdrawal request made previously.
 ### List Withdrawal Request
 
 ```shell
-curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdraw_requests" \
+curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdrawal_requests" \
   -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
 ```
 
