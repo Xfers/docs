@@ -115,6 +115,8 @@ When you create a new refund, you must specify a charge to create it on.
 
 Creating a new refund will refund a charge that has previously been created and paid but not yet refunded. Funds will be refunded to the buyer Xfers account available balance. The fees you were originally charged are also refunded.
 
+Please input the merchant/seller's API key for this endpoint
+
 #### HTTPS Request
 
 `POST https://sandbox.xfers.io/api/v3/charges/<id>/refunds`
