@@ -602,7 +602,7 @@ disable_va | boolean | optional | Set it into true to get the account for normal
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/balance_callback" \
-  -H "X-XFERS-USER-API-KEY: unzJPsC_JvQ5MDbPYsrgqipzzbgS7ouKARWr5eG_g8s" \
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
   -H "Content-Type: application/json" \
   -d '{"callback_url": "www.example.com/update", "name": "hello-world", "events":"[\"deposit\"]"}'
 ```
