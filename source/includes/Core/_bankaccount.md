@@ -225,18 +225,20 @@ try {
 ```json
 [
     {
-       "id" : "12312",
-       "account_no" : "039-312-3432",
-       "bank_abbrev" : "DBS",
-       "usage": "all",
-       "account_holder_name": "Tian Wei"       
+       "id": 399,
+       "account_no": "0393123433",
+       "account_holder_name": null,
+       "verification_status": "pending",
+       "bank_abbrev": "DBS",
+       "usage": "all"
     },
     {
-       "id" : "12315",
-       "account_no" : "129-880-1251",
-       "bank_abbrev" : "OCBC",
-       "usage": "all",
-       "account_holder_name": "Tian Wei"       
+       "id": 400,
+       "account_no": "0393123434",
+       "account_holder_name": "Tian Wei",
+       "verification_status": "verified",
+       "bank_abbrev": "DBS",
+       "usage": "all"
     }
 ]
 ```
@@ -339,18 +341,20 @@ try {
 ```json
 [
     {
-       "id" : "12312",
-       "account_no" : "039-312-3432",
-       "bank_abbrev" : "DBS",
-       "usage": "all",
-       "account_holder_name": "Tian Wei"              
+       "id": 399,
+       "account_no": "0393123433",
+       "account_holder_name": null,
+       "verification_status": "pending",
+       "bank_abbrev": "DBS",
+       "usage": "all"
     },
     {
-       "id" : "12315",
-       "account_no" : "129-880-1251",
-       "bank_abbrev" : "OCBC",
-       "usage": "all",
-       "account_holder_name": "Tian Wei"                 
+       "id": 400,
+       "account_no": "0393123434",
+       "account_holder_name": "Tian Wei",
+       "verification_status": "verified",
+       "bank_abbrev": "DBS",
+       "usage": "all"
     }
 ]
 ```
@@ -459,18 +463,20 @@ try {
 ```json
 [
     {
-       "id" : "12312",
-       "account_no" : "039-312-3432",
-       "bank_abbrev" : "DBS",
-       "usage": "all",
-       "account_holder_name": "Tian Wei"              
+       "id": 399,
+       "account_no": "0393123433",
+       "account_holder_name": null,
+       "verification_status": "pending",
+       "bank_abbrev": "DBS",
+       "usage": "all"
     },
     {
-       "id" : "12315",
-       "account_no" : "129-880-1251",
-       "bank_abbrev" : "OCBC",
-       "usage": "all",
-       "account_holder_name": "Tian Wei"              
+       "id": 400,
+       "account_no": "0393123434",
+       "account_holder_name": "Tian Wei",
+       "verification_status": "verified",
+       "bank_abbrev": "DBS",
+       "usage": "all"
     }
 ]
 ```
@@ -566,9 +572,12 @@ try {
 ```json
 [
     {
-       "id" : "12312",
-       "account_no" : "039-312-3432",
-       "bank_abbrev" : "DBS"
+       "id": 399,
+       "account_no": "0393123433",
+       "account_holder_name": null,
+       "verification_status": "pending",
+       "bank_abbrev": "DBS",
+       "usage": "all"
     }
 ]
 ```
