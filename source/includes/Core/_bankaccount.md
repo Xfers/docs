@@ -864,7 +864,7 @@ try {
 }
 ```
 
-This will list all non-completed withdrawal requests made previously.
+This will list all withdrawal requests made previously.
 
 #### HTTPS Request
 
