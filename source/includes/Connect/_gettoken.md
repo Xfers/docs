@@ -141,6 +141,8 @@ This API call will return the user's `user_api_token`. You should save this toke
 
 It will also return a `sign_up_url` if and ONLY IF they do not already have an Xfers account. The url can be loaded to serve a page that allow user to complete their Xfers account registration (this is optional and is only needed if the user wants to login to their Xfers Dashboard).
 
+It will also return a `is_fully_verified` if and ONLY IF they already have an Xfers account and have completed our KYC process.
+
 If you choose to redirect new Xfers user to the unique sign_up_url to allow them to complete their Xfers account registrations, upon successfully account registration, Xfers will redirect user back to the `return_url` specified or the default at "\<Endpoint>/api/v3/account_registration/completed". The automated SMS from Xfers will not be sent if user complete their account registration this way within 15mins.
 
 <aside class="warning">
