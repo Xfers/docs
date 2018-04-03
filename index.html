@@ -7054,7 +7054,7 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 <td>signature</td>
 <td>string</td>
 <td>required</td>
-<td>SHA1 of phone_no + APP_SECRET_KEY</td>
+<td>SHA1-hex of (phone_no + APP_SECRET_KEY)</td>
 <td>Phone Number: <input type="text" id="phone_signup" value="+6597288608"><br/>Secret Key: <input type="text" id="secretkey_signup" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_signup">178502abfa891b69a9a2f72192d51f5fc141f978</span></td>
 </tr>
 </tbody></table>
@@ -7197,6 +7197,8 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 
 <p>It will also return a <code class="prettyprint">sign_up_url</code> if and ONLY IF they do not already have an Xfers account. The url can be loaded to serve a page that allow user to complete their Xfers account registration (this is optional and is only needed if the user wants to login to their Xfers Dashboard).</p>
 
+<p>It will also return a <code class="prettyprint">is_fully_verified</code> if and ONLY IF they already have an Xfers account and have completed our KYC process.</p>
+
 <p>If you choose to redirect new Xfers user to the unique sign_up_url to allow them to complete their Xfers account registrations, upon successfully account registration, Xfers will redirect user back to the <code class="prettyprint">return_url</code> specified or the default at &ldquo;&lt;Endpoint&gt;/api/v3/account_registration/completed&rdquo;. The automated SMS from Xfers will not be sent if user complete their account registration this way within 15mins.</p>
 
 <aside class="warning">
@@ -7236,7 +7238,7 @@ Remember to encode the &rsquo;+&rsquo; sign in your phone no during your GET req
 <td>signature</td>
 <td>string</td>
 <td>required</td>
-<td>SHA1 of phone_no + OTP + APP_SECRET_KEY</td>
+<td>SHA1-hex of (phone_no + OTP + APP_SECRET_KEY)</td>
 <td>Phone Number: <input type="text" id="phone_gettoken" value="+6597288608"><br/>OTP: <input type="text" id="otp_gettoken" value="541231"><br/>Secret Key: <input type="text" id="secretkey_gettoken" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_gettoken">a972388d58c1443295cb89cc9c6f59789630a45f</span></td>
 </tr>
 <tr>
@@ -7252,9 +7254,9 @@ Remember to encode the &rsquo;+&rsquo; sign in your phone no during your GET req
 Note that the signature required here for /get_token  is different from the one for /signup_login.
 </aside>
 
-<p><code class="prettyprint">/authorize/signup_login</code> - SHA1 of phone_no + APP_SECRET_KEY</p>
+<p><code class="prettyprint">/authorize/signup_login</code> - SHA1-hex of (phone_no + APP_SECRET_KEY)</p>
 
-<p><code class="prettyprint">/authorize/get_token</code> - SHA1 of phone_no + OTP + APP_SECRET_KEY</p>
+<p><code class="prettyprint">/authorize/get_token</code> - SHA1-hex of (phone_no + OTP + APP_SECRET_KEY)</p>
 
 <h2 id="what&#39;s-next">What&rsquo;s Next</h2>
 
@@ -7443,8 +7445,8 @@ Note that the signature required here for /get_token  is different from the one 
 <td>signature</td>
 <td>string</td>
 <td>required</td>
-<td>SHA1 of phone_no + APP_SECRET_KEY</td>
-<td>Digest::SHA1.hexdigest(&ldquo;+6597288608YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY&rdquo;) = 178502abfa891b69a9a2f72192d51f5fc141f978</td>
+<td>SHA1-hex of (phone_no + APP_SECRET_KEY)</td>
+<td>178502abfa891b69a9a2f72192d51f5fc141f978</td>
 </tr>
 </tbody></table>
 
