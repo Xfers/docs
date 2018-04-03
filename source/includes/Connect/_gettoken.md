@@ -160,7 +160,7 @@ Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 otp | string | required | 6 digit one-time-password send over SMS | 541231
 phone_no | string | required | User mobile no | +6597288608
-signature | string | required | SHA1 of phone_no + OTP + APP_SECRET_KEY | Phone Number: <input type="text" id="phone_gettoken" value="+6597288608"><br/>OTP: <input type="text" id="otp_gettoken" value="541231"><br/>Secret Key: <input type="text" id="secretkey_gettoken" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_gettoken">a972388d58c1443295cb89cc9c6f59789630a45f</span>
+signature | string | required | SHA1-hex of (phone_no + OTP + APP_SECRET_KEY) | Phone Number: <input type="text" id="phone_gettoken" value="+6597288608"><br/>OTP: <input type="text" id="otp_gettoken" value="541231"><br/>Secret Key: <input type="text" id="secretkey_gettoken" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_gettoken">a972388d58c1443295cb89cc9c6f59789630a45f</span>
 return_url | string | optional | Url that new user will be redirected after they completed Xfers account registration at `sign_up_url` provided. | Default "\<Endpoint>/api/v3/account_registration/completed"
 
 
@@ -168,6 +168,6 @@ return_url | string | optional | Url that new user will be redirected after they
 Note that the signature required here for /get_token  is different from the one for /signup_login.
 </aside>
 
-`/authorize/signup_login` - SHA1 of phone_no + APP_SECRET_KEY
+`/authorize/signup_login` - SHA1-hex of (phone_no + APP_SECRET_KEY)
 
-`/authorize/get_token` - SHA1 of phone_no + OTP + APP_SECRET_KEY
+`/authorize/get_token` - SHA1-hex of (phone_no + OTP + APP_SECRET_KEY)

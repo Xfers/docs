@@ -101,4 +101,4 @@ An SMS with a OTP will be send to that number which must be used for [get_token]
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 phone_no | string | required | User mobile no | +6597288608
-signature | string | required | SHA1 of phone_no + APP_SECRET_KEY  | Phone Number: <input type="text" id="phone_signup" value="+6597288608"><br/>Secret Key: <input type="text" id="secretkey_signup" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_signup">178502abfa891b69a9a2f72192d51f5fc141f978</span>
+signature | string | required | SHA1-hex of (phone_no + APP_SECRET_KEY)  | Phone Number: <input type="text" id="phone_signup" value="+6597288608"><br/>Secret Key: <input type="text" id="secretkey_signup" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_signup">178502abfa891b69a9a2f72192d51f5fc141f978</span>
