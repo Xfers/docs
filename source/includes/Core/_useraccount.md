@@ -80,31 +80,33 @@ try {
 ```json
 {
   "available_balance": "50.00",
-  "wallet_id": 1,
   "ledger_balance" : "250.00",
   "credit_card_rate" : "3.5",
-  "credit_card_fee" : "NA",
+  "credit_card_fee" : "0.5",
+  "bank_transfer_rates":"0.0",
   "bank_transfer_fee" : "0.45",
-  "first_name" : "wenbin",
+  "first_name" : "Wenbin",
   "last_name" : "Tay",
-  "address_line_1" : "Blk 712 loyang Avenue 5",
-  "address_line_2" : "#01-41",
-  "nationality" : "Singaporean",
-  "postal_code" : "340712",
-  "identity_no" : "s86917127G",
-  "country" : "sg",
+  "date_of_birth":"1990-08-20",
   "gender": "male",
   "email" : "tianyao@example.com",
+  "country" : "SG",
+  "nationality" : "Singaporean",
+  "address_line_1" : "Blk 712 loyang Avenue 5",
+  "address_line_2" : "#01-41",
+  "postal_code" : "340712",
+  "identity_no" : "s86917127G",
+  "phone_no" : "+6597288608",
   "id_back" : "nricBackPlaceholder.png",
   "id_document" : "nricDocumentPlaceholder.png",
   "id_front" : "nricFrontPlaceholder.png",
   "id_selfie" : "nricSelfiePlaceholder.png",
-  "phone_no" : "+6597288608",
   "multi_bank_account_detected" : "false",
   "account_locked" : "false",
   "kyc_limit_remaining" : "500.0",
   "kyc_verified" : "true",
   "is_guest" : "false",
+  "annual_income":"",
   "bank_accounts" : [
     {
        "id": 399,
@@ -122,7 +124,8 @@ try {
        "bank_abbrev": "DBS",
        "usage": "all"
     }
-  ]
+  ],
+  "wallet_name": "General Wallet",
 }
 ```
 
