@@ -125,7 +125,7 @@ try {
        "usage": "all"
     }
   ],
-  "wallet_name": "General Wallet",
+  "wallet_name": "General Wallet"
 }
 ```
 
