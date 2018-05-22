@@ -29,10 +29,7 @@ xfers.set_sg_sandbox()
 try:
     print 'Retrieving user...'
     resp = xfuser.retrieve()
-    print resp['first_name']
-    print resp['last_name']
     print resp['available_balance']
-    print resp['address_line_1']
     bank_accounts = resp['bank_accounts']
     for account in bank_accounts:
         print 'Bank account: {}'.format(account)
@@ -49,8 +46,6 @@ Xfers.set_sg_sandbox
 begin
   puts 'Retrieving user...'
   resp = Xfers::User.retrieve
-  puts resp[:first_name]
-  puts resp[:last_name]
   puts resp[:available_balance]
   puts resp
 rescue Xfers::XfersError => e
@@ -64,8 +59,6 @@ Xfers.setSGSandbox();
 try {
     System.out.println("Retrieving current user");
     User user = User.retrieve(apiKey);
-    System.out.println(user.getFirstName());
-    System.out.println(user.getDateOfBirth());
     for (BankAccount bankAccount : user.getBankAccounts()) {
         System.out.println(bankAccount.toString());
     }
@@ -79,53 +72,29 @@ try {
 
 ```json
 {
-  "available_balance": "50.00",
-  "ledger_balance" : "250.00",
-  "credit_card_rate" : "3.5",
-  "credit_card_fee" : "0.5",
-  "bank_transfer_rates":"0.0",
-  "bank_transfer_fee" : "0.45",
-  "first_name" : "Wenbin",
-  "last_name" : "Tay",
-  "date_of_birth":"1990-08-20",
-  "gender": "male",
-  "email" : "tianyao@example.com",
-  "country" : "SG",
-  "nationality" : "Singaporean",
-  "address_line_1" : "Blk 712 loyang Avenue 5",
-  "address_line_2" : "#01-41",
-  "postal_code" : "340712",
-  "identity_no" : "s86917127G",
-  "phone_no" : "+6597288608",
-  "id_back" : "nricBackPlaceholder.png",
-  "id_document" : "nricDocumentPlaceholder.png",
-  "id_front" : "nricFrontPlaceholder.png",
-  "id_selfie" : "nricSelfiePlaceholder.png",
-  "multi_bank_account_detected" : "false",
-  "account_locked" : "false",
-  "kyc_limit_remaining" : "500.0",
-  "kyc_verified" : "true",
-  "is_guest" : "false",
-  "annual_income":"",
-  "bank_accounts" : [
+   "available_balance":"37387.3",
+   "ledger_balance":"37387.3",
+   "bank_transfer_rates":"0.0",
+   "bank_transfer_fees":"0.45",
+   "bank_accounts":[
     {
        "id": 399,
-       "account_no": "0393123433",
-       "account_holder_name": null,
+       "account_no": "xxxxxx3433",
+       "account_holder_name": "Jo****",
        "verification_status": "pending",
        "bank_abbrev": "DBS",
        "usage": "all"
-    },
-    {
-       "id": 400,
-       "account_no": "0393123434",
-       "account_holder_name": "Tian Wei",
-       "verification_status": "verified",
-       "bank_abbrev": "DBS",
-       "usage": "all"
     }
-  ],
-  "wallet_name": "General Wallet"
+   ],
+   "verification_documents":[
+
+   ],
+   "multi_bank_account_detected":false,
+   "account_locked":false,
+   "kyc_limit_remaining":120000.0,
+   "kyc_verified":true,
+   "meta_data":"",
+   "wallet_name":"Xfers"
 }
 ```
 
@@ -254,56 +223,38 @@ try {
 
 > Response:
 
+
 ```json
+
 {
-  "available_balance": "50.00",
-  "ledger_balance" : "250.00",
-  "credit_card_rate" : "3.5",
-  "credit_card_fee" : "NA",
-  "bank_transfer_fee" : "0.45",
-  "first_name" : "wenbin",
-  "last_name" : "Tay",
-  "address_line_1" : "Blk 712 loyang Avenue 5",
-  "address_line_2" : "#01-41",
-  "nationality" : "Singaporean",
-  "postal_code" : "340712",
-  "identity_no" : "s86917127G",
-  "country" : "sg",
-  "gender": "male",
-  "annunal_income" : "60000",
-  "email" : "tianyao@example.com",
-  "id_front" : "nricFrontPlaceholder.png",
-  "id_back" : "nricBackPlaceholder.png",
-  "selfie_2id" : "nricSelfiePlaceholder.png",
-  "proof_of_address" : "nricDocumentPlaceholder.png",
-  "support_document_1" : "supportDocumentPlaceholder",
-  "support_document_2" : "supportDocumentPlaceholder",
-  "support_document_3" : "supportDocumentPlaceholder",
-  "support_document_4" : "supportDocumentPlaceholder",
-  "support_document_5" : "supportDocumentPlaceholder",
-  "phone_no" : "+6597288608",
-  "bank_accounts" : [
+   "available_balance":"37387.3",
+   "ledger_balance":"37387.3",
+   "bank_transfer_rates":"0.0",
+   "bank_transfer_fees":"0.45",
+   "bank_accounts":[
     {
        "id": 399,
-       "account_no": "0393123433",
-       "account_holder_name": null,
+       "account_no": "xxxxxx3433",
+       "account_holder_name": "Jo****",
        "verification_status": "pending",
        "bank_abbrev": "DBS",
        "usage": "all"
-    },
-    {
-       "id": 400,
-       "account_no": "0393123434",
-       "account_holder_name": "Tian Wei",
-       "verification_status": "verified",
-       "bank_abbrev": "DBS",
-       "usage": "all"
     }
-  ]
+   ],
+   "verification_documents":[
+
+   ],
+   "multi_bank_account_detected":false,
+   "account_locked":false,
+   "kyc_limit_remaining":120000.0,
+   "kyc_verified":true,
+   "meta_data":"",
+   "wallet_name":"Xfers"
 }
 ```
 
-This endpoint allows user to update their account information, this is especially important for account that would require KYC.
+This endpoint allows user to update their account information, this is especially important for account that would require KYC. Do note that some fields are not shown in the response even if you just updated them (like first_name) due to privacy concerns.
+
 
 #### HTTPS Request
 

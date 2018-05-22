@@ -226,7 +226,7 @@ try {
 [
     {
        "id": 399,
-       "account_no": "0393123433",
+       "account_no": "xxxxxx3433",
        "account_holder_name": null,
        "verification_status": "pending",
        "bank_abbrev": "DBS",
@@ -234,8 +234,8 @@ try {
     },
     {
        "id": 400,
-       "account_no": "0393123434",
-       "account_holder_name": "Tian Wei",
+       "account_no": "xxxxxx3434",
+       "account_holder_name": "Ti** We*",
        "verification_status": "verified",
        "bank_abbrev": "DBS",
        "usage": "all"
@@ -342,7 +342,7 @@ try {
 [
     {
        "id": 399,
-       "account_no": "0393123433",
+       "account_no": "xxxxxx3433",
        "account_holder_name": null,
        "verification_status": "pending",
        "bank_abbrev": "DBS",
@@ -350,8 +350,8 @@ try {
     },
     {
        "id": 400,
-       "account_no": "0393123434",
-       "account_holder_name": "Tian Wei",
+       "account_no": "xxxxxx3434",
+       "account_holder_name": "Ti** We*",
        "verification_status": "verified",
        "bank_abbrev": "DBS",
        "usage": "all"
@@ -464,7 +464,7 @@ try {
 [
     {
        "id": 399,
-       "account_no": "0393123433",
+       "account_no": "xxxxxx3433",
        "account_holder_name": null,
        "verification_status": "pending",
        "bank_abbrev": "DBS",
@@ -472,8 +472,8 @@ try {
     },
     {
        "id": 400,
-       "account_no": "0393123434",
-       "account_holder_name": "Tian Wei",
+       "account_no": "xxxxxx3434",
+       "account_holder_name": "Ti** We*",
        "verification_status": "verified",
        "bank_abbrev": "DBS",
        "usage": "all"
@@ -573,7 +573,7 @@ try {
 [
     {
        "id": 399,
-       "account_no": "0393123433",
+       "account_no": "xxxxxx3433",
        "account_holder_name": null,
        "verification_status": "pending",
        "bank_abbrev": "DBS",
@@ -686,7 +686,7 @@ try {
   "withdrawal_request" :
     {
        "id" : "59",
-       "account_no" : "039-312-3432",
+       "account_no" : "xxxxxx3432",
        "bank_abbrev" : "DBS",
        "amount" : "50.0",
        "fees" : "0.0",
@@ -744,7 +744,7 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdrawal_requests/<wit
 ```json
   {
        "id" : "59",
-       "account_no" : "039-312-3432-3",
+       "account_no" : "xxxxxxx4323",
        "bank_abbrev" : "DBS",
        "amount" : "50.0",
        "fees" : "0.0",
@@ -842,7 +842,7 @@ try {
   "withdrawal_requests" : [
     {
        "id" : "59",
-       "account_no" : "039-312-3432",
+       "account_no" : "xxxxxx3432",
        "bank_abbrev" : "DBS",
        "amount" : "50.0",
        "fees" : "0.0",
@@ -852,7 +852,7 @@ try {
     },
     {
        "id" : "99",
-       "account_no" : "129-880-1251",
+       "account_no" : "xxxxxx1251",
        "bank_abbrev" : "OCBC",
        "amount" : "250.0",       
        "fees" : "2.99",
