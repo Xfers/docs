@@ -318,10 +318,7 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 <span class="k">try</span><span class="p">:</span>
     <span class="k">print</span> <span class="s">'Retrieving user...'</span>
     <span class="n">resp</span> <span class="o">=</span> <span class="n">xfuser</span><span class="o">.</span><span class="n">retrieve</span><span class="p">()</span>
-    <span class="k">print</span> <span class="n">resp</span><span class="p">[</span><span class="s">'first_name'</span><span class="p">]</span>
-    <span class="k">print</span> <span class="n">resp</span><span class="p">[</span><span class="s">'last_name'</span><span class="p">]</span>
     <span class="k">print</span> <span class="n">resp</span><span class="p">[</span><span class="s">'available_balance'</span><span class="p">]</span>
-    <span class="k">print</span> <span class="n">resp</span><span class="p">[</span><span class="s">'address_line_1'</span><span class="p">]</span>
     <span class="n">bank_accounts</span> <span class="o">=</span> <span class="n">resp</span><span class="p">[</span><span class="s">'bank_accounts'</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">account</span> <span class="ow">in</span> <span class="n">bank_accounts</span><span class="p">:</span>
         <span class="k">print</span> <span class="s">'Bank account: {}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">account</span><span class="p">)</span>
@@ -337,8 +334,6 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 <span class="k">begin</span>
   <span class="nb">puts</span> <span class="s1">'Retrieving user...'</span>
   <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">User</span><span class="p">.</span><span class="nf">retrieve</span>
-  <span class="nb">puts</span> <span class="n">resp</span><span class="p">[</span><span class="ss">:first_name</span><span class="p">]</span>
-  <span class="nb">puts</span> <span class="n">resp</span><span class="p">[</span><span class="ss">:last_name</span><span class="p">]</span>
   <span class="nb">puts</span> <span class="n">resp</span><span class="p">[</span><span class="ss">:available_balance</span><span class="p">]</span>
   <span class="nb">puts</span> <span class="n">resp</span>
 <span class="k">rescue</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">XfersError</span> <span class="o">=&gt;</span> <span class="n">e</span>
@@ -351,8 +346,6 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving current user"</span><span class="o">);</span>
     <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">retrieve</span><span class="o">(</span><span class="n">apiKey</span><span class="o">);</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getFirstName</span><span class="o">());</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getDateOfBirth</span><span class="o">());</span>
     <span class="k">for</span> <span class="o">(</span><span class="n">BankAccount</span> <span class="n">bankAccount</span> <span class="o">:</span> <span class="n">user</span><span class="o">.</span><span class="na">getBankAccounts</span><span class="o">())</span> <span class="o">{</span>
         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">bankAccount</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
     <span class="o">}</span>
@@ -367,53 +360,29 @@ All endpoints are in HTTPS. Please do not attempt to hit our endpoint in HTTP, b
 </blockquote>
 
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"available_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ledger_balance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"250.00"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"credit_card_rate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3.5"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"credit_card_fee"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.5"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"bank_transfer_rates"</span><span class="p">:</span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"bank_transfer_fee"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.45"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"first_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Wenbin"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"last_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Tay"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"date_of_birth"</span><span class="p">:</span><span class="s2">"1990-08-20"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"male"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tianyao@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"SG"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"nationality"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Singaporean"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"address_line_1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Blk 712 loyang Avenue 5"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"address_line_2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"#01-41"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"postal_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"340712"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"identity_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"s86917127G"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"phone_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+6597288608"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"id_back"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricBackPlaceholder.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"id_document"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricDocumentPlaceholder.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"id_front"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricFrontPlaceholder.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"id_selfie"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricSelfiePlaceholder.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"multi_bank_account_detected"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"account_locked"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"kyc_limit_remaining"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"500.0"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"kyc_verified"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"is_guest"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"annual_income"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"bank_accounts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="s2">"available_balance"</span><span class="p">:</span><span class="s2">"37387.3"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"ledger_balance"</span><span class="p">:</span><span class="s2">"37387.3"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"bank_transfer_rates"</span><span class="p">:</span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"bank_transfer_fees"</span><span class="p">:</span><span class="s2">"0.45"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"bank_accounts"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">
        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">399</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0393123433"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxx3433"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jo****"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"verification_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"usage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0393123434"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tian Wei"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"verification_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verified"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"bank_abbrev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"usage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"wallet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"General Wallet"</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"verification_documents"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"multi_bank_account_detected"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"account_locked"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"kyc_limit_remaining"</span><span class="p">:</span><span class="mf">120000.0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"kyc_verified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"meta_data"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"wallet_name"</span><span class="p">:</span><span class="s2">"Xfers"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -538,55 +507,35 @@ name and bank account information.</p>
 <p>Response:</p>
 </blockquote>
 
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"available_balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.00"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ledger_balance"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"250.00"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"credit_card_rate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3.5"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"credit_card_fee"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"bank_transfer_fee"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.45"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"first_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"wenbin"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"last_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Tay"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"address_line_1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Blk 712 loyang Avenue 5"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"address_line_2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"#01-41"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"nationality"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Singaporean"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"postal_code"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"340712"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"identity_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"s86917127G"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"sg"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"male"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"annunal_income"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"60000"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"tianyao@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"id_front"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricFrontPlaceholder.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"id_back"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricBackPlaceholder.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"selfie_2id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricSelfiePlaceholder.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"proof_of_address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nricDocumentPlaceholder.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"support_document_1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"supportDocumentPlaceholder"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"support_document_2"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"supportDocumentPlaceholder"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"support_document_3"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"supportDocumentPlaceholder"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"support_document_4"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"supportDocumentPlaceholder"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"support_document_5"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"supportDocumentPlaceholder"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"phone_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+6597288608"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"bank_accounts"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="s2">"available_balance"</span><span class="p">:</span><span class="s2">"37387.3"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"ledger_balance"</span><span class="p">:</span><span class="s2">"37387.3"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"bank_transfer_rates"</span><span class="p">:</span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"bank_transfer_fees"</span><span class="p">:</span><span class="s2">"0.45"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"bank_accounts"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">
        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">399</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0393123433"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxx3433"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jo****"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"verification_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"usage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0393123434"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tian Wei"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"verification_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verified"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"bank_abbrev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"usage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"verification_documents"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"multi_bank_account_detected"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"account_locked"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"kyc_limit_remaining"</span><span class="p">:</span><span class="mf">120000.0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"kyc_verified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"meta_data"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"wallet_name"</span><span class="p">:</span><span class="s2">"Xfers"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint allows user to update their account information, this is especially important for account that would require KYC.</p>
+<p>This endpoint allows user to update their account information, this is especially important for account that would require KYC. Do note that some fields are not shown in the response even if you just updated them (like first_name) due to privacy concerns.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -1881,7 +1830,7 @@ All documents/images provided should not exceed 10MB per file.
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">399</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0393123433"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxx3433"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
        </span><span class="s2">"verification_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
@@ -1889,8 +1838,8 @@ All documents/images provided should not exceed 10MB per file.
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0393123434"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tian Wei"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxx3434"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ti** We*"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"verification_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verified"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"usage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="w">
@@ -2022,7 +1971,7 @@ All documents/images provided should not exceed 10MB per file.
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">399</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0393123433"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxx3433"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
        </span><span class="s2">"verification_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
@@ -2030,8 +1979,8 @@ All documents/images provided should not exceed 10MB per file.
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0393123434"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tian Wei"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxx3434"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ti** We*"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"verification_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verified"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"usage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="w">
@@ -2152,7 +2101,7 @@ All documents/images provided should not exceed 10MB per file.
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">399</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0393123433"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxx3433"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
        </span><span class="s2">"verification_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
@@ -2160,8 +2109,8 @@ All documents/images provided should not exceed 10MB per file.
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0393123434"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tian Wei"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxx3434"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ti** We*"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"verification_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verified"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"usage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"all"</span><span class="w">
@@ -2286,7 +2235,7 @@ All documents/images provided should not exceed 10MB per file.
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">399</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0393123433"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxx3433"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"account_holder_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
        </span><span class="s2">"verification_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
@@ -2394,7 +2343,7 @@ All documents/images provided should not exceed 10MB per file.
   </span><span class="s2">"withdrawal_request"</span><span class="w"> </span><span class="p">:</span><span class="w">
     </span><span class="p">{</span><span class="w">
        </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"59"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"039-312-3432"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxx3432"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"50.0"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"fees"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
@@ -2494,7 +2443,7 @@ All documents/images provided should not exceed 10MB per file.
 
 <pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
        </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"59"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"039-312-3432-3"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxxx4323"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"50.0"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"fees"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
@@ -2586,7 +2535,7 @@ All documents/images provided should not exceed 10MB per file.
   </span><span class="s2">"withdrawal_requests"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
        </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"59"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"039-312-3432"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxx3432"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DBS"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"50.0"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"fees"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
@@ -2596,7 +2545,7 @@ All documents/images provided should not exceed 10MB per file.
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
        </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"99"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"129-880-1251"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"account_no"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxx1251"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"bank_abbrev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"OCBC"</span><span class="p">,</span><span class="w">
        </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"250.0"</span><span class="p">,</span><span class="w">       
        </span><span class="s2">"fees"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2.99"</span><span class="p">,</span><span class="w">
