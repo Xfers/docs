@@ -1,1 +1,0 @@
-$(window).load(function(){$("#tocify-header8").hide()});
