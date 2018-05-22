@@ -23,9 +23,8 @@ includes:
   - Postman/index
   - Tokenize/index
   - Errors/index
-  - ConnectPrivate/index
+  - ChangeLog/index
 
 
 search: true
 ---
-<!-- if want to add new tab, remember to change hideConnectPrivate.js as it is hard coded -->

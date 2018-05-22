@@ -1,0 +1,16 @@
+# Changelog
+
+*22 May, 2018 (Sandbox only)*
+
+**Summary**
+
+This release implements a number of privacy controls for customers.
+
+**Features**
+
+- Bank account numbers in API responses are now masked and only last 4 digits are returned.
+    + E.g. `599384321` now becomes `xxxxx4321`
+- Account holder names in API responses are now masked and only first 2 characters of every word are returned. 
+    + E.g. `John Tan` now becomes `Jo** T**`
+- The following attributes are removed from API responses:
+    + first_name, last_name, date_of_birth, gender, email, country, nationality, address_line_1, address_line_2, postal_code, identity_no, phone_no, annual_income, id_front, id_back, selfie_2id, proof_of_address
