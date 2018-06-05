@@ -271,6 +271,7 @@ return_url | string | optional | URL Xfers will redirect customer to on completi
 cancel_url | string | optional | URL Xfers will redirect customer to on cancellation of Xfers checkout | https://mysite.com/cancel
 user_api_token | string | optional | Buyer's api token obtain via Connect's get user token APIs. When this is provide, this charge will skip user auth. | NbKjcFV5XxGZ-Uf2XnxyshFcrGtoxmLms9YEgokzDRo
 user_phone_no | string | optional | When this is provided, buyer will receive an OTP(one time password) from Xfers which they can provide to merchant to skip user authentication. See [Authorize a Charge](/#authorize-a-charge). | 85228000
+transactional_only | boolean | optional | Enables transactional charge when true. [See more info](/#transactional-charge). Only selected Xfers partners have this feature available. | Default to false
 debit_only | boolean | optional | When this is true, this charge will attempt to debit from users existing balance/card on file. Status returned will be "completed" on successful debit or "cancelled" when there insufficient funds / valid card on file in user wallet. | Default to false
 card_only | boolean | optional | When this is true, this charge will will attempt to only take payments via credit/debit card. | Default to false
 absorb_card_fees | boolean | optional | When this is true, seller will not pass on the additional fees involved in card processing back on to buyer(as convenience fees) | Default to false
@@ -342,6 +343,15 @@ error_code | 'INVALID_CARD' | This is returned when a charge via user_api_token 
 You should always provide customer's firstname and lastname information whenever you can as it would help us detecting fraudulence charges or user who have made an mistaken in their bank transfer.
 </aside>
 
+#### Transactional Charge
+A transactional charge has a bank topup tied to every charge created.
+That means, if you create a charge for an item that a user has bought - say a pair of jeans costing $25.99 - the user must then topup exactly $25.99 into the bank account number returned in the response. The charge will then go through.
+
+Any wallet balance the user has will not be used. The $25.99 topup will only go towards payment of the pair of jeans. 
+
+Set the `transactional_only` flag to `true` when creating a charge. Note that this feature is only available to selected Xfers partners.
+
+Transactional charges are not subject to KYC limits and merchants do not have to submit KYC documents of their customers.
 
 ### Payment Cancellation
 

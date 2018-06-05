@@ -1,16 +1,22 @@
 # Changelog
-
-*22 May, 2018 (Sandbox only)*
+=================== 6 June, 2018 ===================
 
 **Summary**
 
-This release implements a number of privacy controls for customers.
+This release implements privacy controls for customers.
 
 **Features**
 
-- Bank account numbers in API responses are now masked and only last 4 digits are returned.
-    + E.g. `599384321` now becomes `xxxxx4321`
-- Account holder names in API responses are now masked and only first 2 characters of every word are returned. 
-    + E.g. `John Tan` now becomes `Jo** Ta*`
-- The following attributes are removed from API responses:
-    + first_name, last_name, date_of_birth, gender, email, country, nationality, address_line_1, address_line_2, postal_code, identity_no, phone_no, annual_income, id_front, id_back, selfie_2id, proof_of_address
+The following attributes are removed from API responses:
+
+`first_name, last_name, date_of_birth, gender, email, country, nationality, address_line_1, address_line_2, postal_code, identity_no, phone_no, annual_income, id_front, id_back, selfie_2id, proof_of_address`
+
+=================== 5 June, 2018 ===================
+
+**Summary**
+
+Transactional charges now supported for selected merchants [See more info](/#transactional-charge).
+
+**Features**
+
+Create a transactional charge by setting the `transactional_only` flag when creating a charge to `true`.
