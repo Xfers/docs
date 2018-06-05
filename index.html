@@ -3205,6 +3205,13 @@ COMING SOON
 <td>85228000</td>
 </tr>
 <tr>
+<td>transactional_only</td>
+<td>boolean</td>
+<td>optional</td>
+<td>Enables transactional charge when true. <a href="/#transactional-charge">See more info</a>. Only selected Xfers partners have this feature available.</td>
+<td>Default to false</td>
+</tr>
+<tr>
 <td>debit_only</td>
 <td>boolean</td>
 <td>optional</td>
@@ -3441,6 +3448,17 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 <aside class="notice">
 You should always provide customer&rsquo;s firstname and lastname information whenever you can as it would help us detecting fraudulence charges or user who have made an mistaken in their bank transfer.
 </aside>
+
+<h4 id="transactional-charge">Transactional Charge</h4>
+
+<p>A transactional charge has a bank topup tied to every charge created.
+That means, if you create a charge for an item that a user has bought - say a pair of jeans costing $25.99 - the user must then topup exactly $25.99 into the bank account number returned in the response. The charge will then go through.</p>
+
+<p>Any wallet balance the user has will not be used. The $25.99 topup will only go towards payment of the pair of jeans. </p>
+
+<p>Set the <code class="prettyprint">transactional_only</code> flag to <code class="prettyprint">true</code> when creating a charge. Note that this feature is only available to selected Xfers partners.</p>
+
+<p>Transactional charges are not subject to KYC limits and merchants do not have to submit KYC documents of their customers.</p>
 
 <h3 id="payment-cancellation">Payment Cancellation</h3>
 
@@ -6961,31 +6979,27 @@ Note that the signature required here for /get_token  is different from the one 
 
           <h1 id="changelog">Changelog</h1>
 
-<p><em>22 May, 2018 (Sandbox only)</em></p>
+<p>=================== 6 June, 2018 ===================</p>
 
 <p><strong>Summary</strong></p>
 
-<p>This release implements a number of privacy controls for customers.</p>
+<p>This release implements privacy controls for customers.</p>
 
 <p><strong>Features</strong></p>
 
-<ul>
-<li>Bank account numbers in API responses are now masked and only last 4 digits are returned.
+<p>The following attributes are removed from API responses:</p>
 
-<ul>
-<li>E.g. <code class="prettyprint">599384321</code> now becomes <code class="prettyprint">xxxxx4321</code></li>
-</ul></li>
-<li>Account holder names in API responses are now masked and only first 2 characters of every word are returned. 
+<p><code class="prettyprint">first_name, last_name, date_of_birth, gender, email, country, nationality, address_line_1, address_line_2, postal_code, identity_no, phone_no, annual_income, id_front, id_back, selfie_2id, proof_of_address</code></p>
 
-<ul>
-<li>E.g. <code class="prettyprint">John Tan</code> now becomes <code class="prettyprint">Jo** Ta*</code></li>
-</ul></li>
-<li>The following attributes are removed from API responses:
+<p>=================== 5 June, 2018 ===================</p>
 
-<ul>
-<li>first_name, last_name, date_of_birth, gender, email, country, nationality, address_line_1, address_line_2, postal_code, identity_no, phone_no, annual_income, id_front, id_back, selfie_2id, proof_of_address</li>
-</ul></li>
-</ul>
+<p><strong>Summary</strong></p>
+
+<p>Transactional charges now supported for selected merchants <a href="/#transactional-charge">See more info</a>.</p>
+
+<p><strong>Features</strong></p>
+
+<p>Create a transactional charge by setting the <code class="prettyprint">transactional_only</code> flag when creating a charge to <code class="prettyprint">true</code>.</p>
 
       </div>
       <div class="dark-box">
