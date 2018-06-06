@@ -76,11 +76,12 @@ try {
    "ledger_balance":"37387.3",
    "bank_transfer_rates":"0.0",
    "bank_transfer_fees":"0.45",
+   "phone_no":"+6591240987",
    "bank_accounts":[
     {
        "id": 399,
-       "account_no": "xxxxxx3433",
-       "account_holder_name": "Jo****",
+       "account_no": "9484853433",
+       "account_holder_name": "John Tan",
        "verification_status": "pending",
        "bank_abbrev": "DBS",
        "usage": "all"
@@ -231,11 +232,12 @@ try {
    "ledger_balance":"37387.3",
    "bank_transfer_rates":"0.0",
    "bank_transfer_fees":"0.45",
+   "phone_no":"+6591240987",
    "bank_accounts":[
     {
        "id": 399,
-       "account_no": "xxxxxx3433",
-       "account_holder_name": "Jo****",
+       "account_no": "9484853433",
+       "account_holder_name": "John Tan",
        "verification_status": "pending",
        "bank_abbrev": "DBS",
        "usage": "all"
