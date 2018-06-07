@@ -77,6 +77,17 @@ try {
    "bank_transfer_rates":"0.0",
    "bank_transfer_fees":"0.45",
    "phone_no":"+6591240987",
+   "first_name":"Bobby",
+   "last_name":"Keong",
+   "date_of_birth":"1995-05-21",
+   "gender":"",
+   "email":"bobby@gmail.com",
+   "country":"SG",
+   "nationality":"Singaporean",
+   "address_line_1":"PASIR RIS DRIVE 1",
+   "address_line_2":"04-180",
+   "postal_code":"510608",
+   "identity_no":"S9539495J",
    "bank_accounts":[
     {
        "id": 399,
@@ -87,9 +98,12 @@ try {
        "usage": "all"
     }
    ],
-   "verification_documents":[
-
-   ],
+   "annual_income":"",
+   "id_front":"my_id_front.jpg",
+   "id_back":"my_id_back.jpg",
+   "selfie_2id":"nricSelfiePlaceholder.png",
+   "proof_of_address":"my_proof_of_address.pdf",   
+   "verification_documents":[],
    "multi_bank_account_detected":false,
    "account_locked":false,
    "kyc_limit_remaining":120000.0,
@@ -233,6 +247,17 @@ try {
    "bank_transfer_rates":"0.0",
    "bank_transfer_fees":"0.45",
    "phone_no":"+6591240987",
+   "first_name":"Bobby",
+   "last_name":"Keong",
+   "date_of_birth":"1995-05-21",
+   "gender":"",
+   "email":"bobby@gmail.com",
+   "country":"SG",
+   "nationality":"Singaporean",
+   "address_line_1":"PASIR RIS DRIVE 1",
+   "address_line_2":"04-180",
+   "postal_code":"510608",
+   "identity_no":"S9539495J",   
    "bank_accounts":[
     {
        "id": 399,
@@ -243,6 +268,11 @@ try {
        "usage": "all"
     }
    ],
+   "annual_income":"",
+   "id_front":"my_id_front.jpg",
+   "id_back":"my_id_back.jpg",
+   "selfie_2id":"nricSelfiePlaceholder.png",
+   "proof_of_address":"my_proof_of_address.pdf",   
    "verification_documents":[
 
    ],
