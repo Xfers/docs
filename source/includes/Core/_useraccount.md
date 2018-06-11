@@ -329,7 +329,8 @@ All documents/images provided should not exceed 10MB per file.
 
 ### Get Account Activities
 
-The activities API only supports querying of a user's activity.
+The activities API only supports querying of a user's activity. 
+
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/activities" \
