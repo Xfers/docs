@@ -753,7 +753,7 @@ All documents/images provided should not exceed 10MB per file.
 
 <h3 id="get-account-activities">Get Account Activities</h3>
 
-<p>The activities API only supports querying of a user&rsquo;s activity.</p>
+<p>The activities API only supports querying of a user&rsquo;s activity. </p>
 
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/activities"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"</span>
@@ -7010,6 +7010,18 @@ Note that the signature required here for /get_token  is different from the one 
 </tbody></table>
 
           <h1 id="changelog">Changelog</h1>
+
+<p>=================== 11 June, 2018 ===================</p>
+
+<p><strong>Summary</strong></p>
+
+<p>Improvements to <a href="/#get-account-activities">Get Account Activities API</a> privacy controls.</p>
+
+<p><strong>Features</strong></p>
+
+<p>Get Account Activities API now only returns a particular merchant&rsquo;s transactions and not every merchant&rsquo;s transactions for connected users.</p>
+
+<p>If you are a merchant A and you have a connected user X, you will not be able to see user X&rsquo;s transactions with other merchants.</p>
 
 <p>=================== 5 June, 2018 ===================</p>
 
