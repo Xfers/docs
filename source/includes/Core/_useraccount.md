@@ -584,7 +584,7 @@ try {
 
 This will return transfer in info specific to the user. This information is used for topping up the user's Xfers account.
 
-On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. **For our Maybank account, the user must also include his mobile phone number in the "Initials" and "Comments for Recipient" field when doing a bank transfer** so Xfers can identify which user this bank transfer belongs to.
+On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. **For our non-VA account, the user must also include his mobile phone number in the "Initials" and "Comments for Recipient" field when doing a bank transfer** so Xfers can identify which user this bank transfer belongs to.
 
 #### HTTPS Request
 
