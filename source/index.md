@@ -16,6 +16,7 @@ toc_footers:
 
 includes:
   - Introduction/index
+  - Integration/index
   - Testing/index
   - API/index
   - Core/index
