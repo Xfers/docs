@@ -70,7 +70,7 @@ curl "https://sandbox.xfers.io/checkout_transaction/request_otp" \
 }
 ```
 
-This endpoint allows you to resend the OTP to a phone.
+This endpoint allows you to resend the OTP to a phone. This is only used for charge with parameter "user_phone_no" inputted to it.
 
 #### URL Parameters
 
