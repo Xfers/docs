@@ -1377,7 +1377,7 @@ All documents/images provided should not exceed 10MB per file.
 
 <p>This will return transfer in info specific to the user. This information is used for topping up the user&rsquo;s Xfers account.</p>
 
-<p>On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. <strong>For our Maybank account, the user must also include his mobile phone number in the &ldquo;Initials&rdquo; and &ldquo;Comments for Recipient&rdquo; field when doing a bank transfer</strong> so Xfers can identify which user this bank transfer belongs to.</p>
+<p>On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. <strong>For our non-VA account, the user must also include his mobile phone number in the &ldquo;Initials&rdquo; and &ldquo;Comments for Recipient&rdquo; field when doing a bank transfer</strong> so Xfers can identify which user this bank transfer belongs to.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -3691,13 +3691,6 @@ COMING SOON
 <td>optional</td>
 <td>Setting this to true will not send transaction reminders/cancelled/expired emails/SMS. Users will still receive payment completed notification.</td>
 <td>Default to false.</td>
-</tr>
-<tr>
-<td>application_fee</td>
-<td>float</td>
-<td>optional</td>
-<td>A fee that will be applied to the charge and transferred to the application owner&rsquo;s account. To use an application fee, the request must be made on behalf of another account, using via Xfers Connect. (COMING SOON)</td>
-<td>1.00</td>
 </tr>
 </tbody></table>
 
@@ -6645,7 +6638,7 @@ For international number, you can use &rsquo;%2B&rsquo; to replace the plus(&rsq
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint allows you to resend the OTP to a phone.</p>
+<p>This endpoint allows you to resend the OTP to a phone. This is only used for charge with parameter &ldquo;user_phone_no&rdquo; inputted to it.</p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -7000,6 +6993,10 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
 <tr>
 <td>408</td>
 <td>Request Timeout &ndash; Our website or corresponding site takes too much time to handle. Try again later.</td>
+</tr>
+<tr>
+<td>409</td>
+<td>API Conflict &ndash; We received the similar request within close time of the last request.</td>
 </tr>
 <tr>
 <td>429</td>
