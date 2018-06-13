@@ -129,14 +129,21 @@ create accounts on the behalf of others.</p>
 
 <p><strong>Official SDKs</strong> for the Xfers API are <a href="https://github.com/Xfers">available in several languages</a>.</p>
 
-          <h1 id="testing">Testing</h1>
+          <h1 id="integration-guides">Integration Guides</h1>
 
-<p>We&rsquo;ve made a testing guide at <a href="https://www.xfers.com/sg/developers/getting-started-with-testing/">https://www.xfers.com/sg/developers/getting-started-with-testing/</a> for you to easily get started!</p>
+<p>Here are a <strong>list of diagrams to guide your integration</strong> with Xfers:</p>
 
-          <h1 id="apis-endpoints">APIs endpoints</h1>
+<ul>
+<li><a href="https://www.lucidchart.com/publicSegments/view/0a2fe26d-3556-4dc5-a63a-b7b5adde1fb6/image.png">Overview on integrating Xfers Wallet</a></li>
+<li><a href="https://www.lucidchart.com/publicSegments/view/017a4cda-6a5d-4013-ae4f-6daf81175157/image.png">Xfers Connect Flow</a></li>
+<li><a href="https://www.lucidchart.com/publicSegments/view/c29b0c13-0573-44b4-91f6-fe489cfa964e/image.png">Top-up Flow</a></li>
+<li><a href="https://www.lucidchart.com/publicSegments/view/23b4e3b6-dce1-4b98-a2aa-30fc8648db75/image.png">Transactional Flow</a></li>
+</ul>
+
+          <h1 id="api-endpoints">API endpoints</h1>
 
 <p>Xfers provides a <strong>dedicated sandbox environment</strong> where you can simulate an incoming bank transfer for testing purposes.
-Note that this feature will not be available in production mode.</p>
+Note that this feature will not be available in production mode. Refer to the <a href="#testing">testing section to get started</a>.</p>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
 
@@ -200,6 +207,363 @@ All the examples code in this document will be pointing to our sandbox endpoint.
 
 <p>Note that all API calls are done through HTTPS, please do not attempt to hit our endpoint via HTTP, as you will also be
 exposing your API key in plain text.</p>
+
+          <h1 id="xfers-connect">Xfers Connect</h1>
+
+<p>Xfers Connect is a set of APIs to gain access to your customers&rsquo; Xfers account, or to create &ldquo;ghost&rdquo; Xfers accounts on their behalf.</p>
+
+<p>You might use Connect if you:</p>
+
+<ul>
+<li><p>Are building a platform that enables e-commerce like Shopify or tackthis.</p></li>
+<li><p>Need to easily accept payments and pay out your service providers, like Grabtaxi with its drivers or yesHelper with its workers. (You can even create Xfers accounts for your users, so they only ever interact with your platform.)</p></li>
+<li><p>Want to integrate Xfers wallet directly into your mobile or e-commerce app.</p></li>
+</ul>
+
+<p>In general, if you’re building a platform or marketplace that needs to pay third-parties or building applications that help Xfers users do more with their account or their data, Connect is likely the right solution for you.</p>
+
+<h2 id="authentication">Authentication</h2>
+
+<p>Xfers Connect uses a pair of API Keys and API Secret to access its APIs.</p>
+
+<p>Write in to us at support@xfers.io to request for your Xfers Connect API Keys.
+You will provided with a pair of keys named <code class="prettyprint">X-XFERS-APP-API-KEY</code> and <code class="prettyprint">X-XFERS-APP-SECRET-KEY</code>.</p>
+
+<p>Xfers Connect expects the API key to be included in the &ldquo;Signup/login to Xfers&rdquo; and &ldquo;Get User API Token&rdquo; process to look like the following:</p>
+
+<p><code class="prettyprint">X-XFERS-APP-API-KEY: yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ</code></p>
+
+<p>These keys are different from the usual API keys which you include in the <code class="prettyprint">X-XFERS-USER-API-KEY</code> header. App Connect API keys are only used for the Xfers Connect APIs. Thus instead of <code class="prettyprint">X-XFERS-USER-API-KEY: YOUR-NORMAL-USER-API-KEY</code> , you pass in <code class="prettyprint">X-XFERS-APP-API-KEY: THE-APP-API-KEY</code> as the header instead.</p>
+
+<h2 id="signup/login-to-xfers">Signup/login to Xfers</h2>
+
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/signup_login"</span><span class="se">\</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ"</span><span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{"phone_no" : "+6597288608", "signature" : "178502abfa891b69a9a2f72192d51f5fc141f978"}'</span>
+</code></pre>
+
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
+
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
+<span class="nv">$xfers_app_api_key</span> <span class="o">=</span> <span class="s1">'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ'</span><span class="p">;</span>
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Connect</span><span class="o">::</span><span class="na">authorize</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+        <span class="s1">'phone_no'</span> <span class="o">=&gt;</span> <span class="s1">'+6597288608'</span><span class="p">,</span>
+        <span class="s1">'signature'</span> <span class="o">=&gt;</span> <span class="s1">'178502abfa891b69a9a2f72192d51f5fc141f978'</span>
+    <span class="p">),</span> <span class="nv">$xfers_app_api_key</span><span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\Api</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Caught Api exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">xfers</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">xfconnect</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">error</span>
+
+<span class="n">xfers</span><span class="o">.</span><span class="n">set_sg_sandbox</span><span class="p">()</span>
+<span class="n">XFERS_APP_API_KEY</span> <span class="o">=</span> <span class="s">'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ'</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">'Authorizing connect...'</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">'phone_no'</span><span class="p">:</span> <span class="s">'+6597288608'</span><span class="p">,</span>
+        <span class="s">'signature'</span><span class="p">:</span> <span class="s">'178502abfa891b69a9a2f72192d51f5fc141f978'</span>
+    <span class="p">}</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">xfconnect</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">XFERS_APP_API_KEY</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">resp</span>
+<span class="k">except</span> <span class="n">error</span><span class="o">.</span><span class="n">XfersError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</code></pre>
+
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'xfers'</span>
+
+<span class="no">Xfers</span><span class="p">.</span><span class="nf">set_sg_sandbox</span>
+<span class="no">XFERS_APP_API_KEY</span> <span class="o">=</span> <span class="s1">'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ'</span>
+
+<span class="k">begin</span>
+  <span class="nb">puts</span> <span class="s1">'Authorizing connect...'</span>
+  <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s1">'phone_no'</span><span class="o">=&gt;</span> <span class="s1">'+6597288608'</span><span class="p">,</span>
+      <span class="s1">'signature'</span><span class="o">=&gt;</span> <span class="s1">'178502abfa891b69a9a2f72192d51f5fc141f978'</span>
+  <span class="p">}</span>
+  <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Connect</span><span class="p">.</span><span class="nf">authorize</span> <span class="n">params</span><span class="p">,</span> <span class="no">XFERS_APP_API_KEY</span>
+  <span class="nb">puts</span> <span class="n">resp</span>
+<span class="k">rescue</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">XfersError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
+<span class="k">end</span>
+</code></pre>
+
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="n">String</span> <span class="n">xfersAppApiKey</span> <span class="o">=</span> <span class="s">"yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">xfersAppSecretKey</span> <span class="o">=</span> <span class="s">"178502abfa891b69a9a2f72192d51f5fc141f978"</span><span class="o">;</span>
+
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Authorizing"</span><span class="o">);</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"phone_no"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
+    <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">Connect</span><span class="o">.</span><span class="na">authorize</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">xfersAppApiKey</span><span class="o">,</span> <span class="n">xfersAppSecretKey</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getMsg</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This API call will attempt to login(existing user) or signup a new user.</p>
+
+<p>An SMS with a OTP will be send to that number which must be used for <a href="/#get-user-api-token">get_token</a> api call.</p>
+
+<h3 id="https-request">HTTPS Request</h3>
+
+<p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/authorize/signup_login</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>phone_no</td>
+<td>string</td>
+<td>required</td>
+<td>User mobile no</td>
+<td>+6597288608</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>string</td>
+<td>required</td>
+<td>SHA1-hex of (phone_no + APP_SECRET_KEY)</td>
+<td>Phone Number: <input type="text" id="phone_signup" value="+6597288608"><br/>Secret Key: <input type="text" id="secretkey_signup" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_signup">178502abfa891b69a9a2f72192d51f5fc141f978</span></td>
+</tr>
+</tbody></table>
+
+<h2 id="get-user-api-token">Get User API Token</h2>
+
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&amp;phone_no=%2B6597288608&amp;signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-APP-API-KEY: yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ"</span>
+
+<span class="c"># You can now change the X-XFERS-USER-API-KEY to the returned user_api_token</span>
+<span class="c"># and make API calls on behalf of the connect user.</span>
+</code></pre>
+
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+<span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
+
+<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
+<span class="nv">$xfers_app_api_key</span> <span class="o">=</span> <span class="s1">'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ'</span><span class="p">;</span>
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Connect</span><span class="o">::</span><span class="na">getToken</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+        <span class="s1">'otp'</span> <span class="o">=&gt;</span> <span class="s1">'541231'</span><span class="p">,</span>
+        <span class="s1">'phone_no'</span> <span class="o">=&gt;</span> <span class="s1">'+6597288608'</span><span class="p">,</span>
+        <span class="s1">'signature'</span> <span class="o">=&gt;</span> <span class="s1">'178502abfa891b69a9a2f72192d51f5fc141f978'</span><span class="p">,</span>
+        <span class="s1">'return_url'</span> <span class="o">=&gt;</span> <span class="s1">'https://mywebsite.com/api/v3/account_registration/completed'</span>
+    <span class="p">),</span> <span class="nv">$xfers_app_api_key</span><span class="p">);</span>
+    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
+
+    <span class="c1"># You can now call \Xfers\Xfers::setApiKey again to change the X-XFERS-USER-API-KEY to the returned user_api_token
+</span>    <span class="c1"># and make API calls on behalf of the connect user.
+</span>    <span class="nv">$user_api_token</span> <span class="o">=</span> <span class="nv">$resp</span><span class="p">[</span><span class="s1">'user_api_token'</span><span class="p">];</span>
+    <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setApiKey</span><span class="p">(</span><span class="nv">$user_api_token</span><span class="p">);</span>
+    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\User</span><span class="o">::</span><span class="na">retrieve</span><span class="p">();</span>
+
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\Api</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Caught Api exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">xfers</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">xfconnect</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">xfuser</span>
+<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">error</span>
+
+<span class="n">xfers</span><span class="o">.</span><span class="n">set_sg_sandbox</span><span class="p">()</span>
+<span class="n">XFERS_APP_API_KEY</span> <span class="o">=</span> <span class="s">'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ'</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">'Getting token...'</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">'otp'</span><span class="p">:</span> <span class="s">'541231'</span><span class="p">,</span>
+        <span class="s">'phone_no'</span><span class="p">:</span> <span class="s">'+6597288608'</span><span class="p">,</span>
+        <span class="s">'signature'</span><span class="p">:</span> <span class="s">'178502abfa891b69a9a2f72192d51f5fc141f978'</span><span class="p">,</span>
+        <span class="s">'return_url'</span><span class="p">:</span> <span class="s">'https://mywebsite.com/api/v3/account_registration/completed'</span>
+    <span class="p">}</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">xfconnect</span><span class="o">.</span><span class="n">get_token</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">XFERS_APP_API_KEY</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">resp</span>
+
+    <span class="c"># You can now set xfers.api_key again to change the X-XFERS-USER-API-KEY to the returned user_api_token</span>
+    <span class="c"># and make API calls on behalf of the connect user.</span>
+    <span class="n">xfers</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">resp</span><span class="p">[</span><span class="s">'user_api_token'</span><span class="p">]</span>
+    <span class="n">connected_user</span> <span class="o">=</span> <span class="n">xfuser</span><span class="o">.</span><span class="n">retrieve</span><span class="p">()</span>
+
+<span class="k">except</span> <span class="n">error</span><span class="o">.</span><span class="n">XfersError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</code></pre>
+
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'xfers'</span>
+
+<span class="no">Xfers</span><span class="p">.</span><span class="nf">set_sg_sandbox</span>
+<span class="no">XFERS_APP_API_KEY</span> <span class="o">=</span> <span class="s1">'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ'</span>
+
+<span class="k">begin</span>
+  <span class="nb">puts</span> <span class="s1">'Getting connect token...'</span>
+  <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s1">'otp'</span><span class="o">=&gt;</span> <span class="s1">'541231'</span><span class="p">,</span>
+      <span class="s1">'phone_no'</span><span class="o">=&gt;</span> <span class="s1">'+6597288608'</span><span class="p">,</span>
+      <span class="s1">'signature'</span><span class="o">=&gt;</span> <span class="s1">'178502abfa891b69a9a2f72192d51f5fc141f978'</span><span class="p">,</span>
+      <span class="s1">'return_url'</span><span class="o">=&gt;</span> <span class="s1">'https://mywebsite.com/api/v3/account_registration/completed'</span>
+  <span class="p">}</span>
+  <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Connect</span><span class="p">.</span><span class="nf">get_token</span> <span class="n">params</span><span class="p">,</span> <span class="no">XFERS_APP_API_KEY</span>
+  <span class="n">user_api_token</span> <span class="o">=</span>  <span class="n">resp</span><span class="p">[</span><span class="ss">:user_api_token</span><span class="p">]</span>
+  <span class="nb">puts</span> <span class="n">resp</span>
+
+  <span class="c1"># You can now call Xfers.set_api_key again to change the X-XFERS-USER-API-KEY to the returned user_api_token</span>
+  <span class="c1"># and make API calls on behalf of the connect user.</span>
+
+  <span class="no">Xfers</span><span class="p">.</span><span class="nf">set_api_key</span> <span class="n">user_api_token</span>
+
+  <span class="n">connect_user</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">User</span><span class="p">.</span><span class="nf">retrieve</span>
+  <span class="nb">puts</span> <span class="n">connect_user</span><span class="p">[</span><span class="ss">:first_name</span><span class="p">]</span>
+  <span class="nb">puts</span> <span class="n">connect_user</span><span class="p">[</span><span class="ss">:last_name</span><span class="p">]</span>
+  <span class="nb">puts</span> <span class="n">connect_user</span><span class="p">[</span><span class="ss">:available_balance</span><span class="p">]</span>
+  <span class="nb">puts</span> <span class="n">connect_user</span>
+
+<span class="k">rescue</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">XfersError</span> <span class="o">=&gt;</span> <span class="n">e</span>
+  <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
+<span class="k">end</span>
+
+</code></pre>
+
+<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="n">String</span> <span class="n">xfersAppApiKey</span> <span class="o">=</span> <span class="s">"AeWpKz5cdPoJFUwF53sBee_WsSoqym_hspiX3bcoB_Y"</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">xfersAppSecretKey</span> <span class="o">=</span> <span class="s">"yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ"</span><span class="o">;</span>
+
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Getting token"</span><span class="o">);</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"otp"</span><span class="o">,</span> <span class="s">"541231"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"phone_no"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"return_url"</span><span class="o">,</span> <span class="s">"https://mywebsite.com/api/v3/account_registration/completed"</span><span class="o">);</span>
+    <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">Connect</span><span class="o">.</span><span class="na">getToken</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">xfersAppApiKey</span><span class="o">,</span> <span class="n">xfersAppSecretKey</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getMsg</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getUserApiToken</span><span class="o">());</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getSignUpUrl</span><span class="o">());</span>
+
+    <span class="c1">// You can now set Xfers.apiKey again to change the X-XFERS-USER-API-KEY to the returned user_api_token</span>
+    <span class="c1">// and make API calls on behalf of the connect user.</span>
+
+    <span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getUserApiToken</span><span class="o">();</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving connected user"</span><span class="o">);</span>
+    <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
+
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+
+<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user_api_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1DnsZkv3qXwKx4EAdps8AJ8jXCPsxP2sKSygMHTAFLM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sign_up_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/api/v3/account_registration?phone_no=%2B6597288608&amp;token=4014d3e9f0600f78dbfabd86036de7b008f70c52"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This API call will return the user&rsquo;s <code class="prettyprint">user_api_token</code>. You should save this token in database for reuse. There is no need to go through the connect flow again for this user.</p>
+
+<p>It will also return a <code class="prettyprint">sign_up_url</code> if and ONLY IF they do not already have an Xfers account. The url can be loaded to serve a page that allow user to complete their Xfers account registration (this is optional and is only needed if the user wants to login to their Xfers Dashboard).</p>
+
+<p>It will also return a <code class="prettyprint">is_fully_verified</code> if and ONLY IF they already have an Xfers account and have completed our KYC process.</p>
+
+<p>If you choose to redirect new Xfers user to the unique sign_up_url to allow them to complete their Xfers account registrations, upon successfully account registration, Xfers will redirect user back to the <code class="prettyprint">return_url</code> specified or the default at &ldquo;&lt;Endpoint&gt;/api/v3/account_registration/completed&rdquo;. The automated SMS from Xfers will not be sent if user complete their account registration this way within 15mins.</p>
+
+<aside class="warning">
+Remember to encode the &rsquo;+&rsquo; sign in your phone no during your GET request. It should be &rsquo;%2B&rsquo; instead of &rsquo;+&rsquo;
+</aside>
+
+<h3 id="https-request">HTTPS Request</h3>
+
+<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&amp;phone_no=%2B6597288608&amp;signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>otp</td>
+<td>string</td>
+<td>required</td>
+<td>6 digit one-time-password send over SMS</td>
+<td>541231</td>
+</tr>
+<tr>
+<td>phone_no</td>
+<td>string</td>
+<td>required</td>
+<td>User mobile no</td>
+<td>+6597288608</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>string</td>
+<td>required</td>
+<td>SHA1-hex of (phone_no + OTP + APP_SECRET_KEY)</td>
+<td>Phone Number: <input type="text" id="phone_gettoken" value="+6597288608"><br/>OTP: <input type="text" id="otp_gettoken" value="541231"><br/>Secret Key: <input type="text" id="secretkey_gettoken" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_gettoken">a972388d58c1443295cb89cc9c6f59789630a45f</span></td>
+</tr>
+<tr>
+<td>return_url</td>
+<td>string</td>
+<td>optional</td>
+<td>Url that new user will be redirected after they completed Xfers account registration at <code class="prettyprint">sign_up_url</code> provided.</td>
+<td>Default &ldquo;&lt;Endpoint&gt;/api/v3/account_registration/completed&rdquo;</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Note that the signature required here for /get_token  is different from the one for /signup_login.
+</aside>
+
+<p><code class="prettyprint">/authorize/signup_login</code> - SHA1-hex of (phone_no + APP_SECRET_KEY)</p>
+
+<p><code class="prettyprint">/authorize/get_token</code> - SHA1-hex of (phone_no + OTP + APP_SECRET_KEY)</p>
+
+<h2 id="what&#39;s-next">What&rsquo;s Next</h2>
+
+<p>Now that you have gotten a <code class="prettyprint">user_api_token</code> linked to your customer, you can</p>
+
+<ul>
+<li>Pass this <code class="prettyprint">user_api_token</code> as params when <a href="/#creating-a-charge">creating a charge</a> to bypass authentication for your customer</li>
+<li>Pass this <code class="prettyprint">user_api_token</code> as params when adding and charging credit cards cards</li>
+<li>Pass this <code class="prettyprint">user_api_token</code> as params when <a href="/#creating-a-payout">creating a payout</a> in place of the recipient field</li>
+<li>Use the header <code class="prettyprint">&quot;X-XFERS-USER-API-KEY&quot;: &quot;the user_api_token&quot;</code> (instead of <code class="prettyprint">&quot;X-XFERS-USER-API-KEY&quot;: &quot;your own token&quot;</code>) to modify <a href="/#user-account">user details</a> and <a href="/#bank-account">bank accounts</a> on behalf of your user</li>
+</ul>
 
           <h1 id="xfers-core">Xfers Core</h1>
 
@@ -6567,369 +6931,6 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
 </tr>
 </tbody></table>
 
-          <h1 id="xfers-connect">Xfers Connect</h1>
-
-<p>Xfers Connect is a set of APIs to gain access to your customers&rsquo; Xfers account, or to create &ldquo;ghost&rdquo; Xfers accounts on their behalf.</p>
-
-<p>You might use Connect if you:</p>
-
-<ul>
-<li><p>Are building a platform that enables e-commerce like Shopify or tackthis.</p></li>
-<li><p>Need to easily accept payments and pay out your service providers, like Grabtaxi with its drivers or yesHelper with its workers. (You can even create Xfers accounts for your users, so they only ever interact with your platform.)</p></li>
-<li><p>Want to integrate Xfers wallet directly into your mobile or e-commerce app.</p></li>
-</ul>
-
-<p>In general, if you’re building a platform or marketplace that needs to pay third-parties or building applications that help Xfers users do more with their account or their data, Connect is likely the right solution for you.</p>
-
-<h2 id="authentication">Authentication</h2>
-
-<p>Xfers Connect uses a pair of API Keys and API Secret to access its APIs.</p>
-
-<p>Write in to us at support@xfers.io to request for your Xfers Connect API Keys.
-You will provided with a pair of keys named <code class="prettyprint">X-XFERS-APP-API-KEY</code> and <code class="prettyprint">X-XFERS-APP-SECRET-KEY</code>.</p>
-
-<p>Xfers Connect expects the API key to be included in the &ldquo;Signup/login to Xfers&rdquo; and &ldquo;Get User API Token&rdquo; process to look like the following:</p>
-
-<p><code class="prettyprint">X-XFERS-APP-API-KEY: yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ</code></p>
-
-<p>These keys are different from the usual API keys which you include in the <code class="prettyprint">X-XFERS-USER-API-KEY</code> header. App Connect API keys are only used for the Xfers Connect APIs. Thus instead of <code class="prettyprint">X-XFERS-USER-API-KEY: YOUR-NORMAL-USER-API-KEY</code> , you pass in <code class="prettyprint">X-XFERS-APP-API-KEY: THE-APP-API-KEY</code> as the header instead.</p>
-
-<h2 id="signup/login-to-xfers">Signup/login to Xfers</h2>
-
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/signup_login"</span><span class="se">\</span>
-  -H <span class="s2">"X-XFERS-APP-API-KEY: yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ"</span><span class="se">\</span>
-  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -d <span class="s1">'{"phone_no" : "+6597288608", "signature" : "178502abfa891b69a9a2f72192d51f5fc141f978"}'</span>
-</code></pre>
-
-<pre class="highlight php"><code><span class="cp">&lt;?php</span>
-<span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
-
-<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
-<span class="nv">$xfers_app_api_key</span> <span class="o">=</span> <span class="s1">'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ'</span><span class="p">;</span>
-<span class="k">try</span> <span class="p">{</span>
-    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Connect</span><span class="o">::</span><span class="na">authorize</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
-        <span class="s1">'phone_no'</span> <span class="o">=&gt;</span> <span class="s1">'+6597288608'</span><span class="p">,</span>
-        <span class="s1">'signature'</span> <span class="o">=&gt;</span> <span class="s1">'178502abfa891b69a9a2f72192d51f5fc141f978'</span>
-    <span class="p">),</span> <span class="nv">$xfers_app_api_key</span><span class="p">);</span>
-    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
-<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\Api</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">echo</span> <span class="s1">'Caught Api exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre>
-
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">xfers</span>
-<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">xfconnect</span>
-<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">error</span>
-
-<span class="n">xfers</span><span class="o">.</span><span class="n">set_sg_sandbox</span><span class="p">()</span>
-<span class="n">XFERS_APP_API_KEY</span> <span class="o">=</span> <span class="s">'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ'</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">'Authorizing connect...'</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">'phone_no'</span><span class="p">:</span> <span class="s">'+6597288608'</span><span class="p">,</span>
-        <span class="s">'signature'</span><span class="p">:</span> <span class="s">'178502abfa891b69a9a2f72192d51f5fc141f978'</span>
-    <span class="p">}</span>
-    <span class="n">resp</span> <span class="o">=</span> <span class="n">xfconnect</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">XFERS_APP_API_KEY</span><span class="p">)</span>
-    <span class="k">print</span> <span class="n">resp</span>
-<span class="k">except</span> <span class="n">error</span><span class="o">.</span><span class="n">XfersError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-</code></pre>
-
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'xfers'</span>
-
-<span class="no">Xfers</span><span class="p">.</span><span class="nf">set_sg_sandbox</span>
-<span class="no">XFERS_APP_API_KEY</span> <span class="o">=</span> <span class="s1">'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ'</span>
-
-<span class="k">begin</span>
-  <span class="nb">puts</span> <span class="s1">'Authorizing connect...'</span>
-  <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="s1">'phone_no'</span><span class="o">=&gt;</span> <span class="s1">'+6597288608'</span><span class="p">,</span>
-      <span class="s1">'signature'</span><span class="o">=&gt;</span> <span class="s1">'178502abfa891b69a9a2f72192d51f5fc141f978'</span>
-  <span class="p">}</span>
-  <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Connect</span><span class="p">.</span><span class="nf">authorize</span> <span class="n">params</span><span class="p">,</span> <span class="no">XFERS_APP_API_KEY</span>
-  <span class="nb">puts</span> <span class="n">resp</span>
-<span class="k">rescue</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">XfersError</span> <span class="o">=&gt;</span> <span class="n">e</span>
-  <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
-<span class="k">end</span>
-</code></pre>
-
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
-<span class="n">String</span> <span class="n">xfersAppApiKey</span> <span class="o">=</span> <span class="s">"yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ"</span><span class="o">;</span>
-<span class="n">String</span> <span class="n">xfersAppSecretKey</span> <span class="o">=</span> <span class="s">"178502abfa891b69a9a2f72192d51f5fc141f978"</span><span class="o">;</span>
-
-<span class="k">try</span> <span class="o">{</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Authorizing"</span><span class="o">);</span>
-    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
-    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"phone_no"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
-    <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">Connect</span><span class="o">.</span><span class="na">authorize</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">xfersAppApiKey</span><span class="o">,</span> <span class="n">xfersAppSecretKey</span><span class="o">);</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getMsg</span><span class="o">());</span>
-<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre>
-
-<blockquote>
-<p>Response</p>
-</blockquote>
-
-<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This API call will attempt to login(existing user) or signup a new user.</p>
-
-<p>An SMS with a OTP will be send to that number which must be used for <a href="/#get-user-api-token">get_token</a> api call.</p>
-
-<h3 id="https-request">HTTPS Request</h3>
-
-<p><code class="prettyprint">POST https://sandbox.xfers.io/api/v3/authorize/signup_login</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>phone_no</td>
-<td>string</td>
-<td>required</td>
-<td>User mobile no</td>
-<td>+6597288608</td>
-</tr>
-<tr>
-<td>signature</td>
-<td>string</td>
-<td>required</td>
-<td>SHA1-hex of (phone_no + APP_SECRET_KEY)</td>
-<td>Phone Number: <input type="text" id="phone_signup" value="+6597288608"><br/>Secret Key: <input type="text" id="secretkey_signup" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_signup">178502abfa891b69a9a2f72192d51f5fc141f978</span></td>
-</tr>
-</tbody></table>
-
-<h2 id="get-user-api-token">Get User API Token</h2>
-
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&amp;phone_no=%2B6597288608&amp;signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91"</span> <span class="se">\</span>
-  -H <span class="s2">"X-XFERS-APP-API-KEY: yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ"</span>
-
-<span class="c"># You can now change the X-XFERS-USER-API-KEY to the returned user_api_token</span>
-<span class="c"># and make API calls on behalf of the connect user.</span>
-</code></pre>
-
-<pre class="highlight php"><code><span class="cp">&lt;?php</span>
-<span class="k">require_once</span><span class="p">(</span><span class="s1">'vendor/autoload.php'</span><span class="p">);</span>
-
-<span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
-<span class="nv">$xfers_app_api_key</span> <span class="o">=</span> <span class="s1">'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ'</span><span class="p">;</span>
-<span class="k">try</span> <span class="p">{</span>
-    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Connect</span><span class="o">::</span><span class="na">getToken</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
-        <span class="s1">'otp'</span> <span class="o">=&gt;</span> <span class="s1">'541231'</span><span class="p">,</span>
-        <span class="s1">'phone_no'</span> <span class="o">=&gt;</span> <span class="s1">'+6597288608'</span><span class="p">,</span>
-        <span class="s1">'signature'</span> <span class="o">=&gt;</span> <span class="s1">'178502abfa891b69a9a2f72192d51f5fc141f978'</span><span class="p">,</span>
-        <span class="s1">'return_url'</span> <span class="o">=&gt;</span> <span class="s1">'https://mywebsite.com/api/v3/account_registration/completed'</span>
-    <span class="p">),</span> <span class="nv">$xfers_app_api_key</span><span class="p">);</span>
-    <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
-
-    <span class="c1"># You can now call \Xfers\Xfers::setApiKey again to change the X-XFERS-USER-API-KEY to the returned user_api_token
-</span>    <span class="c1"># and make API calls on behalf of the connect user.
-</span>    <span class="nv">$user_api_token</span> <span class="o">=</span> <span class="nv">$resp</span><span class="p">[</span><span class="s1">'user_api_token'</span><span class="p">];</span>
-    <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setApiKey</span><span class="p">(</span><span class="nv">$user_api_token</span><span class="p">);</span>
-    <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\User</span><span class="o">::</span><span class="na">retrieve</span><span class="p">();</span>
-
-<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\Api</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">echo</span> <span class="s1">'Caught Api exception: '</span><span class="p">,</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre>
-
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">xfers</span>
-<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">xfconnect</span>
-<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">xfuser</span>
-<span class="kn">from</span> <span class="nn">xfers</span> <span class="kn">import</span> <span class="n">error</span>
-
-<span class="n">xfers</span><span class="o">.</span><span class="n">set_sg_sandbox</span><span class="p">()</span>
-<span class="n">XFERS_APP_API_KEY</span> <span class="o">=</span> <span class="s">'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ'</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">'Getting token...'</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">'otp'</span><span class="p">:</span> <span class="s">'541231'</span><span class="p">,</span>
-        <span class="s">'phone_no'</span><span class="p">:</span> <span class="s">'+6597288608'</span><span class="p">,</span>
-        <span class="s">'signature'</span><span class="p">:</span> <span class="s">'178502abfa891b69a9a2f72192d51f5fc141f978'</span><span class="p">,</span>
-        <span class="s">'return_url'</span><span class="p">:</span> <span class="s">'https://mywebsite.com/api/v3/account_registration/completed'</span>
-    <span class="p">}</span>
-    <span class="n">resp</span> <span class="o">=</span> <span class="n">xfconnect</span><span class="o">.</span><span class="n">get_token</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">XFERS_APP_API_KEY</span><span class="p">)</span>
-    <span class="k">print</span> <span class="n">resp</span>
-
-    <span class="c"># You can now set xfers.api_key again to change the X-XFERS-USER-API-KEY to the returned user_api_token</span>
-    <span class="c"># and make API calls on behalf of the connect user.</span>
-    <span class="n">xfers</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">resp</span><span class="p">[</span><span class="s">'user_api_token'</span><span class="p">]</span>
-    <span class="n">connected_user</span> <span class="o">=</span> <span class="n">xfuser</span><span class="o">.</span><span class="n">retrieve</span><span class="p">()</span>
-
-<span class="k">except</span> <span class="n">error</span><span class="o">.</span><span class="n">XfersError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-</code></pre>
-
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'xfers'</span>
-
-<span class="no">Xfers</span><span class="p">.</span><span class="nf">set_sg_sandbox</span>
-<span class="no">XFERS_APP_API_KEY</span> <span class="o">=</span> <span class="s1">'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ'</span>
-
-<span class="k">begin</span>
-  <span class="nb">puts</span> <span class="s1">'Getting connect token...'</span>
-  <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="s1">'otp'</span><span class="o">=&gt;</span> <span class="s1">'541231'</span><span class="p">,</span>
-      <span class="s1">'phone_no'</span><span class="o">=&gt;</span> <span class="s1">'+6597288608'</span><span class="p">,</span>
-      <span class="s1">'signature'</span><span class="o">=&gt;</span> <span class="s1">'178502abfa891b69a9a2f72192d51f5fc141f978'</span><span class="p">,</span>
-      <span class="s1">'return_url'</span><span class="o">=&gt;</span> <span class="s1">'https://mywebsite.com/api/v3/account_registration/completed'</span>
-  <span class="p">}</span>
-  <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Connect</span><span class="p">.</span><span class="nf">get_token</span> <span class="n">params</span><span class="p">,</span> <span class="no">XFERS_APP_API_KEY</span>
-  <span class="n">user_api_token</span> <span class="o">=</span>  <span class="n">resp</span><span class="p">[</span><span class="ss">:user_api_token</span><span class="p">]</span>
-  <span class="nb">puts</span> <span class="n">resp</span>
-
-  <span class="c1"># You can now call Xfers.set_api_key again to change the X-XFERS-USER-API-KEY to the returned user_api_token</span>
-  <span class="c1"># and make API calls on behalf of the connect user.</span>
-
-  <span class="no">Xfers</span><span class="p">.</span><span class="nf">set_api_key</span> <span class="n">user_api_token</span>
-
-  <span class="n">connect_user</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">User</span><span class="p">.</span><span class="nf">retrieve</span>
-  <span class="nb">puts</span> <span class="n">connect_user</span><span class="p">[</span><span class="ss">:first_name</span><span class="p">]</span>
-  <span class="nb">puts</span> <span class="n">connect_user</span><span class="p">[</span><span class="ss">:last_name</span><span class="p">]</span>
-  <span class="nb">puts</span> <span class="n">connect_user</span><span class="p">[</span><span class="ss">:available_balance</span><span class="p">]</span>
-  <span class="nb">puts</span> <span class="n">connect_user</span>
-
-<span class="k">rescue</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">XfersError</span> <span class="o">=&gt;</span> <span class="n">e</span>
-  <span class="nb">puts</span> <span class="n">e</span><span class="p">.</span><span class="nf">to_s</span>
-<span class="k">end</span>
-
-</code></pre>
-
-<pre class="highlight java"><code><span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
-<span class="n">String</span> <span class="n">xfersAppApiKey</span> <span class="o">=</span> <span class="s">"AeWpKz5cdPoJFUwF53sBee_WsSoqym_hspiX3bcoB_Y"</span><span class="o">;</span>
-<span class="n">String</span> <span class="n">xfersAppSecretKey</span> <span class="o">=</span> <span class="s">"yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ"</span><span class="o">;</span>
-
-<span class="k">try</span> <span class="o">{</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Getting token"</span><span class="o">);</span>
-    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
-    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"otp"</span><span class="o">,</span> <span class="s">"541231"</span><span class="o">);</span>
-    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"phone_no"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
-    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"return_url"</span><span class="o">,</span> <span class="s">"https://mywebsite.com/api/v3/account_registration/completed"</span><span class="o">);</span>
-    <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">Connect</span><span class="o">.</span><span class="na">getToken</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">xfersAppApiKey</span><span class="o">,</span> <span class="n">xfersAppSecretKey</span><span class="o">);</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getMsg</span><span class="o">());</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getUserApiToken</span><span class="o">());</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getSignUpUrl</span><span class="o">());</span>
-
-    <span class="c1">// You can now set Xfers.apiKey again to change the X-XFERS-USER-API-KEY to the returned user_api_token</span>
-    <span class="c1">// and make API calls on behalf of the connect user.</span>
-
-    <span class="n">Xfers</span><span class="o">.</span><span class="na">apiKey</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getUserApiToken</span><span class="o">();</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving connected user"</span><span class="o">);</span>
-    <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">retrieve</span><span class="o">();</span>
-
-<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre>
-
-<blockquote>
-<p>Response</p>
-</blockquote>
-
-<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user_api_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1DnsZkv3qXwKx4EAdps8AJ8jXCPsxP2sKSygMHTAFLM"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sign_up_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/api/v3/account_registration?phone_no=%2B6597288608&amp;token=4014d3e9f0600f78dbfabd86036de7b008f70c52"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This API call will return the user&rsquo;s <code class="prettyprint">user_api_token</code>. You should save this token in database for reuse. There is no need to go through the connect flow again for this user.</p>
-
-<p>It will also return a <code class="prettyprint">sign_up_url</code> if and ONLY IF they do not already have an Xfers account. The url can be loaded to serve a page that allow user to complete their Xfers account registration (this is optional and is only needed if the user wants to login to their Xfers Dashboard).</p>
-
-<p>It will also return a <code class="prettyprint">is_fully_verified</code> if and ONLY IF they already have an Xfers account and have completed our KYC process.</p>
-
-<p>If you choose to redirect new Xfers user to the unique sign_up_url to allow them to complete their Xfers account registrations, upon successfully account registration, Xfers will redirect user back to the <code class="prettyprint">return_url</code> specified or the default at &ldquo;&lt;Endpoint&gt;/api/v3/account_registration/completed&rdquo;. The automated SMS from Xfers will not be sent if user complete their account registration this way within 15mins.</p>
-
-<aside class="warning">
-Remember to encode the &rsquo;+&rsquo; sign in your phone no during your GET request. It should be &rsquo;%2B&rsquo; instead of &rsquo;+&rsquo;
-</aside>
-
-<h3 id="https-request">HTTPS Request</h3>
-
-<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&amp;phone_no=%2B6597288608&amp;signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>otp</td>
-<td>string</td>
-<td>required</td>
-<td>6 digit one-time-password send over SMS</td>
-<td>541231</td>
-</tr>
-<tr>
-<td>phone_no</td>
-<td>string</td>
-<td>required</td>
-<td>User mobile no</td>
-<td>+6597288608</td>
-</tr>
-<tr>
-<td>signature</td>
-<td>string</td>
-<td>required</td>
-<td>SHA1-hex of (phone_no + OTP + APP_SECRET_KEY)</td>
-<td>Phone Number: <input type="text" id="phone_gettoken" value="+6597288608"><br/>OTP: <input type="text" id="otp_gettoken" value="541231"><br/>Secret Key: <input type="text" id="secretkey_gettoken" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_gettoken">a972388d58c1443295cb89cc9c6f59789630a45f</span></td>
-</tr>
-<tr>
-<td>return_url</td>
-<td>string</td>
-<td>optional</td>
-<td>Url that new user will be redirected after they completed Xfers account registration at <code class="prettyprint">sign_up_url</code> provided.</td>
-<td>Default &ldquo;&lt;Endpoint&gt;/api/v3/account_registration/completed&rdquo;</td>
-</tr>
-</tbody></table>
-
-<aside class="notice">
-Note that the signature required here for /get_token  is different from the one for /signup_login.
-</aside>
-
-<p><code class="prettyprint">/authorize/signup_login</code> - SHA1-hex of (phone_no + APP_SECRET_KEY)</p>
-
-<p><code class="prettyprint">/authorize/get_token</code> - SHA1-hex of (phone_no + OTP + APP_SECRET_KEY)</p>
-
-<h2 id="what&#39;s-next">What&rsquo;s Next</h2>
-
-<p>Now that you have gotten a <code class="prettyprint">user_api_token</code> linked to your customer, you can</p>
-
-<ul>
-<li>Pass this <code class="prettyprint">user_api_token</code> as params when <a href="/#creating-a-charge">creating a charge</a> to bypass authentication for your customer</li>
-<li>Pass this <code class="prettyprint">user_api_token</code> as params when adding and charging credit cards cards</li>
-<li>Pass this <code class="prettyprint">user_api_token</code> as params when <a href="/#creating-a-payout">creating a payout</a> in place of the recipient field</li>
-<li>Use the header <code class="prettyprint">&quot;X-XFERS-USER-API-KEY&quot;: &quot;the user_api_token&quot;</code> (instead of <code class="prettyprint">&quot;X-XFERS-USER-API-KEY&quot;: &quot;your own token&quot;</code>) to modify <a href="/#user-account">user details</a> and <a href="/#bank-account">bank accounts</a> on behalf of your user</li>
-</ul>
-
-          <h1 id="postman-collection-(coming-soon!)">Postman Collection (Coming soon!)</h1>
-
-<p><a href="https://www.getpostman.com">Postman</a> helps you to construct HTTP requests quickly, save them for later use and analyze the responses sent by the API.</p>
-
-<p>We have created a Postman collection so you can easily test out our APIs. All you need is a <a href="https://sandbox.xfers.io">sandbox account</a> to get started!</p>
-
           <h1 id="xfers-tokenize">Xfers Tokenize</h1>
 
 <blockquote>
@@ -6968,6 +6969,10 @@ Note that the signature required here for /get_token  is different from the one 
 
 <p><a href="https://github.com/Xfers/xfers.js">Singapore Xfers.js</a> is our client-side Javascript library for credit card tokenization.
 <a href="https://github.com/Xfers/xfers-indo.js">Indonesia Xfers.js</a> is our client-side Javascript library for credit card tokenization.</p>
+
+          <h1 id="testing">Testing</h1>
+
+<p>We&rsquo;ve made a testing guide at <a href="https://www.xfers.com/sg/developers/getting-started-with-testing/">https://www.xfers.com/sg/developers/getting-started-with-testing/</a> for you to easily get started!</p>
 
           <h1 id="errors">Errors</h1>
 
