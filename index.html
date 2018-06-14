@@ -133,12 +133,33 @@ create accounts on the behalf of others.</p>
 
 <p>Here are a <strong>list of diagrams to guide your integration</strong> with Xfers:</p>
 
-<ul>
-<li><a href="https://www.lucidchart.com/publicSegments/view/0a2fe26d-3556-4dc5-a63a-b7b5adde1fb6/image.png">Overview on integrating Xfers Wallet</a></li>
-<li><a href="https://www.lucidchart.com/publicSegments/view/017a4cda-6a5d-4013-ae4f-6daf81175157/image.png">Xfers Connect Flow</a></li>
-<li><a href="https://www.lucidchart.com/publicSegments/view/c29b0c13-0573-44b4-91f6-fe489cfa964e/image.png">Top-up Flow</a></li>
-<li><a href="https://www.lucidchart.com/publicSegments/view/23b4e3b6-dce1-4b98-a2aa-30fc8648db75/image.png">Transactional Flow</a></li>
-</ul>
+<p>
+  <ul>
+    <li>
+      <a href="https://www.lucidchart.com/publicSegments/view/0a2fe26d-3556-4dc5-a63a-b7b5adde1fb6/image.png" target="_blank">
+        Overview on integrating Xfers Wallet
+      </a>
+    </li>
+
+    <li>
+      <a href="https://www.lucidchart.com/publicSegments/view/017a4cda-6a5d-4013-ae4f-6daf81175157/image.png" target="_blank">
+        Xfers Connect Flow
+      </a>
+    </li>
+
+    <li>
+      <a href="https://www.lucidchart.com/publicSegments/view/c29b0c13-0573-44b4-91f6-fe489cfa964e/image.png" target="_blank">
+        Top-up Flow
+      </a>
+    </li>
+
+    <li>
+      <a href="https://www.lucidchart.com/publicSegments/view/23b4e3b6-dce1-4b98-a2aa-30fc8648db75/image.png" target="_blank">
+        Transactional Flow
+      </a>
+    </li>
+  </ul>
+</p>
 
           <h1 id="api-endpoints">API endpoints</h1>
 
@@ -1377,7 +1398,7 @@ All documents/images provided should not exceed 10MB per file.
 
 <p>This will return transfer in info specific to the user. This information is used for topping up the user&rsquo;s Xfers account.</p>
 
-<p>On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. <strong>For our non-VA account, the user must also include his mobile phone number in the &ldquo;Initials&rdquo; and &ldquo;Comments for Recipient&rdquo; field when doing a bank transfer</strong> so Xfers can identify which user this bank transfer belongs to.</p>
+<p>On your User Interface, instruct the user to make a bank transfer to the bank name and bank account number specified. <strong>For our Maybank account, the user must also include his mobile phone number in the &ldquo;Initials&rdquo; and &ldquo;Comments for Recipient&rdquo; field when doing a bank transfer</strong> so Xfers can identify which user this bank transfer belongs to.</p>
 
 <h4 id="https-request">HTTPS Request</h4>
 
@@ -3691,6 +3712,13 @@ COMING SOON
 <td>optional</td>
 <td>Setting this to true will not send transaction reminders/cancelled/expired emails/SMS. Users will still receive payment completed notification.</td>
 <td>Default to false.</td>
+</tr>
+<tr>
+<td>application_fee</td>
+<td>float</td>
+<td>optional</td>
+<td>A fee that will be applied to the charge and transferred to the application owner&rsquo;s account. To use an application fee, the request must be made on behalf of another account, using via Xfers Connect. (COMING SOON)</td>
+<td>1.00</td>
 </tr>
 </tbody></table>
 
@@ -6638,7 +6666,7 @@ For international number, you can use &rsquo;%2B&rsquo; to replace the plus(&rsq
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint allows you to resend the OTP to a phone. This is only used for charge with parameter &ldquo;user_phone_no&rdquo; inputted to it.</p>
+<p>This endpoint allows you to resend the OTP to a phone.</p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -6993,10 +7021,6 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
 <tr>
 <td>408</td>
 <td>Request Timeout &ndash; Our website or corresponding site takes too much time to handle. Try again later.</td>
-</tr>
-<tr>
-<td>409</td>
-<td>API Conflict &ndash; We received the similar request within close time of the last request.</td>
 </tr>
 <tr>
 <td>429</td>
