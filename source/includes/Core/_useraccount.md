@@ -295,12 +295,15 @@ This endpoint allows user to update their account information, this is especiall
 
 #### URL Parameters
 
+###### mother_maiden_name, id_front_url, selfie_2id_url is a required field in Indonesia
+
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 first_name | string | optional | Account holder firstname | Tianwei
 last_name | string | optional | Account holder lastname | Liu
 email | string | optional | User email | tianwei@xfers.io
 date_of_birth | string | optional | Date of birth for account holder in yyyy-mm-dd | 1986-02-27
+mother_maiden_name | string | optional | Name of Mother | Liu Weitian
 gender | string | optional | Gender | male / female
 address_line_1 | string | optional | Address line 1 | Blk 212 Jurong East St 50
 address_line_2 | string | optional | Address line 2 | #08-41
