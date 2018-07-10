@@ -303,7 +303,7 @@ first_name | string | optional | Account holder firstname | Tianwei
 last_name | string | optional | Account holder lastname | Liu
 email | string | optional | User email | tianwei@xfers.io
 date_of_birth | string | optional | Date of birth for account holder in yyyy-mm-dd | 1986-02-27
-mother_maiden_name | string | optional | Name of Mother | Liu Weitian
+mother_maiden_name | string | ID: required, SG: optional | Name of Mother | Liu Weitian
 gender | string | optional | Gender | male / female
 address_line_1 | string | optional | Address line 1 | Blk 212 Jurong East St 50
 address_line_2 | string | optional | Address line 2 | #08-41
@@ -313,9 +313,9 @@ identity_no | string | optional | Account holder national identity no | s8412123
 country | string | optional | Account holder country of residence| Singapore
 city | string | optional | Account holder city of residence| Singapore
 annual_income | integer | optional | Annual income of user in the local currency (SGD/IDR) | 60000
-id_front_url | string | optional | URL storing the front image of user identity card
+id_front_url | string | ID: required, SG: optional | URL storing the front image of user identity card
 id_back_url | string | optional | URL storing the back image of user identity card
-selfie_2id_url | string | optional | URL storing the selfie of user holding their id card or a second form of id like driving license or passport
+selfie_2id_url | string | ID: required, SG: optional | URL storing the selfie of user holding their id card or a second form of id like driving license or passport
 proof_of_address_url | string | optional | URL storing the image/pdf of proof of address document of user like bank statement or telco bill.
 support_document_1_url | string | optional | URL storing the image/pdf of support documents like proof of user income
 support_document_2_url | string | optional | URL storing the image/pdf of support documents like proof of user income
