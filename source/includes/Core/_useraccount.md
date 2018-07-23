@@ -68,9 +68,7 @@ try {
 }
 ```
 
-> Response:
-
-Example response for SG:
+> Response (SG):
 
 ```json
 {
@@ -115,7 +113,7 @@ Example response for SG:
 }
 ```
 
-Example response for ID:
+> Response (ID):
 
 ```json
 {
@@ -285,9 +283,7 @@ try {
 }
 ```
 
-> Response:
-
-Example response for SG:
+> Response (SG):
 
 ```json
 
@@ -335,7 +331,7 @@ Example response for SG:
 }
 ```
 
-Example response for ID:
+> Response (ID):
 
 ```json
 {
