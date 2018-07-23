@@ -129,10 +129,10 @@ DEPENDENCIES
   middleman (~> 3.3.10)
   middleman-gh-pages (~> 0.0.3)
   middleman-syntax (~> 2.0.0)
-  rake (~> 10.4.2)
+  rake
   redcarpet (~> 3.2.2)
   rouge (~> 1.8.0)
   therubyracer (~> 0.12.1)
 
 BUNDLED WITH
-   1.14.6
+   1.16.1
