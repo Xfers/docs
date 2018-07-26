@@ -415,7 +415,8 @@ support_document_2_url | string | optional | URL storing the image/pdf of suppor
 support_document_3_url | string | optional | URL storing the image/pdf of support documents like proof of user income
 support_document_4_url | string | optional | URL storing the image/pdf of support documents like proof of user income
 support_document_5_url | string | optional | URL storing the image/pdf of support documents like proof of user income
-meta_data| string | optional | Additional data like Jumio info dump.
+meta_data | string | optional | Additional data like Jumio info dump.
+callback_url | string | optional | URL to receive callback notifications on account verification changes.
 
 
 <aside class="notice">
