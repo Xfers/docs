@@ -225,14 +225,6 @@ try {
 ```json
 [
     {
-       "id": 399,
-       "account_no": "3999443433",
-       "account_holder_name": null,
-       "verification_status": "pending",
-       "bank_abbrev": "DBS",
-       "usage": "all"
-    },
-    {
        "id": 400,
        "account_no": "0393123432",
        "account_holder_name": "Tian Wei",
@@ -462,14 +454,6 @@ try {
 
 ```json
 [
-    {
-       "id": 399,
-       "account_no": "8399413433",
-       "account_holder_name": null,
-       "verification_status": "pending",
-       "bank_abbrev": "DBS",
-       "usage": "all"
-    },
     {
        "id": 400,
        "account_no": "0393123432",
