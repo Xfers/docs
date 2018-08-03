@@ -1291,6 +1291,19 @@ name and bank account information.</p>
 All documents/images provided should not exceed 10MB per file.
 </aside>
 
+<h3 id="verify-user-account">Verify User Account</h3>
+
+<p>This API forcefully verify the user with corresponding API KEY. This API can only be called from sandbox.</p>
+
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/verify"</span> <span class="se">\</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"</span> <span class="se">\</span>
+  --request PATCH
+</code></pre>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">PATCH https://sandbox.xfers.io/api/v3/user/verify</code></p>
+
 <h3 id="get-account-activities">Get Account Activities</h3>
 
 <p>The activities API only supports querying of a user&rsquo;s activity. </p>
@@ -7166,7 +7179,13 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
 
           <h1 id="changelog">Changelog</h1>
 
-<p>=================== 2nd August, 2018 ===================</p>
+<p>=================== 3 August, 2018 ===================</p>
+
+<p><strong>Summary</strong></p>
+
+<p>Add Verify User Account in Xfers Core - User Account</p>
+
+<p>=================== 2 August, 2018 ===================</p>
 
 <p><strong>Summary</strong></p>
 
