@@ -465,6 +465,22 @@ All documents/images provided should not exceed 10MB per file.
 </aside>
 
 
+### Verify User Account
+
+This API forcefully verify the user with corresponding API KEY. This API can only be called from sandbox.
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/user/verify" \
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
+  --request PATCH
+```
+
+#### HTTPS Request
+
+`PATCH https://sandbox.xfers.io/api/v3/user/verify`
+
+
+
 ### Get Account Activities
 
 The activities API only supports querying of a user's activity. 
