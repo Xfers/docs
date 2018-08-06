@@ -496,8 +496,10 @@ The activities API supports querying of a user's activity. If you are a merchant
 
 
 ```shell
-curl "https://sandbox.xfers.io/api/v3/user/activities" \
-  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
+curl -X GET \
+  'https://sandbox.xfers.io/api/v3/user/activities?limit=5&start_date=01-06-2018&end_date=01-12-2018&offset=5' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -H 'X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'  
 ```
 
 ```php
