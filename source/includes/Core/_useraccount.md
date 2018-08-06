@@ -634,10 +634,19 @@ This endpoint returns information related to your account activites such as the 
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-limit | integer | optional | Max number of results to return | 50 (default)
-start_date | date | optional | DD-MM-YYYY | Defaults to 1 month ago
-end_date | date | optional | DD-MM-YYYY | Defaults to today
-offset | integer | optional | Offset results for pagination purposes | 0 (default)
+limit | integer | optional | Max number of results to return per page | 50 (default)
+start_date | Date, DD-MM-YYYY | optional | Earliest date to query | Defaults to 1 month ago
+end_date | Date, DD-MM-YYYY | optional | Latest date to query | Defaults to today
+offset | integer | optional | Offset results for pagination purposes. | 0 (default)
+
+To do pagination:
+
+1. Decide on number of entries per page (e.g. 100 for this example). Set the limit as this
+2. First page: Offset 0. The latest 100 entries, 1-100, will be returned.
+3. Second page: Offset 100. The next 100 entries, 101-200, will be returned.
+4. Third page: Offset 200. The next 100 entries, 201-300, will be returned.
+
+Hence your offset should always be a multiple of limit.
 
 #### Response
 Attribute | Description 
@@ -647,6 +656,7 @@ type | 6 types: Credit Card, Payment Link, Charge, Payout, Withdrawal, Deposit
 amount | If money going out of account, negative. If coming in, positive. Note that only a completed Charge will actually deduct money. For example, if a Charge is expired/accepted/pending/unclaimed, no money will actually flow in/out of the wallet, even though there is a amount displayed. 
 fee | Fee charged by Xfers for the transaction, if any. Will be 0 if no fees
 metadata | Shows additional information about a transaction
+activities_returned | Number of activities returned. If activities returned is less than the limit, this is the final page.
 
 **Metadata for Deposits:**
 
