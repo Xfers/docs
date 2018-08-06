@@ -1463,31 +1463,42 @@ All documents/images provided should not exceed 10MB per file.
 <td>limit</td>
 <td>integer</td>
 <td>optional</td>
-<td>Max number of results to return</td>
+<td>Max number of results to return per page</td>
 <td>50 (default)</td>
 </tr>
 <tr>
 <td>start_date</td>
-<td>date</td>
+<td>Date, DD-MM-YYYY</td>
 <td>optional</td>
-<td>DD-MM-YYYY</td>
+<td>Earliest date to query</td>
 <td>Defaults to 1 month ago</td>
 </tr>
 <tr>
 <td>end_date</td>
-<td>date</td>
+<td>Date, DD-MM-YYYY</td>
 <td>optional</td>
-<td>DD-MM-YYYY</td>
+<td>Latest date to query</td>
 <td>Defaults to today</td>
 </tr>
 <tr>
 <td>offset</td>
 <td>integer</td>
 <td>optional</td>
-<td>Offset results for pagination purposes</td>
+<td>Offset results for pagination purposes.</td>
 <td>0 (default)</td>
 </tr>
 </tbody></table>
+
+<p>To do pagination:</p>
+
+<ol>
+<li>Decide on number of entries per page (e.g. 100 for this example). Set the limit as this</li>
+<li>First page: Offset 0. The latest 100 entries, 1-100, will be returned.</li>
+<li>Second page: Offset 100. The next 100 entries, 101-200, will be returned.</li>
+<li>Third page: Offset 200. The next 100 entries, 201-300, will be returned.</li>
+</ol>
+
+<p>Hence your offset should always be a multiple of limit.</p>
 
 <h4 id="response">Response</h4>
 
@@ -1516,6 +1527,10 @@ All documents/images provided should not exceed 10MB per file.
 <tr>
 <td>metadata</td>
 <td>Shows additional information about a transaction</td>
+</tr>
+<tr>
+<td>activities_returned</td>
+<td>Number of activities returned. If activities returned is less than the limit, this is the final page.</td>
 </tr>
 </tbody></table>
 
