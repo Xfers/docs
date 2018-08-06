@@ -1317,8 +1317,10 @@ All documents/images provided should not exceed 10MB per file.
 
 <p>The activities API supports querying of a user&rsquo;s activity. If you are a merchant and querying a connected user&rsquo;s account, only transactions with your merchant account will be shown. I.e. user&rsquo;s transactions with other merchants will not be displayed.</p>
 
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/activities"</span> <span class="se">\</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"</span>
+<pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
+  <span class="s1">'https://sandbox.xfers.io/api/v3/user/activities?limit=5&amp;start_date=01-06-2018&amp;end_date=01-12-2018&amp;offset=5'</span> <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
+  -H <span class="s1">'X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'</span>  
 </code></pre>
 
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
