@@ -1315,7 +1315,7 @@ All documents/images provided should not exceed 10MB per file.
 
 <h3 id="get-account-activities">Get Account Activities</h3>
 
-<p>The activities API only supports querying of a user&rsquo;s activity. </p>
+<p>The activities API supports querying of a user&rsquo;s activity. If you are a merchant and querying a connected user&rsquo;s account, only transactions with your merchant account will be shown. I.e. user&rsquo;s transactions with other merchants will not be displayed.</p>
 
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/activities"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"</span>
@@ -1360,71 +1360,85 @@ All documents/images provided should not exceed 10MB per file.
 <span class="k">end</span>
 </code></pre>
 
-<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"</span><span class="o">;</span>
-<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
-<span class="k">try</span> <span class="o">{</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Retrieving current user activities"</span><span class="o">);</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">Activity</span><span class="o">&gt;</span> <span class="n">activities</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">activities</span><span class="o">(</span><span class="n">apiKey</span><span class="o">);</span>
-    <span class="k">for</span> <span class="o">(</span><span class="n">Activity</span> <span class="n">activity</span> <span class="o">:</span> <span class="n">activities</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">activity</span><span class="o">.</span><span class="na">getTransType</span><span class="o">());</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">activity</span><span class="o">.</span><span class="na">getTransactionItems</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">activity</span><span class="o">.</span><span class="na">getDisplayAmount</span><span class="o">());</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">activity</span><span class="o">.</span><span class="na">getPlusMinus</span><span class="o">());</span>
-    <span class="o">}</span>
-<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre>
-
 <blockquote>
 <p>Response:</p>
 </blockquote>
 
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"msg"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"activities"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e2738cc957034ecaab3252f4b23e1c6e"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transaction"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"display_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-22T06:21:31.000+08:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Victor Liew"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"plus_minus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"display_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"display_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"transaction_items"</span><span class="p">:</span><span class="w">
-      </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"item_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Threadless T-Shirt"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"item_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Red Threadless T-Shirt, (S) Size"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"item_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14.5"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"item_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="s2">"activities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"252933"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-09 12:09:22 +0800"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposit"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Xfers - United Overseas Bank"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"wallet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"General Wallet"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"item_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Light Brown Belt"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"item_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Light brown Belt, (XS) Size"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"item_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.5"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"item_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"63785"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">-10</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-09 11:38:58 +0800"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paid"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Withdrawal"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Development Bank of Singapore 029290083"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"wallet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"General Wallet"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0a114b08c9244a0xo28ec63b0a905265"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">-66.08</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-30 12:00:10 +0800"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Charge"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"origin_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chris Tan"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"destination_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC Airlines"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Booking ABC Airlines Code XXYYZZ"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"wallet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"General Wallet"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2a718acab6454cdcaf362d51739b9271"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">-30</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-12 14:01:56 +0800"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Payout"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"origin_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chris Tan"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"destination_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JanetIsMe"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XFERS.COM"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"wallet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"General Wallet"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56949bb8c9f84b60a31afe8fa6e13939"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.91</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-10 15:38:04 +0800"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"credit_completed"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Credit Card"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"origin_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sidhbansal"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"destination_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chris Tan"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keep Calm and Pay"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"wallet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"General Wallet"</span><span class="w">
         </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"display_image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.xfers.io/assets/displayImageUser-c610a87e219afbe0bfc27bcddd67b8f831f967aedb01aef82a9009e9b6eb36c2.png"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6614"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"external"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"trans_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deposit"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"display_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-06-23T16:08:39.000+08:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OCBC Transfer"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"plus_minus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"display_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"transaction_items"</span><span class="p">:</span><span class="w">
-      </span><span class="p">[</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"display_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"display_image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.xfers.io/assets/displayImageUser-c610a87e219afbe0bfc27bcddd67b8f831f967aedb01aef82a9009e9b6eb36c2.png"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"activities_returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01 December 2017"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06 August 2018"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 
 </span></code></pre>
 
@@ -1452,7 +1466,78 @@ All documents/images provided should not exceed 10MB per file.
 <td>Max number of results to return</td>
 <td>50 (default)</td>
 </tr>
+<tr>
+<td>start_date</td>
+<td>date</td>
+<td>optional</td>
+<td>DD-MM-YYYY</td>
+<td>Defaults to 1 month ago</td>
+</tr>
+<tr>
+<td>end_date</td>
+<td>date</td>
+<td>optional</td>
+<td>DD-MM-YYYY</td>
+<td>Defaults to today</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>integer</td>
+<td>optional</td>
+<td>Offset results for pagination purposes</td>
+<td>0 (default)</td>
+</tr>
 </tbody></table>
+
+<h4 id="response">Response</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>ID of the Charge/Payout/Withdrawal/Payout. You can use this ID to query <a href="/#retrieve-a-charge">Charges</a> and <a href="/#retrieve-a-payout">Payouts</a>.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>6 types: Credit Card, Payment Link, Charge, Payout, Withdrawal, Deposit</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>If money going out of account, negative. If coming in, positive. Note that only a completed Charge will actually deduct money. For example, if a Charge is expired/accepted/pending/unclaimed, no money will actually flow in/out of the wallet, even though there is a amount displayed.</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>Fee charged by Xfers for the transaction, if any. Will be 0 if no fees</td>
+</tr>
+<tr>
+<td>metadata</td>
+<td>Shows additional information about a transaction</td>
+</tr>
+</tbody></table>
+
+<p><strong>Metadata for Deposits:</strong></p>
+
+<p>Xfers - <em>Xfers Bank name you topped up to</em></p>
+
+<p><code class="prettyprint">&quot;description&quot;: &quot;Xfers - United Overseas Bank&quot;</code></p>
+
+<p><strong>Metadata for Withdrawals:</strong></p>
+
+<p><em>Your Bank name</em> <em>Your account number</em></p>
+
+<p><code class="prettyprint">&quot;description&quot;: &quot;Development Bank of Singapore 029290083&quot;</code></p>
+
+<p><strong>Metadata for Payouts/Charges/Payment Links/Credit Card:</strong></p>
+
+<p><code class="prettyprint">&quot;origin_name&quot;: &lt;name of merchant or customer&gt;</code>,</p>
+
+<p><code class="prettyprint">&quot;destination_name&quot;: &lt;name of merchant or customer&gt;</code>,</p>
+
+<p><code class="prettyprint">&quot;description&quot;: &quot;Booking ABC Airlines Code XXYYZZ&quot;</code></p>
 
 <h3 id="get-transfer-info">Get Transfer Info</h3>
 
@@ -3812,7 +3897,7 @@ COMING SOON
 </tr>
 <tr>
 <td>redirect</td>
-<td>string</td>
+<td>boolean</td>
 <td>optional</td>
 <td>When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page</td>
 <td>Default to true.</td>
@@ -7187,6 +7272,19 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
 </tbody></table>
 
           <h1 id="changelog">Changelog</h1>
+
+<p>=================== 7 August, 2018 ===================</p>
+
+<p><strong>Summary</strong> 
+[Breaking change for Get Account Activities API]</p>
+
+<p>New feature added for pagination. API response updated.</p>
+
+<p>New parameters:
+<code class="prettyprint">start_date</code>, <code class="prettyprint">end_date</code>, <code class="prettyprint">offset</code></p>
+
+<p>New response:
+Refer to <a href="/#get-account-activities">Get Account Activities API</a> </p>
 
 <p>=================== 6 August, 2018 ===================</p>
 
