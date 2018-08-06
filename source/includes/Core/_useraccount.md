@@ -465,6 +465,7 @@ All documents/images provided should not exceed 10MB per file.
 </aside>
 
 
+
 ### Verify User Account
 
 This API forcefully verify the user with corresponding API KEY. This API can only be called from sandbox.
@@ -473,6 +474,14 @@ This API forcefully verify the user with corresponding API KEY. This API can onl
 curl "https://sandbox.xfers.io/api/v3/user/verify" \
   -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
   --request PATCH
+```
+
+> Response:
+
+```json
+{
+  "message": "success"
+}
 ```
 
 #### HTTPS Request
