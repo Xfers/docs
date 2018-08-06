@@ -492,7 +492,7 @@ curl "https://sandbox.xfers.io/api/v3/user/verify" \
 
 ### Get Account Activities
 
-The activities API only supports querying of a user's activity. 
+The activities API supports querying of a user's activity. If you are a merchant and querying a connected user's account, only transactions with your merchant account will be shown. I.e. user's transactions with other merchants will not be displayed.
 
 
 ```shell
@@ -542,71 +542,85 @@ rescue Xfers::XfersError => e
 end
 ```
 
-```java
-String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
-Xfers.setSGSandbox();
-try {
-    System.out.println("Retrieving current user activities");
-    List<Activity> activities = User.activities(apiKey);
-    for (Activity activity : activities) {
-        System.out.println(activity.getTransType());
-        System.out.println(activity.getTransactionItems().toString());
-        System.out.println(activity.getDisplayAmount());
-        System.out.println(activity.getPlusMinus());
-    }
-} catch (Exception e) {
-    e.printStackTrace();
-}
-```
 
 > Response:
 
 ```json
 {
-  "msg" : "success",
-  "activities" : [
-    {
-      "id": "e2738cc957034ecaab3252f4b23e1c6e",
-      "type": "transaction",
-      "display_time": "2015-06-22T06:21:31.000+08:00",
-      "description": "Victor Liew",
-      "plus_minus": "+",
-      "display_status": "completed",
-      "display_amount": "30.0",
-      "transaction_items":
-      [
-        {
-          "item_name": "Threadless T-Shirt",
-          "item_description": "Red Threadless T-Shirt, (S) Size",
-          "item_price": "14.5",
-          "item_quantity": 2
+    "activities": [
+      {
+            "id": "252933",
+            "amount": 10,
+            "fee": 0,
+            "created_at": "2018-05-09 12:09:22 +0800",
+            "status": "completed",
+            "type": "Deposit",
+            "metadata": {
+                "description": "Xfers - United Overseas Bank"
+            },
+            "wallet_name": "General Wallet"
         },
         {
-          "item_name": "Light Brown Belt",
-          "item_description": "Light brown Belt, (XS) Size",
-          "item_price": "5.5",
-          "item_quantity": 3
+            "id": "63785",
+            "amount": -10,
+            "fee": 0,
+            "created_at": "2018-05-09 11:38:58 +0800",
+            "status": "paid",
+            "type": "Withdrawal",
+            "metadata": {
+                "description": "Development Bank of Singapore 029290083"
+            },
+            "wallet_name": "General Wallet"
+        },
+        {
+            "id": "0a114b08c9244a0xo28ec63b0a905265",
+            "amount": -66.08,
+            "fee": 0,
+            "created_at": "2018-04-30 12:00:10 +0800",
+            "status": "completed",
+            "type": "Charge",
+            "metadata": {
+                "origin_name": "Chris Tan",
+                "destination_name": "ABC Airlines",
+                "description": "Booking ABC Airlines Code XXYYZZ"
+            },
+            "wallet_name": "General Wallet"
+        },
+        {
+            "id": "2a718acab6454cdcaf362d51739b9271",
+            "amount": -30,
+            "fee": 0,
+            "created_at": "2018-04-12 14:01:56 +0800",
+            "status": "completed",
+            "type": "Payout",
+            "metadata": {
+                "origin_name": "Chris Tan",
+                "destination_name": "JanetIsMe",
+                "description": "XFERS.COM"
+            },
+            "wallet_name": "General Wallet"
+        },
+        {
+            "id": "56949bb8c9f84b60a31afe8fa6e13939",
+            "amount": 12.91,
+            "fee": 0,
+            "created_at": "2018-04-10 15:38:04 +0800",
+            "status": "credit_completed",
+            "type": "Credit Card",
+            "metadata": {
+                "origin_name": "sidhbansal",
+                "destination_name": "Chris Tan",
+                "description": "Keep Calm and Pay"
+            },
+            "wallet_name": "General Wallet"
         }
-      ],
-      "display_image_url": "https://www.xfers.io/assets/displayImageUser-c610a87e219afbe0bfc27bcddd67b8f831f967aedb01aef82a9009e9b6eb36c2.png"
-    },
-    {
-      "id": "6614",
-      "type": "external",
-      "trans_type": "deposit",
-      "display_time": "2015-06-23T16:08:39.000+08:00",
-      "description": "OCBC Transfer",
-      "plus_minus": "+",
-      "display_amount": "10.0",
-      "transaction_items":
-      [
-      ],
-      "display_status": "completed",
-      "display_image_url": "https://www.xfers.io/assets/displayImageUser-c610a87e219afbe0bfc27bcddd67b8f831f967aedb01aef82a9009e9b6eb36c2.png"
-    }
-  ]
+    ],
+    "activities_returned": 5,
+    "limit": 5,
+    "offset": 5,
+    "start_date": "01 December 2017",
+    "end_date": "06 August 2018"
 }
-
 
 ```
 
@@ -621,6 +635,38 @@ This endpoint returns information related to your account activites such as the 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 limit | integer | optional | Max number of results to return | 50 (default)
+start_date | date | optional | DD-MM-YYYY | Defaults to 1 month ago
+end_date | date | optional | DD-MM-YYYY | Defaults to today
+offset | integer | optional | Offset results for pagination purposes | 0 (default)
+
+#### Response
+Attribute | Description 
+--------- | -----------
+id | ID of the Charge/Payout/Withdrawal/Payout. You can use this ID to query [Charges](/#retrieve-a-charge) and [Payouts](/#retrieve-a-payout).   
+type | 6 types: Credit Card, Payment Link, Charge, Payout, Withdrawal, Deposit 
+amount | If money going out of account, negative. If coming in, positive. Note that only a completed Charge will actually deduct money. For example, if a Charge is expired/accepted/pending/unclaimed, no money will actually flow in/out of the wallet, even though there is a amount displayed. 
+fee | Fee charged by Xfers for the transaction, if any. Will be 0 if no fees
+metadata | Shows additional information about a transaction
+
+**Metadata for Deposits:**
+
+Xfers - *Xfers Bank name you topped up to*
+
+`"description": "Xfers - United Overseas Bank"`
+
+**Metadata for Withdrawals:**
+
+*Your Bank name* *Your account number*
+
+`"description": "Development Bank of Singapore 029290083"`
+
+**Metadata for Payouts/Charges/Payment Links/Credit Card:**
+
+`"origin_name": <name of merchant or customer>`,
+
+`"destination_name": <name of merchant or customer>`,
+
+`"description": "Booking ABC Airlines Code XXYYZZ"`
 
 
 ### Get Transfer Info
