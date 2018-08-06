@@ -275,7 +275,7 @@ transactional_only | boolean | optional | Enables transactional charge when true
 debit_only | boolean | optional | When this is true, this charge will attempt to debit from users existing balance/card on file. Status returned will be "completed" on successful debit or "cancelled" when there insufficient funds / valid card on file in user wallet. | Default to false
 card_only | boolean | optional | When this is true, this charge will will attempt to only take payments via credit/debit card. | Default to false
 enquiry_only | boolean | optional | When this is true, this charge will not be processed but a standard response will be provided. This is usually used for testing purposes or for pre-fetching charge information like fees. | Default to false
-redirect | string | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true.
+redirect | boolean | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true.
 items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. [See more info](/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
 shipping | float | optional | Shipping fees | Default to 0.0
 tax | float | optional | tax in $  | Default to 0.0
