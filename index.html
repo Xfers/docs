@@ -1489,6 +1489,13 @@ All documents/images provided should not exceed 10MB per file.
 <td>Offset results for pagination purposes.</td>
 <td>0 (default)</td>
 </tr>
+<tr>
+<td>types</td>
+<td>String</td>
+<td>optional</td>
+<td>Only show transaction of that type. Only &ldquo;Credit Card&rdquo;, &ldquo;Charge&rdquo;, &ldquo;Payout&rdquo;, &ldquo;Deposit&rdquo;, &ldquo;Withdrawal&rdquo; allowed. You can add additional types by separating with a comma.</td>
+<td>Payout,Deposit (If this param is left blank, it will show all transaction types)</td>
+</tr>
 </tbody></table>
 
 <p>To do pagination:</p>
@@ -1516,7 +1523,7 @@ All documents/images provided should not exceed 10MB per file.
 </tr>
 <tr>
 <td>type</td>
-<td>6 types: Credit Card, Payment Link, Charge, Payout, Withdrawal, Deposit</td>
+<td>5 types: Credit Card, Charge, Payout, Withdrawal, Deposit</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -1548,7 +1555,7 @@ All documents/images provided should not exceed 10MB per file.
 
 <p><code class="prettyprint">&quot;description&quot;: &quot;Development Bank of Singapore 029290083&quot;</code></p>
 
-<p><strong>Metadata for Payouts/Charges/Payment Links/Credit Card:</strong></p>
+<p><strong>Metadata for Payouts/Charges/Credit Card:</strong></p>
 
 <p><code class="prettyprint">&quot;origin_name&quot;: &lt;name of merchant or customer&gt;</code>,</p>
 
@@ -7289,6 +7296,14 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
 </tbody></table>
 
           <h1 id="changelog">Changelog</h1>
+
+<p>=================== 14 August, 2018 ===================</p>
+
+<p><strong>Summary</strong> 
+Feature added to filter get account activities by transaction type by passing in the <code class="prettyprint">types</code> parameter.
+Only “Credit Card”, “Charge”, “Payout”, “Deposit”, “Withdrawal” allowed. You can add additional types by separating with a comma.   </p>
+
+<p>Refer to <a href="/#get-account-activities">Get Account Activities API</a> </p>
 
 <p>=================== 7 August, 2018 ===================</p>
 
