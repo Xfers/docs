@@ -640,7 +640,8 @@ limit | integer | optional | Max number of results to return per page | 50 (defa
 start_date | Date, DD-MM-YYYY | optional | Earliest date to query | Defaults to 1 month ago
 end_date | Date, DD-MM-YYYY | optional | Latest date to query | Defaults to today
 offset | integer | optional | Offset results for pagination purposes. | 0 (default)
-types | String | optional | Only show transaction of that type. Only "Credit Card", "Charge", "Payout", "Deposit", "Withdrawal" allowed. You can add additional types by separating with a comma. | Payout,Deposit (If this param is left blank, it will show all transaction types)
+types | String | optional | Only show transactions of that type. Only "Credit Card", "Charge", "Payout", "Deposit", "Withdrawal" allowed. You can add additional types by separating with a comma. | Payout,Deposit (If this param is left blank, it will show all transaction types)
+status | String | optional | Only show transactions of that status. Only "completed", "refunded", "expired", "cancelled", "pending", "accepted", "on_hold" allowed. You can add additional types by separating with a comma. Note that putting "completed" will also return transactions with "paid" - you can take them to be the same. | completed,expired (If this param is left blank, it will show all transaction statuses)
 
 To do pagination:
 
