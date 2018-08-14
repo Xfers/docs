@@ -640,6 +640,7 @@ limit | integer | optional | Max number of results to return per page | 50 (defa
 start_date | Date, DD-MM-YYYY | optional | Earliest date to query | Defaults to 1 month ago
 end_date | Date, DD-MM-YYYY | optional | Latest date to query | Defaults to today
 offset | integer | optional | Offset results for pagination purposes. | 0 (default)
+types | String | optional | Only show transaction of that type. Only "Credit Card", "Charge", "Payout", "Deposit", "Withdrawal" allowed. You can add additional types by separating with a comma. | Payout,Deposit (If this param is left blank, it will show all transaction types)
 
 To do pagination:
 
@@ -654,7 +655,7 @@ Hence your offset should always be a multiple of limit.
 Attribute | Description 
 --------- | -----------
 id | ID of the Charge/Payout/Withdrawal/Payout. You can use this ID to query [Charges](/#retrieve-a-charge) and [Payouts](/#retrieve-a-payout).   
-type | 6 types: Credit Card, Payment Link, Charge, Payout, Withdrawal, Deposit 
+type | 5 types: Credit Card, Charge, Payout, Withdrawal, Deposit 
 amount | If money going out of account, negative. If coming in, positive. Note that only a completed Charge will actually deduct money. For example, if a Charge is expired/accepted/pending/unclaimed, no money will actually flow in/out of the wallet, even though there is a amount displayed. 
 fee | Fee charged by Xfers for the transaction, if any. Will be 0 if no fees
 metadata | Shows additional information about a transaction
@@ -672,7 +673,7 @@ Xfers - *Xfers Bank name you topped up to*
 
 `"description": "Development Bank of Singapore 029290083"`
 
-**Metadata for Payouts/Charges/Payment Links/Credit Card:**
+**Metadata for Payouts/Charges/Credit Card:**
 
 `"origin_name": <name of merchant or customer>`,
 
