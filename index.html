@@ -1318,7 +1318,7 @@ All documents/images provided should not exceed 10MB per file.
 <p>The activities API supports querying of a user&rsquo;s activity. If you are a merchant and querying a connected user&rsquo;s account, only transactions with your merchant account will be shown. I.e. user&rsquo;s transactions with other merchants will not be displayed.</p>
 
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
-  <span class="s1">'https://sandbox.xfers.io/api/v3/user/activities?limit=5&amp;start_date=01-06-2018&amp;end_date=01-12-2018&amp;offset=5'</span> <span class="se">\</span>
+  <span class="s1">'https://sandbox.xfers.io/api/v3/user/activities?limit=5&amp;start_date=2018-07-04T11%3A49%3A58%2B08%3A00&amp;offset=5'</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
   -H <span class="s1">'X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'</span>  
 </code></pre>
@@ -1372,7 +1372,7 @@ All documents/images provided should not exceed 10MB per file.
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"252933"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
             </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-09 12:09:22 +0800"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-22T16:28:46+08:00"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposit"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1384,7 +1384,7 @@ All documents/images provided should not exceed 10MB per file.
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"63785"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">-10</span><span class="p">,</span><span class="w">
             </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-09 11:38:58 +0800"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-21T16:28:46+08:00"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paid"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Withdrawal"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1396,7 +1396,7 @@ All documents/images provided should not exceed 10MB per file.
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0a114b08c9244a0xo28ec63b0a905265"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">-66.08</span><span class="p">,</span><span class="w">
             </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-30 12:00:10 +0800"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-20T16:28:46+08:00"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Charge"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1410,7 +1410,7 @@ All documents/images provided should not exceed 10MB per file.
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2a718acab6454cdcaf362d51739b9271"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">-30</span><span class="p">,</span><span class="w">
             </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-12 14:01:56 +0800"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-18T10:11:40+08:00"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Payout"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1424,7 +1424,7 @@ All documents/images provided should not exceed 10MB per file.
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56949bb8c9f84b60a31afe8fa6e13939"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.91</span><span class="p">,</span><span class="w">
             </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-10 15:38:04 +0800"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-17T16:28:46+08:00"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"credit_completed"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Credit Card"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1438,8 +1438,8 @@ All documents/images provided should not exceed 10MB per file.
     </span><span class="s2">"activities_returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
     </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
     </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01 December 2017"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06 August 2018"</span><span class="w">
+    </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-07-04T11:49:58+08:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-15T23:59:59+08:00"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
@@ -1470,17 +1470,17 @@ All documents/images provided should not exceed 10MB per file.
 </tr>
 <tr>
 <td>start_date</td>
-<td>Date, DD-MM-YYYY</td>
+<td>DateTime, iso8601 format.URL encode this.</td>
 <td>optional</td>
 <td>Earliest date to query</td>
-<td>Defaults to 1 month ago</td>
+<td>2018-07-04T11%3A49%3A58%2B08%3A00 (Defaults to 1 month ago)</td>
 </tr>
 <tr>
 <td>end_date</td>
-<td>Date, DD-MM-YYYY</td>
+<td>DateTime, iso8601 format. URL encode this.</td>
 <td>optional</td>
 <td>Latest date to query</td>
-<td>Defaults to today</td>
+<td>2018-07-04T11%3A49%3A58%2B08%3A00 (Defaults to today)</td>
 </tr>
 <tr>
 <td>offset</td>
@@ -7303,6 +7303,11 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
 </tbody></table>
 
           <h1 id="changelog">Changelog</h1>
+
+<p>=================== 15 August, 2018 ===================</p>
+
+<p><strong>Summary</strong> 
+Get activities API now accepts dates in ISO8601 format.</p>
 
 <p>=================== 14 August, 2018 ===================</p>
 
