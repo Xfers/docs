@@ -497,7 +497,7 @@ The activities API supports querying of a user's activity. If you are a merchant
 
 ```shell
 curl -X GET \
-  'https://sandbox.xfers.io/api/v3/user/activities?limit=5&start_date=01-06-2018&end_date=01-12-2018&offset=5' \
+  'https://sandbox.xfers.io/api/v3/user/activities?limit=5&start_date=2018-07-04T11%3A49%3A58%2B08%3A00&offset=5' \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -H 'X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'  
 ```
@@ -554,7 +554,7 @@ end
             "id": "252933",
             "amount": 10,
             "fee": 0,
-            "created_at": "2018-05-09 12:09:22 +0800",
+            "created_at": "2018-07-22T16:28:46+08:00",
             "status": "completed",
             "type": "Deposit",
             "metadata": {
@@ -566,7 +566,7 @@ end
             "id": "63785",
             "amount": -10,
             "fee": 0,
-            "created_at": "2018-05-09 11:38:58 +0800",
+            "created_at": "2018-07-21T16:28:46+08:00",
             "status": "paid",
             "type": "Withdrawal",
             "metadata": {
@@ -578,7 +578,7 @@ end
             "id": "0a114b08c9244a0xo28ec63b0a905265",
             "amount": -66.08,
             "fee": 0,
-            "created_at": "2018-04-30 12:00:10 +0800",
+            "created_at": "2018-07-20T16:28:46+08:00",
             "status": "completed",
             "type": "Charge",
             "metadata": {
@@ -592,7 +592,7 @@ end
             "id": "2a718acab6454cdcaf362d51739b9271",
             "amount": -30,
             "fee": 0,
-            "created_at": "2018-04-12 14:01:56 +0800",
+            "created_at": "2018-07-18T10:11:40+08:00",
             "status": "completed",
             "type": "Payout",
             "metadata": {
@@ -606,7 +606,7 @@ end
             "id": "56949bb8c9f84b60a31afe8fa6e13939",
             "amount": 12.91,
             "fee": 0,
-            "created_at": "2018-04-10 15:38:04 +0800",
+            "created_at": "2018-07-17T16:28:46+08:00",
             "status": "credit_completed",
             "type": "Credit Card",
             "metadata": {
@@ -620,8 +620,8 @@ end
     "activities_returned": 5,
     "limit": 5,
     "offset": 5,
-    "start_date": "01 December 2017",
-    "end_date": "06 August 2018"
+    "start_date": "2018-07-04T11:49:58+08:00",
+    "end_date": "2018-08-15T23:59:59+08:00"
 }
 
 ```
@@ -637,8 +637,8 @@ This endpoint returns information related to your account activites such as the 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 limit | integer | optional | Max number of results to return per page | 50 (default)
-start_date | Date, DD-MM-YYYY | optional | Earliest date to query | Defaults to 1 month ago
-end_date | Date, DD-MM-YYYY | optional | Latest date to query | Defaults to today
+start_date | DateTime, iso8601 format.URL encode this. | optional | Earliest date to query | 2018-07-04T11%3A49%3A58%2B08%3A00 (Defaults to 1 month ago)
+end_date | DateTime, iso8601 format. URL encode this. | optional | Latest date to query | 2018-07-04T11%3A49%3A58%2B08%3A00 (Defaults to today)
 offset | integer | optional | Offset results for pagination purposes. | 0 (default)
 types | String | optional | Only show transactions of that type. Only "Credit Card", "Charge", "Payout", "Deposit", "Withdrawal" allowed. You can add additional types by separating with a comma. | Payout,Deposit (If this param is left blank, it will show all transaction types)
 status | String | optional | Only show transactions of that status. Only "completed", "refunded", "expired", "cancelled", "pending", "accepted", "on_hold" allowed. You can add additional types by separating with a comma. Note that putting "completed" will also return transactions with "paid" - you can take them to be the same. | completed,expired (If this param is left blank, it will show all transaction statuses)
