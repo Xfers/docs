@@ -1493,8 +1493,15 @@ All documents/images provided should not exceed 10MB per file.
 <td>types</td>
 <td>String</td>
 <td>optional</td>
-<td>Only show transaction of that type. Only &ldquo;Credit Card&rdquo;, &ldquo;Charge&rdquo;, &ldquo;Payout&rdquo;, &ldquo;Deposit&rdquo;, &ldquo;Withdrawal&rdquo; allowed. You can add additional types by separating with a comma.</td>
+<td>Only show transactions of that type. Only &ldquo;Credit Card&rdquo;, &ldquo;Charge&rdquo;, &ldquo;Payout&rdquo;, &ldquo;Deposit&rdquo;, &ldquo;Withdrawal&rdquo; allowed. You can add additional types by separating with a comma.</td>
 <td>Payout,Deposit (If this param is left blank, it will show all transaction types)</td>
+</tr>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>optional</td>
+<td>Only show transactions of that status. Only &ldquo;completed&rdquo;, &ldquo;refunded&rdquo;, &ldquo;expired&rdquo;, &ldquo;cancelled&rdquo;, &ldquo;pending&rdquo;, &ldquo;accepted&rdquo;, &ldquo;on_hold&rdquo; allowed. You can add additional types by separating with a comma. Note that putting &ldquo;completed&rdquo; will also return transactions with &ldquo;paid&rdquo; - you can take them to be the same.</td>
+<td>completed,expired (If this param is left blank, it will show all transaction statuses)</td>
 </tr>
 </tbody></table>
 
@@ -7302,6 +7309,9 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
 <p><strong>Summary</strong> 
 Feature added to filter get account activities by transaction type by passing in the <code class="prettyprint">types</code> parameter.
 Only “Credit Card”, “Charge”, “Payout”, “Deposit”, “Withdrawal” allowed. You can add additional types by separating with a comma.   </p>
+
+<p>Feature added to filter get account activities by transaction status by passing in the <code class="prettyprint">status</code> parameter.
+Only &ldquo;completed&rdquo;, &ldquo;refunded&rdquo;, &ldquo;expired&rdquo;, &ldquo;cancelled&rdquo;, &ldquo;pending&rdquo;, &ldquo;accepted&rdquo;, &ldquo;on_hold&rdquo; allowed. You can add additional statuses by separating with a comma.   </p>
 
 <p>Refer to <a href="/#get-account-activities">Get Account Activities API</a> </p>
 
