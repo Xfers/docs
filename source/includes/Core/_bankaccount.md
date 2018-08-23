@@ -697,6 +697,7 @@ Standard withdrawal takes 2-3 business day to arrive at recipient bank.
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 amount | string | required | Amount to withdraw | 50.0
+idempotency_id | string | optional | Unique ref no provided by you to prevent double transaction, this cannot be repeated, Currently only activated for Indonesia | Order_123
 express | boolean | optional | Default to 'false' | true
 notify_url | string | optional | To receive HTTP POST callback notifications on withdrawal status changes | https://www.mysite.com/withdrawal
 
