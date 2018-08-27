@@ -271,6 +271,7 @@ return_url | string | optional | URL Xfers will redirect customer to on completi
 cancel_url | string | optional | URL Xfers will redirect customer to on cancellation of Xfers checkout | https://mysite.com/cancel
 user_api_token | string | optional | Buyer's api token obtain via Connect's get user token APIs. When this is provide, this charge will skip user auth. | NbKjcFV5XxGZ-Uf2XnxyshFcrGtoxmLms9YEgokzDRo
 user_phone_no | string | optional | When this is provided, buyer will receive an OTP(one time password) from Xfers which they can provide to merchant to skip user authentication. See [Authorize a Charge](/#authorize-a-charge). | 85228000
+google_auth | boolean | optional | When this is true and user_phone_no is provided, instead of phone SMS OTP, user can use Google Authenticator to do OTP. See [Authorize a Charge](/#authorize-a-charge). | Default to false
 transactional_only | boolean | optional | Enables transactional charge when true. [See more info](/#transactional-charge). Only selected Xfers partners have this feature available. | Default to false
 debit_only | boolean | optional | When this is true, this charge will attempt to debit from users existing balance/card on file. Status returned will be "completed" on successful debit or "cancelled" when there insufficient funds / valid card on file in user wallet. | Default to false
 card_only | boolean | optional | When this is true, this charge will will attempt to only take payments via credit/debit card. | Default to false
@@ -647,7 +648,8 @@ This endpoint is only used if `user_phone_no` param was passed in during charge 
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | -------- | -----------
-auth_code | string | Required | PIN code provided to the buyer | 512312
+auth_code | string | Either auth_code or google_auth_code required | SMS OTP code provided to the buyer | 512312
+google_auth_code | string | Either auth_code or google_auth_code required | Google Auth OTP code provided to the buyer.  If `google_auth_enabled` of Get Account Info is `false`, user has not enabled Google Auth with Xfers. Direct users to [Xfers 2FA setup page](https://www.xfers.io/settings_2fa) | 738844
 
 
 ### Cancel a Charge

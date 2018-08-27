@@ -1,5 +1,18 @@
 # Changelog
 
+=================== 27 August, 2018 ===================
+
+**Summary** 
+Added feature to [authorize charge](/#authorize-a-charge) by Google Auth instead of phone SMS OTP
+
+1. Call [get account info](/#get-account-info) API to check whether user has enabled Google Auth 2FA from the `google_auth_enabled` flag.
+
+If `google_auth_enabled` is `false`, direct users to [Xfers 2FA setup page](https://www.xfers.io/settings_2fa)
+
+2. Create charge by passing in `user_phone_no`, setting `google_auth` to be `true`.
+
+3. [Authorize charge](/#authorize-a-charge) by passing in `google_auth_code`
+
 =================== 15 August, 2018 ===================
 
 **Summary** 
