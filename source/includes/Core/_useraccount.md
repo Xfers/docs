@@ -384,39 +384,7 @@ try {
 
 ``` json
 {
-   "available_balance":"37387.3",
-   "ledger_balance":"37387.3",
-   "bank_transfer_rates":"0.0",
-   "bank_transfer_fees":"0.45",
-   "phone_no":"+6591240987",
-   "first_name":"Bobby",
-   "last_name":"Keong",
-   "date_of_birth":"1995-05-21",
-   "gender":"",
-   "email":"bobby@gmail.com",
-   "country":"SG",
-   "nationality":"Singaporean",
-   "address_line_1":"TAMBUN UTARA",
-   "address_line_2":"KABUPATEN BEKASI",
-   "postal_code":"510608",
-   "identity_no":"1212121200050006",
-   "bank_accounts":[
-    {
-       "id": 399,
-       "account_no": "9484853433",
-       "account_holder_name": "Bobby Keong",
-       "verification_status": "pending",
-       "bank_abbrev": "BCA",
-       "usage": "all"
-    }
-   ],
-   "annual_income":"",
-   "id_front":"my_id_front.jpg",
-   "selfie_2id":"nricSelfiePlaceholder.png",
-   "account_locked":false,
-   "kyc_verified":true,
-   "meta_data":"",
-   "status":false,
+   "verification_status":false,
    "reason":"The NRIC Photo is too blur"
 }
 ```
