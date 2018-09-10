@@ -455,7 +455,6 @@ curl "https://sandbox.xfers.io/api/v3/user/verify" \
 
 ```json
 {
-  "id": "user_gksj43jgzgqv",
   "message": "success"
 }
 ```
