@@ -72,6 +72,7 @@ try {
 
 ```json
 {
+   "id": "user_gksj43jgzgqv",
    "available_balance":"37387.3",
    "ledger_balance":"37387.3",
    "bank_transfer_rates":"0.0",
@@ -118,6 +119,7 @@ try {
 
 ```json
 {
+   "id": "user_gksj43jgzgqv",
    "available_balance":"37387.3",
    "ledger_balance":"37387.3",
    "bank_transfer_rates":"0.0",
@@ -290,6 +292,7 @@ try {
 ```json
 
 {
+   "id": "user_gksj43jgzgqv",
    "available_balance":"37387.3",
    "ledger_balance":"37387.3",
    "bank_transfer_rates":"0.0",
@@ -337,6 +340,7 @@ try {
 
 ```json
 {
+   "id": "user_gksj43jgzgqv",
    "available_balance":"37387.3",
    "ledger_balance":"37387.3",
    "bank_transfer_rates":"0.0",
@@ -384,6 +388,7 @@ try {
 
 ``` json
 {
+   "id": "user_gksj43jgzgqv",
    "verification_status":false,
    "reason":"The NRIC Photo is too blur"
 }
@@ -450,6 +455,7 @@ curl "https://sandbox.xfers.io/api/v3/user/verify" \
 
 ```json
 {
+  "id": "user_gksj43jgzgqv",
   "message": "success"
 }
 ```
