@@ -3107,10 +3107,52 @@ All documents/images provided should not exceed 10MB per file.
 </tr>
 </tbody></table>
 
+<h3 id="mock-sandbox-withdrawal">Mock Sandbox Withdrawal</h3>
+
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account/withdrawal_requests/mock_result"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -X PUT <span class="se">\</span>
+  -d <span class="s1">'{"idempotency_id":"AZ0001","status":"completed"}'</span>
+</code></pre>
+
+<h4 id="https-request">HTTPS Request</h4>
+
+<p><code class="prettyprint">PUT https://sandbox.xfers.io/api/v3/user/bank_account/withdrawal_requests/mock_result</code></p>
+
+<p>(Currently only available for Indonesia sandbox)</p>
+
+<p>In Sandbox, you can mock the status of a withdrawal so that it will trigger
+the corresponding callback to your server. Currently the available statuses are &ldquo;failed&rdquo; and &ldquo;completed&rdquo;</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>idempotency_id</td>
+<td>string</td>
+<td>required</td>
+<td>This is the idempotency_id you put in your withdrawal.</td>
+<td>AZ0001</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>required</td>
+<td>Withdrawal response you want to mock</td>
+<td>&ldquo;completed&rdquo; or &ldquo;failed&rdquo;</td>
+</tr>
+</tbody></table>
+
 <h3 id="get-withdrawal-request">Get Withdrawal Request</h3>
 
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/user/bank_account/withdrawal_requests/&lt;withdrawal_request_id&gt;"</span> <span class="se">\</span>
-  -H <span class="s2">"X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"</span>
+  -H <span class="s2">"X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"</span>
 </code></pre>
 
 <blockquote>
