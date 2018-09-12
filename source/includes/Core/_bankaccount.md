@@ -701,6 +701,20 @@ idempotency_id | string | optional | Unique ref no provided by you to prevent do
 express | boolean | optional | Default to 'false' | true
 notify_url | string | optional | To receive HTTP POST callback notifications on withdrawal status changes | https://www.mysite.com/withdrawal
 
+#### Withdrawal notification
+If you put a notify_url in your withdrawal, we will send you the callback with the following parameter when the withdrawal is "completed" or "failed"
+
+Name | Type | Description | Value
+---- | ---- | ----------- | -----
+account_no | string | bank account no of withdrawal | 0393123432
+amount | string | withdrawal amount | 125000
+bank_abbrev | string | bank abbreviation of withdrawal | DBS
+express | string |  Express/normal withdrawal | true
+fees | string | Withdrawal Fee | 0
+idempotency_id | string | The key you put in the withdrawal request | AZ0001
+status | string | Status of transaction | "completed" or "failed"
+value_date | string | Date of withdrawal completed as provided by partner bank. will only available for "completed" status | 2018-09-12
+
 
 #### Withdrawing on behalf
 
