@@ -3074,6 +3074,68 @@ All documents/images provided should not exceed 10MB per file.
 </tr>
 </tbody></table>
 
+<h4 id="withdrawal-notification">Withdrawal notification</h4>
+
+<p>If you put a notify_url in your withdrawal, we will send you the callback with the following parameter when the withdrawal is &ldquo;completed&rdquo; or &ldquo;failed&rdquo;</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account_no</td>
+<td>string</td>
+<td>bank account no of withdrawal</td>
+<td>0393123432</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>withdrawal amount</td>
+<td>125000</td>
+</tr>
+<tr>
+<td>bank_abbrev</td>
+<td>string</td>
+<td>bank abbreviation of withdrawal</td>
+<td>DBS</td>
+</tr>
+<tr>
+<td>express</td>
+<td>string</td>
+<td>Express/normal withdrawal</td>
+<td>true</td>
+</tr>
+<tr>
+<td>fees</td>
+<td>string</td>
+<td>Withdrawal Fee</td>
+<td>0</td>
+</tr>
+<tr>
+<td>idempotency_id</td>
+<td>string</td>
+<td>The key you put in the withdrawal request</td>
+<td>AZ0001</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Status of transaction</td>
+<td>&ldquo;completed&rdquo; or &ldquo;failed&rdquo;</td>
+</tr>
+<tr>
+<td>value_date</td>
+<td>string</td>
+<td>Date of withdrawal completed as provided by partner bank. will only available for &ldquo;completed&rdquo; status</td>
+<td>2018-09-12</td>
+</tr>
+</tbody></table>
+
 <h4 id="withdrawing-on-behalf">Withdrawing on behalf</h4>
 
 <p>If you wish to withdraw to a bank account not belonging to you, add in two additional params. 
