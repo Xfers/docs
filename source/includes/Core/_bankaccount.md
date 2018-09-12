@@ -716,13 +716,35 @@ Name | Type | Required | Description | Value
 user_api_token | string | required | Use this param if you want to withdraw to another user's bank account instead of your own. | efgowZwKoMoPL_dxV7zpuoakM7STLb14uQrtX4J2F4o
 payout_invoice_id | string | required | Unique ref no provided by merchant. This will need to be unique. | AZ0001
 
+### Mock Sandbox Withdrawal
+
+```shell
+curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdrawal_requests/mock_result" \
+  -H "Content-Type: application/json" \
+  -X PUT \
+  -d '{"idempotency_id":"AZ0001","status":"completed"}'
+```
+
+#### HTTPS Request
+
+`PUT https://sandbox.xfers.io/api/v3/user/bank_account/withdrawal_requests/mock_result`
+
+(Currently only available for Indonesia sandbox)
+
+In Sandbox, you can mock the status of a withdrawal so that it will trigger
+the corresponding callback to your server. Currently the available statuses are "failed" and "completed"
+
+Name | Type | Required | Description | Value
+---- | ---- | -------- | ----------- | -----
+idempotency_id | string | required | This is the idempotency_id you put in your withdrawal. | AZ0001
+status | string | required | Withdrawal response you want to mock | "completed" or "failed"
+
 ### Get Withdrawal Request
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdrawal_requests/<withdrawal_request_id>" \
-  -H "X-XFERS-USER-API-KEY: FVNbKjcGZ5Xx-Uf2XnxsrGtoxmLm9YEgokzDRoyshFc"
+  -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
 ```
-
 
 > Response:
 
