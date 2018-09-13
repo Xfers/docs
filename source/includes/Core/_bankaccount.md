@@ -735,6 +735,7 @@ payout_invoice_id | string | required | Unique ref no provided by merchant. This
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdrawal_requests/mock_result" \
   -H "Content-Type: application/json" \
+  -H "X-XFERS-USER-API-KEY:2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"\
   -X PUT \
   -d '{"idempotency_id":"AZ0001","status":"completed"}'
 ```
