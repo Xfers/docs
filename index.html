@@ -1051,7 +1051,7 @@ name and bank account information.</p>
    </span><span class="s2">"district"</span><span class="p">:</span><span class="s2">"Pluit"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"religion"</span><span class="p">:</span><span class="s2">"Buddhism"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"marital_status"</span><span class="p">:</span><span class="s2">"Married"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"occupation"</span><span class="p">:</span><span class="s2">"007 | Konsultan"</span><span class="w">
+   </span><span class="s2">"occupation"</span><span class="p">:</span><span class="s2">"007|Konsultan"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1252,6 +1252,62 @@ name and bank account information.</p>
 <td>optional</td>
 <td>Additional data like Jumio info dump.</td>
 <td></td>
+</tr>
+<tr>
+<td>place_of_birth</td>
+<td>string</td>
+<td>ID: optional, SG: ignore</td>
+<td>Account holder&rsquo;s birth place according to his/her KTP.</td>
+<td>Jakarta</td>
+</tr>
+<tr>
+<td>blood_type</td>
+<td>string</td>
+<td>optional</td>
+<td>Account holder&rsquo;s blood type, without rhesus.</td>
+<td>&lsquo;A&rsquo;, &lsquo;B&rsquo;, &#39;AB&rsquo;, or &#39;O&rsquo;</td>
+</tr>
+<tr>
+<td>rt_rw</td>
+<td>string</td>
+<td>ID: optional, SG: ignore</td>
+<td>Account holder&rsquo;s RT and RW, separated by a slash without any spaces. Leading zero is optional.</td>
+<td>001/005</td>
+</tr>
+<tr>
+<td>administrative_village</td>
+<td>string</td>
+<td>ID: optional, SG: ignore</td>
+<td>Account holder&rsquo;s administrative_village address. In KTP, it is called Kelurahan or Desa.</td>
+<td>Meruya Utara</td>
+</tr>
+<tr>
+<td>district</td>
+<td>string</td>
+<td>optional</td>
+<td>Account holder&rsquo;s district address. In KTP, it is called Kecamatan.</td>
+<td>Kembangan</td>
+</tr>
+<tr>
+<td>religion</td>
+<td>string</td>
+<td>ID: optional, SG: ignore</td>
+<td>Account holder&rsquo;s religion according to his/her KTP.</td>
+<td>&#39;Islam&rsquo;, &#39;Katholik&rsquo;, &#39;Kristen Protestan&rsquo;, &#39;Hindu&rsquo;, &#39;Budha&rsquo;, &#39;Kong Hu Cu&rsquo;, or &#39;Aliran Kepercayaan&rsquo;</td>
+</tr>
+<tr>
+<td>marital_status</td>
+<td>string</td>
+<td>ID: optional, SG: ignore</td>
+<td>Account holder&rsquo;s marital status according to his/her KTP.</td>
+<td>&#39;Belum Kawin&rsquo;, &#39;Kawin&rsquo;, &#39;Janda&rsquo;, or &#39;Duda&rsquo;</td>
+</tr>
+<tr>
+<td>occupation</td>
+<td>string</td>
+<td>ID: optional, SG: ignore</td>
+<td>Account holder&rsquo;s occupation according to his/her KTP.</td>
+<td>Pelajar/Mahasiswa</td>
 </tr>
 <tr>
 <td>callback_url</td>
@@ -3062,7 +3118,7 @@ All documents/images provided should not exceed 10MB per file.
 <td>express</td>
 <td>boolean</td>
 <td>optional</td>
-<td>Default to &lsquo;false&rsquo;</td>
+<td>Default to &#39;false&rsquo;</td>
 <td>true</td>
 </tr>
 <tr>
@@ -7405,15 +7461,20 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
 
           <h1 id="changelog">Changelog</h1>
 
+<p>=================== 25 September, 2018 ===================</p>
+
+<p><strong>Summary</strong> 
+Added KTP-specific request body and possible values in <code class="prettyprint">update_acount_info</code>.</p>
+
 <p>=================== 10 September, 2018 ===================</p>
 
 <p><strong>Summary</strong> 
-Added id in user get_account_info, update_account_info, and verify_user API</p>
+Added id in user <code class="prettyprint">get_account_info</code>, <code class="prettyprint">update_account_info</code>, and <code class="prettyprint">verify_user</code> API.</p>
 
 <p>=================== 31 August, 2018 ===================</p>
 
 <p><strong>Summary</strong> 
-Changing the callback body of update_account_info.</p>
+Changing the callback body of <code class="prettyprint">update_account_info</code>.</p>
 
 <p>=================== 27 August, 2018 ===================</p>
 
