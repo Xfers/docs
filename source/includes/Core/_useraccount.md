@@ -380,7 +380,7 @@ try {
    "district":"Pluit",
    "religion":"Buddhism",
    "marital_status":"Married",
-   "occupation":"007 | Konsultan"
+   "occupation":"007|Konsultan"
 }
 ```
 
@@ -419,8 +419,8 @@ address_line_2 | string | optional | Address line 2 | #08-41
 nationality | string | optional | Account holder nationality | Singaporean
 postal_code | string | optional | Address postal code | 640212
 identity_no | string | optional | Account holder national identity no | s841212318g
-country | string | optional | Account holder country of residence| Singapore
-city | string | optional | Account holder city of residence| Singapore
+country | string | optional | Account holder country of residence | Singapore
+city | string | optional | Account holder city of residence | Singapore
 annual_income | integer | optional | Annual income of user in the local currency (SGD/IDR) | 60000
 id_front_url | string | ID: required, SG: optional | URL storing the front image of user identity card
 id_back_url | string | optional | URL storing the back image of user identity card
@@ -432,6 +432,14 @@ support_document_3_url | string | optional | URL storing the image/pdf of suppor
 support_document_4_url | string | optional | URL storing the image/pdf of support documents like proof of user income
 support_document_5_url | string | optional | URL storing the image/pdf of support documents like proof of user income
 meta_data | string | optional | Additional data like Jumio info dump.
+place_of_birth | string | ID: optional, SG: ignore | Account holder's birth place according to his/her KTP. | Jakarta
+blood_type | string | optional | Account holder's blood type, without rhesus. | 'A', 'B', 'AB', or 'O'
+rt_rw | string | ID: optional, SG: ignore | Account holder's RT and RW, separated by a slash without any spaces. Leading zero is optional. | 001/005
+administrative_village | string | ID: optional, SG: ignore | Account holder's administrative_village address. In KTP, it is called Kelurahan or Desa. | Meruya Utara
+district | string | optional | Account holder's district address. In KTP, it is called Kecamatan. | Kembangan
+religion | string | ID: optional, SG: ignore | Account holder's religion according to his/her KTP. | 'Islam', 'Katholik', 'Kristen Protestan', 'Hindu', 'Budha', 'Kong Hu Cu', or 'Aliran Kepercayaan'
+marital_status | string | ID: optional, SG: ignore | Account holder's marital status according to his/her KTP. | 'Belum Kawin', 'Kawin', 'Janda', or 'Duda'
+occupation | string | ID: optional, SG: ignore | Account holder's occupation according to his/her KTP. | Pelajar/Mahasiswa
 callback_url | string | optional | URL to receive callback notifications on account verification changes.
 
 
