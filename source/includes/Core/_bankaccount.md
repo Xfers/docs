@@ -711,6 +711,7 @@ amount | string | withdrawal amount | 125000
 bank_abbrev | string | bank abbreviation of withdrawal | DBS
 express | string |  Express/normal withdrawal | true
 fees | string | Withdrawal Fee | 0
+id | string | Xfers Generated Unique Key | contract_dd5a6b83
 idempotency_id | string | The key you put in the withdrawal request | AZ0001
 status | string | Status of transaction | "completed" or "failed"
 value_date | string | Date of withdrawal completed as provided by partner bank. will only available for "completed" status | 2018-09-12
