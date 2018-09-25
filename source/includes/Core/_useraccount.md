@@ -418,8 +418,8 @@ address_line_1 | string | optional | Address line 1 | Blk 212 Jurong East St 50
 address_line_2 | string | optional | Address line 2 | #08-41
 nationality | string | optional | Account holder nationality | Singaporean
 postal_code | string | optional | Address postal code | 640212
-identity_no | string | optional | Account holder national identity no | s841212318g
-country | string | optional | Account holder country of residence | Singapore
+identity_no | string | optional | Account holder national identity number or, KTP number of Indonesian. | s841212318g
+country | string | optional | Account holder country of residence in abbreviation. | SG
 city | string | optional | Account holder city of residence | Singapore
 annual_income | integer | optional | Annual income of user in the local currency (SGD/IDR) | 60000
 id_front_url | string | ID: required, SG: optional | URL storing the front image of user identity card
@@ -434,8 +434,10 @@ support_document_5_url | string | optional | URL storing the image/pdf of suppor
 meta_data | string | optional | Additional data like Jumio info dump.
 place_of_birth | string | ID: optional, SG: ignore | Account holder's birth place according to his/her KTP. | Jakarta
 blood_type | string | optional | Account holder's blood type, without rhesus. | 'A', 'B', 'AB', or 'O'
-rt_rw | string | ID: optional, SG: ignore | Account holder's RT and RW, separated by a slash without any spaces. Leading zero is optional. | 001/005
+rt | string | ID: optional, SG: ignore | Account holder's RT according to his/her KTP. Leading zero is optional. | 001
+rw | string | ID: optional, SG: ignore | Account holder's RW according to his/her KTP. Leading zero is optional. | 005
 administrative_village | string | ID: optional, SG: ignore | Account holder's administrative_village address. In KTP, it is called Kelurahan or Desa. | Meruya Utara
+state | string | optional | Account holder's state of residence. In KTP, it is called Provinsi. | Jawa Barat
 district | string | optional | Account holder's district address. In KTP, it is called Kecamatan. | Kembangan
 religion | string | ID: optional, SG: ignore | Account holder's religion according to his/her KTP. | 'Islam', 'Katholik', 'Kristen Protestan', 'Hindu', 'Budha', 'Kong Hu Cu', or 'Aliran Kepercayaan'
 marital_status | string | ID: optional, SG: ignore | Account holder's marital status according to his/her KTP. | 'Belum Kawin', 'Kawin', 'Janda', or 'Duda'
