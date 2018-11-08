@@ -762,6 +762,18 @@ curl "https://sandbox.xfers.io/api/v3/user/bank_account/withdrawal_requests/<wit
   -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
 ```
 
+```java
+String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
+Xfers.setSGSandbox();
+try {
+  System.out.println("Getting a withdrawal request");
+  Withdrawal withdrawalRequest = BankAccount.retrieveWithdrawalRequest("23771");
+  System.out.println(withdrawalRequest.toString());
+} catch (Exception e) {
+  e.printStackTrace();
+}
+```
+
 > Response:
 
 ```json
