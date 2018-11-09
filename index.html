@@ -3294,6 +3294,17 @@ the corresponding callback to your server. Currently the available statuses are 
   -H <span class="s2">"X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"</span>
 </code></pre>
 
+<pre class="highlight java"><code><span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"</span><span class="o">;</span>
+<span class="n">Xfers</span><span class="o">.</span><span class="na">setSGSandbox</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Getting a withdrawal request"</span><span class="o">);</span>
+  <span class="n">Withdrawal</span> <span class="n">withdrawalRequest</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="o">.</span><span class="na">retrieveWithdrawalRequest</span><span class="o">(</span><span class="s">"23771"</span><span class="o">);</span>
+  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">withdrawalRequest</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
+
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -7480,6 +7491,11 @@ You can use either <code class="prettyprint">application/x-www-form-urlencoded</
 </tbody></table>
 
           <h1 id="changelog">Changelog</h1>
+
+<p>=================== 9 November, 2018 ===================</p>
+
+<p><strong>Summary</strong> 
+Add Java SDK for get_withdrawal_request</p>
 
 <p>=================== 25 September, 2018 ===================</p>
 
