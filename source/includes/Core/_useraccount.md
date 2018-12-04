@@ -671,7 +671,7 @@ Xfers - *Xfers Bank name you topped up to*
 ### Get Transfer Info
 
 ```shell
-curl "https://sandbox.xfers.io/api/v3/user/transfer_info?disable_va=false" \
+curl "https://sandbox.xfers.io/api/v3/user/transfer_info" \
   -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"
 ```
 
@@ -796,14 +796,7 @@ On your User Interface, instruct the user to make a bank transfer to the bank na
 
 #### HTTPS Request
 
-`GET https://sandbox.xfers.io/api/v3/user/transfer_info?disable_va=false`
-
-#### URL Parameters
-
-Name | Type | Required | Description | Value
----- | ---- | -------- | ----------- | -----
-disable_va | boolean | optional | Set it into true to get the account for normal bank for Xfers | true
-
+`GET https://sandbox.xfers.io/api/v3/user/transfer_info`
 
 ### Register Updates Callback 
 
