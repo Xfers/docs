@@ -408,17 +408,17 @@ This endpoint allows user to update their account information, this is especiall
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-first_name | string | optional | Account holder firstname | Tianwei
-last_name | string | optional | Account holder lastname | Liu
-email | string | optional | User email | tianwei@xfers.io
-date_of_birth | string | optional | Date of birth for account holder in yyyy-mm-dd | 1986-02-27
-mother_maiden_name | string | ID: required, SG: optional | Name of Mother | Liu Weitian
+first_name | string | optional | Account holder firstname | Doe
+last_name | string | optional | Account holder lastname | John 
+email | string | optional | User email | example@example.com
+date_of_birth | string | optional | Date of birth for account holder in yyyy-mm-dd | 1990-01-01
+mother_maiden_name | string | ID: required, SG: optional | Name of Mother | John Doe
 gender | string | optional | Gender | male / female
-address_line_1 | string | optional | Address line 1 | Blk 212 Jurong East St 50
-address_line_2 | string | optional | Address line 2 | #08-41
+address_line_1 | string | optional | Address line 1 | Lorem Ipsum Road
+address_line_2 | string | optional | Address line 2 | #01-01
 nationality | string | optional | Account holder nationality | Singaporean
-postal_code | string | optional | Address postal code | 640212
-identity_no | string | optional | Account holder national identity number or, KTP number of Indonesian. | s841212318g
+postal_code | string | optional | Address postal code | 123456
+identity_no | string | optional | Account holder national identity number or, KTP number of Indonesian. | s12345678g
 country | string | optional | Account holder country of residence in abbreviation. | SG
 city | string | optional | Account holder city of residence | Singapore
 annual_income | integer | optional | Annual income of user in the local currency (SGD/IDR) | 60000
