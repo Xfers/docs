@@ -377,7 +377,7 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 
 <h2 id="get-user-api-token">Get User API Token</h2>
 
-<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&amp;phone_no=%2B6597288608&amp;signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91"</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&amp;phone_no=%2B65XXXXXXXX&amp;signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-APP-API-KEY: yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ"</span>
 
 <span class="c"># You can now change the X-XFERS-USER-API-KEY to the returned user_api_token</span>
@@ -392,7 +392,7 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Connect</span><span class="o">::</span><span class="na">getToken</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
         <span class="s1">'otp'</span> <span class="o">=&gt;</span> <span class="s1">'541231'</span><span class="p">,</span>
-        <span class="s1">'phone_no'</span> <span class="o">=&gt;</span> <span class="s1">'+6597288608'</span><span class="p">,</span>
+        <span class="s1">'phone_no'</span> <span class="o">=&gt;</span> <span class="s1">'+65XXXXXXXX'</span><span class="p">,</span>
         <span class="s1">'signature'</span> <span class="o">=&gt;</span> <span class="s1">'178502abfa891b69a9a2f72192d51f5fc141f978'</span><span class="p">,</span>
         <span class="s1">'return_url'</span> <span class="o">=&gt;</span> <span class="s1">'https://mywebsite.com/api/v3/account_registration/completed'</span>
     <span class="p">),</span> <span class="nv">$xfers_app_api_key</span><span class="p">);</span>
@@ -421,7 +421,7 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
     <span class="k">print</span> <span class="s">'Getting token...'</span>
     <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s">'otp'</span><span class="p">:</span> <span class="s">'541231'</span><span class="p">,</span>
-        <span class="s">'phone_no'</span><span class="p">:</span> <span class="s">'+6597288608'</span><span class="p">,</span>
+        <span class="s">'phone_no'</span><span class="p">:</span> <span class="s">'+65XXXXXXXX'</span><span class="p">,</span>
         <span class="s">'signature'</span><span class="p">:</span> <span class="s">'178502abfa891b69a9a2f72192d51f5fc141f978'</span><span class="p">,</span>
         <span class="s">'return_url'</span><span class="p">:</span> <span class="s">'https://mywebsite.com/api/v3/account_registration/completed'</span>
     <span class="p">}</span>
@@ -446,7 +446,7 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
   <span class="nb">puts</span> <span class="s1">'Getting connect token...'</span>
   <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
       <span class="s1">'otp'</span><span class="o">=&gt;</span> <span class="s1">'541231'</span><span class="p">,</span>
-      <span class="s1">'phone_no'</span><span class="o">=&gt;</span> <span class="s1">'+6597288608'</span><span class="p">,</span>
+      <span class="s1">'phone_no'</span><span class="o">=&gt;</span> <span class="s1">'+65XXXXXXXX'</span><span class="p">,</span>
       <span class="s1">'signature'</span><span class="o">=&gt;</span> <span class="s1">'178502abfa891b69a9a2f72192d51f5fc141f978'</span><span class="p">,</span>
       <span class="s1">'return_url'</span><span class="o">=&gt;</span> <span class="s1">'https://mywebsite.com/api/v3/account_registration/completed'</span>
   <span class="p">}</span>
@@ -479,7 +479,7 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Getting token"</span><span class="o">);</span>
     <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"otp"</span><span class="o">,</span> <span class="s">"541231"</span><span class="o">);</span>
-    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"phone_no"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"phone_no"</span><span class="o">,</span> <span class="s">"+65XXXXXXXX"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"return_url"</span><span class="o">,</span> <span class="s">"https://mywebsite.com/api/v3/account_registration/completed"</span><span class="o">);</span>
     <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">Connect</span><span class="o">.</span><span class="na">getToken</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">xfersAppApiKey</span><span class="o">,</span> <span class="n">xfersAppSecretKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getMsg</span><span class="o">());</span>
@@ -505,7 +505,7 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 <pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
     </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"user_api_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1DnsZkv3qXwKx4EAdps8AJ8jXCPsxP2sKSygMHTAFLM"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sign_up_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/api/v3/account_registration?phone_no=%2B6597288608&amp;token=4014d3e9f0600f78dbfabd86036de7b008f70c52"</span><span class="w">
+    </span><span class="s2">"sign_up_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://sandbox.xfers.io/api/v3/account_registration?phone_no=%2B65XXXXXXXX&amp;token=4014d3e9f0600f78dbfabd86036de7b008f70c52"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -523,7 +523,7 @@ Remember to encode the &rsquo;+&rsquo; sign in your phone no during your GET req
 
 <h3 id="https-request">HTTPS Request</h3>
 
-<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&amp;phone_no=%2B6597288608&amp;signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91</code></p>
+<p><code class="prettyprint">GET https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&amp;phone_no=%2B65XXXXXXXX&amp;signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -548,14 +548,14 @@ Remember to encode the &rsquo;+&rsquo; sign in your phone no during your GET req
 <td>string</td>
 <td>required</td>
 <td>User mobile no</td>
-<td>+6597288608</td>
+<td>+65XXXXXXXX</td>
 </tr>
 <tr>
 <td>signature</td>
 <td>string</td>
 <td>required</td>
 <td>SHA1-hex of (phone_no + OTP + APP_SECRET_KEY)</td>
-<td>Phone Number: <input type="text" id="phone_gettoken" value="+6597288608"><br/>OTP: <input type="text" id="otp_gettoken" value="541231"><br/>Secret Key: <input type="text" id="secretkey_gettoken" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_gettoken">a972388d58c1443295cb89cc9c6f59789630a45f</span></td>
+<td>Phone Number: <input type="text" id="phone_gettoken" value="+65XXXXXXXX"><br/>OTP: <input type="text" id="otp_gettoken" value="541231"><br/>Secret Key: <input type="text" id="secretkey_gettoken" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_gettoken">a972388d58c1443295cb89cc9c6f59789630a45f</span></td>
 </tr>
 <tr>
 <td>return_url</td>
@@ -1090,35 +1090,35 @@ name and bank account information.</p>
 <td>string</td>
 <td>optional</td>
 <td>Account holder firstname</td>
-<td>Tianwei</td>
+<td>Doe</td>
 </tr>
 <tr>
 <td>last_name</td>
 <td>string</td>
 <td>optional</td>
 <td>Account holder lastname</td>
-<td>Liu</td>
+<td>John</td>
 </tr>
 <tr>
 <td>email</td>
 <td>string</td>
 <td>optional</td>
 <td>User email</td>
-<td>tianwei@xfers.io</td>
+<td>example@example.com</td>
 </tr>
 <tr>
 <td>date_of_birth</td>
 <td>string</td>
 <td>optional</td>
 <td>Date of birth for account holder in yyyy-mm-dd</td>
-<td>1986-02-27</td>
+<td>1990-01-01</td>
 </tr>
 <tr>
 <td>mother_maiden_name</td>
 <td>string</td>
 <td>ID: required, SG: optional</td>
 <td>Name of Mother</td>
-<td>Liu Weitian</td>
+<td>John Doe</td>
 </tr>
 <tr>
 <td>gender</td>
@@ -1132,14 +1132,14 @@ name and bank account information.</p>
 <td>string</td>
 <td>optional</td>
 <td>Address line 1</td>
-<td>Blk 212 Jurong East St 50</td>
+<td>Lorem Ipsum Road</td>
 </tr>
 <tr>
 <td>address_line_2</td>
 <td>string</td>
 <td>optional</td>
 <td>Address line 2</td>
-<td>#08-41</td>
+<td>#01-01</td>
 </tr>
 <tr>
 <td>nationality</td>
@@ -1153,14 +1153,14 @@ name and bank account information.</p>
 <td>string</td>
 <td>optional</td>
 <td>Address postal code</td>
-<td>640212</td>
+<td>123456</td>
 </tr>
 <tr>
 <td>identity_no</td>
 <td>string</td>
 <td>optional</td>
 <td>Account holder national identity number or, KTP number of Indonesian.</td>
-<td>s841212318g</td>
+<td>s12345678g</td>
 </tr>
 <tr>
 <td>country</td>
@@ -4015,7 +4015,7 @@ COMING SOON
 <td>string</td>
 <td>optional</td>
 <td>Customer email or phone number. If provided, only that user can use the checkout_url returned. If the customer does not exist, an account will be created for them using the email/phone number provided. An OTP will be sent to the email/phone for the user to log in</td>
-<td>johnny@xfers.com or +6597288608</td>
+<td>johnny@xfers.com or +65XXXXXXXX</td>
 </tr>
 <tr>
 <td>notify_url</td>
@@ -4893,7 +4893,7 @@ Please take note that at this point, payment may or may not have been completed 
 <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setApiKey</span><span class="p">(</span><span class="s1">'2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'</span><span class="p">);</span>
 <span class="nx">\Xfers\Xfers</span><span class="o">::</span><span class="na">setSGSandbox</span><span class="p">();</span>
 <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Charge</span><span class="o">::</span><span class="na">listAll</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
-    <span class="s1">'customer'</span> <span class="o">=&gt;</span> <span class="s1">'97288608'</span><span class="p">,</span>
+    <span class="s1">'customer'</span> <span class="o">=&gt;</span> <span class="s1">'XXXXXXXX'</span><span class="p">,</span>
     <span class="s1">'limit'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span>
 <span class="p">));</span>
 </code></pre>
@@ -5027,7 +5027,7 @@ Please take note that at this point, payment may or may not have been completed 
 <td>string</td>
 <td>optional</td>
 <td>Only return charges for the customer specified by this customer ID.</td>
-<td>97288608</td>
+<td>XXXXXXXX</td>
 </tr>
 <tr>
 <td>status (Coming soon)</td>
@@ -5920,7 +5920,7 @@ will not be able to save the token for reuse. Note that each credit card token c
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/payouts"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -d <span class="s1">'{"amount": "150.00", "invoice_id": "AZ0001", "descriptions": "Payment for Rent for July", "recipient": "+6597288608"}'</span>
+  -d <span class="s1">'{"amount": "150.00", "invoice_id": "AZ0001", "descriptions": "Payment for Rent for July", "recipient": "+65XXXXXXXX"}'</span>
 </code></pre>
 
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
@@ -5933,7 +5933,7 @@ will not be able to save the token for reuse. Note that each credit card token c
         <span class="s1">'amount'</span> <span class="o">=&gt;</span> <span class="s1">'150.00'</span><span class="p">,</span>
         <span class="s1">'invoice_id'</span> <span class="o">=&gt;</span> <span class="s1">'AZ0001'</span><span class="p">,</span>
         <span class="s1">'descriptions'</span> <span class="o">=&gt;</span> <span class="s1">'Payment for Rent for July'</span><span class="p">,</span>
-        <span class="s1">'recipient'</span> <span class="o">=&gt;</span> <span class="s1">'+6597288608'</span>
+        <span class="s1">'recipient'</span> <span class="o">=&gt;</span> <span class="s1">'+65XXXXXXXX'</span>
     <span class="p">));</span>
     <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
     <span class="k">echo</span> <span class="nv">$resp</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
@@ -5955,7 +5955,7 @@ will not be able to save the token for reuse. Note that each credit card token c
         <span class="s">'amount'</span><span class="p">:</span> <span class="s">'150.00'</span><span class="p">,</span>
         <span class="s">'invoice_id'</span><span class="p">:</span> <span class="s">'AZ0001'</span><span class="p">,</span>
         <span class="s">'descriptions'</span><span class="p">:</span> <span class="s">'Payment for Rent for July'</span><span class="p">,</span>
-        <span class="s">'recipient'</span><span class="p">:</span> <span class="s">'+6597288608'</span>
+        <span class="s">'recipient'</span><span class="p">:</span> <span class="s">'+65XXXXXXXX'</span>
     <span class="p">}</span>
     <span class="n">resp</span> <span class="o">=</span> <span class="n">xfpayout</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
     <span class="n">payout_id</span> <span class="o">=</span> <span class="n">resp</span><span class="p">[</span><span class="s">'id'</span><span class="p">]</span>
@@ -5978,7 +5978,7 @@ will not be able to save the token for reuse. Note that each credit card token c
       <span class="s1">'amount'</span> <span class="o">=&gt;</span> <span class="s1">'150.00'</span><span class="p">,</span>
       <span class="s1">'invoice_id'</span> <span class="o">=&gt;</span> <span class="s1">'AZ0001'</span><span class="p">,</span>
       <span class="s1">'descriptions'</span> <span class="o">=&gt;</span> <span class="s1">'Payment for Rent for July'</span><span class="p">,</span>
-      <span class="s1">'recipient'</span> <span class="o">=&gt;</span> <span class="s1">'+6597288608'</span>
+      <span class="s1">'recipient'</span> <span class="o">=&gt;</span> <span class="s1">'+65XXXXXXXX'</span>
   <span class="p">}</span>
   <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Payout</span><span class="p">.</span><span class="nf">create</span> <span class="n">params</span>
   <span class="n">payout_id</span> <span class="o">=</span> <span class="n">resp</span><span class="p">[</span><span class="ss">:id</span><span class="p">]</span>
@@ -5997,7 +5997,7 @@ will not be able to save the token for reuse. Note that each credit card token c
     <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"amount"</span><span class="o">,</span> <span class="s">"150.00"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"invoice_id"</span><span class="o">,</span> <span class="s">"AZ0001"</span><span class="o">);</span>
-    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"recipient"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"recipient"</span><span class="o">,</span> <span class="s">"+65XXXXXXXX"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"descriptions"</span><span class="o">,</span> <span class="s">"Payment for Rent for July"</span><span class="o">);</span>
 
     <span class="n">Payout</span> <span class="n">payout</span> <span class="o">=</span> <span class="n">Payout</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">params</span><span class="o">,</span><span class="n">apiKey</span><span class="o">);</span>
@@ -6023,7 +6023,7 @@ will not be able to save the token for reuse. Note that each credit card token c
 
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6fa51cd08c8ae115f858593412bb72c8"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"recipient"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+6597288608"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"recipient"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+65XXXXXXXX"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"invoice_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0001"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">150.00</span><span class="p">,</span><span class="w">
   </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="p">,</span><span class="w">
@@ -6189,7 +6189,7 @@ will not be able to save the token for reuse. Note that each credit card token c
 
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6fa51cd08c8ae115f858593412bb72c8"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"recipient"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+6597288608"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"recipient"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+65XXXXXXXX"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"invoice_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0001"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">150.00</span><span class="p">,</span><span class="w">
   </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="p">,</span><span class="w">
@@ -6254,7 +6254,7 @@ will not be able to save the token for reuse. Note that each credit card token c
 <span class="k">try</span><span class="p">:</span>
     <span class="k">print</span> <span class="s">'Listing all payouts...'</span>
     <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">'recipient'</span><span class="p">:</span> <span class="s">'+6597288608'</span>
+        <span class="s">'recipient'</span><span class="p">:</span> <span class="s">'+65XXXXXXXX'</span>
     <span class="p">}</span>
     <span class="n">payouts</span> <span class="o">=</span> <span class="n">xfpayout</span><span class="o">.</span><span class="n">list_all</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">payout</span> <span class="ow">in</span> <span class="n">payouts</span><span class="p">:</span>
@@ -6271,7 +6271,7 @@ will not be able to save the token for reuse. Note that each credit card token c
 <span class="k">begin</span>
   <span class="nb">puts</span> <span class="s1">'Listing all payouts...'</span>
   <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="s1">'recipient'</span><span class="o">=&gt;</span> <span class="s1">'+6597288608'</span>
+      <span class="s1">'recipient'</span><span class="o">=&gt;</span> <span class="s1">'+65XXXXXXXX'</span>
   <span class="p">}</span>
   <span class="n">payouts</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Payout</span><span class="p">.</span><span class="nf">list_all</span> <span class="n">params</span>
   <span class="n">payouts</span><span class="p">.</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">payout</span><span class="o">|</span>
@@ -6288,7 +6288,7 @@ will not be able to save the token for reuse. Note that each credit card token c
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Listing payouts"</span><span class="o">);</span>
     <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
-    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"recipient"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"recipient"</span><span class="o">,</span> <span class="s">"+65XXXXXXXX"</span><span class="o">);</span>
     <span class="n">List</span><span class="o">&lt;</span><span class="n">Payout</span><span class="o">&gt;</span> <span class="n">payouts</span> <span class="o">=</span> <span class="n">Payout</span><span class="o">.</span><span class="na">listAll</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">apiKey</span><span class="o">);</span>
     <span class="k">for</span> <span class="o">(</span><span class="n">Payout</span> <span class="n">payout</span> <span class="o">:</span> <span class="n">payouts</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">payout</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
@@ -6315,7 +6315,7 @@ will not be able to save the token for reuse. Note that each credit card token c
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6fa51cd08c8ae115f858593412bb72c8"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"recipient"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+6597288608"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"recipient"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+65XXXXXXXX"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"invoice_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AZ0001"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">150.00</span><span class="p">,</span><span class="w">
     </span><span class="s2">"currency"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"SGD"</span><span class="p">,</span><span class="w">
@@ -6352,7 +6352,7 @@ will not be able to save the token for reuse. Note that each credit card token c
 <td>string</td>
 <td>optional</td>
 <td>Only return charges for the recipient(email for phone no) specified by this recipient ID.</td>
-<td>+6597288608</td>
+<td>+65XXXXXXXX</td>
 </tr>
 <tr>
 <td>ending_before</td>
