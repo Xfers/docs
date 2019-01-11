@@ -260,7 +260,7 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/authorize/signup_login"</span><span class="se">\</span>
   -H <span class="s2">"X-XFERS-APP-API-KEY: yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ"</span><span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -d <span class="s1">'{"phone_no" : "+6597288608", "signature" : "178502abfa891b69a9a2f72192d51f5fc141f978"}'</span>
+  -d <span class="s1">'{"phone_no" : "+65XXXXXXXX", "signature" : "178502abfa891b69a9a2f72192d51f5fc141f978"}'</span>
 </code></pre>
 
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
@@ -270,7 +270,7 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 <span class="nv">$xfers_app_api_key</span> <span class="o">=</span> <span class="s1">'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ'</span><span class="p">;</span>
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$resp</span> <span class="o">=</span> <span class="nx">\Xfers\Connect</span><span class="o">::</span><span class="na">authorize</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
-        <span class="s1">'phone_no'</span> <span class="o">=&gt;</span> <span class="s1">'+6597288608'</span><span class="p">,</span>
+        <span class="s1">'phone_no'</span> <span class="o">=&gt;</span> <span class="s1">'+65XXXXXXXX'</span><span class="p">,</span>
         <span class="s1">'signature'</span> <span class="o">=&gt;</span> <span class="s1">'178502abfa891b69a9a2f72192d51f5fc141f978'</span>
     <span class="p">),</span> <span class="nv">$xfers_app_api_key</span><span class="p">);</span>
     <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
@@ -289,7 +289,7 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 <span class="k">try</span><span class="p">:</span>
     <span class="k">print</span> <span class="s">'Authorizing connect...'</span>
     <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">'phone_no'</span><span class="p">:</span> <span class="s">'+6597288608'</span><span class="p">,</span>
+        <span class="s">'phone_no'</span><span class="p">:</span> <span class="s">'+65XXXXXXXX'</span><span class="p">,</span>
         <span class="s">'signature'</span><span class="p">:</span> <span class="s">'178502abfa891b69a9a2f72192d51f5fc141f978'</span>
     <span class="p">}</span>
     <span class="n">resp</span> <span class="o">=</span> <span class="n">xfconnect</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">XFERS_APP_API_KEY</span><span class="p">)</span>
@@ -306,7 +306,7 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 <span class="k">begin</span>
   <span class="nb">puts</span> <span class="s1">'Authorizing connect...'</span>
   <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="s1">'phone_no'</span><span class="o">=&gt;</span> <span class="s1">'+6597288608'</span><span class="p">,</span>
+      <span class="s1">'phone_no'</span><span class="o">=&gt;</span> <span class="s1">'+65XXXXXXXX'</span><span class="p">,</span>
       <span class="s1">'signature'</span><span class="o">=&gt;</span> <span class="s1">'178502abfa891b69a9a2f72192d51f5fc141f978'</span>
   <span class="p">}</span>
   <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Connect</span><span class="p">.</span><span class="nf">authorize</span> <span class="n">params</span><span class="p">,</span> <span class="no">XFERS_APP_API_KEY</span>
@@ -323,7 +323,7 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 <span class="k">try</span> <span class="o">{</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Authorizing"</span><span class="o">);</span>
     <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
-    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"phone_no"</span><span class="o">,</span> <span class="s">"+6597288608"</span><span class="o">);</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"phone_no"</span><span class="o">,</span> <span class="s">"+65XXXXXXXX"</span><span class="o">);</span>
     <span class="n">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">Connect</span><span class="o">.</span><span class="na">authorize</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">xfersAppApiKey</span><span class="o">,</span> <span class="n">xfersAppSecretKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getMsg</span><span class="o">());</span>
 <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
@@ -364,14 +364,14 @@ You will provided with a pair of keys named <code class="prettyprint">X-XFERS-AP
 <td>string</td>
 <td>required</td>
 <td>User mobile no</td>
-<td>+6597288608</td>
+<td>+65XXXXXXXX</td>
 </tr>
 <tr>
 <td>signature</td>
 <td>string</td>
 <td>required</td>
 <td>SHA1-hex of (phone_no + APP_SECRET_KEY)</td>
-<td>Phone Number: <input type="text" id="phone_signup" value="+6597288608"><br/>Secret Key: <input type="text" id="secretkey_signup" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_signup">178502abfa891b69a9a2f72192d51f5fc141f978</span></td>
+<td>Phone Number: <input type="text" id="phone_signup" value="+65XXXXXXXX"><br/>Secret Key: <input type="text" id="secretkey_signup" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_signup">178502abfa891b69a9a2f72192d51f5fc141f978</span></td>
 </tr>
 </tbody></table>
 
@@ -1090,35 +1090,35 @@ name and bank account information.</p>
 <td>string</td>
 <td>optional</td>
 <td>Account holder firstname</td>
-<td>Doe</td>
+<td>Tianwei</td>
 </tr>
 <tr>
 <td>last_name</td>
 <td>string</td>
 <td>optional</td>
 <td>Account holder lastname</td>
-<td>John</td>
+<td>Liu</td>
 </tr>
 <tr>
 <td>email</td>
 <td>string</td>
 <td>optional</td>
 <td>User email</td>
-<td>example@example.com</td>
+<td>tianwei@xfers.io</td>
 </tr>
 <tr>
 <td>date_of_birth</td>
 <td>string</td>
 <td>optional</td>
 <td>Date of birth for account holder in yyyy-mm-dd</td>
-<td>1990-01-01</td>
+<td>1986-02-27</td>
 </tr>
 <tr>
 <td>mother_maiden_name</td>
 <td>string</td>
 <td>ID: required, SG: optional</td>
 <td>Name of Mother</td>
-<td>John Doe</td>
+<td>Liu Weitian</td>
 </tr>
 <tr>
 <td>gender</td>
@@ -1132,14 +1132,14 @@ name and bank account information.</p>
 <td>string</td>
 <td>optional</td>
 <td>Address line 1</td>
-<td>Lorem Ipsum Road</td>
+<td>Blk 212 Jurong East St 50</td>
 </tr>
 <tr>
 <td>address_line_2</td>
 <td>string</td>
 <td>optional</td>
 <td>Address line 2</td>
-<td>#01-01</td>
+<td>#08-41</td>
 </tr>
 <tr>
 <td>nationality</td>
@@ -1153,14 +1153,14 @@ name and bank account information.</p>
 <td>string</td>
 <td>optional</td>
 <td>Address postal code</td>
-<td>123456</td>
+<td>640212</td>
 </tr>
 <tr>
 <td>identity_no</td>
 <td>string</td>
 <td>optional</td>
 <td>Account holder national identity number or, KTP number of Indonesian.</td>
-<td>s12345678g</td>
+<td>s841212318g</td>
 </tr>
 <tr>
 <td>country</td>
