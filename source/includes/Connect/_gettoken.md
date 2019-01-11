@@ -1,7 +1,7 @@
 ## Get User API Token
 
 ```shell
-curl "https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=%2B6597288608&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91" \
+curl "https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=%2B65XXXXXXXX&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91" \
   -H "X-XFERS-APP-API-KEY: yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ"
 
 # You can now change the X-XFERS-USER-API-KEY to the returned user_api_token
@@ -17,7 +17,7 @@ $xfers_app_api_key = 'yyyMATdkKiv2s9ZQVQ-C1x2RY4xF928xnrUagfQwXaQ';
 try {
     $resp = \Xfers\Connect::getToken(array(
         'otp' => '541231',
-        'phone_no' => '+6597288608',
+        'phone_no' => '+65XXXXXXXX',
         'signature' => '178502abfa891b69a9a2f72192d51f5fc141f978',
         'return_url' => 'https://mywebsite.com/api/v3/account_registration/completed'
     ), $xfers_app_api_key);
@@ -47,7 +47,7 @@ try:
     print 'Getting token...'
     params = {
         'otp': '541231',
-        'phone_no': '+6597288608',
+        'phone_no': '+65XXXXXXXX',
         'signature': '178502abfa891b69a9a2f72192d51f5fc141f978',
         'return_url': 'https://mywebsite.com/api/v3/account_registration/completed'
     }
@@ -73,7 +73,7 @@ begin
   puts 'Getting connect token...'
   params = {
       'otp'=> '541231',
-      'phone_no'=> '+6597288608',
+      'phone_no'=> '+65XXXXXXXX',
       'signature'=> '178502abfa891b69a9a2f72192d51f5fc141f978',
       'return_url'=> 'https://mywebsite.com/api/v3/account_registration/completed'
   }
@@ -107,7 +107,7 @@ try {
     System.out.println("Getting token");
     Map<String, Object> params = new HashMap<String, Object>();
     params.put("otp", "541231");
-    params.put("phone_no", "+6597288608");
+    params.put("phone_no", "+65XXXXXXXX");
     params.put("return_url", "https://mywebsite.com/api/v3/account_registration/completed");
     Response response = Connect.getToken(params, xfersAppApiKey, xfersAppSecretKey);
     System.out.println(response.getMsg());
@@ -132,7 +132,7 @@ try {
   {
     "msg": "success",
     "user_api_token": "1DnsZkv3qXwKx4EAdps8AJ8jXCPsxP2sKSygMHTAFLM",
-    "sign_up_url" : "https://sandbox.xfers.io/api/v3/account_registration?phone_no=%2B6597288608&token=4014d3e9f0600f78dbfabd86036de7b008f70c52"
+    "sign_up_url" : "https://sandbox.xfers.io/api/v3/account_registration?phone_no=%2B65XXXXXXXX&token=4014d3e9f0600f78dbfabd86036de7b008f70c52"
   }
 ```
 
@@ -152,15 +152,15 @@ Remember to encode the '+' sign in your phone no during your GET request. It sho
 
 ### HTTPS Request
 
-`GET https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=%2B6597288608&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91`
+`GET https://sandbox.xfers.io/api/v3/authorize/get_token?otp=541231&phone_no=%2B65XXXXXXXX&signature=bdc26373b3a78dd11dc840a1b7973f197cf34c91`
 
 ### URL Parameters
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 otp | string | required | 6 digit one-time-password send over SMS | 541231
-phone_no | string | required | User mobile no | +6597288608
-signature | string | required | SHA1-hex of (phone_no + OTP + APP_SECRET_KEY) | Phone Number: <input type="text" id="phone_gettoken" value="+6597288608"><br/>OTP: <input type="text" id="otp_gettoken" value="541231"><br/>Secret Key: <input type="text" id="secretkey_gettoken" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_gettoken">a972388d58c1443295cb89cc9c6f59789630a45f</span>
+phone_no | string | required | User mobile no | +65XXXXXXXX
+signature | string | required | SHA1-hex of (phone_no + OTP + APP_SECRET_KEY) | Phone Number: <input type="text" id="phone_gettoken" value="+65XXXXXXXX"><br/>OTP: <input type="text" id="otp_gettoken" value="541231"><br/>Secret Key: <input type="text" id="secretkey_gettoken" value="YZngoTmcNrB2uQnYvHzd-oWEABeV5rd7xNsxkG45DkY"><br/>Signature: <span id="signature_gettoken">a972388d58c1443295cb89cc9c6f59789630a45f</span>
 return_url | string | optional | Url that new user will be redirected after they completed Xfers account registration at `sign_up_url` provided. | Default "\<Endpoint>/api/v3/account_registration/completed"
 
 

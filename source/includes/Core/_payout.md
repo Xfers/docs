@@ -8,7 +8,7 @@ Xfers Payout allows you transfer money between Xfers Wallets with your Xfers bal
 curl "https://sandbox.xfers.io/api/v3/payouts" \
   -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
   -H "Content-Type: application/json" \
-  -d '{"amount": "150.00", "invoice_id": "AZ0001", "descriptions": "Payment for Rent for July", "recipient": "+6597288608"}'
+  -d '{"amount": "150.00", "invoice_id": "AZ0001", "descriptions": "Payment for Rent for July", "recipient": "+65XXXXXXXX"}'
 ```
 
 ```php
@@ -22,7 +22,7 @@ try {
         'amount' => '150.00',
         'invoice_id' => 'AZ0001',
         'descriptions' => 'Payment for Rent for July',
-        'recipient' => '+6597288608'
+        'recipient' => '+65XXXXXXXX'
     ));
     print_r($resp);
     echo $resp["id"] . "\n";
@@ -45,7 +45,7 @@ try:
         'amount': '150.00',
         'invoice_id': 'AZ0001',
         'descriptions': 'Payment for Rent for July',
-        'recipient': '+6597288608'
+        'recipient': '+65XXXXXXXX'
     }
     resp = xfpayout.create(params)
     payout_id = resp['id']
@@ -69,7 +69,7 @@ begin
       'amount' => '150.00',
       'invoice_id' => 'AZ0001',
       'descriptions' => 'Payment for Rent for July',
-      'recipient' => '+6597288608'
+      'recipient' => '+65XXXXXXXX'
   }
   resp = Xfers::Payout.create params
   payout_id = resp[:id]
@@ -89,7 +89,7 @@ try {
     Map<String, Object> params = new HashMap<String, Object>();
     params.put("amount", "150.00");
     params.put("invoice_id", "AZ0001");
-    params.put("recipient", "+6597288608");
+    params.put("recipient", "+65XXXXXXXX");
     params.put("descriptions", "Payment for Rent for July");
 
     Payout payout = Payout.create(params,apiKey);
@@ -114,7 +114,7 @@ try {
 ```json
 {
   "id": "6fa51cd08c8ae115f858593412bb72c8",
-  "recipient" : "+6597288608",
+  "recipient" : "+65XXXXXXXX",
   "invoice_id" : "AZ0001",
   "amount" : 150.00,
   "currency" : "SGD",
@@ -222,7 +222,7 @@ Xfers.setSGSandbox();
 ```json
 {
   "id": "6fa51cd08c8ae115f858593412bb72c8",
-  "recipient" : "+6597288608",
+  "recipient" : "+65XXXXXXXX",
   "invoice_id" : "AZ0001",
   "amount" : 150.00,
   "currency" : "SGD",
@@ -281,7 +281,7 @@ xfers.set_sg_sandbox()
 try:
     print 'Listing all payouts...'
     params = {
-        'recipient': '+6597288608'
+        'recipient': '+65XXXXXXXX'
     }
     payouts = xfpayout.list_all(params)
     for payout in payouts:
@@ -299,7 +299,7 @@ Xfers.set_sg_sandbox
 begin
   puts 'Listing all payouts...'
   params = {
-      'recipient'=> '+6597288608'
+      'recipient'=> '+65XXXXXXXX'
   }
   payouts = Xfers::Payout.list_all params
   payouts.each { |payout|
@@ -317,7 +317,7 @@ Xfers.setSGSandbox();
 try {
     System.out.println("Listing payouts");
     Map<String, Object> params = new HashMap<String, Object>();
-    params.put("recipient", "+6597288608");
+    params.put("recipient", "+65XXXXXXXX");
     List<Payout> payouts = Payout.listAll(params, apiKey);
     for (Payout payout : payouts) {
         System.out.println(payout.getId());
@@ -343,7 +343,7 @@ try {
 [
   {
     "id": "6fa51cd08c8ae115f858593412bb72c8",
-    "recipient" : "+6597288608",
+    "recipient" : "+65XXXXXXXX",
     "invoice_id" : "AZ0001",
     "amount" : 150.00,
     "currency" : "SGD",
@@ -368,7 +368,7 @@ Returns a list of payouts you've previously created. The payouts are returned in
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-recipient | string | optional | Only return charges for the recipient(email for phone no) specified by this recipient ID. | +6597288608
+recipient | string | optional | Only return charges for the recipient(email for phone no) specified by this recipient ID. | +65XXXXXXXX
 ending_before | string | optional | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_bar, your subsequent call can include ending_before=obj_bar in order to fetch the previous page of the list. | 6fa51cd08c8ae115f858593412bb72c8
 limit | integer | optional | A limit on the number of objects to be returned. Limit can range between 1 and 50 items. | Default to 10
 starting_after | string | optional | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list. | 6fa51cd08c8ae115f858593412bb72c8

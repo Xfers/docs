@@ -265,7 +265,7 @@ amount | float | required | Total value for items, excluding taxes and shipping 
 currency | string | required | 3-letter ISO code for currency | SGD
 order_id | string | required | Unique ref no provided by you to prevent double charging, this cannot be repeated | A012312
 description | string | optional | Description of transaction for display purposes | Carousell user - Konsolidate
-customer | string | optional | Customer email or phone number. If provided, only that user can use the checkout_url returned. If the customer does not exist, an account will be created for them using the email/phone number provided. An OTP will be sent to the email/phone for the user to log in | johnny@xfers.com or +6597288608
+customer | string | optional | Customer email or phone number. If provided, only that user can use the checkout_url returned. If the customer does not exist, an account will be created for them using the email/phone number provided. An OTP will be sent to the email/phone for the user to log in | johnny@xfers.com or +65XXXXXXXX
 notify_url | string | optional | URL to receive callback notifications on charge success/failure/expiration | https://mysite.com/payment_notification
 return_url | string | optional | URL Xfers will redirect customer to on completion of Xfers checkout | https://mysite.com/return
 cancel_url | string | optional | URL Xfers will redirect customer to on cancellation of Xfers checkout | https://mysite.com/cancel
@@ -888,7 +888,7 @@ require_once('vendor/autoload.php');
 \Xfers\Xfers::setApiKey('2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk');
 \Xfers\Xfers::setSGSandbox();
 $resp = \Xfers\Charge::listAll(array(
-    'customer' => '97288608',
+    'customer' => 'XXXXXXXX',
     'limit' => '1'
 ));
 ```
@@ -1013,7 +1013,7 @@ Returns a list of charges you've previously created. The charges are returned in
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-customer | string | optional | Only return charges for the customer specified by this customer ID. | 97288608
+customer | string | optional | Only return charges for the customer specified by this customer ID. | XXXXXXXX
 status (Coming soon) | string | optional | status of the charge to return | pending
 ending_before | string | optional | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_bar, your subsequent call can include ending_before=obj_bar in order to fetch the previous page of the list. | 7364dc68a000eba1ec6d34f81c5006dc
 limit | integer | optional | A limit on the number of objects to be returned. Limit can range between 1 and 50 items. | Default to 10
