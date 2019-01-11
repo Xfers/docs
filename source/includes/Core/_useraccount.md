@@ -746,7 +746,7 @@ try {
   "bank_code" : "7302",
   "branch_code" : "001",
   "branch_area" : "Maybank Tower",
-  "unique_id" : "97288607"
+  "unique_id" : "XXXXXXXX"
 }
 ```
 

@@ -113,7 +113,7 @@ COMING SOON
    "amount":"84.52",
    "total_amount":"84.52",
    "currency":"sgd",
-   "customer":"+6597288607",
+   "customer":"+65XXXXXXXX",
    "order_id":"XFER170113160234758",
    "description":"Load card 21794",
    "statement_descriptor":null,

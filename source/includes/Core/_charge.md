@@ -225,7 +225,7 @@ try {
       "bank_code" : "",
       "branch_code" : "",
       "branch_area" : "",
-      "unique_id" : "97288607",
+      "unique_id" : "XXXXXXXX",
       "img_src": "https://xfers.com/bank-logo-bca.png"
     },
     {
@@ -235,7 +235,7 @@ try {
       "bank_code" : "",
       "branch_code" : "",
       "branch_area" : "",
-      "unique_id" : "97288607",
+      "unique_id" : "XXXXXXXX",
       "img_src": "https://xfers.com/bank-logo-mandiri.png"    
     },
     {
@@ -245,7 +245,7 @@ try {
       "bank_code" : "",
       "branch_code" : "",
       "branch_area" : "",
-      "unique_id" : "97288607",
+      "unique_id" : "XXXXXXXX",
       "img_src": "https://xfers.com/bank-logo-bni.png"    
     }    
   ]
