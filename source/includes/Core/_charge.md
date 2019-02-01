@@ -275,7 +275,6 @@ google_auth | boolean | optional | When this is true and user_phone_no is provid
 transactional_only | boolean | optional | Enables transactional charge when true. [See more info](/#transactional-charge). Only selected Xfers partners have this feature available. | Default to false
 debit_only | boolean | optional | When this is true, this charge will attempt to debit from users existing balance/card on file. Status returned will be "completed" on successful debit or "cancelled" when there insufficient funds / valid card on file in user wallet. | Default to false
 card_only | boolean | optional | When this is true, this charge will will attempt to only take payments via credit/debit card. | Default to false
-enquiry_only | boolean | optional | When this is true, this charge will not be processed but a standard response will be provided. This is usually used for testing purposes or for pre-fetching charge information like fees. | Default to false
 redirect | boolean | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true.
 items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. [See more info](/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
 shipping | float | optional | Shipping fees | Default to 0.0
@@ -346,7 +345,7 @@ You should always provide customer's firstname and lastname information whenever
 A transactional charge has a bank topup tied to every charge created.
 That means, if you create a charge for an item that a user has bought - say a pair of jeans costing $25.99 - the user must then topup exactly $25.99 into the bank account number returned in the response. The charge will then go through.
 
-Any wallet balance the user has will not be used. The $25.99 topup will only go towards payment of the pair of jeans. 
+Any wallet balance the user has will not be used. The $25.99 topup will only go towards payment of the pair of jeans.
 
 Set the `transactional_only` flag to `true` when creating a charge. Note that this feature is only available to selected Xfers partners.
 

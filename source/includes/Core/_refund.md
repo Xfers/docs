@@ -1,6 +1,6 @@
 ## Refunds
 
-The following APIs allow you to refund a charge that has previously been created and paid by your buyer. 
+The following APIs allow you to refund a charge that has previously been created and paid by your buyer.
 
 For bank transfer transaction, funds will be refunded to the buyer's Xfers account. The fees you were originally charged are also refunded.
 
@@ -111,7 +111,7 @@ try {
 }
 ```
 
-When you create a new refund, you must specify a charge to create it on.
+When you create a new refund, you must specify a charge to create it on. If you intend to refund a charge immediately upon creation, please minimally wait for 2 minutes. This is due to the delay in the status transition for charge. You cannot refund a charge that's still in processing state.
 
 Creating a new refund will refund a charge that has previously been created and paid but not yet refunded. Funds will be refunded to the buyer Xfers account available balance. The fees you were originally charged are also refunded.
 
