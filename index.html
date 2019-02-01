@@ -4081,13 +4081,6 @@ COMING SOON
 <td>Default to false</td>
 </tr>
 <tr>
-<td>enquiry_only</td>
-<td>boolean</td>
-<td>optional</td>
-<td>When this is true, this charge will not be processed but a standard response will be provided. This is usually used for testing purposes or for pre-fetching charge information like fees.</td>
-<td>Default to false</td>
-</tr>
-<tr>
 <td>redirect</td>
 <td>boolean</td>
 <td>optional</td>
@@ -4295,7 +4288,7 @@ You should always provide customer&rsquo;s firstname and lastname information wh
 <p>A transactional charge has a bank topup tied to every charge created.
 That means, if you create a charge for an item that a user has bought - say a pair of jeans costing $25.99 - the user must then topup exactly $25.99 into the bank account number returned in the response. The charge will then go through.</p>
 
-<p>Any wallet balance the user has will not be used. The $25.99 topup will only go towards payment of the pair of jeans. </p>
+<p>Any wallet balance the user has will not be used. The $25.99 topup will only go towards payment of the pair of jeans.</p>
 
 <p>Set the <code class="prettyprint">transactional_only</code> flag to <code class="prettyprint">true</code> when creating a charge. Note that this feature is only available to selected Xfers partners.</p>
 
@@ -6379,7 +6372,7 @@ will not be able to save the token for reuse. Note that each credit card token c
 
 <h2 id="refunds">Refunds</h2>
 
-<p>The following APIs allow you to refund a charge that has previously been created and paid by your buyer. </p>
+<p>The following APIs allow you to refund a charge that has previously been created and paid by your buyer.</p>
 
 <p>For bank transfer transaction, funds will be refunded to the buyer&rsquo;s Xfers account. The fees you were originally charged are also refunded.</p>
 
@@ -6486,7 +6479,7 @@ will not be able to save the token for reuse. Note that each credit card token c
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>When you create a new refund, you must specify a charge to create it on.</p>
+<p>When you create a new refund, you must specify a charge to create it on. If you intend to refund a charge immediately upon creation, please minimally wait for 2 minutes. This is due to the delay in the status transition for charge. You cannot refund a charge that&rsquo;s still in processing state.</p>
 
 <p>Creating a new refund will refund a charge that has previously been created and paid but not yet refunded. Funds will be refunded to the buyer Xfers account available balance. The fees you were originally charged are also refunded.</p>
 
