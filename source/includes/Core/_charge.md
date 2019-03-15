@@ -210,12 +210,7 @@ try {
     "branch_code": "646",
     "branch_area": "Jurong East",
     "unique_id": "89898989",
-    "outstanding_amount": {
-      "total": 9.99,
-      "total_txn": 9.99,
-      "bank_unique_amt": 9.99,
-      "bank_discount": 0.0
-    }
+    "outstanding_amount": 0
   },
   "transfer_info_array": [
     {
@@ -623,12 +618,7 @@ try {
     "branch_code": "646",
     "branch_area": "Jurong East",
     "unique_id": "89898989",
-    "outstanding_amount": {
-      "total": 9.99,
-      "total_txn": 9.99,
-      "bank_unique_amt": 9.99,
-      "bank_discount": 0.0
-    }
+    "outstanding_amount": 0
   }
 }
 ```
