@@ -3732,7 +3732,7 @@ COMING SOON
 <pre class="highlight shell"><code>curl <span class="s2">"https://sandbox.xfers.io/api/v3/charges"</span> <span class="se">\</span>
   -H <span class="s2">"X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  -d <span class="s1">'{ "amount": "9.99", "currency": "SGD", "redirect": "false", "notify_url": "https://mysite.com/payment_notification", "return_url": "https://mysite.com/return", "cancel_url": "https://mysite.com/cancel", "order_id": "AZ9912", "description":"unused red dress", "shipping": "2.50", "tax": "0.0", "items" : [{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}], "meta_data": {"firstname":"Tianwei", "lastname":"Liu"}}'</span>
+  -d <span class="s1">'{ "amount": "9.99", "currency": "SGD", "redirect": "false", "notify_url": "https://mysite.com/payment_notification", "return_url": "https://mysite.com/return", "cancel_url": "https://mysite.com/cancel", "order_id": "AZ9912", "description":"unused red dress", "shipping": "2.50", "tax": "0.0", "items" : [{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}], "metadata": {"firstname":"Tianwei", "lastname":"Liu"}}'</span>
 </code></pre>
 
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
@@ -3750,7 +3750,7 @@ COMING SOON
     <span class="p">);</span>
     <span class="nb">array_push</span><span class="p">(</span><span class="nv">$items</span><span class="p">,</span> <span class="nv">$item</span><span class="p">);</span>
 
-    <span class="nv">$meta_data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="nv">$metadata</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
       <span class="s1">'firstname'</span> <span class="o">=&gt;</span> <span class="s1">'Tianwei'</span><span class="p">,</span>
       <span class="s1">'lastname'</span> <span class="o">=&gt;</span> <span class="s1">'Liu'</span>
       <span class="p">);</span>
@@ -3766,7 +3766,7 @@ COMING SOON
         <span class="s1">'redirect'</span> <span class="o">=&gt;</span> <span class="s1">'false'</span><span class="p">,</span>
         <span class="s1">'tax'</span> <span class="o">=&gt;</span> <span class="s1">'0.0'</span><span class="p">,</span>
         <span class="s1">'items'</span> <span class="o">=&gt;</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$items</span><span class="p">),</span>
-        <span class="s1">'meta_data'</span> <span class="o">=&gt;</span> <span class="nv">$meta_data</span>
+        <span class="s1">'metadata'</span> <span class="o">=&gt;</span> <span class="nv">$metadata</span>
     <span class="p">));</span>
     <span class="nb">print_r</span><span class="p">(</span><span class="nv">$resp</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">\Xfers\Error\InvalidRequest</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
@@ -3783,7 +3783,7 @@ COMING SOON
 <span class="k">try</span><span class="p">:</span>
     <span class="k">print</span> <span class="s">'Creating charge...'</span>
     <span class="n">items</span> <span class="o">=</span> <span class="p">[{</span><span class="s">'description'</span><span class="p">:</span> <span class="s">'Red dress size M'</span><span class="p">,</span> <span class="s">'price'</span><span class="p">:</span> <span class="s">'9.99'</span><span class="p">,</span> <span class="s">'quantity'</span><span class="p">:</span> <span class="s">'1'</span><span class="p">,</span> <span class="s">'name'</span><span class="p">:</span> <span class="s">'Red dress'</span><span class="p">}]</span>
-    <span class="n">meta_data</span> <span class="o">=</span> <span class="p">{</span><span class="s">'firstname'</span><span class="p">:</span> <span class="s">'Tianwei'</span><span class="p">,</span> <span class="s">'lastname'</span><span class="p">:</span> <span class="s">'Liu'</span><span class="p">}</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s">'firstname'</span><span class="p">:</span> <span class="s">'Tianwei'</span><span class="p">,</span> <span class="s">'lastname'</span><span class="p">:</span> <span class="s">'Liu'</span><span class="p">}</span>
     <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s">'amount'</span> <span class="p">:</span> <span class="s">'9.99'</span><span class="p">,</span>
         <span class="s">'currency'</span> <span class="p">:</span> <span class="s">'SGD'</span><span class="p">,</span>
@@ -3796,7 +3796,7 @@ COMING SOON
         <span class="s">'redirect'</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
         <span class="s">'tax'</span> <span class="p">:</span> <span class="s">'0.0'</span><span class="p">,</span>
         <span class="s">'items'</span> <span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">items</span><span class="p">),</span>
-        <span class="s">'meta_data'</span> <span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">meta_data</span><span class="p">)</span>
+        <span class="s">'metadata'</span> <span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
     <span class="p">}</span>
     <span class="n">resp</span> <span class="o">=</span> <span class="n">xfcharge</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
     <span class="n">charge_id</span> <span class="o">=</span> <span class="n">resp</span><span class="p">[</span><span class="s">'id'</span><span class="p">]</span>
@@ -3824,7 +3824,7 @@ COMING SOON
         <span class="s1">'tax'</span> <span class="o">=&gt;</span> <span class="s1">'0.0'</span><span class="p">,</span>
         <span class="s1">'redirect'</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span>
         <span class="s1">'items'</span> <span class="o">=&gt;</span> <span class="p">[{</span><span class="s1">'description'</span> <span class="o">=&gt;</span> <span class="s1">'Red dress Size M'</span><span class="p">,</span> <span class="s1">'price'</span> <span class="o">=&gt;</span> <span class="s1">'9.99'</span><span class="p">,</span> <span class="s1">'quantity'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'Red dress'</span><span class="p">}],</span>
-        <span class="s1">'meta_data'</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="s1">'firstname'</span><span class="o">=&gt;</span> <span class="s1">'Tianwei'</span><span class="p">,</span> <span class="s1">'lastname'</span><span class="o">=&gt;</span> <span class="s1">'Liu'</span><span class="p">}</span>
+        <span class="s1">'metadata'</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="s1">'firstname'</span><span class="o">=&gt;</span> <span class="s1">'Tianwei'</span><span class="p">,</span> <span class="s1">'lastname'</span><span class="o">=&gt;</span> <span class="s1">'Liu'</span><span class="p">}</span>
   <span class="p">}</span>
   <span class="n">resp</span> <span class="o">=</span> <span class="no">Xfers</span><span class="o">::</span><span class="no">Charge</span><span class="p">.</span><span class="nf">create</span> <span class="n">params</span>
   <span class="n">charge_id</span> <span class="o">=</span> <span class="n">resp</span><span class="p">[</span><span class="ss">:id</span><span class="p">]</span>
@@ -3846,9 +3846,9 @@ COMING SOON
     <span class="n">item</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"Red dress"</span><span class="o">);</span>
     <span class="n">items</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
 
-    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">meta_data</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;();</span>
-    <span class="n">meta_data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"firstname"</span><span class="o">,</span> <span class="s">"Tianwei"</span><span class="o">);</span>
-    <span class="n">meta_data</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"lastname"</span><span class="o">,</span> <span class="s">"Liu"</span><span class="o">);</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">metadata</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;();</span>
+    <span class="n">metadata</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"firstname"</span><span class="o">,</span> <span class="s">"Tianwei"</span><span class="o">);</span>
+    <span class="n">metadata</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"lastname"</span><span class="o">,</span> <span class="s">"Liu"</span><span class="o">);</span>
 
     <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
     <span class="n">Gson</span> <span class="n">gson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Gson</span><span class="o">();</span>
@@ -3864,7 +3864,7 @@ COMING SOON
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"shipping"</span><span class="o">,</span> <span class="s">"2.50"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"tax"</span><span class="o">,</span> <span class="s">"0.0"</span><span class="o">);</span>
     <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"items"</span><span class="o">,</span> <span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">items</span><span class="o">));</span>
-    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"meta_data"</span><span class="o">,</span> <span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">meta_data</span><span class="o">));</span>
+    <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"metadata"</span><span class="o">,</span> <span class="n">gson</span><span class="o">.</span><span class="na">toJson</span><span class="o">(</span><span class="n">metadata</span><span class="o">));</span>
 
     <span class="n">Charge</span> <span class="n">charge</span> <span class="o">=</span> <span class="n">Charge</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="n">apiKey</span><span class="o">);</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">charge</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
@@ -3913,7 +3913,7 @@ COMING SOON
   </span><span class="s2">"total_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">12.49</span><span class="p">,</span><span class="w">
   </span><span class="s2">"fees"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.12</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"metadata"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"firstname"</span><span class="p">:</span><span class="s2">"Tianwei"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Liu"</span><span class="w">
   </span><span class="p">},</span><span class="w">
@@ -4116,10 +4116,10 @@ COMING SOON
 <td>Default to 48.0 hours from now.</td>
 </tr>
 <tr>
-<td>meta_data</td>
+<td>metadata</td>
 <td>string</td>
 <td>optional</td>
-<td>A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification</td>
+<td>A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these metadata in your callback notification</td>
 <td>{&quot;firstname&rdquo;:&ldquo;tianwei&rdquo;, &ldquo;lastname&rdquo;:&ldquo;liu&rdquo;}</td>
 </tr>
 <tr>
@@ -4234,11 +4234,11 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 
 <h4 id="meta-data">meta data</h4>
 
-<p>You can use the <code class="prettyprint">meta_data</code> parameter to attach json data. This is useful for storing additional structured information about the charge. As an example, you could store your user&rsquo;s first name, last name or any corresponding unique identifier from your system a Xfers charge.</p>
+<p>You can use the <code class="prettyprint">metadata</code> parameter to attach json data. This is useful for storing additional structured information about the charge. As an example, you could store your user&rsquo;s first name, last name or any corresponding unique identifier from your system a Xfers charge.</p>
 
-<p>The description and meta_data you specify is returned in API responses.</p>
+<p>The description and metadata you specify is returned in API responses.</p>
 
-<p>When a charge get cancelled, additional information might be provided in the meta_data field with key &#39;error_code&rsquo; and &#39;error_message&rsquo;.</p>
+<p>When a charge get cancelled, additional information might be provided in the metadata field with key &#39;error_code&rsquo; and &#39;error_message&rsquo;.</p>
 
 <table><thead>
 <tr>
@@ -4357,7 +4357,7 @@ Please take note that at this point, payment may or may not have been completed 
 <td>&ldquo;cancelled&rdquo; or &ldquo;paid&rdquo; or &ldquo;expired&rdquo;</td>
 </tr>
 <tr>
-<td>meta_data</td>
+<td>metadata</td>
 <td>string</td>
 <td>meta data previous provided in your charge call.</td>
 <td>&ldquo;{&#39;first_name&rsquo; : &#39;Tianwei&rsquo;, &#39;last_name&rsquo; : &#39;Liu&rsquo;}&rdquo;</td>
@@ -4607,7 +4607,7 @@ Please take note that at this point, payment may or may not have been completed 
   </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
   </span><span class="s2">"total_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">12.49</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"metadata"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"firstname"</span><span class="p">:</span><span class="s2">"Tianwei"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Liu"</span><span class="w">
   </span><span class="p">},</span><span class="w">
@@ -4755,7 +4755,7 @@ Please take note that at this point, payment may or may not have been completed 
   </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
   </span><span class="s2">"total_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">12.49</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"cancelled"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"metadata"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"key1"</span><span class="p">:</span><span class="s2">"value1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"key2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value2"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -4861,7 +4861,7 @@ Please take note that at this point, payment may or may not have been completed 
   </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
   </span><span class="s2">"total_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">12.49</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"metadata"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"firstname"</span><span class="p">:</span><span class="s2">"Tianwei"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Liu"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -4990,7 +4990,7 @@ Please take note that at this point, payment may or may not have been completed 
     </span><span class="s2">"tax"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span><span class="w">
     </span><span class="s2">"total_amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">12.49</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"meta_data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"metadata"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"firstname"</span><span class="p">:</span><span class="s2">"Tianwei"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Liu"</span><span class="w">
     </span><span class="p">}</span><span class="w">
