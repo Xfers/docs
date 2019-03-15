@@ -14,7 +14,7 @@ Our checkout page contains the relevant instructions for the user to login/signu
 curl "https://sandbox.xfers.io/api/v3/charges" \
   -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
   -H "Content-Type: application/json" \
-  -d '{ "amount": "9.99", "currency": "SGD", "redirect": "false", "notify_url": "https://mysite.com/payment_notification", "return_url": "https://mysite.com/return", "cancel_url": "https://mysite.com/cancel", "order_id": "AZ9912", "description":"unused red dress", "shipping": "2.50", "tax": "0.0", "items" : [{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}], "meta_data": {"firstname":"Tianwei", "lastname":"Liu"}}'
+  -d '{ "amount": "9.99", "currency": "SGD", "redirect": "false", "notify_url": "https://mysite.com/payment_notification", "return_url": "https://mysite.com/return", "cancel_url": "https://mysite.com/cancel", "order_id": "AZ9912", "description":"unused red dress", "shipping": "2.50", "tax": "0.0", "items" : [{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}], "metadata": {"firstname":"Tianwei", "lastname":"Liu"}}'
 ```
 
 ```php
@@ -33,7 +33,7 @@ try {
     );
     array_push($items, $item);
 
-    $meta_data = array(
+    $metadata = array(
       'firstname' => 'Tianwei',
       'lastname' => 'Liu'
       );
@@ -49,7 +49,7 @@ try {
         'redirect' => 'false',
         'tax' => '0.0',
         'items' => json_encode($items),
-        'meta_data' => $meta_data
+        'metadata' => $metadata
     ));
     print_r($resp);
 } catch (\Xfers\Error\InvalidRequest $e) {
@@ -67,7 +67,7 @@ xfers.set_sg_sandbox()
 try:
     print 'Creating charge...'
     items = [{'description': 'Red dress size M', 'price': '9.99', 'quantity': '1', 'name': 'Red dress'}]
-    meta_data = {'firstname': 'Tianwei', 'lastname': 'Liu'}
+    metadata = {'firstname': 'Tianwei', 'lastname': 'Liu'}
     params = {
         'amount' : '9.99',
         'currency' : 'SGD',
@@ -80,7 +80,7 @@ try:
         'redirect': False,
         'tax' : '0.0',
         'items' : json.dumps(items),
-        'meta_data' : json.dumps(meta_data)
+        'metadata' : json.dumps(metadata)
     }
     resp = xfcharge.create(params)
     charge_id = resp['id']
@@ -109,7 +109,7 @@ begin
         'tax' => '0.0',
         'redirect' => false,
         'items' => [{'description' => 'Red dress Size M', 'price' => '9.99', 'quantity' => 1, 'name' => 'Red dress'}],
-        'meta_data' => {'firstname'=> 'Tianwei', 'lastname'=> 'Liu'}
+        'metadata' => {'firstname'=> 'Tianwei', 'lastname'=> 'Liu'}
   }
   resp = Xfers::Charge.create params
   charge_id = resp[:id]
@@ -132,9 +132,9 @@ try {
     item.put("name", "Red dress");
     items.add(item);
 
-    Map<String, String> meta_data = new HashMap<String, String>();
-    meta_data.put("firstname", "Tianwei");
-    meta_data.put("lastname", "Liu");
+    Map<String, String> metadata = new HashMap<String, String>();
+    metadata.put("firstname", "Tianwei");
+    metadata.put("lastname", "Liu");
 
     Map<String, Object> params = new HashMap<String, Object>();
     Gson gson = new Gson();
@@ -150,7 +150,7 @@ try {
     params.put("shipping", "2.50");
     params.put("tax", "0.0");
     params.put("items", gson.toJson(items));
-    params.put("meta_data", gson.toJson(meta_data));
+    params.put("metadata", gson.toJson(metadata));
 
     Charge charge = Charge.create(params, apiKey);
     System.out.println(charge.getId());
@@ -198,7 +198,7 @@ try {
   "total_amount" : 12.49,
   "fees" : 0.12,
   "status" : "pending",
-  "meta_data" : {
+  "metadata" : {
     "firstname":"Tianwei",
     "lastname": "Liu"
   },
@@ -280,7 +280,7 @@ items | string | optional | A JSON array of item with attributes 'description, n
 shipping | float | optional | Shipping fees | Default to 0.0
 tax | float | optional | tax in $  | Default to 0.0
 hrs_to_expirations | float | optional | No of hours before this transactons will expire  | Default to 48.0 hours from now.
-meta_data | string | optional | A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these meta_data in your callback notification | {"firstname":"tianwei", "lastname":"liu"}
+metadata | string | optional | A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these metadata in your callback notification | {"firstname":"tianwei", "lastname":"liu"}
 receipt_email | string | optional | The email address to send this charge's receipt. | tianwei@xfers.io
 skip_notifications | boolean | optional | Setting this to true will not send transaction reminders/cancelled/expired emails/SMS. Users will still receive payment completed notification. | Default to false.
 
@@ -322,11 +322,11 @@ The subtotal of all the item MUST be equal to the `amount` field you provided or
 
 #### meta data
 
-You can use the `meta_data` parameter to attach json data. This is useful for storing additional structured information about the charge. As an example, you could store your user's first name, last name or any corresponding unique identifier from your system a Xfers charge.
+You can use the `metadata` parameter to attach json data. This is useful for storing additional structured information about the charge. As an example, you could store your user's first name, last name or any corresponding unique identifier from your system a Xfers charge.
 
-The description and meta_data you specify is returned in API responses.
+The description and metadata you specify is returned in API responses.
 
-When a charge get cancelled, additional information might be provided in the meta_data field with key 'error_code' and 'error_message'.
+When a charge get cancelled, additional information might be provided in the metadata field with key 'error_code' and 'error_message'.
 
 key | value | meaning
 ---- | ---- | ------ |
@@ -383,7 +383,7 @@ order_id | string | Unique ref no provided by your during your charge call | A01
 total_amount | float | 12.49 | Total value for items
 currency | string | 3-letter ISO code for currency | SGD
 status | string | Payment status. | "cancelled" or "paid" or "expired"
-meta_data | string | meta data previous provided in your charge call. | "{'first_name' : 'Tianwei', 'last_name' : 'Liu'}"
+metadata | string | meta data previous provided in your charge call. | "{'first_name' : 'Tianwei', 'last_name' : 'Liu'}"
 
 ### Verification of Notifications
 
@@ -611,7 +611,7 @@ try {
   "tax" : 0.00,
   "total_amount" : 12.49,
   "status" : "accepted",
-  "meta_data" : {
+  "metadata" : {
     "firstname":"Tianwei",
     "lastname": "Liu"
   },
@@ -746,7 +746,7 @@ try {
   "tax" : 0.00,
   "total_amount" : 12.49,
   "status" : "cancelled",
-  "meta_data" : {
+  "metadata" : {
     "key1":"value1",
     "key2": "value2"
   }
@@ -858,7 +858,7 @@ Xfers.setSGSandbox();
   "tax" : 0.00,
   "total_amount" : 12.49,
   "status" : "completed",
-  "meta_data" : {
+  "metadata" : {
     "firstname":"Tianwei",
     "lastname": "Liu"
   }
@@ -993,7 +993,7 @@ try {
     "tax" : 0.00,
     "total_amount" : 12.49,
     "status" : "completed",
-    "meta_data" : {
+    "metadata" : {
       "firstname":"Tianwei",
       "lastname": "Liu"
     }
