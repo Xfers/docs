@@ -14,7 +14,7 @@ Our checkout page contains the relevant instructions for the user to login/signu
 curl "https://sandbox.xfers.io/api/v3/charges" \
   -H "X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk" \
   -H "Content-Type: application/json" \
-  -d '{ "amount": "9.99", "currency": "SGD", "redirect": "false", "notify_url": "https://mysite.com/payment_notification", "return_url": "https://mysite.com/return", "cancel_url": "https://mysite.com/cancel", "order_id": "AZ9912", "description":"unused red dress", "shipping": "2.50", "tax": "0.0", "items" : [{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}], "metadata": {"firstname":"Tianwei", "lastname":"Liu"}}'
+  -d '{ "amount": "9.99", "currency": "SGD", "redirect": "false", "notify_url": "https://mysite.com/payment_notification", "return_url": "https://mysite.com/return", "cancel_url": "https://mysite.com/cancel", "order_id": "AZ9912", "description":"unused red dress", "metadata": {"firstname":"Tianwei", "lastname":"Liu"}}'
 ```
 
 ```php
@@ -24,15 +24,6 @@ require_once('vendor/autoload.php');
 \Xfers\Xfers::setApiKey('Vsya_qc5KjiUGK3xyKRgmhb2Atir2wAyizqssRuYJYw');
 \Xfers\Xfers::setSGSandbox();
 try {
-    $items = array();
-    $item =  array(
-      'description' => 'Red dress Size M',
-      'price' => '9.99',
-      'quantity' => '1',
-      'name' => 'Red dress'
-    );
-    array_push($items, $item);
-
     $metadata = array(
       'firstname' => 'Tianwei',
       'lastname' => 'Liu'
@@ -45,10 +36,7 @@ try {
         'cancel_url' => 'https://mysite.com/cancel',
         'order_id' => 'AZ9912',
         'description' => 'unused red dress',
-        'shipping' => '2.50',
         'redirect' => 'false',
-        'tax' => '0.0',
-        'items' => json_encode($items),
         'metadata' => $metadata
     ));
     print_r($resp);
@@ -66,7 +54,6 @@ xfers.api_key = '2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 xfers.set_sg_sandbox()
 try:
     print 'Creating charge...'
-    items = [{'description': 'Red dress size M', 'price': '9.99', 'quantity': '1', 'name': 'Red dress'}]
     metadata = {'firstname': 'Tianwei', 'lastname': 'Liu'}
     params = {
         'amount' : '9.99',
@@ -76,10 +63,7 @@ try:
         'cancel_url' : 'https://mysite.com/cancel',
         'order_id' : 'AZ9912',
         'description' : 'unused red dress',
-        'shipping' : '2.50',
         'redirect': False,
-        'tax' : '0.0',
-        'items' : json.dumps(items),
         'metadata' : json.dumps(metadata)
     }
     resp = xfcharge.create(params)
@@ -105,10 +89,7 @@ begin
         'cancel_url' => 'https://mysite.com/cancel',
         'order_id' => 'AZ9912',
         'description' => 'unused red dress',
-        'shipping' => '2.50',
-        'tax' => '0.0',
         'redirect' => false,
-        'items' => [{'description' => 'Red dress Size M', 'price' => '9.99', 'quantity' => 1, 'name' => 'Red dress'}],
         'metadata' => {'firstname'=> 'Tianwei', 'lastname'=> 'Liu'}
   }
   resp = Xfers::Charge.create params
@@ -124,14 +105,6 @@ try {
     String apiKey = "2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk";
 
     System.out.println("Creating a charge");
-    Vector<Map<String, String>> items = new Vector<Map<String, String>>();
-    Map<String, String> item = new HashMap<String, String>();
-    item.put("description", "Red dress Size M");
-    item.put("price", "9.99");
-    item.put("quantity", "1");
-    item.put("name", "Red dress");
-    items.add(item);
-
     Map<String, String> metadata = new HashMap<String, String>();
     metadata.put("firstname", "Tianwei");
     metadata.put("lastname", "Liu");
@@ -147,9 +120,6 @@ try {
     params.put("order_id", "AZ9912");
     params.put("description", "unused red dress");
     params.put("redirect", false);
-    params.put("shipping", "2.50");
-    params.put("tax", "0.0");
-    params.put("items", gson.toJson(items));
     params.put("metadata", gson.toJson(metadata));
 
     Charge charge = Charge.create(params, apiKey);
@@ -169,86 +139,39 @@ try {
 
 ```json
 {
-  "id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "id": "contract_b840cc9fc5a359c22ed2ccef3427aacd",
+  "object": "TransferContract",
   "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd",
   "notify_url" : "https://mysite.com/payment_notification",
   "return_url" : "https://mysite.com/return",
   "cancel_url" : "https://mysite.com/cancel",
-  "object" : "charge",
   "amount" : 9.99,
-  "bank_unique_amt": 9.99,
   "currency" : "SGD",
-  "customer" : "",
   "order_id" : "A012312",
-  "capture" : true,
   "description" : "Carousell user - Konsolidate",
-  "items" : [
-    {
-      "description": "Red Dress Size M",
-      "name": "Red dress",
-      "quantity": "1.00",
-      "price": 9.99,
-      "item_id": ""
-    }
-  ],
-  "statement_descriptor" : "",
   "receipt_email" : "",
-  "shipping" : 2.50,
-  "tax" : 0.00,
-  "total_amount" : 12.49,
-  "fees" : 0.12,
-  "status" : "pending",
+  "total_amount" : "12.49",
+  "fee_amount" : "0.12",
+  "status" : "completed",
   "metadata" : {
     "firstname":"Tianwei",
     "lastname": "Liu"
   },
   "transfer_info": {
-    "bank_name_full": "Oversea-Chinese Banking Corporation Limited",
-    "bank_name_abbreviation": "OCBC",
-    "bank_account_no": "646004424001",
-    "bank_code": "7339",
-    "branch_code": "646",
-    "branch_area": "Jurong East",
+    "bank_name_full": "United Overseas Bank",
+    "bank_name_abbreviation": "UOB",
+    "bank_account_no": "123456789",
+    "bank_code": "7375",
+    "swift_code": "UOVBSGSGXXX",
     "unique_id": "89898989",
-    "outstanding_amount": 0
-  },
-  "transfer_info_array": [
-    {
-      "bank_name_full" : "Bank Central Asia",
-      "bank_name_abbreviation" : "BCA",
-      "bank_account_no" : "1063003003",
-      "bank_code" : "",
-      "branch_code" : "",
-      "branch_area" : "",
-      "unique_id" : "XXXXXXXX",
-      "img_src": "https://xfers.com/bank-logo-bca.png"
-    },
-    {
-      "bank_name_full" : "Bank Mandiri",
-      "bank_name_abbreviation" : "MANDIRI",
-      "bank_account_no" : "1190006792749",
-      "bank_code" : "",
-      "branch_code" : "",
-      "branch_area" : "",
-      "unique_id" : "XXXXXXXX",
-      "img_src": "https://xfers.com/bank-logo-mandiri.png"    
-    },
-    {
-      "bank_name_full" : "Bank Negara Indonesia",
-      "bank_name_abbreviation" : "BNI",
-      "bank_account_no" : "8000067885",
-      "bank_code" : "",
-      "branch_code" : "",
-      "branch_area" : "",
-      "unique_id" : "XXXXXXXX",
-      "img_src": "https://xfers.com/bank-logo-bni.png"    
-    }    
-  ]
+    "outstanding_amount": "0"
+  }
 }
 ```
 
 
-The following request will allow you to create a charge against a customer.     
+The following request will allow you to create a charge against a customer
+
 
 `POST https://sandbox.xfers.io/api/v3/charges`
 
@@ -256,7 +179,7 @@ The following request will allow you to create a charge against a customer.
 
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
-amount | float | required | Total value for items, excluding taxes and shipping fees | 9.99
+amount | float | required | How much you want to charge the customer | 9.99
 currency | string | required | 3-letter ISO code for currency | SGD
 order_id | string | required | Unique ref no provided by you to prevent double charging, this cannot be repeated | A012312
 description | string | optional | Description of transaction for display purposes | Carousell user - Konsolidate
@@ -269,13 +192,10 @@ user_phone_no | string | optional | When this is provided, buyer will receive an
 google_auth | boolean | optional | When this is true and user_phone_no is provided, instead of phone SMS OTP, user can use Google Authenticator to do OTP. See [Authorize a Charge](/#authorize-a-charge). | Default to false
 transactional_only | boolean | optional | Enables transactional charge when true. [See more info](/#transactional-charge). Only selected Xfers partners have this feature available. | Default to false
 debit_only | boolean | optional | When this is true, this charge will attempt to debit from users existing balance/card on file. Status returned will be "completed" on successful debit or "cancelled" when there insufficient funds / valid card on file in user wallet. | Default to false
-card_only | boolean | optional | When this is true, this charge will will attempt to only take payments via credit/debit card. | Default to false
+card_only | boolean | optional | When this is true, this charge will will attempt to take payments via credit/debit card. | Default to false
 redirect | boolean | optional | When this is true, instead of the JSON response, Xfers will automatically redirect the request to our checkout page| Default to true.
-items | string | optional | A JSON array of item with attributes 'description, name, price, quantity'. [See more info](/#item-hash). | "[{"description":"Red dress Size M","price":9.99,"quantity":1,"name":"Red dress"}]"
-shipping | float | optional | Shipping fees | Default to 0.0
-tax | float | optional | tax in $  | Default to 0.0
 hrs_to_expirations | float | optional | No of hours before this transactons will expire  | Default to 48.0 hours from now.
-metadata | string | optional | A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these metadata in your callback notification | {"firstname":"tianwei", "lastname":"liu"}
+meta_data | string | optional | A set of key/value pairs that you can attach to a charge. It can be useful for storing additional information about the customer in a structured format. You will be provided with these metadata in your callback notification | {"firstname":"tianwei", "lastname":"liu"}
 receipt_email | string | optional | The email address to send this charge's receipt. | tianwei@xfers.io
 skip_notifications | boolean | optional | Setting this to true will not send transaction reminders/cancelled/expired emails/SMS. Users will still receive payment completed notification. | Default to false.
 
@@ -283,60 +203,10 @@ skip_notifications | boolean | optional | Setting this to true will not send tra
 
 If a `user_api_token` is given and the user has insufficient xfers wallet balance, the response will return the `transfer_info` object containing information about the bank the user should transfer to. If multiple banks are available, the `transfer_info_array` will also be returned.
 
-Xfers might use a `bank_unique_amt` to help in identifying the bank transfer in case the user forgets to enter his contact number in the comments section. This is a random amount with very small difference from actual amount(a few cents) which Xfers will absorb. However this is only to be used as a backup; the user should always enter his contact number.
-
 If you receive a status code of 503, please retry the request after a period of time. A "Retry-After" header is provided by the response to indicate the length of time (in seconds) before you should retry.
 
-The table below explains some of these attributes:
 
-key | meaning
----- | ------ |
-bank_unique_amt | This is the amount user should use to transfer to the bank.
-unique_id | The contact number of the user. This should be entered in the comments section of your bank when doing a bank transfer.
-total_txn | Total value of your payable transactions.
-total | total_txn - available Xfers balance of user.
-bank_discount | total - bank_unique_amt
-
-
-#### item hash
-You can provide itemized receipt for your customer by giving use informations with regards to each of them in the `items` field as a json array of hash.
-
-The below is the list of attribute supported in the hash.
-
-Name | Type | Required | Description | Value
----- | ---- | -------- | ----------- | -----
-description | string | required | Total value for items | Red dress Size M
-name | string | required | Total value for items | Red dress
-price | float | required | Total value for items | 9.99
-quantity | float | required | Total value for items | 1.0
-item_id | string | optional | Total value for items | AXA0012
-
-<aside class="warning">
-The subtotal of all the item MUST be equal to the `amount` field you provided or Xfers will reject your charge.
-</aside>
-
-#### meta data
-
-You can use the `metadata` parameter to attach json data. This is useful for storing additional structured information about the charge. As an example, you could store your user's first name, last name or any corresponding unique identifier from your system a Xfers charge.
-
-The description and metadata you specify is returned in API responses.
-
-When a charge get cancelled, additional information might be provided in the metadata field with key 'error_code' and 'error_message'.
-
-key | value | meaning
----- | ---- | ------ |
-error_code | 'KYC_ERROR' | User has some issues with their Xfers' account validation.
-error_code | 'KYC_MULTI' | Transfers from multiple bank account detected, user needs to contact Xfers for account validation.
-error_code | 'KYC_LIMIT' | User has reached the daily limit for their purchases.
-error_code | 'KYC_UNAVAILABLE' | Xfers has yet to receive KYC information for this user.
-error_code | 'INSUFFICIENT_FUND' | This is returned when a charge via user_api_token was unable to be process due to insufficient account balance.
-error_code | 'INVALID_CARD' | This is returned when a charge via user_api_token was unable to be process due to a the lack of a valid card on file.
-
-<aside class="notice">
-You should always provide customer's firstname and lastname information whenever you can as it would help us detecting fraudulence charges or user who have made an mistaken in their bank transfer.
-</aside>
-
-#### Transactional Charge
+#### Transactional Charge (Not available yet)
 A transactional charge has a bank topup tied to every charge created.
 That means, if you create a charge for an item that a user has bought - say a pair of jeans costing $25.99 - the user must then topup exactly $25.99 into the bank account number returned in the response. The charge will then go through.
 
@@ -346,22 +216,6 @@ Set the `transactional_only` flag to `true` when creating a charge. Note that th
 
 Transactional charges are not subject to KYC limits and merchants do not have to submit KYC documents of their customers.
 
-### Payment Cancellation
-
-If customer cancels the transaction during Xfers' checkout flow, he will be redirected back to the `cancel_url` you provided. The `order_id` you provided in the charge call will also be part of the GET request as shown:
-
-`GET https://mysite.com/cancel?order_id=<order_id>`
-
-
-### Payment Response
-
-After the customer has completed the transaction on Xfers website, he will be redirected back to the `return_url` you provided. The `order_id` you provided in the charge call will also be part of the GET request as shown:
-
-`GET https://mysite.com/return?order_id=<order_id>`
-
-<aside class="warning">
-Please take note that at this point, payment may or may not have been completed and verified. You should wait on receiving our payment notification server call before releasing your goods/services.
-</aside>
 
 ### Payment Notifications
 
@@ -373,12 +227,12 @@ The following parameters will be part of the HTTPS POST:
 
 Name | Type | Description | Value
 ---- | ---- | -------- | -----------
-txn_id | string | Xfers's transaction id unique to each transaction| b840cc9fc5a359c22ed2ccef3427aacd
-order_id | string | Unique ref no provided by your during your charge call | A012312
-total_amount | float | 12.49 | Total value for items
-currency | string | 3-letter ISO code for currency | SGD
-status | string | Payment status. | "cancelled" or "paid" or "expired"
-metadata | string | meta data previous provided in your charge call. | "{'first_name' : 'Tianwei', 'last_name' : 'Liu'}"
+id | string | Xfers's transaction id unique to each transaction| contract_b840cc9fc5a359c22ed2ccef3427aacd
+idempotency_id (formerly known as order_id) | string | Unique ref no provided by your during your charge call | A012312
+amount | string | "12.49" | Total value for items
+fees | string | "5.0" | Fees for this payment
+status | string | Payment status. | "pending", "accepted", "completed", "cancelled", "expired", "refunded"
+created_at | string | Date this status was created | "2019-05-15T20:04:57+08:00"
 
 ### Authorize a Charge
 
@@ -463,48 +317,32 @@ try {
 
 ```json
 {
-  "id": "b840cc9fc5a359c22ed2ccef3427aacd",
+  "id": "contract_b840cc9fc5a359c22ed2ccef3427aacd",
+  "object": "TransferContract",
   "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd",
   "notify_url" : "https://mysite.com/payment_notification",
   "return_url" : "https://mysite.com/return",
   "cancel_url" : "https://mysite.com/cancel",
-  "object" : "charge",
   "amount" : 9.99,
   "currency" : "SGD",
-  "customer" : "",
   "order_id" : "A012312",
-  "capture" : true,
-  "shipment_date" : "2015-07-02T06:26:51Z",
-  "settlement_date" : "2015-07-05T06:26:51Z",
   "description" : "Carousell user - Konsolidate",
-  "items" : [
-    {
-      "description": "Red Dress Size M",
-      "name": "Red dress",
-      "quantity": "1.00",
-      "price": 9.99,
-      "item_id": ""
-    }
-  ],
-  "statement_descriptor" : "",
   "receipt_email" : "",
-  "shipping" : 2.50,
-  "tax" : 0.00,
-  "total_amount" : 12.49,
+  "total_amount" : "12.49",
+  "fee_amount" : "0.12",
   "status" : "accepted",
   "metadata" : {
     "firstname":"Tianwei",
     "lastname": "Liu"
   },
-   "transfer_info": {
-    "bank_name_full": "Oversea-Chinese Banking Corporation Limited",
-    "bank_name_abbreviation": "OCBC",
-    "bank_account_no": "646004424001",
-    "bank_code": "7339",
-    "branch_code": "646",
-    "branch_area": "Jurong East",
+  "transfer_info": {
+    "bank_name_full": "United Overseas Bank",
+    "bank_name_abbreviation": "UOB",
+    "bank_account_no": "123456789",
+    "bank_code": "7375",
+    "swift_code": "UOVBSGSGXXX",
     "unique_id": "89898989",
-    "outstanding_amount": 0
+    "outstanding_amount": "0"
   }
 }
 ```
@@ -595,36 +433,32 @@ try {
 
 ```json
 {
-  "id": "6fa51cd08c8ae115f858593412bb72c8",
+  "id": "contract_b840cc9fc5a359c22ed2ccef3427aacd",
+  "object": "PendingTransferContract",
   "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd",
   "notify_url" : "https://mysite.com/payment_notification",
   "return_url" : "https://mysite.com/return",
   "cancel_url" : "https://mysite.com/cancel",
-  "object" : "charge",
   "amount" : 9.99,
   "currency" : "SGD",
-  "customer" : "",
   "order_id" : "A012312",
-  "capture" : true,
   "description" : "Carousell user - Konsolidate",
-  "items" : [
-    {
-      "description": "Red Dress Size M",
-      "name": "Red dress",
-      "quantity": "1.00",
-      "price": 9.99,
-      "item_id": ""
-    }
-  ],
-  "statement_descriptor" : "",
   "receipt_email" : "",
-  "shipping" : 2.50,
-  "tax" : 0.00,
-  "total_amount" : 12.49,
+  "total_amount" : "12.49",
+  "fee_amount" : "0.12",
   "status" : "cancelled",
   "metadata" : {
-    "key1":"value1",
-    "key2": "value2"
+    "firstname":"Tianwei",
+    "lastname": "Liu"
+  },
+  "transfer_info": {
+    "bank_name_full": "United Overseas Bank",
+    "bank_name_abbreviation": "UOB",
+    "bank_account_no": "123456789",
+    "bank_code": "7375",
+    "swift_code": "UOVBSGSGXXX",
+    "unique_id": "89898989",
+    "outstanding_amount": "0"
   }
 }
 ```
@@ -704,39 +538,32 @@ Xfers.setSGSandbox();
 
 ```json
 {
-  "id": "730eba1ec6d34f64dc68a0081c5006dc",
+  "id": "contract_b840cc9fc5a359c22ed2ccef3427aacd",
+  "object": "TransferContract",
   "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd",
   "notify_url" : "https://mysite.com/payment_notification",
   "return_url" : "https://mysite.com/return",
   "cancel_url" : "https://mysite.com/cancel",
-  "object" : "charge",
   "amount" : 9.99,
-  "bank_unique_amt": 9.99,
   "currency" : "SGD",
-  "customer" : "",
   "order_id" : "A012312",
-  "capture" : true,
-  "shipment_date" : "2015-07-02T06:26:51Z",
-  "settlement_date" : "2015-07-05T06:26:51Z",
   "description" : "Carousell user - Konsolidate",
-  "items" : [
-    {
-      "description": "Red Dress Size M",
-      "name": "Red dress",
-      "quantity": "1.00",
-      "price": 9.99,
-      "item_id": ""
-    }
-  ],
-  "statement_descriptor" : "",
   "receipt_email" : "",
-  "shipping" : 2.50,
-  "tax" : 0.00,
-  "total_amount" : 12.49,
+  "total_amount" : "12.49",
+  "fee_amount" : "0.12",
   "status" : "completed",
   "metadata" : {
     "firstname":"Tianwei",
     "lastname": "Liu"
+  },
+  "transfer_info": {
+    "bank_name_full": "United Overseas Bank",
+    "bank_name_abbreviation": "UOB",
+    "bank_account_no": "123456789",
+    "bank_code": "7375",
+    "swift_code": "UOVBSGSGXXX",
+    "unique_id": "89898989",
+    "outstanding_amount": "0"
   }
 }
 ```
@@ -839,41 +666,34 @@ try {
 ```json
 [
   {
-    "id": "730eba1ec6d34f64dc68a0081c5006dc",
-    "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd",
-    "notify_url" : "https://mysite.com/payment_notification",
-    "return_url" : "https://mysite.com/return",
-    "cancel_url" : "https://mysite.com/cancel",
-    "object" : "charge",
-    "amount" : 9.99,
-    "currency" : "SGD",
-    "customer" : "",
-    "order_id" : "A012312",
-    "cash_on_delivery" : true,
-    "capture" : true,
-    "shipment_date" : "2015-07-02T06:26:51Z",
-    "settlement_date" : "2015-07-05T06:26:51Z",    
-    "description" : "Carousell user - Konsolidate",
-    "items" : [
-      {
-        "description": "Red Dress Size M",
-        "name": "Red dress",
-        "quantity": "1.00",
-        "price": 9.99,
-        "item_id": ""
-      }
-    ],
-    "statement_descriptor" : "",
-    "receipt_email" : "",
-    "shipping" : 2.50,
-    "tax" : 0.00,
-    "total_amount" : 12.49,
-    "status" : "completed",
-    "metadata" : {
-      "firstname":"Tianwei",
-      "lastname": "Liu"
-    }
+  "id": "contract_b840cc9fc5a359c22ed2ccef3427aacd",
+  "object": "TransferContract",
+  "checkout_url" : "https://sandbox.xfers.io/checkout_transaction/b840cc9fc5a359c22ed2ccef3427aacd",
+  "notify_url" : "https://mysite.com/payment_notification",
+  "return_url" : "https://mysite.com/return",
+  "cancel_url" : "https://mysite.com/cancel",
+  "amount" : 9.99,
+  "currency" : "SGD",
+  "order_id" : "A012312",
+  "description" : "Carousell user - Konsolidate",
+  "receipt_email" : "",
+  "total_amount" : "12.49",
+  "fee_amount" : "0.12",
+  "status" : "completed",
+  "metadata" : {
+    "firstname":"Tianwei",
+    "lastname": "Liu"
+  },
+  "transfer_info": {
+    "bank_name_full": "United Overseas Bank",
+    "bank_name_abbreviation": "UOB",
+    "bank_account_no": "123456789",
+    "bank_code": "7375",
+    "swift_code": "UOVBSGSGXXX",
+    "unique_id": "89898989",
+    "outstanding_amount": "0"
   }
+}
 ]
 ```
 
@@ -883,13 +703,3 @@ Returns a list of charges you've previously created. The charges are returned in
 #### HTTPS Request
 
 `GET https://sandbox.xfers.io/api/v3/charges`
-
-#### URL Parameters
-
-Name | Type | Required | Description | Value
----- | ---- | -------- | ----------- | -----
-customer | string | optional | Only return charges for the customer specified by this customer ID. | XXXXXXXX
-status (Coming soon) | string | optional | status of the charge to return | pending
-ending_before | string | optional | A cursor for use in pagination. ending_before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with obj_bar, your subsequent call can include ending_before=obj_bar in order to fetch the previous page of the list. | 7364dc68a000eba1ec6d34f81c5006dc
-limit | integer | optional | A limit on the number of objects to be returned. Limit can range between 1 and 50 items. | Default to 10
-starting_after | string | optional | A cursor for use in pagination. starting_after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include starting_after=obj_foo in order to fetch the next page of the list. | 7ba1ec6d34f64dc68a030e081c5006dc

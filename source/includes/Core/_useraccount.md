@@ -78,11 +78,12 @@ try {
    "bank_transfer_rates":"0.0",
    "bank_transfer_fees":"0.45",
    "phone_no":"+6591240987",
-   "first_name":"Bobby",
-   "last_name":"Keong",
+   "full_name": "Luther Tan",
+   "first_name":"Luther",
+   "last_name":"Tan",
    "date_of_birth":"1995-05-21",
    "gender":"",
-   "email":"bobby@gmail.com",
+   "email":"luther@gmail.com",
    "country":"SG",
    "nationality":"Singaporean",
    "address_line_1":"PASIR RIS DRIVE 1",
@@ -93,7 +94,7 @@ try {
     {
        "id": 399,
        "account_no": "9484853433",
-       "account_holder_name": "John Tan",
+       "account_holder_name": "Luther Tan",
        "verification_status": "pending",
        "bank_abbrev": "DBS",
        "usage": "all"
@@ -111,7 +112,8 @@ try {
    "kyc_limit_remaining":120000.0,
    "kyc_verified":true,
    "meta_data":"",
-   "wallet_name":"Xfers"
+   "wallet_name":"Your General Wallet Account",
+   "wallet_id": 1
 }
 ```
 
