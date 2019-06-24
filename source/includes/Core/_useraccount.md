@@ -104,11 +104,10 @@ try {
    "id_front":"my_id_front.jpg",
    "id_back":"my_id_back.jpg",
    "selfie_2id":"nricSelfiePlaceholder.png",
-   "proof_of_address":"my_proof_of_address.pdf",   
-   "verification_documents":[],
+   "proof_of_address":"my_proof_of_address.pdf",
    "multi_bank_account_detected":false,
    "account_locked":false,
-   "google_auth_enabled":false, 
+   "google_auth_enabled":false,
    "kyc_limit_remaining":120000.0,
    "kyc_verified":true,
    "meta_data":"",
@@ -152,7 +151,7 @@ try {
    "id_front":"my_id_front.jpg",
    "selfie_2id":"nricSelfiePlaceholder.png",
    "account_locked":false,
-   "google_auth_enabled":false, 
+   "google_auth_enabled":false,
    "kyc_verified":true,
    "meta_data":"",
    "place_of_birth":"Malang",
@@ -310,7 +309,7 @@ try {
    "address_line_1":"PASIR RIS DRIVE 1",
    "address_line_2":"04-180",
    "postal_code":"510608",
-   "identity_no":"S9539495J",   
+   "identity_no":"S9539495J",
    "bank_accounts":[
     {
        "id": 399,
@@ -325,9 +324,7 @@ try {
    "id_front":"my_id_front.jpg",
    "id_back":"my_id_back.jpg",
    "selfie_2id":"nricSelfiePlaceholder.png",
-   "proof_of_address":"my_proof_of_address.pdf",   
-   "verification_documents":[
-
+   "proof_of_address":"my_proof_of_address.pdf",
    ],
    "multi_bank_account_detected":false,
    "account_locked":false,
@@ -411,7 +408,7 @@ This endpoint allows user to update their account information, this is especiall
 Name | Type | Required | Description | Value
 ---- | ---- | -------- | ----------- | -----
 first_name | string | optional | Account holder firstname | Doe
-last_name | string | optional | Account holder lastname | John 
+last_name | string | optional | Account holder lastname | John
 email | string | optional | User email | example@example.com
 date_of_birth | string | optional | Date of birth for account holder in yyyy-mm-dd | 1990-01-01
 mother_maiden_name | string | ID: required, SG: optional | Name of Mother | John Doe
@@ -486,7 +483,7 @@ The activities API supports querying of a user's activity. If you are a merchant
 curl -X GET \
   'https://sandbox.xfers.io/api/v3/user/activities?limit=5&start_date=2018-07-04T11%3A49%3A58%2B08%3A00&offset=5' \
   -H 'Content-Type: application/x-www-form-urlencoded' \
-  -H 'X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'  
+  -H 'X-XFERS-USER-API-KEY: 2zsujd47H3-UmsxDL784beVnYbxCYCzL4psSbwZ_Ngk'
 ```
 
 ```php
@@ -640,11 +637,11 @@ To do pagination:
 Hence your offset should always be a multiple of limit.
 
 #### Response
-Attribute | Description 
+Attribute | Description
 --------- | -----------
-id | ID of the Charge/Payout/Withdrawal/Payout. You can use this ID to query [Charges](/#retrieve-a-charge) and [Payouts](/#retrieve-a-payout).   
-type | 5 types: Credit Card, Charge, Payout, Withdrawal, Deposit 
-amount | If money going out of account, negative. If coming in, positive. Note that only a completed Charge will actually deduct money. For example, if a Charge is expired/accepted/pending/unclaimed, no money will actually flow in/out of the wallet, even though there is a amount displayed. 
+id | ID of the Charge/Payout/Withdrawal/Payout. You can use this ID to query [Charges](/#retrieve-a-charge) and [Payouts](/#retrieve-a-payout).
+type | 5 types: Credit Card, Charge, Payout, Withdrawal, Deposit
+amount | If money going out of account, negative. If coming in, positive. Note that only a completed Charge will actually deduct money. For example, if a Charge is expired/accepted/pending/unclaimed, no money will actually flow in/out of the wallet, even though there is a amount displayed.
 fee | Fee charged by Xfers for the transaction, if any. Will be 0 if no fees
 metadata | Shows additional information about a transaction
 activities_returned | Number of activities returned. If activities returned is less than the limit, this is the final page.
@@ -787,7 +784,7 @@ try {
         "img_src": "https://www.xfers.io/images/bankLogos/bank-logo-mandiri.png"
       }
     ]
-  }  
+  }
 ]
 ```
 
@@ -800,7 +797,7 @@ On your User Interface, instruct the user to make a bank transfer to the bank na
 
 `GET https://sandbox.xfers.io/api/v3/user/transfer_info`
 
-### Register Updates Callback 
+### Register Updates Callback
 
 ```shell
 curl "https://sandbox.xfers.io/api/v3/user/balance_callback" \
@@ -868,7 +865,7 @@ The following parameters will be part of the HTTPS/HTTP POST:
     "available_balance": 336750.00,
     "credit": 335000.00,
     "debit": 0.00,
-    "details": "BCA Transfer"    
+    "details": "BCA Transfer"
   }
 }
 ```
@@ -885,7 +882,7 @@ data | dictionary | Additional information about the event| Look at the below ta
 
 #### Additional information about the event
 
-Key | Description| Value Type | Value 
+Key | Description| Value Type | Value
 ---- | ---------|------------|-------
 ledger_balance | Ledger balance of the user at this point in time | float| 436750.00
 available_balance | Available balance of the user at this point in time | float| 336750.00
@@ -893,7 +890,7 @@ credit | How much was credited in this event | float| 335000.00
 debit | How much was debited in this event | float| 0.00
 details | Additional details. For deposit, it would be the bank the user did a transfer from | String| BCA Transfer
 
-### Cancel Updates Callback 
+### Cancel Updates Callback
 
 ```shell
 curl -X DELETE "https://sandbox.xfers.io/api/v3/user/balance_callback" \
@@ -918,8 +915,3 @@ Deletes the existing callback subscription
 #### HTTPS Request
 
 `DELETE https://sandbox.xfers.io/api/v3/user/balance_callback`
-
-
-
-
-
