@@ -325,7 +325,6 @@ try {
    "id_back":"my_id_back.jpg",
    "selfie_2id":"nricSelfiePlaceholder.png",
    "proof_of_address":"my_proof_of_address.pdf",
-   ],
    "multi_bank_account_detected":false,
    "account_locked":false,
    "kyc_limit_remaining":120000.0,
